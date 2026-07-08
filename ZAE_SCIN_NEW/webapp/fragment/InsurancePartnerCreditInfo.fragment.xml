@@ -1,0 +1,25 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:smartField="sap.ui.comp.smartfield">
+	<Popover showHeader="false" contentWidth="300px" contentHeight="410px" placement="Right" title="{i18n>InsuranceCreditInfo}">
+		<Page title="{i18n>InsuranceCreditInfo}" titleAlignment="Center">
+			<VBox class="sapUiSmallMargin">
+				<Label text="{i18n>InsuranceInsurer}" class="sapUiTinyMarginTop"/>
+				<Text text="{mCustIdentification>/InsuranceDetails/MoreInfo/InsurancePartner}"/>
+				<Label text="{i18n>InsuranceName}" class="sapUiTinyMarginTop"/>
+				<Text text="{mCustIdentification>/InsuranceDetails/MoreInfo/PartnerName}"/>
+				<Label text="{/#ZAE_C_T_EQUS_INS_01Type/BlockReason/@sap:label}" class="sapUiTinyMarginTop"/>
+				<Text
+					text="{parts: ['mCustIdentification>/InsuranceDetails/MoreInfo/BlockReasonText', 'mCustIdentification>/InsuranceDetails/MoreInfo/BlockReason'], formatter: '.formatNameAndValuePair'}"/>
+				<Label text="{/#ZAE_C_T_EQUS_INS_01Type/CreditBlock/@sap:label}" class="sapUiTinyMarginTop"/>
+				<Text text="{mCustIdentification>/InsuranceDetails/MoreInfo/CreditBlock}"/>
+				<Label text="{/#ZAE_C_T_EQUS_INS_01Type/CustomerStatus/@sap:label}" class="sapUiTinyMarginTop"/>
+				<Text text="{mCustIdentification>/InsuranceDetails/MoreInfo/CustomerStatus}"/>
+				<Label text="{i18n>CreditLimit}" class="sapUiTinyMarginTop"/>
+				<Text text="{mCustIdentification>/InsuranceDetails/MoreInfo/CreditLimit} {mCustIdentification>/InsuranceDetails/MoreInfo/Currency}"/>
+				<Label text="{i18n>AvailableCredit}" class="sapUiTinyMarginTop"/>
+				<Text text="{mCustIdentification>/InsuranceDetails/MoreInfo/AvailableCredit} {mCustIdentification>/InsuranceDetails/MoreInfo/Currency}"/>
+				<Label text="{/#ZAE_C_T_EQUS_INS_01Type/CreditExposure/@sap:label}" class="sapUiTinyMarginTop"/>
+				<Text text="{mCustIdentification>/InsuranceDetails/MoreInfo/CreditExposure} {mCustIdentification>/InsuranceDetails/MoreInfo/Currency}"/>
+			</VBox>
+		</Page>
+	</Popover>
+</core:FragmentDefinition>

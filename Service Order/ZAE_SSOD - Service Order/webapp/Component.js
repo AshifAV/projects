@@ -1,0 +1,1 @@
+sap.ui.define(["sap/suite/ui/generic/template/lib/AppComponent"],function(e){return e.extend("com.globalintelli.zae_ssod.Component",{metadata:{manifest:"json"}})});

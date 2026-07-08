@@ -1,0 +1,94 @@
+{
+	"false": false,
+	"test": "test",
+	"usageCount": 6,
+	"contractTypeCount": 5,
+	"tax": 5,
+	"tabs": ["opportunityTab", "configTab", "overviewTab", "confirmationTab"],
+	"pages": {
+		"Opportunity": {
+			"isNextEnabled": false,
+			"isOpportunityDataLoaded": false,
+			"opportunity": null,
+			"Equipment": null,
+			"SalesOrganization": null,
+			"DistributionChannel": null,
+			"Division": null,
+			"opportunityData": {},
+			"ConstDate": "/Date(${cart[0].startdate.getTime()})/"
+		},
+		"Material": {
+			"type": "Material",
+			"isNextEnabled": false,
+			"materialList": [],
+			"selectedMaterialData": {},
+			"equipmentList": [],
+			"selectedEquipmentData": {}
+		},
+		"Config": {
+			"isSubmitEnabled": false,
+			"currentItem": 0,
+			"materialConfigData": [],
+			"materialData": [],
+			"equipmentData": [],
+			"price": 0,
+			"basePrice": 0,
+			"addOnsPrice": 0,
+			"noOfMonths": 0,
+			"kmPrd": 5000,
+			"maxKM": 600000,
+			"mnPrd": 6,
+			"maxMn": 60
+		},
+		"Overview": {
+			"isSubmitEnabled": false,
+			"typeOptions": [],
+			"type": "",
+			"contractTypeOptions": [],
+			"selContractType": "",
+			"totalPrice": null,
+			"QuotationPaymentMethods": [],
+			"InquiryPaymentMethods": [],
+			"selPaymentMethod": "",
+			"paymentTerms": [],
+			"selPaymentTerms": "",
+			"selTradeIn": "NO",
+			"selSecurityDeposit": "NO",
+			"downPaymentAmount": {
+				"valid": false,
+				"value": null
+			},
+			"customerReference": "",
+			"tradeInDetials": {
+				"description": "",
+				"make": "",
+				"model": "",
+				"colour": "",
+				"licensePlateNo": "",
+				"expectedValue": null,
+				"retainLicensePlate": "NO"
+			},
+			"emiData": {
+				"amount": null,
+				"emi": null,
+				"total": null,
+				"interest": null,
+				"chartData": {
+					"pie": null,
+					"bar": null
+				}
+			}
+		},
+		"Confirmation": {
+			"data": {}
+		},
+		"isBusy": true,
+		"isConfigDataLoaded": false,
+		"configData": {},
+		"currentStep": 0,
+		"currency": "OMR",
+		"isShowCartButton": false
+	},
+	"params": {},
+	"cart": []
+}

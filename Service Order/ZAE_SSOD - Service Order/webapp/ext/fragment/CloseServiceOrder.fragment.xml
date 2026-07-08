@@ -1,0 +1,32 @@
+<!--<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:smartfield="sap.ui.comp.smartfield" xmlns="sap.m">-->
+<!--	<Dialog afterClose="afterClose" class="sapUiPopupWithPadding" id="SSOD_B04MessageStrip" title="{i18n>SSOD_B04}">-->
+<!--		<MessageStrip class="sapUiResponsiveMargin sapUiNoMarginTop" id="SSOD_B04MessageStrip" showCloseButton="false" showIcon="true" type="Error"-->
+<!--			visible="false"></MessageStrip>-->
+<!--		<content>-->
+<!--			<Label labelFor="StatusreasonInput"/>-->
+<!--			<Input id="StatusreasonInput" required="true" type="Text" showSuggestion="true" showValueHelp="true" valueHelpRequest="handleValueHelp"-->
+<!--				class="sapUiSmallMarginBottom"/>-->
+<!--		</content>-->
+<!--		<beginButton>-->
+<!--			<Button press="onSubmitPressed" text="{i18n>BUTTON_Submit}"/>-->
+<!--		</beginButton>-->
+<!--		<endButton>-->
+<!--			<Button press="onCancelPressed" text="{i18n>BUTTON_Cancel}"/>-->
+<!--		</endButton>-->
+<!--	</Dialog>-->
+<!--</core:FragmentDefinition>-->
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"
+	xmlns:smartField="sap.ui.comp.smartfield">
+	<MessageStrip class="sapUiResponsiveMargin sapUiNoMarginTop" id="SSOD_B04MessageStrip" showCloseButton="false" showIcon="true" type="Error"
+		visible="false"></MessageStrip>
+	<f:SimpleForm editable="true" layout="ResponsiveGridLayout" singleContainerFullSize="false">
+		<f:content>
+			<Label text="{i18n>StatusreasonInput}" required="true"/>
+			<Select forceSelection="false" id="StatusreasonInput" showSecondaryValues="true" items="{ path: '/ZAE_I_ActivityStatusReasonCode'}"
+				wrapItemsText="true">
+				<core:ListItem key="{Code}" text="{CodeGroupProfileText}#{CodeGroupText}#{CodeText}" additionalText="{Code}"/>
+			</Select>
+			<Text id="SSOD_B04TextMessage" visible="false"/>
+		</f:content>
+	</f:SimpleForm>
+</core:FragmentDefinition>

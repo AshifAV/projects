@@ -1,0 +1,51 @@
+/* Enter your custom styles here */
+
+.CustMessagePage {
+    height: 85% !important;
+}
+
+
+.sapMListTblCell {
+    vertical-align: bottom !important;
+}
+
+.HBoxCustomHead {
+    /*justify-content: space-between !important;*/
+}
+
+.HBoxCustomHead .rowChartBorder {
+    width: -webkit-fill-available !important;
+    ;
+}
+
+.CustFlexBox>div {
+    width: 100%;
+}
+
+#__xmlview0--OEMWarrantyStatus label {
+    font-weight: bold !important;
+}
+
+#__xmlview0--RecallLabel-label-text {
+    font-size: 16px !important;
+    color: #000000;
+}
+#__xmlview0--ServiceContractId-label-text {
+    font-size: 16px !important;
+    color: #000000;
+}
+
+.labelBold {
+    display: inline-block;
+    font-weight: bold !important;
+}
+
+.disabledbutton {
+    pointer-events: none !important;
+    opacity: 0.4 !important;
+}
+
+
+.CutomBarHeight {
+    height: 20px !important;
+}

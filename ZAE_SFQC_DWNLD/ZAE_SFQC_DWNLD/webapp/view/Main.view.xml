@@ -1,0 +1,72 @@
+<mvc:View xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+	xmlns:smartForm="sap.ui.comp.smartform" xmlns:smartField="sap.ui.comp.smartfield" xmlns:viz="sap.viz.ui5.controls" xmlns:l="sap.ui.layout"
+	xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds" xmlns:viz.data="sap.viz.ui5.data"
+	controllerName="com.globalintelli.ZAE_SFQC.controller.Main" height="100%">
+	<App>
+		<pages>
+			<Page title="{i18n>title}" busy="{app>/pages/isBusy}">
+				<headerContent>
+					<Button class="sapUiTinyMargin" text="{i18n>ApplicableService}" press="onApplicableServicePackageList"
+						visible="{= ${app>/pages/currentStep} === 1 }"/>
+					<!--<Button class="sapUiSmallMarginEnd" icon="sap-icon://cart" id="btnCart" press="onPressCart" text="{= ${app>/cart}.length }"-->
+					<!--	visible="{= ${app>/pages/isShowCartButton} &amp;&amp; ${app>/cart}.length > 0 }"/>-->
+				</headerContent>
+				<content>
+					<!--headerMode="Inline"-->
+					<IconTabBar id="iconTabBar" class="sapUiNoContentPadding" stretchContentHeight="true" applyContentPadding="false"
+						backgroundDesign="Transparent" expandable="false" select="onTabSelect">
+						<items>
+							<!--count="{= ${app>/pages/currentStep} > 0 ? ${app>/pages/Opportunity/opportunity} : null }"-->
+							<IconTabFilter id="opportunityIconTab" key="opportunityTab" text="{i18n>Equipment}" enabled="{= ${app>/pages/currentStep} &lt; 4 }">
+								<mvc:XMLView id="opportunitySubView" viewName="com.globalintelli.ZAE_SFQC.view.subview.Opportunity"/>
+							</IconTabFilter>
+							<!--count="{= ${app>/pages/currentStep} > 1 &amp;&amp; ${app>/pages/configData/AppMode}.charAt(1) === 'R' ? ${app>/pages/Material/selectedMaterialData/Material} : null }"-->
+							<!--<IconTabFilter id="materialIconTab" key="materialTab" text="{app>/pages/Material/type}" visible="false"-->
+							<!--	enabled="{= ${app>/pages/currentStep} &gt; 0 &amp;&amp; ${app>/pages/currentStep} &lt; 4 }">-->
+							<!--	<mvc:XMLView id="materialSubView" viewName="com.globalintelli.ZAE_SFQC.view.subview.Material"/>-->
+							<!--</IconTabFilter>-->
+							<IconTabFilter id="configIconTab" key="configTab" text="{i18n>Configuration}" enabled="{= ${app>/pages/currentStep} &gt; 0 }">
+								<mvc:XMLView id="configSubView" viewName="com.globalintelli.ZAE_SFQC.view.subview.Config"/>
+							</IconTabFilter>
+							<IconTabFilter id="overviewIconTab" key="overviewTab" text="{i18n>Overview}"
+								enabled="{= ${app>/pages/currentStep} &gt; 1 &amp;&amp; ${app>/pages/currentStep} &lt; 3 }">
+								<mvc:XMLView id="overviewSubView" viewName="com.globalintelli.ZAE_SFQC.view.subview.Overview"/>
+							</IconTabFilter>
+							<IconTabFilter id="confirmationIconTab" key="confirmationTab" text="{i18n>Confirmation}" visible="{= ${app>/pages/currentStep} === 3 }">
+								<mvc:XMLView id="confirmationSubView" viewName="com.globalintelli.ZAE_SFQC.view.subview.Confirmation"/>
+							</IconTabFilter>
+						</items>
+					</IconTabBar>
+				</content>
+				<footer>
+					<Toolbar id="otbFooter">
+						<Button icon="sap-icon://alert" text="{= ${message>/}.length }" visible="{= ${message>/}.length > 0 }" type="Emphasized"
+							press="onMessagePopoverPress"/>
+						<ToolbarSpacer/>
+						<!--enabled="{app>/pages/Opportunity/isNextEnabled} enabled="{ path: 'app>/pages/nextDummy', formatter: '.formatter.isNextEnabled' }""-->
+						<!--<Label text="Document Type" labelFor="documentType"-->
+						<!--	visible="{= ${app>/pages/currentStep} === 0 &amp;&amp; ${app>/pages/Opportunity/isOpportunityDataLoaded} === true }"/>-->
+						<!--<Select class="sapUiSmallMarginEnd" id="documentType" name="selDocumentType" selectedKey="{app>/pages/Overview/type}"-->
+						<!--	items="{ path: 'app>/pages/Overview/typeOptions' }" change="onTypeChange" width="150px"-->
+						<!--	visible="{= ${app>/pages/currentStep} === 0 &amp;&amp; ${app>/pages/Opportunity/isOpportunityDataLoaded} === true }">-->
+						<!--	<core:ListItem key="{app>type}" text="{app>typeName}"/>-->
+						<!--</Select>-->
+						<Label text="{i18n>ProcessType}" labelFor="Process Type"
+							visible="{= ${app>/pages/currentStep} === 0 &amp;&amp; ${app>/pages/Opportunity/isOpportunityDataLoaded} === true }"/>
+						<Select class="sapUiSmallMarginEnd" id="processType" change="onProcessTypeChange" name="selProcessType"
+							selectedKey="{app>/pages/Overview/selPaymentMethod}" width="150px"
+							visible="{= ${app>/pages/currentStep} === 0 &amp;&amp; ${app>/pages/Opportunity/isOpportunityDataLoaded} === true }"/>
+						<Button id="opportunityNextButton" type="Emphasized" text="{i18n>Next}" visible="{= ${app>/pages/currentStep} === 0 }"
+							enabled="{app>/pages/Opportunity/isNextEnabled}" press="onMaterialNext"/>
+						<!--<Button id="materialNextButton" type="Emphasized" text="Next" visible="{= ${app>/pages/currentStep} === 1 }"-->
+						<!--	enabled="{app>/pages/Material/isNextEnabled}" press="onMaterialNext"/>-->
+						<Button id="configNextButton" type="Emphasized" text="{i18n>Next}" visible="{= ${app>/pages/currentStep} === 1 }" press="onConfigNext"
+							enabled="{app>/pages/Config/isSubmitEnabled}"/>
+						<Button id="overviewNextButton" type="Emphasized" text="{i18n>Submit}" visible="{= ${app>/pages/currentStep} === 2 }"
+							enabled="{app>/pages/Overview/isSubmitEnabled}" press="onOverviewSubmit"/>
+					</Toolbar>
+				</footer>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

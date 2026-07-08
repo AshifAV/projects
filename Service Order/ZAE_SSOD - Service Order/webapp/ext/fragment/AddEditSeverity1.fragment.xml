@@ -1,0 +1,16 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:smartfield="sap.ui.comp.smartfield" xmlns="sap.m">
+	<Dialog afterClose="afterClose" beforeOpen="beforeOpen" class="sapUiPopupWithPadding" id="SSOD_B85"
+		title="{i18n>SSOD_B85}">
+		<MessageStrip class="sapUiResponsiveMargin sapUiNoMarginTop" id="SSOD_B85MessageStrip" showCloseButton="false" showIcon="true"
+			type="Error" visible="false"></MessageStrip>
+		<Label labelFor="SeverityIn"/>
+		<Input id="SeverityIn" required="true" type="Text" showSuggestion="true" showValueHelp="true" valueHelpRequest="handleValueHelp"
+			class="sapUiSmallMarginBottom"/>
+		<beginButton>
+			<Button press="onSubmitPressed" text="{i18n>BUTTON_Add}"/>
+		</beginButton>
+		<endButton>
+			<Button press="onCancelPressed" text="{i18n>BUTTON_Cancel}"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

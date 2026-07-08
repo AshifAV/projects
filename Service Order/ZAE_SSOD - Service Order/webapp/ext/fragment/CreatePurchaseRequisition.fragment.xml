@@ -1,0 +1,15 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:smartfield="sap.ui.comp.smartfield" xmlns="sap.m">
+	<Dialog afterClose="afterClose" beforeOpen="beforeOpen" class="sapUiPopupWithPadding" id="SSOD_B34" title="{i18n>SSOD_B34}">
+		<MessageStrip class="sapUiResponsiveMargin sapUiNoMarginTop" id="SSOD_B34MessageStrip" showCloseButton="false" showIcon="true" type="Error"
+			visible="false"></MessageStrip>
+		<Label labelFor="PurchaseRequisition"/>
+		<Input id="PurchaseRequisition" required="true" type="Text" showSuggestion="true" showValueHelp="true" valueHelpRequest="handleValueHelp"
+			class="sapUiSmallMarginBottom"/>
+		<beginButton>
+			<Button press="onSubmitPressed" text="{i18n>BUTTON_Submit}"/>
+		</beginButton>
+		<endButton>
+			<Button press="onCancelPressed" text="{i18n>BUTTON_Cancel}"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

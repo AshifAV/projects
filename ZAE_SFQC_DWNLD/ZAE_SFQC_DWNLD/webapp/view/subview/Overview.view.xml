@@ -1,0 +1,204 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:f="sap.ui.layout.form"
+	controllerName="com.globalintelli.ZAE_SFQC.controller.subview.Overview" xmlns:html="http://www.w3.org/1999/xhtml">
+	<VBox id="overviewVBox" class="sapUiResponsiveMargin">
+		<VBox class="sapUiSmallMarginBottom" alignItems="End">
+			<Table id="cartTable" selectionChange="handleSelectionChange">
+				<headerToolbar>
+					<OverflowToolbar id="idCrumbToolbar">
+						<!--<content>-->
+						<!--	<Title text="Summary" level="H2"/>-->
+						<!--	<ToolbarSpacer/>-->
+						<!--	<Button class="sapUiSmallMarginEnd" id="addItem" press="onPressAddItem" icon="sap-icon://add"-->
+						<!--		visible="{= ${app>/pages/configData/AppMode}.charAt(1) === 'F' &amp;&amp; ${app>/pages/Overview/selPaymentMethod} === 'Credit' }"/>-->
+						<!--</content>-->
+					</OverflowToolbar>
+				</headerToolbar>
+				<columns>
+					<!--<Column id="imageColumn" hAlign="Left" width="12em" visible="true">-->
+					<!--	<header></header>-->
+					<!--</Column>-->
+					<Column demandPopin="true" hAlign="Left">
+						<header><Label text="{i18n>Description}" textAlign="Center"/></header>
+					</Column>
+					<!--<Column id="qtyColumn" demandPopin="true" hAlign="Right" width="10em"-->
+					<!--	visible="{= ${app>/pages/configData/AppMode}.charAt(1) === 'F' &amp;&amp; ${app>/pages/Overview/selPaymentMethod} === 'Credit' }">-->
+					<!--	<header><Label text="Quantity"/></header>-->
+					<!--</Column>-->
+					<!--<Column id="basePriceColumn" demandPopin="true" hAlign="Right" width="10em" visible="false">-->
+					<!--	<header><Label text="Base Price"/></header>-->
+					<!--</Column>-->
+					<!--<Column id="discountColumn" demandPopin="true" hAlign="Right" width="10em" visible="false">-->
+					<!--	<header><Label text="Discount"/></header>-->
+					<!--</Column>-->
+					<!--<Column demandPopin="true" hAlign="Right" width="10em">-->
+					<!--	<header><Label text="Net Price"/></header>-->
+					<!--</Column>-->
+					<!--<Column id="taxColumn" demandPopin="true" hAlign="Right" width="10em" visible="true">-->
+					<!--	<header><Label text="Tax"/></header>-->
+					<!--</Column>-->
+					<!--<Column id="netPriceColumn" demandPopin="true" hAlign="Right" width="10em" visible="true">-->
+					<!--	<header><Label text="Total Price"/></header>-->
+					<!--</Column>-->
+					<!--<Column id="editColumn" demandPopin="true" hAlign="Center" width="5em" visible="true">-->
+					<!--	<header><Label text="Edit"/></header>-->
+					<!--</Column>-->
+					<!--<Column id="deleteColumn" demandPopin="true" hAlign="Center" width="5em" visible="{= ${app>/pages/configData/AppMode}.charAt(1) === 'F' }">-->
+					<!--	<header><Label text="Remove"/></header>-->
+					<!--</Column>-->
+				</columns>
+			</Table>
+		</VBox>
+		<core:Fragment fragmentName="com.globalintelli.ZAE_SFQC.view.fragment.OpportunityDetails" id="overviewTab" type="XML"/>
+		<f:Form editable="true" class="sapUiSmallMarginTop">
+			<f:title>
+				<!--<core:Title text="Payment"/>-->
+				<core:Title text="{i18n>Checkout}"/>
+			</f:title>
+			<f:layout>
+				<f:ColumnLayout columnsM="2" columnsL="2" columnsXL="2"/>
+			</f:layout>
+			<f:formContainers>
+				<f:FormContainer>
+					<f:formElements>
+						<f:FormElement label="{i18n>DocumentType}">
+							<f:fields>
+								<Select id="type" name="type" selectedKey="{app>/pages/Overview/type}" change="onTypeChange"
+									items="{ path: 'app>/pages/Overview/typeOptions' }" enabled="false">
+									<!--<items>-->
+									<!--	<core:Item text="Quotation" key="Quotation"/>-->
+									<!--	<core:Item text="Inquiry" key="Inquiry"/>-->
+									<!--</items>-->
+									<core:ListItem key="{app>type}" text="{app>typeName}"/>
+								</Select>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="{i18n>ProcessType}">
+							<f:fields>
+								<Select id="paymentMethod" name="selPaymentMethod" selectedKey="{app>/pages/Overview/selPaymentMethod}" forceSelection="false"
+									change="onPaymentMethodChange" enabled="false">
+									<!--<items>-->
+									<!--	<core:Item text="Bank Payment" key="Bank"/>-->
+									<!--	<core:Item text="Self Payment" key="Self"/>-->
+									<!--</items>-->
+									<!--<core:ListItem key="{app>PaymentMethod}" text="{app>PaymentMethodName}"/>-->
+								</Select>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="{i18n>ContractType}" visible="{= ${app>/pages/configData/AppMode}.charAt(0) === 'L'}">
+							<f:fields>
+								<Select id="contractType" name="selContractType" selectedKey="{app>/pages/Overview/selContractType}" forceSelection="false"
+									items="{ path: 'app>/pages/Overview/contractTypeOptions' }" showSecondaryValues="true">
+									<!--<items> change="onFormInputChange" -->
+									<!--	<core:Item text="Bank Payment" key="Bank"/>-->
+									<!--	<core:Item text="Self Payment" key="Self"/>-->
+									<!--</items>-->
+									<core:ListItem key="{app>contractType}" text="{app>contractTypeName}"/>
+								</Select>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="{i18n>PaymentTerms}">
+							<f:fields>
+								<Select id="paymentTerms" name="selPaymentTerms" selectedKey="{app>/pages/Overview/selPaymentTerms}" forceSelection="false"
+									change="onFormSelectChange" enabled="{= ${app>/pages/Overview/selPaymentMethod} !== '' }"
+									items="{ path: 'app>/pages/Overview/paymentTerms' }" showSecondaryValues="true">
+									<core:ListItem key="{app>CustomerPaymentTerms}" text="{app>CustomerPaymentTermsName}" additionalText="{app>CustomerPaymentTerms}"/>
+								</Select>
+							</f:fields>
+						</f:FormElement>
+						<!-- TODO: Remove inquiry condition from visible once logic fixed -->
+						<f:FormElement label="{i18n>DownPaymentAmount}"
+							visible="{= ${app>/pages/Overview/selPaymentMethod} === 'Bank' &amp;&amp; ${app>/pages/configData/ShowDownpayment} === true &amp;&amp; ${app>/pages/Overview/type} !== 'Inquiry' }">
+							<f:fields>
+								<Input id="downPayment" name="downPaymentAmount" type="Number" value="{app>/pages/Overview/downPaymentAmount/value}"
+									description="{app>/pages/currency}" liveChange="onDownPaymentAmountChange" fieldWidth="90%"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="{i18n>CustomerReference}">
+							<f:fields>
+								<Input id="customerReference" name="customerReference" value="{app>/pages/Overview/customerReference}" liveChange="onFormInputChange"/>
+							</f:fields>
+						</f:FormElement>
+						<!--<f:FormElement label="Trade-In" visible="{app>/pages/configData/ShowTradeIn}">-->
+						<!--	<f:fields>-->
+						<!--		<Select id="tradeIn" name="selTradeIn" selectedKey="{app>/pages/Overview/selTradeIn}" change="onFormSelectChange">-->
+						<!--			<items>-->
+						<!--				<core:Item text="No" key="NO"/>-->
+						<!--				<core:Item text="Yes" key="YES"/>-->
+						<!--			</items>-->
+						<!--		</Select>-->
+						<!--	</f:fields>-->
+						<!--</f:FormElement>-->
+						<!--<f:FormElement label="Security Deposit" visible="{= ${app>/pages/configData/AppMode}.charAt(0) === 'L'}">-->
+						<!--	<f:fields>-->
+						<!--		<Select id="securityDeposit" name="selSecurityDeposit" selectedKey="{app>/pages/Overview/selSecurityDeposit}" change="onFormSelectChange">-->
+						<!--			<items>-->
+						<!--				<core:Item text="No" key="NO"/>-->
+						<!--				<core:Item text="Yes" key="YES"/>-->
+						<!--			</items>-->
+						<!--		</Select>-->
+						<!--	</f:fields>-->
+						<!--</f:FormElement>-->
+					</f:formElements>
+				</f:FormContainer>
+			</f:formContainers>
+		</f:Form>
+		<!--<f:Form editable="true" class="sapUiMediumMarginTop" visible="{= ${app>/pages/Overview/selTradeIn} === 'YES' }">-->
+		<!--	<f:title>-->
+		<!--		<core:Title text="Trade In Details"/>-->
+		<!--	</f:title>-->
+		<!--	<f:layout>-->
+		<!--		<f:ColumnLayout columnsM="2" columnsL="2" columnsXL="2"/>-->
+		<!--	</f:layout>-->
+		<!--	<f:formContainers>-->
+		<!--		<f:FormContainer>-->
+		<!--			<f:formElements>-->
+		<!--				<f:FormElement label="Description">-->
+		<!--					<f:fields>-->
+		<!--						<Input id="description" value="{app>/pages/Overview/tradeInDetials/description}"/>-->
+		<!--					</f:fields>-->
+		<!--				</f:FormElement>-->
+		<!--				<f:FormElement label="Make">-->
+		<!--					<f:fields>-->
+		<!--						<Input id="make" value="{app>/pages/Overview/tradeInDetials/make}"/>-->
+		<!--					</f:fields>-->
+		<!--				</f:FormElement>-->
+		<!--				<f:FormElement label="Model">-->
+		<!--					<f:fields>-->
+		<!--						<Input id="model" value="{app>/pages/Overview/tradeInDetials/model}"/>-->
+		<!--					</f:fields>-->
+		<!--				</f:FormElement>-->
+		<!--				<f:FormElement label="Colour">-->
+		<!--					<f:fields>-->
+		<!--						<Input id="colour" value="{app>/pages/Overview/tradeInDetials/colour}"/>-->
+		<!--					</f:fields>-->
+		<!--				</f:FormElement>-->
+		<!--				<f:FormElement label="License Plate No.">-->
+		<!--					<f:fields>-->
+		<!--						<Input id="licensePlateNo" value="{app>/pages/Overview/tradeInDetials/licensePlateNo}"/>-->
+		<!--					</f:fields>-->
+		<!--				</f:FormElement>-->
+		<!--				<f:FormElement label="Expected Value">-->
+		<!--					<f:fields>-->
+		<!--						<Input id="expectedValue" type="Number" value="{app>/pages/Overview/tradeInDetials/expectedValue}" description="{app>/pages/currency}"-->
+		<!--							fieldWidth="90%"/>-->
+		<!--					</f:fields>-->
+		<!--				</f:FormElement>-->
+		<!--				<f:FormElement label="Retain License Plate">-->
+		<!--					<f:fields>-->
+		<!--						<Select id="retainLicensePlate" selectedKey="{app>/pages/Overview/tradeInDetials/retainLicensePlate}">-->
+		<!--							<items>-->
+		<!--								<core:Item text="No" key="NO"/>-->
+		<!--								<core:Item text="Yes" key="YES"/>-->
+		<!--							</items>-->
+		<!--						</Select>-->
+		<!--					</f:fields>-->
+		<!--				</f:FormElement>-->
+		<!--			</f:formElements>-->
+		<!--		</f:FormContainer>-->
+		<!--	</f:formContainers>-->
+		<!--</f:Form>-->
+		<!--<VBox visible="{= ${app>/pages/Overview/selPaymentMethod} === 'Bank' &amp;&amp; ${app>/pages/Overview/downPaymentAmount/valid} === true }">-->
+		<!--	<core:Fragment fragmentName="com.globalintelli.ZAE_SFQC.view.fragment.EMI" id="overviewTabEMI" type="XML"/>-->
+		<!--</VBox>-->
+	</VBox>
+</mvc:View>

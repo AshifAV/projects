@@ -1,0 +1,29 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"
+	xmlns:smartField="sap.ui.comp.smartfield">
+	<Dialog id="SOSGDialog" class="sapUiPopupWithPadding" title="{i18n>CreateExtendedWarrantyQuotation}" afterClose="afterClose" resizable="true">
+		<content>
+			<MessageStrip class="sapUiResponsiveMargin sapUiNoMarginTop" id="SCINSOSGMessageStrip" showCloseButton="false" showIcon="true" type="Error"
+				visible="false"></MessageStrip>
+			<f:SimpleForm id="appointmentCreateForm" editable="true" layout="ResponsiveGridLayout" singleContainerFullSize="false">
+				<f:content>
+					<Label text="{i18n>SalesOfc}" required="true"/>
+					<Select id="IdSalesoffice" change="fnSalesofficeChange" enabled="false" showSecondaryValues="true"
+						items="{ path: '/ZAE_VH_PlantSalesOffice',length: 500 }" forceSelection="false">
+						<core:ListItem key="{SalesOffice}" text="{SalesOfficeName}" additionalText="{SalesOffice}"/>
+					</Select>
+					<Label text="{i18n>SalesGrp}" required="true"/>
+					<Select id="IdSalesgroup" showSecondaryValues="true" change="fnSalesofficeChange" forceSelection="false"
+						items="{ path: '/ZAE_I_SalesOfficeGroup_01',length: 500 }">
+						<core:ListItem key="{SalesGroup}" text="{SalesGroupName}" additionalText="{SalesGroup}"/>
+					</Select>
+				</f:content>
+			</f:SimpleForm>
+		</content>
+		<beginButton>
+			<Button id="BUTTONSubmit" text="{i18n>SOSGBUTTON_Submit}" press="onSubmitPressed"/>
+		</beginButton>
+		<endButton>
+			<Button text="{i18n>BUTTON_Cancel}" press="onCancelPressed"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

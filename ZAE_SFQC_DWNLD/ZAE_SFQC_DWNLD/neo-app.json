@@ -1,0 +1,73 @@
+{
+  "welcomeFile": "/index.html",
+  "routes": [
+    {
+      "path": "/resources",
+      "target": {
+        "type": "service",
+        "name": "sapui5",
+        "entryPath": "/resources",
+        "version": "1.102.8"
+      },
+      "description": "SAPUI5 Resources"
+    },
+    {
+      "path": "/test-resources",
+      "target": {
+        "type": "service",
+        "name": "sapui5",
+        "entryPath": "/test-resources",
+        "version": "1.102.8"
+      },
+      "description": "SAPUI5 Resources"
+    },
+    {
+      "path": "/resources",
+      "target": {
+        "type": "service",
+        "name": "sapui5",
+        "entryPath": "/resources",
+        "version": "1.102.8"
+      },
+      "description": "SAPUI5 Resources"
+    },
+    {
+      "path": "/test-resources",
+      "target": {
+        "type": "service",
+        "name": "sapui5",
+        "entryPath": "/test-resources",
+        "version": "1.102.8"
+      },
+      "description": "SAPUI5 Test Resources"
+    },
+    {
+      "path": "/sap/opu/odata",
+      "target": {
+        "type": "destination",
+        "name": "ISS-DEV",
+        "entryPath": "/sap/opu/odata"
+      },
+      "description": "Development"
+    },
+    {
+      "path": "/resources/com/globalintelli/zae_flib",
+      "target": {
+        "type": "destination",
+        "name": "ISS-SH1",
+        "entryPath": "/sap/bc/ui5_ui5/sap/ZAE_FLIB"
+      },
+      "description": "autoExpress Fiori Library"
+    },
+    {
+      "path": "/resources/com/globalintelli/zae_flib",
+      "target": {
+        "type": "destination",
+        "name": "ISS-SH1",
+        "entryPath": "/sap/bc/ui5_ui5/sap/ZAE_FLIB"
+      },
+      "description": "autoExpress Fiori Library"
+    }
+  ],
+  "sendWelcomeFileRedirect": true
+}

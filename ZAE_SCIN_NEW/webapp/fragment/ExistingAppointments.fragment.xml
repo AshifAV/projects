@@ -1,0 +1,7 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<List items="{mCustIdentification>/OpenAppointments}">
+		<items>
+			<StandardListItem type="Active" title="{i18n>Appointment} {mCustIdentification>Appointment} {i18n>exist} {i18n>in}  { parts: ['mCustIdentification>SalesGroupName', 'mCustIdentification>SalesGroupSd' ],formatter:'.formatNameAndValuePair'}" press="AppointmentSelected"/>
+		</items>
+	</List>
+</core:FragmentDefinition>

@@ -1,0 +1,17 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"
+	xmlns:smartField="sap.ui.comp.smartfield">
+	<l:VerticalLayout class="sapUiContentPadding" width="100%">
+		<l:content>
+			<MessageStrip class="sapUiResponsiveMargin sapUiNoMarginTop" id="SSOD_B141MessageStrip" showCloseButton="false" showIcon="true" type="Error"
+				visible="false"></MessageStrip>
+			<f:SimpleForm id="idInsuranceDialog" editable="true" layout="ResponsiveGridLayout" singleContainerFullSize="false">
+				<f:content>
+					<Label text="{i18n>rjcnReasonInput}" required="true"/>
+					<Select forceSelection="false" id="rjcnReasonInput" showSecondaryValues="true" items="{ path: '/ZAE_VH_ServiceOrderRejReason'}">
+						<core:ListItem key="{RejectionReason}" text="{Description}" additionalText="{RejectionReason}"/>
+					</Select>
+				</f:content>
+			</f:SimpleForm>
+		</l:content>
+	</l:VerticalLayout>
+</core:FragmentDefinition>

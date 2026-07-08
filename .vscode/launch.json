@@ -1,0 +1,31 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "ZAE_SCIN_NEW_NEW-config1",
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/ZAE_SCIN_NEW_NEW",
+      "runtimeExecutable": "npx",
+      "windows": {
+        "runtimeExecutable": "npx.cmd"
+      },
+      "runtimeArgs": [
+        "fiori",
+        "run"
+      ],
+      "args": [
+        "--open",
+        "test/flpSandbox.html"
+      ],
+      "console": "internalConsole",
+      "internalConsoleOptions": "openOnSessionStart",
+      "outputCapture": "std",
+      "env": {
+        "run.config": "{\"handlerId\":\"fiori_tools\",\"runnableId\":\"/home/user/projects/ZAE_SCIN_NEW_NEW\"}",
+        "FIORI_TOOLS_BACKEND_CONFIG": "[{\"destination\":\"DS4\",\"url\":\"http://otegroup.server.com:44380\",\"path\":\"/sap\"},{\"destination\":\"DS4\",\"url\":\"http://otegroup.server.com:44380\",\"path\":\"/sap\"},{\"destination\":\"DS4\",\"url\":\"http://otegroup.server.com:44380\",\"path\":\"/sap\"},{\"destination\":\"DS4\",\"url\":\"http://otegroup.server.com:44380\",\"path\":\"/sap\"},{\"destination\":\"DS4\",\"url\":\"http://otegroup.server.com:44380\",\"path\":\"/sap\"}]",
+        "FIORI_TOOLS_URL_PARAMS": "sap-ui-xx-viewCache=false"
+      }
+    }
+  ]
+}

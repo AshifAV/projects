@@ -1,0 +1,115 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form">
+	<Dialog class="sapUiSizeCompact sapUiContentPadding" contentHeight="32em" contentWidth="90em" resizable="true" title="{i18n>SSOD_B42}">
+		<content>
+			<Table id="idAddSubletComponentTable" growing="true" growingThreshold="10" paste="onPaste" items="{path:'/ZAE_C_MaterialSalesData_06'}"
+				inset="false" alternateRowColors="true" mode="MultiSelect" selectionChange="onSelectionChange" updateFinished="updateFinished">
+				<headerToolbar>
+					<OverflowToolbar class="CustomHeight">
+						<content>
+							<HBox class="sapUiSmallMarginBegin">
+								<VBox class="sapUiLargeMarginEnd">
+									<Label text="{/#ZAE_C_MaterialSalesData_06Type/Material/@sap:label}"/>
+									<MultiInput id="idMaterial" selectedKey="" valueHelpRequest=".onMaterialValueHelpRequested" valueHelpOnly="false" showValueHelp="true"
+										tokenUpdate="onMaterailTokenUpdate" showSuggestion="true" suggestionItemSelected="onSelectMaterial"
+										suggestionRows="{ path: '/ZAE_C_MaterialSalesData_06', sorter: { path: 'Material' },suspended: true, length: 10 }" width="100%"
+										filterSuggests="true" suggest="handleMaterialSuggest" maxSuggestionWidth="600px">
+										<suggestionColumns>
+											<Column>
+												<Label text="{/#ZAE_C_MaterialSalesData_06Type/Material/@sap:label}"/>
+											</Column>
+											<Column>
+												<Label text="{/#ZAE_C_MaterialSalesData_06Type/MaterialName/@sap:label}"/>
+											</Column>
+											<Column>
+												<Label text="{/#ZAE_C_MaterialSalesData_06Type/MaterialType/@sap:label}"/>
+											</Column>
+										</suggestionColumns>
+										<suggestionRows>
+											<ColumnListItem>
+												<cells>
+													<Label text="{Material}"/>
+													<Label text="{MaterialName}"/>
+													<Label text="{MaterialType}"/>
+												</cells>
+											</ColumnListItem>
+										</suggestionRows>
+									</MultiInput>
+								</VBox>
+							</HBox>
+						</content>
+					</OverflowToolbar>
+				</headerToolbar>
+				<columns>
+					<Column hAlign="Center" width="8em">
+						<Text text="{/#ZAE_C_MaterialSalesData_06Type/Material/@sap:label}"/>
+					</Column>
+					<Column hAlign="Center" width="18em">
+						<Text text="{/#ZAE_C_MaterialSalesData_06Type/MaterialName/@sap:label}"/>
+					</Column>
+					<Column hAlign="Begin" width="10em">
+						<Text text="{i18n>Quantity}"/>
+					</Column>
+					<Column hAlign="Center" width="13em">
+						<Text text="{/#ZAE_C_MaterialSalesData_06Type/ItemCategory/@sap:label}"/>
+					</Column>
+					<Column width="4em" hAlign="Center">
+						<Text text="{i18n>CostPrice}"/>
+					</Column>
+					<Column width="5em" hAlign="Center">
+						<Text text="{i18n>SalesPrice}"/>
+					</Column>
+					<Column width="6em" hAlign="Center">
+						<Text text="{i18n>Severity}"/>
+					</Column>
+					<!--<Column hAlign="Center" width="8em">-->
+					<!--	<Text text="{i18n>Edition}"/>-->
+					<!--</Column>-->
+					<!--<Column hAlign="Center">-->
+					<!--	<Text text="{i18n>UserStatus}"/>-->
+					<!--</Column>-->
+					<!--<Column hAlign="Center">-->
+					<!--	<Text text="{i18n>Plant}"/>-->
+					<!--</Column>-->
+					<!--<Column hAlign="Center">-->
+					<!--	<Text text="{i18n>StorageLocation}"/>-->
+					<!--</Column>-->
+					<!--<Column hAlign="Center" width="4em">-->
+					<!--	<Text text="{i18n>Stock}"/>-->
+					<!--</Column>-->
+					<!--<Column hAlign="Center" width="8em">-->
+					<!--	<Text text="{i18n>Quantity}"/>-->
+					<!--</Column>-->
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<Text text="{Material}"/>
+							<Input value="{MaterialName}" enabled="{Enabled}" liveChange="fnSubmitButonValidation"/>
+							<Input type="Number" value="" liveChange="fnSubmitButonValidation" description="{MaterialBaseUnit}" enabled="{Enabled}"/>
+							<Text text="{parts: ['ItemCategoryDesc', 'ItemCategory'], formatter: '.formatNameAndValuePair'}"/>
+							<Input type="Number" value="{parts: ['Cost'], formatter: '.fnCostValue'}" liveChange="onChangeCost"
+								enabled="{= ${Cost} > 0 ? false : ${Enabled} }"/>
+							<Input type="Number" value="" liveChange="onChangeSalesPrice" enabled="{Enabled}"/>
+							<Select forceSelection="false" showSecondaryValues="true" selectedKey="" items="{/ZAE_VH_SEVERITY}" enabled="{Enabled}"
+								change="fnSubmitButonValidation">
+								<core:ListItem key="{Severity}" text="{Description}" additionalText="{Severity}"/>
+							</Select>
+							<!--<Text text="{parts: ['mTagVinManual>TrimDesc', 'mTagVinManual>Trim'], formatter: '.formatNameAndValuePair'}"/>-->
+							<!--<Text text="{mTagVinManual>Year}"/>-->
+							<!--<Text text="{mTagVinManual>Edition}"/>-->
+							<!--<Text text="{parts: ['mTagVinManual>UserStatusText', 'mTagVinManual>UserStatus'], formatter: '.formatNameAndValuePair'}"/>-->
+							<!--<Text text="{parts: ['mTagVinManual>PlantDesc', 'mTagVinManual>Plant'], formatter: '.formatNameAndValuePair'}"/>-->
+							<!--<Text text="{mTagVinManual>Sloc}"/>-->
+							<!--<Text text="{mTagVinManual>Stock}"/>-->
+							<!--<Input type="Number" value="{mTagVinManual>Quantity}" enabled="{mTagVinManual>selected}" liveChange="fnSubmitButonValidation"/>-->
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+		<buttons>
+			<Button id="BTNSubmit" text="{i18n>Submit}" press="onSubmit"/>
+			<Button text="{i18n>Cancel}" press="onCancel"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,17 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"
+	xmlns:smartField="sap.ui.comp.smartfield">
+	<l:VerticalLayout width="100%">
+		<l:content>
+			<MessageStrip class="sapUiResponsiveMargin" id="SSOD_B46MessageStrip" showCloseButton="false" showIcon="true" type="Error"
+				visible="false"></MessageStrip>
+			<f:SimpleForm id="UpdateRuleDialog" editable="true" layout="ResponsiveGridLayout" singleContainerFullSize="false">
+				<f:content>
+					<Label text="{i18n>BILLING_RULE}"/>
+					<Select forceSelection="false" id="BillingRuleInput" showSecondaryValues="true" items="{ path: '/ZAE_VH_ServiceOrderBillingRule', sorter: { path: 'BillingRule' } }">
+						<core:ListItem key="{BillingRule}" additionalText="{BillingRule}" text="{BillingRuleName}"/>
+					</Select>
+				</f:content>
+			</f:SimpleForm>
+		</l:content>
+	</l:VerticalLayout>
+</core:FragmentDefinition>

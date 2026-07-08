@@ -1,0 +1,142 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"
+	xmlns:smartField="sap.ui.comp.smartfield">
+	<l:VerticalLayout class="sapUiContentPadding" width="100%">
+		<l:content>
+			<f:SimpleForm id="appointmentCreateForm" editable="true" layout="ResponsiveGridLayout" singleContainerFullSize="false">
+				<f:content>
+					<Label text="{i18n>Salutation}"/>
+					<!--<smartField:SmartField entitySet="ZAE_F_Customer" value="{Saluatation}" id="CC_SALUTATION"/>-->
+					<Select id="SALUTATION" showSecondaryValues="true" change="_fnContractButtonCreateButtonEnabledState" forceSelection="false"
+						items="{path: '/ZAE_VH_CustomerSaluatation_01', length:200}">
+						<core:ListItem key="{title}" text="{TitleText}" additionalText="{title}"/>
+					</Select>
+					<Label text="{i18n>FirstName}"/>
+					<Input id="FIRSTNAME" liveChange="handleCreateContactPersonInputValidation"
+						maxLength="{path: '/#ZAE_FM_SC_CONTACT_CREATE/FirstName/@maxLength', formatter: 'parseInt'}"/>
+					<Label text="{i18n>LastName}"/>
+					<Input id="FAMILYNAME" liveChange="handleCreateContactPersonInputValidation"
+						maxLength="{path: '/#ZAE_FM_SC_CONTACT_CREATE/LastName/@maxLength', formatter: 'parseInt'}"/>
+					<!--<Label text="{i18n>Country}"  />-->
+					<!--<Input id="COUNTRY" editable="true" type="Text" showSuggestion="true" showValueHelp="true"-->
+					<!--	valueHelpRequest="fnShowCreateContactPersonCountryValueHelp" change="_fnContractButtonCreateButtonEnabledState"-->
+					<!--	suggest="handleCountrySuggest" filterSuggests="true" suggestionItemSelected="onSelectCountry"-->
+					<!--	suggestionRows="{ path: '/ZAE_VH_Country', sorter: { path: 'Country' },suspended: true, length: 10 }">-->
+					<!--	<suggestionColumns>-->
+					<!--		<Column>-->
+					<!--			<Label text="{i18n>Country}"/>-->
+					<!--		</Column>-->
+					<!--		<Column>-->
+					<!--			<Label text="{i18n>CountryName}"/>-->
+					<!--		</Column>-->
+					<!--	</suggestionColumns>-->
+					<!--	<suggestionRows>-->
+					<!--		<ColumnListItem>-->
+					<!--			<cells>-->
+					<!--				<Label text="{Country}"/>-->
+					<!--				<Label text="{CountryName}"/>-->
+					<!--			</cells>-->
+					<!--		</ColumnListItem>-->
+					<!--	</suggestionRows>-->
+					<!--</Input>-->
+					<!--<smartField:SmartField entitySet="ZAE_F_Customer" value="{Country}" id="COUNTRY" liveChange="fnCheckCreateContactPersonRequiredValidation"/>-->
+					<!--<Label text="{i18n>Region}"  />-->
+					<!--<Input id="REGION" type="Text" showSuggestion="true" showValueHelp="true" valueHelpRequest="fnShowCreateContactPersonRegionValueHelp"-->
+					<!--	change="_fnContractButtonCreateButtonEnabledState" suggest="handleRegionSuggest" filterSuggests="true"-->
+					<!--	suggestionItemSelected="onSelectRegion" suggestionRows="{ path: '/ZAE_VH_Region', sorter: { path: 'Region' },suspended: true, length: 10 }">-->
+					<!--	<suggestionColumns>-->
+					<!--		<Column>-->
+					<!--			<Label text="{i18n>Region}"/>-->
+					<!--		</Column>-->
+					<!--		<Column>-->
+					<!--			<Label text="{i18n>RegionName}"/>-->
+					<!--		</Column>-->
+					<!--	</suggestionColumns>-->
+					<!--	<suggestionRows>-->
+					<!--		<ColumnListItem>-->
+					<!--			<cells>-->
+					<!--				<Label text="{Region}"/>-->
+					<!--				<Label text="{RegionName}"/>-->
+					<!--			</cells>-->
+					<!--		</ColumnListItem>-->
+					<!--	</suggestionRows>-->
+					<!--</Input>-->
+					<Label text="{i18n>Country}"/>
+					<MultiInput id="COUNTRY" valueHelpRequest="fnShowCreateContactPersonCountryValueHelp" valueHelpOnly="false" showValueHelp="true"
+						tokenUpdate="onCountryTokenUpdate" showSuggestion="true" suggestionItemSelected="onSelectCountry"
+						liveChange="handleCreateContactPersonInputValidation"
+						suggestionRows="{ path: '/ZAE_VH_Country', sorter: { path: 'Country' },suspended: true, length: 10 }" filterSuggests="true"
+						suggest="handleCountrySuggest">
+						<suggestionColumns>
+							<Column>
+								<Label text="{i18n>Country}"/>
+							</Column>
+							<Column>
+								<Label text="{i18n>CountryName}"/>
+							</Column>
+							<Column visible="false">
+								<Label text="{i18n>CountryCode}"/>
+							</Column>
+						</suggestionColumns>
+						<suggestionRows>
+							<ColumnListItem>
+								<cells>
+									<Label text="{Country}"/>
+									<Label text="{CountryName}"/>
+									<Label text="{CountryCode}"/>
+								</cells>
+							</ColumnListItem>
+						</suggestionRows>
+					</MultiInput>
+					<Label text="{i18n>Region}"/>
+					<MultiInput id="REGION" valueHelpRequest="fnShowRegionValueHelp" valueHelpOnly="false" showValueHelp="true"
+						tokenUpdate="onRegionTokenUpdate" showSuggestion="true" suggestionItemSelected="onSelectRegion"
+						liveChange="handleCreateContactPersonInputValidation"
+						suggestionRows="{ path: '/ZAE_VH_Region', sorter: { path: 'Region' },suspended: true, length: 10 }" filterSuggests="true"
+						suggest="handleRegionSuggest">
+						<suggestionColumns>
+							<Column>
+								<Label text="{i18n>Region}"/>
+							</Column>
+							<Column>
+								<Label text="{i18n>RegionName}"/>
+							</Column>
+						</suggestionColumns>
+						<suggestionRows>
+							<ColumnListItem>
+								<cells>
+									<Label text="{Region}"/>
+									<Label text="{RegionName}"/>
+								</cells>
+							</ColumnListItem>
+						</suggestionRows>
+					</MultiInput>
+					<Label text="{i18n>MobNo}"/>
+					<MaskInput id="MOBILENO" change="handleMobileNoValidation"/>
+					<!--<Label text="{i18n>FaxNo}"/>-->
+					<Label text="{/#ZAE_FM_SC_CONTACT_CREATE/FaxNumber/@sap:label}"/>
+					<MaskInput id="FAXNUMBER" change="handleMobileNoValidation"/>
+					<Label text="{i18n>TelNo}"/>
+					<MaskInput id="TELNO" change="handleTeliphoneNoValidation"/>
+					<!--<Input id="TELNO" liveChange="handleCreateContactPersonInputValidation"/>-->
+					<Label text="{i18n>Email}"/>
+					<Input id="EMAIL" liveChange="handleEmailInputChange"/>
+					<Label text="{i18n>CPRNo}"/>
+					<Input id="CPRNO" liveChange="handleCreateContactPersonInputValidation" maxLength="25"/>
+					<Label text="{i18n>City}"/>
+					<Input id="CITY" change="_fnContractButtonCreateButtonEnabledState"
+						maxLength="{path: '/#ZAE_FM_SC_CONTACT_CREATE/City/@maxLength', formatter: 'parseInt'}"/>
+					<Label text="{i18n>Location}"/>
+					<Select id="REGIOGROUP" forceSelection="false"
+						items="{ path: '/I_RegionalStructureGroupingVH', sorter: { path: 'RegionalStructureGrouping' } }"
+						change="_fnContractButtonCreateButtonEnabledState">
+						<core:Item key="{RegionalStructureGrouping}" text="{RegionalStructureGroupingDesc}" additionalText="{RegionalStructureGrouping}"/>
+					</Select>
+					<Label text="{i18n>Street}"/>
+					<Input id="STREET" maxLength="{path: '/#ZAE_FM_SC_CONTACT_CREATE/Street/@maxLength', formatter: 'parseInt'}"/>
+					<!--<Label text="Postal Code"  />-->
+					<!--<Input id="CC_PostlCode" change="_fnContractButtonCreateButtonEnabledState"/>-->
+				</f:content>
+			</f:SimpleForm>
+		</l:content>
+	</l:VerticalLayout>
+</core:FragmentDefinition>

@@ -1,0 +1,1 @@
+sap.ui.define(["jquery.sap.global","sap/ui/base/Object","sap/ui/model/Filter","sap/ui/model/json/JSONModel","sap/ui/model/resource/ResourceModel"],function(e,r,t,u,o){return{formatLeaveStart:function(e,r){return new Date(e.setHours(0,0,0,0))},formatLeaveEnd:function(e,r){if(e===r){return}return new Date(r.setHours(23,59,59,0))}}});

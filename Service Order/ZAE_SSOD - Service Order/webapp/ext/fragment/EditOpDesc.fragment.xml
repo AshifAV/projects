@@ -1,0 +1,16 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:smartfield="sap.ui.comp.smartfield" xmlns="sap.m">
+	<Dialog afterClose="afterClose" class="sapUiPopupWithPadding" id="SSOD_B91Dialog" title="{i18n>SSOD_B91}">
+<!--		<MessageStrip class="sapUiResponsiveMargin sapUiNoMarginTop" id="SSOD_B91MessageStrip" showCloseButton="false" showIcon="true" type="Error"
+			visible="false"></MessageStrip>-->
+		<content>
+			<Label labelFor="OPDescInput" required="true"/>
+			<Input id="OPDescInput" value="{mOpDesc>/OpDesc}" class="sapUiSmallMarginBottom" maxLength="40"/>
+		</content>
+		<beginButton>
+			<Button press="onSubmitPressed" text="{i18n>BUTTON_Submit}"/>
+		</beginButton>
+		<endButton>
+			<Button press="onCancelPressed" text="{i18n>BUTTON_Cancel}"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

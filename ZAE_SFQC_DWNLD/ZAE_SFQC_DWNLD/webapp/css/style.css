@@ -1,0 +1,42 @@
+/*.smartFilterBar {*/
+/*    background-color: transparent !important;*/
+/*    border-bottom: medium none !important;*/
+/*}*/
+
+.image-fit {
+    width: 100% !important;
+}
+
+.pl12 {
+    padding-left: 12px !important;
+}
+
+.sapMITBContent {
+    border-bottom: 0px !important;
+}
+
+.flexGrowOne div {
+    flex-grow: 1 !important;
+}
+
+.taxText {
+    color: grey !important;
+    font-weight: bold !important;
+    font-size: x-small !important;
+    text-transform: uppercase !important;
+}
+
+.crumbArrow {
+    margin-right: 0 !important;
+}
+
+.crumbLast {
+    font-size: 0.875rem !important;
+    text-shadow: none !important;
+}
+
+.configPriceLink {
+    color: grey !important;
+    font-size: 25px !important;
+    font-weight: 600 !important;
+}

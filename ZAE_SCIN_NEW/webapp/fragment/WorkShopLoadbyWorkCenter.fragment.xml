@@ -1,0 +1,12 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:smartfield="sap.ui.comp.smartfield" xmlns="sap.m">
+	<Dialog afterClose="afterClose" class="sapUiPopupWithPadding" id="WorkShopLoadDialog" title="{i18n>WorkshopLoadbyWorkCenter}">
+		<Label labelFor="idDate" text="{i18n>Date}"/>
+		<DatePicker id="idDate" required="true" placeholder="{i18n>EnterDate}" change="handleDateChange" class="sapUiSmallMarginBottom"/>
+		<beginButton>
+			<Button press="onSubmitPressed" text="{i18n>BUTTON_Submit}"/>
+		</beginButton>
+		<endButton>
+			<Button press="onCancelPressed" text="{i18n>BUTTON_Cancel}"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

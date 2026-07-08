@@ -1,0 +1,41 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form">
+	<Dialog id="idDialog" class="sapUiSizeCompact sapUiContentPadding" contentHeight="20em" contentWidth="70em" resizable="true"
+		title="{i18n>ExtendCustomer}" afterOpen="onCombinedSTOOpen">
+		<MessageStrip class="sapUiResponsiveMargin sapUiNoMarginTop" showCloseButton="false" showIcon="true" type="Error" visible="false"></MessageStrip>
+		<Table id="idExtendCustomer" growing="true" growingThreshold="10" paste="onPaste" items="{/ZAE_I_TC_CUST_EXT}" inset="false"
+			alternateRowColors="true" mode="MultiSelect" selectionChange="onSelectionChange">
+			<columns>
+				<Column hAlign="Center">
+					<Text text="{i18n>CompanyCode}"/>
+				</Column>
+				<Column hAlign="Center" >
+					<Text text="{i18n>SalesOrganization}"/>
+				</Column>
+				<Column hAlign="Center">
+					<Text text="{i18n>DistributionChannel}"/>
+				</Column>
+				<Column hAlign="Center">
+					<Text text="{i18n>Division}"/>
+				</Column>
+				<Column hAlign="Center">
+					<Text text="{i18n>Customer}"/>
+				</Column>
+			</columns>
+			<items>
+				<ColumnListItem>
+					<cells>
+						<Text text="{parts: ['CompanyCodeName', 'CompanyCode'], formatter: '.formatNameAndValuePair'}"/>
+						<Text text="{parts: ['SalesOrganizationName', 'SalesOrganization'], formatter: '.formatNameAndValuePair'}"/>
+						<Text text="{parts: ['DistributionChannelName', 'DistributionChannel'], formatter: '.formatNameAndValuePair'}"/>
+						<Text text="{parts: ['DivisionName', 'Division'], formatter: '.formatNameAndValuePair'}"/>
+						<Text text="{parts: ['CustomerName', 'Customer'], formatter: '.formatNameAndValuePair'}"/>
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+		<buttons>
+			<Button id="idSubmit" text="{i18n>Submit}" press="onSubmit" enabled="false"/>
+			<Button text="{i18n>Cancel}" press="onCancel"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

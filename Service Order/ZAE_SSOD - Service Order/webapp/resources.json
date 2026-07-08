@@ -1,0 +1,415 @@
+{
+    "resources": [
+        {
+            "name": "ext/fragment/AddEditLPO.fragment.xml"
+        },
+        {
+            "name": "i18n/i18n_ar.properties",
+            "raw": "i18n/i18n.properties",
+            "locale": "_ar"
+        },
+        {
+            "name": "i18n/i18n.properties",
+            "raw": "i18n/i18n.properties"
+        },
+        {
+            "name": "ext/external/xlsx.js"
+        },
+        {
+            "name": "manifest.json"
+        },
+        {
+            "name": "ext/util/treeFunctions.js"
+        },
+        {
+            "name": "ext/controller/ObjectPageExt.controller.js"
+        },
+        {
+            "name": "ext/controller/ListReportExt.controller.js"
+        },
+        {
+            "name": "localService/mockserver.js"
+        },
+        {
+            "name": "serviceBinding.js"
+        },
+        {
+            "name": "Component.js"
+        },
+        {
+            "name": "changes/changes-bundle.json"
+        },
+        {
+            "name": "manifest-bundle.zip"
+        },
+        {
+            "name": "Component-preload.js",
+            "merged": true
+        },
+        {
+            "name": "localService/mockserver-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "ext/external/xlsx-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "ext/controller/ObjectPageExt-dbg.controller.js",
+            "isDebug": true
+        },
+        {
+            "name": "ext/controller/ListReportExt-dbg.controller.js",
+            "isDebug": true
+        },
+        {
+            "name": "ext/util/treeFunctions-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "serviceBinding-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "Component-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "../../../sap-ui-version.json"
+        },
+        {
+            "name": "neo-app.json"
+        },
+        {
+            "name": "di.code-validation.core_issues.json"
+        },
+        {
+            "name": "localService/ZAE_FM_SSOD_SER_INV_LS_BW_SRV/metadata.xml"
+        },
+        {
+            "name": "localService/ZAE_FM_SSOD_SER_INV_LS_BW_P_SRV/metadata.xml"
+        },
+        {
+            "name": "localService/ZAE_FM_SSOD_ITEM_SPLIT_SRV/metadata.xml"
+        },
+        {
+            "name": "localService/ZAE_FM_SSOD_INV_SPLIT_IN_P_SRV/metadata.xml"
+        },
+        {
+            "name": "localService/ZAE_FM_SSOD_INV_SPLIT_CUST_P_SRV/metadata.xml"
+        },
+        {
+            "name": "localService/ZAE_FM_SSOD_BDR_SPLIT_IN_P_SRV/metadata.xml"
+        },
+        {
+            "name": "localService/ZAE_FM_SSOD_BDR_SPLIT_CUST_P_SRV/metadata.xml"
+        },
+        {
+            "name": "localService/ZAE_FM_CRM_PER_INVOICE_SRV/metadata.xml"
+        },
+        {
+            "name": "ext/fragment/WarrantyProcessing.fragment.xml"
+        },
+        {
+            "name": "ext/fragment/WarrantyPartiallyClosed.fragment.xml"
+        },
+        {
+            "name": "ext/fragment/WarrantyClosedClaimed.fragment.xml"
+        },
+        {
+            "name": "ext/fragment/WaitingPQRReport.fragment.xml"
+        },
+        {
+            "name": "ext/fragment/UpdateRule.fragment.xml"
+        },
+        {
+            "name": "ext/fragment/UpdatePriority.fragment.xml"
+        },
+        {
+            "name": "ext/fragment/UpdatePriceGroup.fragment.xml"
+        },
+        {
+            "name": "ext/fragment/UpdatePrice02.fragment.xml"
+        },
+        {
+            "name": "ext/fragment/UpdatePrice01.fragment.xml"
+        },
+        {
+            "name": "ext/fragment/UpdatePlateNo.fragment.xml"
+        },
+        {
+            "name": "ext/fragment/UpdateEmployeeResponsible.fragment.xml"
+        },
+        {
+            "name": "ext/fragment/UpdateDepartment.fragment.xml"
+        },
+        {
+            "name": "ext/fragment/UpdateBillingDate.fragment.xml"
+        },
+        {
+            "name": "ext/fragment/UpdateBillingBlockOP.fragment.xml"
+        },
+        {
+            "name": "ext/fragment/UpdateBillingBlockCP.fragment.xml"
+        },
+        {
+            "name": "ext/fragment/UpdateAmount.fragment.xml"
+        },
+        {
+            "name": "ext/fragment/UpdSrvDetails.fragment.xml"
+        },
+        {
+            "name": "ext/fragment/SplitToNewOrder.fragment.xml"
+        },
+        {
+            "name": "ext/fragment/SplitHeader.fragment.xml"
+        },
+        {
+            "name": "ext/fragment/SplitComponent.fragment.xml"
+        },
+        {
+            "name": "ext/fragment/Split3PartyHeader.fragment.xml"
+        },
+        {
+            "name": "ext/fragment/Split3Party.fragment.xml"
+        },
+        {
+            "name": "ext/fragment/Split.fragment.xml"
+        },
+        {
+            "name": "ext/fragment/SoldtoPartyVH.fragment.xml"
+        },
+        {
+            "name": "ext/fragment/ShareWithPartsTeam.fragment.xml"
+        },
+        {
+            "name": "ext/fragment/SetWorkStatus.fragment.xml"
+        },
+        {
+            "name": "ext/fragment/ServiceReqTreeDialog.fragment.xml"
+        },
+        {
+            "name": "ext/fragment/RequestforDiscount.fragment.xml"
+        },
+        {
+            "name": "ext/fragment/RequestManualDiscountPopup.fragment.xml"
+        },
+        {
+            "name": "ext/fragment/RequestManualDiscount.fragment.xml"
+        },
+        {
+            "name": "ext/fragment/ReplacePart.fragment.xml"
+        },
+        {
+            "name": "ext/fragment/ReasonforRejection.fragment.xml"
+        },
+        {
+            "name": "ext/fragment/PartsManualDiscount.fragment.xml"
+        },
+        {
+            "name": "ext/fragment/PartnerVH.fragment.xml"
+        },
+        {
+            "name": "ext/fragment/PDFPreview.fragment.xml"
+        },
+        {
+            "name": "ext/fragment/OEMPartsReturn.fragment.xml"
+        },
+        {
+            "name": "ext/fragment/ManualDiscount2.fragment.xml"
+        },
+        {
+            "name": "ext/fragment/ManualDiscount.fragment.xml"
+        },
+        {
+            "name": "ext/fragment/ManageOutputItems.fragment.xml"
+        },
+        {
+            "name": "ext/fragment/LongtextColumnOP.fragment.xml"
+        },
+        {
+            "name": "ext/fragment/LongTextCellOP.fragment.xml"
+        },
+        {
+            "name": "ext/fragment/JCRecvdbywarantyteam.fragment.xml"
+        },
+        {
+            "name": "ext/fragment/IssuePlantVH.fragment.xml"
+        },
+        {
+            "name": "ext/fragment/InsAppClaimNo.fragment.xml"
+        },
+        {
+            "name": "ext/fragment/EmployeeResponsibleVH.fragment.xml"
+        },
+        {
+            "name": "ext/fragment/EditOpDesc.fragment.xml"
+        },
+        {
+            "name": "ext/fragment/EditCompDesc.fragment.xml"
+        },
+        {
+            "name": "ext/fragment/DynamicNotes.fragment.xml"
+        },
+        {
+            "name": "ext/fragment/DownpayAmt.fragment.xml"
+        },
+        {
+            "name": "ext/fragment/DiscountRD.fragment.xml"
+        },
+        {
+            "name": "ext/fragment/Discount.fragment.xml"
+        },
+        {
+            "name": "ext/fragment/DialogValueHelp.fragment.xml"
+        },
+        {
+            "name": "ext/fragment/Customfilter.fragment.xml"
+        },
+        {
+            "name": "ext/fragment/CustMatValueHelp.fragment.xml"
+        },
+        {
+            "name": "ext/fragment/CustInspectionLotValueHelp.fragment.xml"
+        },
+        {
+            "name": "ext/fragment/CreatePurchaseRequisition.fragment.xml"
+        },
+        {
+            "name": "ext/fragment/CreateNotesOP.fragment.xml"
+        },
+        {
+            "name": "ext/fragment/CreateNotesCP.fragment.xml"
+        },
+        {
+            "name": "ext/fragment/CreateNotes.fragment.xml"
+        },
+        {
+            "name": "ext/fragment/CompOEMPartsReturn.fragment.xml"
+        },
+        {
+            "name": "ext/fragment/CompCreateSTO.fragment.xml"
+        },
+        {
+            "name": "ext/fragment/CloseServiceOrder.fragment.xml"
+        },
+        {
+            "name": "ext/fragment/ChargeTo.fragment.xml"
+        },
+        {
+            "name": "ext/fragment/ChargePartnerVH.fragment.xml"
+        },
+        {
+            "name": "ext/fragment/ChangeSoldToParty.fragment.xml"
+        },
+        {
+            "name": "ext/fragment/ChangeQuantity.fragment.xml"
+        },
+        {
+            "name": "ext/fragment/ChangeContactPerson.fragment.xml"
+        },
+        {
+            "name": "ext/fragment/CategoryTreeDialogValueHelp.fragment.xml"
+        },
+        {
+            "name": "ext/fragment/BillingRuleVH.fragment.xml"
+        },
+        {
+            "name": "ext/fragment/AvaliableQtyCellCP.fragment.xml"
+        },
+        {
+            "name": "ext/fragment/AvailableQtyColumnCP.fragment.xml"
+        },
+        {
+            "name": "ext/fragment/ApprovedbyInternalDept.fragment.xml"
+        },
+        {
+            "name": "ext/fragment/ApprovalDecision.fragment.xml"
+        },
+        {
+            "name": "ext/fragment/ApplyPerDiscountPopOverOP.fragment.xml"
+        },
+        {
+            "name": "ext/fragment/ApplyPerDiscountPopOver.fragment.xml"
+        },
+        {
+            "name": "ext/fragment/ApplyPerDiscountOP.fragment.xml"
+        },
+        {
+            "name": "ext/fragment/ApplyPerDiscount.fragment.xml"
+        },
+        {
+            "name": "ext/fragment/ApplyManualDiscount.fragment.xml"
+        },
+        {
+            "name": "ext/fragment/ApplyDiscount2.fragment.xml"
+        },
+        {
+            "name": "ext/fragment/ApplyDiscount.fragment.xml"
+        },
+        {
+            "name": "ext/fragment/AddeditClaimNo.fragment.xml"
+        },
+        {
+            "name": "ext/fragment/AddTaskList.fragment.xml"
+        },
+        {
+            "name": "ext/fragment/AddSubletLabourComponent.fragment.xml"
+        },
+        {
+            "name": "ext/fragment/AddSubletComponent.fragment.xml"
+        },
+        {
+            "name": "ext/fragment/AddOperations.fragment.xml"
+        },
+        {
+            "name": "ext/fragment/AddMeasuringDocuments.fragment.xml"
+        },
+        {
+            "name": "ext/fragment/AddEditSeverity1.fragment.xml"
+        },
+        {
+            "name": "ext/fragment/AddEditSeverity.fragment.xml"
+        },
+        {
+            "name": "ext/fragment/AddEditPreApprovalNoOP.fragment.xml"
+        },
+        {
+            "name": "ext/fragment/AddEditPreApprovalNoComp.fragment.xml"
+        },
+        {
+            "name": "i18n/ListReport/ZAE_C_ServiceOrder_01/i18n.properties",
+            "raw": "i18n/i18n.properties"
+        },
+        {
+            "name": "ext/fragment/AddComponent.fragment.xml"
+        },
+        {
+            "name": "localService/metadata.xml"
+        },
+        {
+            "name": "localService/ZAE_SSOD_ANNO_MDL.xml"
+        },
+        {
+            "name": "css/style.css"
+        },
+        {
+            "name": "changes/id_1671180524938_500_propertyChange.change"
+        },
+        {
+            "name": "changes/id_1612790479966_656_propertyChange.change"
+        },
+        {
+            "name": "changes/id_1612790479898_456_propertyChange.change"
+        },
+        {
+            "name": "changes/id_1612790479786_256_propertyChange.change"
+        },
+        {
+            "name": "changes/id_1612790479688_756_propertyChange.change"
+        },
+        {
+            "name": "annotations/annotations.xml"
+        }
+    ]
+}

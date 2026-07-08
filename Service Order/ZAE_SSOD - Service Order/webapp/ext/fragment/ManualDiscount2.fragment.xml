@@ -1,0 +1,14 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:smartfield="sap.ui.comp.smartfield" xmlns="sap.m">
+	<Dialog afterClose="afterClose" beforeOpen="beforeOpen" class="sapUiPopupWithPadding" id="SSOD_B98" title="{i18n>SSOD_B98}">
+		<MessageStrip class="sapUiResponsiveMargin sapUiNoMarginTop" id="SSOD_B98MessageStrip" showCloseButton="false" showIcon="true" type="Error"
+			visible="false"></MessageStrip>
+		<Label labelFor="DiscountInput"/>
+		<Input id="DiscountInput" type="Number"></Input>
+		<beginButton>
+			<Button press="onSubmitPressed" text="{i18n>BUTTON_Submit}"/>
+		</beginButton>
+		<endButton>
+			<Button press="onCancelPressed" text="{i18n>BUTTON_Cancel}"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

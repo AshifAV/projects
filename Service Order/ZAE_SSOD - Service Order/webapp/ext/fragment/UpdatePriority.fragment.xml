@@ -1,0 +1,14 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"
+	xmlns:smartField="sap.ui.comp.smartfield">
+	<MessageStrip class="sapUiResponsiveMargin" id="SSOD_B49MessageStrip" showCloseButton="false" showIcon="true" type="Error" visible="false"></MessageStrip>
+	<l:VerticalLayout class="sapUiContentPadding" width="100%">
+		<l:content>
+			<f:SimpleForm id="idUpdatePriorityForm" editable="true" layout="ResponsiveGridLayout" singleContainerFullSize="false">
+				<f:content>
+					<Label text="Priority" required="true"/>
+					<smartField:SmartField entitySet="ZAE_C_ServiceOrder_01" value="{ServiceDocumentPriority}" id="PriorityInput" editable="{mPriority>/edit}"/>
+				</f:content>
+			</f:SimpleForm>
+		</l:content>
+	</l:VerticalLayout>
+</core:FragmentDefinition>

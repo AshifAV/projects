@@ -1,0 +1,6 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<SelectDialog noDataText="No Language Found" title="{i18n>Language}" search=".onSearchValueHelp" confirm=".onLanguageValueHelpDialogClose"
+		cancel=".onCancelLanguage" showClearButton="true" items="{/ZAE_I_Languages}">
+		<StandardListItem title="{LanguageISOCode}" description="{LanguageName}" type="Active"/>
+	</SelectDialog>
+</core:FragmentDefinition>

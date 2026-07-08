@@ -1,0 +1,58 @@
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+	xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+	<edmx:DataServices m:DataServiceVersion="2.0">
+		<Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZAE_FM_SMSA_UPD_SERREQ_ITEM_SRV" xml:lang="en"
+			sap:schema-version="1"><Annotation xmlns="http://docs.oasis-open.org/odata/ns/edm" Term="Core.SchemaVersion" String="1.0.0"/>
+			<EntityType Name="HEADER_DATA" sap:content-version="1">
+				<Key><PropertyRef Name="ServiceRequest"/></Key><Property Name="Description" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Description"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="FuelLevel" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Fuel Level"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ReqTime" Type="Edm.Time" Precision="0" sap:unicode="false" sap:label="Time" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Pmnttrms" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Terms of Paymnt"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ReqDate" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Date" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="ServiceRequest" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Transaction ID"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Text" Type="Edm.String" Nullable="false" MaxLength="132" sap:unicode="false" sap:label="Text Line" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="VehicleCond" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Vehicle Condition"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><NavigationProperty Name="N_HEADER_DATA" Relationship="ZAE_FM_SMSA_UPD_SERREQ_ITEM_SRV.A_HEADER_DATA" FromRole="FromRole_A_HEADER_DATA"
+					ToRole="ToRole_A_HEADER_DATA"/><NavigationProperty Name="N_CATALOGUES" Relationship="ZAE_FM_SMSA_UPD_SERREQ_ITEM_SRV.A_CATALOGUES" FromRole="FromRole_A_CATALOGUES"
+					ToRole="ToRole_A_CATALOGUES"/><NavigationProperty Name="N_SR_ITEMS" Relationship="ZAE_FM_SMSA_UPD_SERREQ_ITEM_SRV.A_SR_ITEMS" FromRole="FromRole_A_SR_ITEMS"
+					ToRole="ToRole_A_SR_ITEMS"/><NavigationProperty Name="N_SR_COMP" Relationship="ZAE_FM_SMSA_UPD_SERREQ_ITEM_SRV.A_SR_COMP" FromRole="FromRole_A_SR_COMP"
+					ToRole="ToRole_A_SR_COMP"/></EntityType>
+			<EntityType Name="CATALOGUES" sap:content-version="1">
+				<Key><PropertyRef Name="ProcessType"/><PropertyRef Name="CatId"/><PropertyRef Name="Stat"/><PropertyRef Name="Dbmtr"/><PropertyRef Name="Waers"/></Key><Property Name="ProcessType" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Transaction Type"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="CatId" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Category ID" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Stat" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="User status" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Dbmtr" Type="Edm.Decimal" Nullable="false" Precision="24" Scale="3" sap:unicode="false" sap:label="Amount in LC"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Waers" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Currency" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="currency-code"/></EntityType>
+			<EntityType Name="SR_ITEMS" sap:content-version="1">
+				<Key><PropertyRef Name="NumberInt"/><PropertyRef Name="CheckListId"/></Key><Property Name="NumberInt" Type="Edm.String" Nullable="false" MaxLength="6" sap:unicode="false" sap:label="Item Number in Doc."
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Text0003" Type="Edm.String" Nullable="false" MaxLength="132" sap:unicode="false" sap:label="Text Line" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="CheckListId" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Checklist Option ID"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="SR_COMP" sap:content-version="1">
+				<Key><PropertyRef Name="CompCode"/></Key><Property Name="CompCode" Type="Edm.String" Nullable="false" MaxLength="18" sap:unicode="false" sap:label="Complaint Code"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="StepId" Type="Edm.String" MaxLength="8" sap:unicode="false" sap:label="Checklist Step" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ItemCatUsage" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Item Cat. Usage"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Text0003" Type="Edm.String" Nullable="false" MaxLength="132" sap:unicode="false" sap:label="Text Line" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="CheckListId" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Checklist Option ID"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<Association Name="A_CATALOGUES" sap:content-version="1"><End Type="ZAE_FM_SMSA_UPD_SERREQ_ITEM_SRV.HEADER_DATA" Multiplicity="*" Role="FromRole_A_CATALOGUES"/><End Type="ZAE_FM_SMSA_UPD_SERREQ_ITEM_SRV.CATALOGUES" Multiplicity="*" Role="ToRole_A_CATALOGUES"/></Association>
+			<Association Name="A_SR_ITEMS" sap:content-version="1"><End Type="ZAE_FM_SMSA_UPD_SERREQ_ITEM_SRV.HEADER_DATA" Multiplicity="*" Role="FromRole_A_SR_ITEMS"/><End Type="ZAE_FM_SMSA_UPD_SERREQ_ITEM_SRV.SR_ITEMS" Multiplicity="*" Role="ToRole_A_SR_ITEMS"/></Association>
+			<Association Name="A_SR_COMP" sap:content-version="1"><End Type="ZAE_FM_SMSA_UPD_SERREQ_ITEM_SRV.HEADER_DATA" Multiplicity="*" Role="FromRole_A_SR_COMP"/><End Type="ZAE_FM_SMSA_UPD_SERREQ_ITEM_SRV.SR_COMP" Multiplicity="*" Role="ToRole_A_SR_COMP"/></Association>
+			<Association Name="A_HEADER_DATA" sap:content-version="1"><End Type="ZAE_FM_SMSA_UPD_SERREQ_ITEM_SRV.HEADER_DATA" Multiplicity="*" Role="FromRole_A_HEADER_DATA"/><End Type="ZAE_FM_SMSA_UPD_SERREQ_ITEM_SRV.HEADER_DATA" Multiplicity="*" Role="ToRole_A_HEADER_DATA"/></Association>
+			<EntityContainer Name="ZAE_FM_SMSA_UPD_SERREQ_ITEM_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx"><EntitySet Name="HEADER_DATASet" EntityType="ZAE_FM_SMSA_UPD_SERREQ_ITEM_SRV.HEADER_DATA" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:content-version="1"/><EntitySet Name="CATALOGUESSet" EntityType="ZAE_FM_SMSA_UPD_SERREQ_ITEM_SRV.CATALOGUES" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:content-version="1"/><EntitySet Name="SR_ITEMSSet" EntityType="ZAE_FM_SMSA_UPD_SERREQ_ITEM_SRV.SR_ITEMS" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:content-version="1"/><EntitySet Name="SR_COMPSet" EntityType="ZAE_FM_SMSA_UPD_SERREQ_ITEM_SRV.SR_COMP" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+				<AssociationSet Name="A_HEADER_DATA_AssocSet" Association="ZAE_FM_SMSA_UPD_SERREQ_ITEM_SRV.A_HEADER_DATA" sap:creatable="false"
+					sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="HEADER_DATASet" Role="FromRole_A_HEADER_DATA"/><End EntitySet="HEADER_DATASet" Role="ToRole_A_HEADER_DATA"/></AssociationSet>
+				<AssociationSet Name="A_CATALOGUES_AssocSet" Association="ZAE_FM_SMSA_UPD_SERREQ_ITEM_SRV.A_CATALOGUES" sap:creatable="false"
+					sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="HEADER_DATASet" Role="FromRole_A_CATALOGUES"/><End EntitySet="CATALOGUESSet" Role="ToRole_A_CATALOGUES"/></AssociationSet>
+				<AssociationSet Name="A_SR_ITEMS_AssocSet" Association="ZAE_FM_SMSA_UPD_SERREQ_ITEM_SRV.A_SR_ITEMS" sap:creatable="false"
+					sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="HEADER_DATASet" Role="FromRole_A_SR_ITEMS"/><End EntitySet="SR_ITEMSSet" Role="ToRole_A_SR_ITEMS"/></AssociationSet>
+				<AssociationSet Name="A_SR_COMP_AssocSet" Association="ZAE_FM_SMSA_UPD_SERREQ_ITEM_SRV.A_SR_COMP" sap:creatable="false"
+					sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="HEADER_DATASet" Role="FromRole_A_SR_COMP"/><End EntitySet="SR_COMPSet" Role="ToRole_A_SR_COMP"/></AssociationSet>
+			</EntityContainer><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="./sap/ZAE_FM_SMSA_UPD_SERREQ_ITEM_SRV/$metadata"/><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="./sap/ZAE_FM_SMSA_UPD_SERREQ_ITEM_SRV/$metadata"/></Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

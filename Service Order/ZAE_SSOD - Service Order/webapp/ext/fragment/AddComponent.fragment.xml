@@ -1,0 +1,130 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:u="sap.ui.unified">
+	<Dialog class="sapUiSizeCompact sapUiContentPadding" contentHeight="30em" resizable="true" title="Add Component List">
+		<content>
+			<Table id="idComponentListTable" growing="true" growingThreshold="100" paste="onPaste" items="{mWorkEstimateComponent>/TableData/}"
+				inset="false" alternateRowColors="true">
+				<headerToolbar>
+					<OverflowToolbar >
+						<Title text="Component List" level="H2"/>
+						<ToolbarSpacer/>
+						<Button text="Download Template" type="Transparent" press="onExport"/>
+						<u:FileUploader class="" id="fileUploaderInput" change="fileChanged" sameFilenameAllowed="true"/>
+						<Button text="Add" type="Transparent" press="onAddNewRow"/>
+						<!--<Button id="saveButton" text="Save" type="Transparent" press="onSave" visible="false"/>
+					<Button id="cancelButton" text="Cancel" type="Transparent" press="onCancel" visible="false"/>-->
+					</OverflowToolbar>
+				</headerToolbar>
+				<columns>
+					<Column width="4em" hAlign="Center">
+						<Text text="Item Number"/>
+					</Column>
+					<Column width="4em" hAlign="Center">
+						<Text text="Higher Level ItemNumber"/>
+					</Column>
+					<Column width="15em" hAlign="Center">
+						<Text text="Material"/>
+					</Column>
+					<Column width="7em" hAlign="Center">
+						<Text text="{i18n>OrderDesc}"/>
+					</Column>
+					<Column width="8em" hAlign="Center">
+						<Text text="Quantity"/>
+					</Column>
+					<Column width="4em" hAlign="Center" visible="false">
+						<Label text="Base Unit"/>
+					</Column>
+					<Column width="8em" hAlign="Center">
+						<Text text="Available Quantity"/>
+					</Column>
+					<Column width="9em" hAlign="Center">
+						<Text text="Item Category"/>
+					</Column>
+					<!--					<Column width="7em" hAlign="Center">
+						<Text text="{i18n>OrderDesc}"/>
+					</Column>-->
+					<Column width="4em" hAlign="Center">
+						<Text text="{i18n>UnitPrice}"/>
+					</Column>
+					<Column width="4em" hAlign="Center" visible="false">
+						<Text text="{i18n>Currency}"/>
+					</Column>
+					<Column width="4em" hAlign="Center">
+						<Text text="{i18n>Severity}"/>
+					</Column>
+					<Column width="3em" hAlign="Center">
+						<Text text="Actions"/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<Text text="{mWorkEstimateComponent>ItemNumber}"/>
+							<Text text="{mWorkEstimateComponent>HighLevelItemNumber}"/>
+							<MultiInput id="MaterialInput" valueHelpRequest=".onProductValueHelpRequested" valueHelpOnly="false" showValueHelp="true"
+								tokenUpdate="onMaterailTokenUpdate" enabled="{mWorkEstimateComponent>Enabled}" showSuggestion="true"
+								suggestionItemSelected="onSelectMaterial" valueState="{mWorkEstimateComponent>oValueState}"
+								valueStateText="{mWorkEstimateComponent>oValueStateText}"
+								suggestionRows="{ path: '/ZAE_I_MaterialSalesData_06', sorter: { path: 'Material' },suspended: true, length: 10 }" width="100%"
+								filterSuggests="true" suggest="handleMaterialSuggest" maxSuggestionWidth="600px">
+								<suggestionColumns>
+									<Column>
+										<Label text="{i18n>Material}"/>
+									</Column>
+									<Column>
+										<Label text="{i18n>MaterialName}"/>
+									</Column>
+									<Column>
+										<Label text="{i18n>MaterialType}"/>
+									</Column>
+									<Column>
+										<Label text="{i18n>AvailableQuantity}"/>
+									</Column>
+									<!--<Column>-->
+									<!--	<Label text="{i18n>SupercededFlag}"/>-->
+									<!--</Column>-->
+								</suggestionColumns>
+								<suggestionRows>
+									<ColumnListItem>
+										<cells>
+											<Label text="{Material}"/>
+											<Label text="{MaterialName}"/>
+											<Label text="{MaterialType}"/>
+											<Label text="{AvailableQuantity}"/>
+											<!--<Label text="{SupercededFlag}"/>-->
+										</cells>
+									</ColumnListItem>
+								</suggestionRows>
+							</MultiInput>
+							<Input type="IdOrderDesc" value="{mWorkEstimateComponent>OrderDesc}" liveChange="fnSubmitButonValidation"
+								enabled="{mWorkEstimateComponent>DescriptionCheck}"/>
+							<Input type="Number" value="{mWorkEstimateComponent>Quantity}" liveChange="fnSubmitButonValidation"
+								enabled="{mWorkEstimateComponent>Enabled}" description="{mWorkEstimateComponent>QuantityUnit}"/>
+							<Text text="{mWorkEstimateComponent>QuantityUnit}"/>
+							<!--<ObjectNumber number="{ path:'mWorkEstimateComponent>ItemCategory', type: 'sap.ui.model.type.String', formatOptions: {showMeasure: false} }"
+							unit="{mWorkEstimateComponent>ItemCategoryDesc}"/>-->
+							<Text
+								text="{parts: ['mWorkEstimateComponent>AvailableQuantity', 'mWorkEstimateComponent>QuantityUnit'], formatter: '.formatNameAndValuePair'}"/>
+							<Text
+								text="{parts: ['mWorkEstimateComponent>ItemCategoryDesc', 'mWorkEstimateComponent>ItemCategory'], formatter: '.formatNameAndValuePair'}"/>
+							<!--<Input value="{mServiceOrderOperation>Severity}" change="fnSubmitButonValidation" enabled="{mServiceOrderOperation>Enabled}"/>-->
+							<!--<Input type="IdOrderDesc" value="{mWorkEstimateComponent>OrderDesc}" enabled="{mWorkEstimateComponent>DescriptionCheck}"/>-->
+							<Input type="IdPrice" value="{mWorkEstimateComponent>Price}" liveChange="fnSubmitButonValidation"
+								enabled="{mWorkEstimateComponent>PriceCheck}"/>
+							<Input type="Currency" value="{mWorkEstimateComponent>Currency}" enabled="false" visible="false"/>
+							<Select forceSelection="false" showSecondaryValues="true" selectedKey="{mWorkEstimateComponent>Severity}" items="{/ZAE_VH_SEVERITY}"
+								enabled="{mWorkEstimateComponent>Enabled}">
+								<core:ListItem key="{Severity}" text="{Description}" additionalText="{Severity}"/>
+							</Select>
+							<Button icon="sap-icon://delete" type="Transparent" press="onDeletePress" enabled="{mWorkEstimateComponent>Enabled}"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+		<buttons>
+			<Button id="BTNSubmit" text="Submit" press="onSubmit"/>
+			<Button text="Reset" press="onReset"/>
+			<Button text="Cancel" press="onCancel"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

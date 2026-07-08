@@ -1,0 +1,145 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:smartForm="sap.ui.comp.smartform"
+	xmlns:smartField="sap.ui.comp.smartfield" xmlns:nav="sap.ui.comp.navpopover">
+	<VBox id="opportunityDetailsVBox" visible="{app>/pages/Opportunity/isOpportunityDataLoaded}">
+		<smartForm:SmartForm id="opportunityDetails" expandable="{= ${app>/pages/currentStep} === 3 }">
+			<smartForm:customToolbar>
+				<Toolbar height="3rem" class="pl12">
+					<Title text="{i18n>GeneralInformation}"/>
+				</Toolbar>
+			</smartForm:customToolbar>
+			<smartForm:layout>
+				<smartForm:ColumnLayout columnsM="2" columnsL="3" columnsXL="4"/>
+			</smartForm:layout>
+			<smartForm:Group>
+				<smartForm:GroupElement label="{i18n>Description}">
+					<nav:SmartLink id="IDOpp" text="{EquipmentName} ({Equipment})" forceLinkRendering="true" press="onOpportunityNavigation"></nav:SmartLink>
+				</smartForm:GroupElement>
+				<smartForm:GroupElement label="{i18n>Category}">
+					<smartField:SmartField value="{EquipmentCategoryDesc} ({EquipmentCategory})">
+						<!--<smartField:configuration>-->
+						<!--	<smartField:Configuration displayBehaviour="descriptionAndId"/>-->
+						<!--</smartField:configuration>-->
+					</smartField:SmartField>
+				</smartForm:GroupElement>
+				<smartForm:GroupElement label="{i18n>Type}">
+					<smartField:SmartField value="{TechnicalObjectType}">
+						<!--<smartField:configuration>-->
+						<!--	<smartField:Configuration displayBehaviour="descriptionAndId"/>-->
+						<!--</smartField:configuration>-->
+					</smartField:SmartField>
+				</smartForm:GroupElement>
+			</smartForm:Group>
+		</smartForm:SmartForm>
+		<smartForm:SmartForm id="organizationDetails" expandable="{= ${app>/pages/currentStep} === 3 }">
+			<smartForm:customToolbar>
+				<Toolbar height="3rem" class="pl12">
+					<Title text="{i18n>EquipmentInformation}"/>
+				</Toolbar>
+			</smartForm:customToolbar>
+			<smartForm:layout>
+				<smartForm:ColumnLayout columnsM="2" columnsL="3" columnsXL="4"/>
+			</smartForm:layout>
+			<smartForm:Group>
+				<smartForm:GroupElement label="{i18n>FleetObjectType}">
+					<smartField:SmartField value="{FleetCat}">
+						<!--<smartField:configuration>-->
+						<!--	<smartField:Configuration displayBehaviour="descriptionAndId"/>-->
+						<!--</smartField:configuration>-->
+					</smartField:SmartField>
+				</smartForm:GroupElement>
+				<smartForm:GroupElement label="{i18n>FleetObjectNumebr}">
+					<smartField:SmartField value="{FleetNum}">
+						<!--<smartField:configuration>-->
+						<!--	<smartField:Configuration displayBehaviour="descriptionAndId"/>-->
+						<!--</smartField:configuration>-->
+					</smartField:SmartField>
+				</smartForm:GroupElement>
+				<smartForm:GroupElement label="{i18n>LicensePlateNumeber}">
+					<smartField:SmartField value="{LicenseNum}">
+						<!--<smartField:configuration>-->
+						<!--	<smartField:Configuration displayBehaviour="descriptionAndId"/>-->
+						<!--</smartField:configuration>-->
+					</smartField:SmartField>
+				</smartForm:GroupElement>
+				<smartForm:GroupElement label="{i18n>VINNo}">
+					<smartField:SmartField value="{FleetVin}">
+						<!--<smartField:configuration>-->
+						<!--	<smartField:Configuration displayBehaviour="descriptionAndId"/>-->
+						<!--</smartField:configuration>-->
+					</smartField:SmartField>
+				</smartForm:GroupElement>
+				<smartForm:GroupElement label="{i18n>ChassisNumber}">
+					<smartField:SmartField value="{ChassisNum}">
+						<!--<smartField:configuration>-->
+						<!--	<smartField:Configuration displayBehaviour="descriptionAndId"/>-->
+						<!--</smartField:configuration>-->
+					</smartField:SmartField>
+				</smartForm:GroupElement>
+				<smartForm:GroupElement label="{i18n>SystemStatus}">
+					<smartField:SmartField value="{ConcatenatedActiveSystStsName}"></smartField:SmartField>
+				</smartForm:GroupElement>
+				<smartForm:GroupElement label="{i18n>FleetUsage}">
+					<smartField:SmartField value="{FleetUse}">
+						<smartField:configuration>
+							<smartField:Configuration displayBehaviour="descriptionAndId"/>
+						</smartField:configuration>
+					</smartField:SmartField>
+				</smartForm:GroupElement>
+				<smartForm:GroupElement label="{i18n>KeynoofVehicles}">
+					<smartField:SmartField value="{KeyNum}">
+						<!--<smartField:configuration>-->
+						<!--	<smartField:Configuration displayBehaviour="descriptionAndId"/>-->
+						<!--</smartField:configuration>-->
+					</smartField:SmartField>
+				</smartForm:GroupElement>
+			</smartForm:Group>
+		</smartForm:SmartForm>
+		<smartForm:SmartForm id="partnerDetails" expandable="{= ${app>/pages/currentStep} === 3 }">
+			<smartForm:customToolbar>
+				<Toolbar height="3rem" class="pl12">
+					<Title text="{i18n>GeneralData}"/>
+				</Toolbar>
+			</smartForm:customToolbar>
+			<smartForm:layout>
+				<smartForm:ColumnLayout columnsM="2" columnsL="3" columnsXL="4"/>
+			</smartForm:layout>
+			<smartForm:Group>
+				<smartForm:GroupElement label="{i18n>Category}">
+					<smartField:SmartField value="{EquipmentCategoryDesc} ({EquipmentCategory})">
+						<!--<smartField:configuration>-->
+						<!--	<smartField:Configuration displayBehaviour="descriptionAndId"/>-->
+						<!--</smartField:configuration>-->
+					</smartField:SmartField>
+				</smartForm:GroupElement>
+				<smartForm:GroupElement label="{i18n>Manufacturer}">
+					<smartField:SmartField value="{ManufacturerPartTypeName}">
+						<!--<smartField:configuration>-->
+						<!--	<smartField:Configuration displayBehaviour="descriptionAndId"/>-->
+						<!--</smartField:configuration>-->
+					</smartField:SmartField>
+				</smartForm:GroupElement>
+				<smartForm:GroupElement label="{i18n>ManufaturerPartNo}">
+					<smartField:SmartField value="{ManufacturerPartNmbr}">
+						<!--<smartField:configuration>-->
+						<!--	<smartField:Configuration displayBehaviour="descriptionAndId"/>-->
+						<!--</smartField:configuration>-->
+					</smartField:SmartField>
+				</smartForm:GroupElement>
+				<smartForm:GroupElement label="{i18n>ManufaturerSerialNo}">
+					<smartField:SmartField value="{ManufacturerSerialNumber}">
+						<!--<smartField:configuration>-->
+						<!--	<smartField:Configuration displayBehaviour="descriptionAndId"/>-->
+						<!--</smartField:configuration>-->
+					</smartField:SmartField>
+				</smartForm:GroupElement>
+				<smartForm:GroupElement label="{i18n>Weightofobject}">
+					<smartField:SmartField value="{GrossWeight} {GrossWeightUnit}">
+						<!--<smartField:configuration>-->
+						<!--	<smartField:Configuration displayBehaviour="descriptionAndId"/>-->
+						<!--</smartField:configuration>-->
+					</smartField:SmartField>
+				</smartForm:GroupElement>
+			</smartForm:Group>
+		</smartForm:SmartForm>
+	</VBox>
+</core:FragmentDefinition>

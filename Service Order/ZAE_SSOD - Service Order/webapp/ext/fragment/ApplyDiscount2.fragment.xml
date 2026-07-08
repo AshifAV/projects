@@ -1,0 +1,17 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:smartfield="sap.ui.comp.smartfield" xmlns="sap.m">
+	<Dialog afterClose="afterClose" class="sapUiPopupWithPadding" id="SSOD_B97Dialog" title="{i18n>SSOD_B97}">
+		<MessageStrip class="sapUiResponsiveMargin sapUiNoMarginTop" id="SSOD_B97MessageStrip" showCloseButton="false" showIcon="true" type="Error"
+			visible="false"></MessageStrip>
+		<content>
+			<Label labelFor="AccIndicatorInput"/>
+			<Input id="AccIndicatorInput" required="true" type="Text" showSuggestion="true" showValueHelp="true" valueHelpRequest="handleValueHelp"
+				class="sapUiSmallMarginBottom"/>
+		</content>
+		<beginButton>
+			<Button press="onSubmitPressed" text="{i18n>BUTTON_Submit}"/>
+		</beginButton>
+		<endButton>
+			<Button press="onCancelPressed" text="{i18n>BUTTON_Cancel}"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

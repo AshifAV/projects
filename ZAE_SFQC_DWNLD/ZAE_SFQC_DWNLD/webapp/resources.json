@@ -1,0 +1,167 @@
+{
+    "resources": [
+        {
+            "name": "controller/subview/Confirmation.controller.js"
+        },
+        {
+            "name": "controller/subview/Material.controller.js"
+        },
+        {
+            "name": "manifest.json"
+        },
+        {
+            "name": "controller/subview/Overview.controller.js"
+        },
+        {
+            "name": "controller/subview/Opportunity.controller.js"
+        },
+        {
+            "name": "model/app.json"
+        },
+        {
+            "name": "i18n/i18n.properties",
+            "raw": "i18n/i18n.properties"
+        },
+        {
+            "name": "controller/subview/Config.controller.js"
+        },
+        {
+            "name": "model/models.js"
+        },
+        {
+            "name": "model/formatter.js"
+        },
+        {
+            "name": "lib/lodash.js"
+        },
+        {
+            "name": "controller/Main.controller.js"
+        },
+        {
+            "name": "controller/BaseController.js"
+        },
+        {
+            "name": "Component.js"
+        },
+        {
+            "name": "manifest-bundle.zip"
+        },
+        {
+            "name": "Component-preload.js",
+            "merged": true
+        },
+        {
+            "name": "lib/lodash-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "controller/subview/Overview-dbg.controller.js",
+            "isDebug": true
+        },
+        {
+            "name": "controller/subview/Opportunity-dbg.controller.js",
+            "isDebug": true
+        },
+        {
+            "name": "controller/subview/Material-dbg.controller.js",
+            "isDebug": true
+        },
+        {
+            "name": "controller/subview/Confirmation-dbg.controller.js",
+            "isDebug": true
+        },
+        {
+            "name": "controller/subview/Config-dbg.controller.js",
+            "isDebug": true
+        },
+        {
+            "name": "model/models-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "model/formatter-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "controller/Main-dbg.controller.js",
+            "isDebug": true
+        },
+        {
+            "name": "controller/BaseController-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "Component-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "../../../sap-ui-version.json"
+        },
+        {
+            "name": "neo-app.json"
+        },
+        {
+            "name": "di.code-validation.core_issues.json"
+        },
+        {
+            "name": "view/subview/Overview.view.xml"
+        },
+        {
+            "name": "view/subview/Opportunity.view.xml"
+        },
+        {
+            "name": "view/subview/Material.view.xml"
+        },
+        {
+            "name": "view/subview/Confirmation.view.xml"
+        },
+        {
+            "name": "view/subview/Config.view.xml"
+        },
+        {
+            "name": "view/fragment/TotalPricePopover.fragment.xml"
+        },
+        {
+            "name": "view/fragment/ServicePackageList.fragment.xml"
+        },
+        {
+            "name": "view/fragment/PricePopover.fragment.xml"
+        },
+        {
+            "name": "view/fragment/OverviewRowSub.fragment.xml"
+        },
+        {
+            "name": "view/fragment/OverviewRowMain.fragment.xml"
+        },
+        {
+            "name": "view/fragment/OpportunityDetails.fragment.xml"
+        },
+        {
+            "name": "view/fragment/MessagePopover.fragment.xml"
+        },
+        {
+            "name": "view/fragment/EMI.fragment.xml"
+        },
+        {
+            "name": "view/fragment/DiscountPopover.fragment.xml"
+        },
+        {
+            "name": "resource/image/dummyImg.png"
+        },
+        {
+            "name": "resource/image/DFLT.png"
+        },
+        {
+            "name": "view/Main.view.xml"
+        },
+        {
+            "name": "localService/metadata.xml"
+        },
+        {
+            "name": "css/style.css"
+        },
+        {
+            "name": "index.html"
+        }
+    ]
+}

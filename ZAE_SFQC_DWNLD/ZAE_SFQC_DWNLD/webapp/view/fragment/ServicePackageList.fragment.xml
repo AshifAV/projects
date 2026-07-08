@@ -1,0 +1,60 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:layout="sap.ui.layout"
+	xmlns:form="sap.ui.layout.form" xmlns:smartForm="sap.ui.comp.smartform" xmlns:smartField="sap.ui.comp.smartfield"
+	xmlns:smartFilterBar="sap.ui.comp.smartfilterbar" xmlns:smartTable="sap.ui.comp.smarttable">
+	<Dialog title="{i18n>ApplicableService}" afterClose="afterClose">
+		<content>
+			<smartFilterBar:SmartFilterBar id="smartFilterBar" enableBasicSearch="false" persistencyKey="UniqueAndStablePersistencyKey"
+				considerSelectionVariants="false" visible="true" liveMode="false" showFilterConfiguration="true" useToolbar="false"
+				entitySet="ZAE_VH_ServiceContractCosting" initialized="onSmartFilterBarInitialized" search="onSearchServicePackage">
+				<smartFilterBar:controlConfiguration>
+					<smartFilterBar:ControlConfiguration id="idSalesOrg" key="ServiceContractCosting" hasValueHelpDialog="true" visibleInAdvancedArea="true"
+						index="1" groupId="_Basic" label="{i18n>ServiceContractCosting}"></smartFilterBar:ControlConfiguration>
+					<smartFilterBar:ControlConfiguration id="idServiceDocumentDescription" key="ServiceDocumentDescription" hasValueHelpDialog="true"
+						visibleInAdvancedArea="true" index="2" groupId="_Basic" label="{i18n>ServiceDocumentDescription}"></smartFilterBar:ControlConfiguration>
+					<smartFilterBar:ControlConfiguration id="idServiceDocumentCreatedByUser" key="ServiceDocumentCreatedByUser" hasValueHelpDialog="true"
+						visibleInAdvancedArea="true" index="3" groupId="_Basic" label="{i18n>CreatedBy}"></smartFilterBar:ControlConfiguration>
+					<smartFilterBar:ControlConfiguration id="idMake" key="Make" hasValueHelpDialog="true" visibleInAdvancedArea="false" visible="false"
+						groupId="_Basic"></smartFilterBar:ControlConfiguration>
+					<smartFilterBar:ControlConfiguration id="idModel" key="Model" hasValueHelpDialog="true" visibleInAdvancedArea="false" visible="false"
+						groupId="_Basic"></smartFilterBar:ControlConfiguration>
+					<smartFilterBar:ControlConfiguration id="idSalesOrganization" key="SalesOrganization" hasValueHelpDialog="true"
+						visibleInAdvancedArea="false" visible="false" groupId="_Basic"></smartFilterBar:ControlConfiguration>
+					<smartFilterBar:ControlConfiguration id="idValidTo" key="ValidTo" hasValueHelpDialog="true" visibleInAdvancedArea="false" visible="false"
+						groupId="_Basic"></smartFilterBar:ControlConfiguration>
+					<smartFilterBar:ControlConfiguration id="idServiceDocumentType" key="ServiceDocumentType" hasValueHelpDialog="true"
+						visibleInAdvancedArea="false" visible="false" groupId="_Basic"></smartFilterBar:ControlConfiguration>
+					<smartFilterBar:ControlConfiguration id="idTotalNetValue" key="TotalNetValue" hasValueHelpDialog="true" visibleInAdvancedArea="false"
+						visible="false" groupId="_Basic"></smartFilterBar:ControlConfiguration>
+					<smartFilterBar:ControlConfiguration id="idApprovedContractValue" key="ApprovedContractValue" hasValueHelpDialog="true"
+						visibleInAdvancedArea="false" visible="false" groupId="_Basic"></smartFilterBar:ControlConfiguration>
+					<smartFilterBar:ControlConfiguration id="idDistributionChannel" key="DistributionChannel" hasValueHelpDialog="true"
+						visibleInAdvancedArea="false" visible="false" groupId="_Basic"></smartFilterBar:ControlConfiguration>
+					<smartFilterBar:ControlConfiguration id="idServiceObjectType" key="ServiceObjectType" hasValueHelpDialog="true"
+						visibleInAdvancedArea="false" visible="false" groupId="_Basic"></smartFilterBar:ControlConfiguration>
+					<smartFilterBar:ControlConfiguration id="ModelText" key="ModelText" hasValueHelpDialog="true" visibleInAdvancedArea="false" visible="false"
+						groupId="_Basic"></smartFilterBar:ControlConfiguration>
+					<smartFilterBar:ControlConfiguration id="idServi" key="ServiceDocumentDesc" hasValueHelpDialog="true" visibleInAdvancedArea="false"
+						visible="false" groupId="_Basic"></smartFilterBar:ControlConfiguration>
+					<smartFilterBar:ControlConfiguration id="idServiceObjectT" key="MakeText" hasValueHelpDialog="true" visibleInAdvancedArea="false"
+						visible="false" groupId="_Basic"></smartFilterBar:ControlConfiguration>
+					<smartFilterBar:ControlConfiguration id="idServiceObje" key="SalesOrganizationName" hasValueHelpDialog="true" visibleInAdvancedArea="false"
+						visible="false" groupId="_Basic"></smartFilterBar:ControlConfiguration>
+					<smartFilterBar:ControlConfiguration id="idServiceObj" key="DistributionChannelName" hasValueHelpDialog="true" visibleInAdvancedArea="false"
+						visible="false" groupId="_Basic"></smartFilterBar:ControlConfiguration>
+					<smartFilterBar:ControlConfiguration id="idServiceO" key="TransactionCurrency" hasValueHelpDialog="true" visibleInAdvancedArea="false"
+						visible="false" groupId="_Basic"></smartFilterBar:ControlConfiguration>
+					<smartFilterBar:ControlConfiguration id="idServic" key="ValidFrom" hasValueHelpDialog="true" visibleInAdvancedArea="false" visible="false"
+						groupId="_Basic"></smartFilterBar:ControlConfiguration>
+				</smartFilterBar:controlConfiguration>
+			</smartFilterBar:SmartFilterBar>
+			<smartTable:SmartTable id="SmartTableServicePackageList" entitySet="ZAE_VH_ServiceContractCosting" tableType="ResponsiveTable"
+				class="sapUiResponsiveMargin" useExportToExcel="false" useVariantManagement="false" useTablePersonalisation="true" enableAutoBinding="true"
+				enableAutoColumnWidth="true"
+				initiallyVisibleFields="ServiceContractCosting,ServiceDocumentDescription,Make,Model,ValidFrom,ValidTo,TotalNetValue"
+				beforeRebindTable="onBeforeRebindServicePackageList"></smartTable:SmartTable>
+		</content>
+		<buttons>
+			<Button press="onCancelPressed" text="{i18n>Close}"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

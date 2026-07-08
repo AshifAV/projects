@@ -1,0 +1,14 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m">
+	<Popover id="discountPopover" placement="Bottom" showHeader="false" title="{i18n>miniCartTitle}" afterOpen="afterMiniCartOpen">
+		<VBox>
+			<Text text="{i18n>Test}"/>
+		</VBox>
+		<footer>
+			<Toolbar>
+				<ToolbarSpacer/>
+				<Button enabled="false" press="handleOrderCartPress" text="{i18n>orderCart}" type="Emphasized"/>
+				<!--<Button enabled="false" press="handleViewCartPress" text="{i18n>viewCart}"/>-->
+			</Toolbar>
+		</footer>
+	</Popover>
+</core:FragmentDefinition>

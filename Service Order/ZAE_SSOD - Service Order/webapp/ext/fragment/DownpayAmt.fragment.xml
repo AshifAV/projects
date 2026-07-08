@@ -1,0 +1,25 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:smartfield="sap.ui.comp.smartfield" xmlns:f="sap.ui.layout.form" xmlns="sap.m"
+	xmlns:l="sap.ui.layout">
+	<Dialog afterClose="afterClose" class="sapUiPopupWithPadding" id="SSOD_B06Dialog" title="{i18n>SSOD_B06}">
+		<MessageStrip class="sapUiResponsiveMargin sapUiNoMarginTop" id="SSOD_B06MessageStrip" showCloseButton="false" showIcon="true" type="Error"
+			visible="false"></MessageStrip>
+		<!--<Label labelFor="DownPayAmtInput"/>
+		<Input id="DownPayAmtInput" required="true" type="Text" class="sapUiSmallMarginBottom"/>-->
+		<Slider id="DiscountSlider" value="{mDownPayAmt>/value}" min="{mDownPayAmt>/min}" max="{mDownPayAmt>/max}" step="1"
+			showAdvancedTooltip="true" showHandleTooltip="false" inputsAsTooltips="true" enableTickmarks="true" class="sapUiMediumMarginBottom"/>
+		<f:SimpleForm editable="true" layout="ResponsiveGridLayout" singleContainerFullSize="false">
+			<f:content>
+				<Label text="Down Payment Amount" labelFor="IDDownPayAmt"/>
+				<Input id="IDDownPayAmt" type="Text" value="{parts: ['mDownPayAmt>/value','mDownPayAmt>/ServiceDocNetAmount'],formatter:'.fnCalDownPayAmt'}"
+					enabled="false"  class="sapUiSmallMarginBottom"/>
+			</f:content>
+		</f:SimpleForm>
+		<MessageStrip class="sapUiNoMarginTop" text="{i18n>WAR_MSG}" showCloseButton="false" showIcon="true" type="Warning" visible="true"></MessageStrip>
+		<beginButton>
+			<Button press="onSubmitPressed" text="{i18n>BUTTON_Submit}"/>
+		</beginButton>
+		<endButton>
+			<Button press="onCancelPressed" text="{i18n>BUTTON_Cancel}"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

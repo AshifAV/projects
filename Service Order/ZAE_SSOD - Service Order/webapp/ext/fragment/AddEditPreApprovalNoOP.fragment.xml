@@ -1,0 +1,16 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:smartfield="sap.ui.comp.smartfield" xmlns="sap.m">
+	<Dialog afterClose="afterClose" class="sapUiPopupWithPadding" id="SSOD_B38Dialog" title="{i18n>SSOD_B38}">
+		<MessageStrip class="sapUiResponsiveMargin sapUiNoMarginTop" id="SSOD_B38MessageStrip" showCloseButton="false" showIcon="true" type="Error"
+			visible="false"></MessageStrip>
+		<content>
+			<Label labelFor="PreAppNoOpInput" required="true"/>
+			<Input id="PreAppNoOpInput" class="sapUiSmallMarginBottom"/>
+		</content>
+		<beginButton>
+			<Button press="onSubmitPressed" text="{i18n>BUTTON_Submit}"/>
+		</beginButton>
+		<endButton>
+			<Button press="onCancelPressed" text="{i18n>BUTTON_Cancel}"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

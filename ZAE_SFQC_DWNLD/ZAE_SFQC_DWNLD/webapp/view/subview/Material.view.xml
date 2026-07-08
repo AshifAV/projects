@@ -1,0 +1,142 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:f="sap.f" xmlns:grid="sap.ui.layout.cssgrid"
+	xmlns:smartFilterBar="sap.ui.comp.smartfilterbar" xmlns:t="sap.ui.table" xmlns:m="sap.m"
+	controllerName="com.globalintelli.ZAE_SFQC.controller.subview.Material" xmlns:html="http://www.w3.org/1999/xhtml">
+	<smartFilterBar:SmartFilterBar id="materialFilter" entitySet="ZAE_I_SalesMaterial" showFilterConfiguration="false" useToolbar="false"
+		class="smartFilterBar sapUiNoMargin" initialized="onMaterialFilterInitialized" search="onMaterialFilterSearch"
+		visible="{= ${app>/pages/Material/type} === 'Material'}">
+		<smartFilterBar:controlConfiguration>
+			<smartFilterBar:ControlConfiguration key="Make" visibleInAdvancedArea="true" preventInitialDataFetchInValueHelpDialog="false"
+				filterType="multiple" index="1"></smartFilterBar:ControlConfiguration>
+			<smartFilterBar:ControlConfiguration key="DevelopmentLine" visibleInAdvancedArea="true" preventInitialDataFetchInValueHelpDialog="false"
+				filterType="multiple" index="2"></smartFilterBar:ControlConfiguration>
+			<smartFilterBar:ControlConfiguration key="ModelLine" visibleInAdvancedArea="true" preventInitialDataFetchInValueHelpDialog="false"
+				filterType="multiple" index="3"></smartFilterBar:ControlConfiguration>
+			<smartFilterBar:ControlConfiguration key="Model" visibleInAdvancedArea="true" preventInitialDataFetchInValueHelpDialog="false"
+				filterType="multiple" index="4"></smartFilterBar:ControlConfiguration>
+			<smartFilterBar:ControlConfiguration key="BodyType" visibleInAdvancedArea="true" preventInitialDataFetchInValueHelpDialog="false"
+				filterType="multiple" index="5"></smartFilterBar:ControlConfiguration>
+		</smartFilterBar:controlConfiguration>
+		<!--<smartFilterBar:layoutData>-->
+		<!--	<FlexItemData shrinkFactor="0"/>-->
+		<!--</smartFilterBar:layoutData>-->
+	</smartFilterBar:SmartFilterBar>
+	<smartFilterBar:SmartFilterBar id="equipmentFilter" entitySet="ZAE_I_Equipment_05" showFilterConfiguration="false" useToolbar="false"
+		class="smartFilterBar sapUiNoMargin" initialized="onEquipmentFilterInitialized" search="onEquipmentFilterSearch"
+		visible="{= ${app>/pages/Material/type} === 'Equipment'}">
+		<smartFilterBar:controlConfiguration>
+			<smartFilterBar:ControlConfiguration key="Equipment" visibleInAdvancedArea="true" preventInitialDataFetchInValueHelpDialog="false"
+				filterType="single" index="1"></smartFilterBar:ControlConfiguration>
+			<smartFilterBar:ControlConfiguration key="FleetVin" visibleInAdvancedArea="true" preventInitialDataFetchInValueHelpDialog="false"
+				filterType="single" index="2"></smartFilterBar:ControlConfiguration>
+			<smartFilterBar:ControlConfiguration key="Make" visibleInAdvancedArea="true" preventInitialDataFetchInValueHelpDialog="false"
+				filterType="multiple" index="3"></smartFilterBar:ControlConfiguration>
+			<smartFilterBar:ControlConfiguration key="DevelopmentLine" visibleInAdvancedArea="true" preventInitialDataFetchInValueHelpDialog="false"
+				filterType="multiple" index="4"></smartFilterBar:ControlConfiguration>
+			<smartFilterBar:ControlConfiguration key="ModelLine" visibleInAdvancedArea="true" preventInitialDataFetchInValueHelpDialog="false"
+				filterType="multiple" index="5"></smartFilterBar:ControlConfiguration>
+			<smartFilterBar:ControlConfiguration key="Model" visibleInAdvancedArea="true" preventInitialDataFetchInValueHelpDialog="false"
+				filterType="multiple" index="6"></smartFilterBar:ControlConfiguration>
+			<smartFilterBar:ControlConfiguration key="BodyType" visibleInAdvancedArea="true" preventInitialDataFetchInValueHelpDialog="false"
+				filterType="multiple" index="7"></smartFilterBar:ControlConfiguration>
+		</smartFilterBar:controlConfiguration>
+		<!--<smartFilterBar:layoutData>-->
+		<!--	<FlexItemData shrinkFactor="0"/>-->
+		<!--</smartFilterBar:layoutData>-->
+	</smartFilterBar:SmartFilterBar>
+	<VBox id="materialListVBox" class="sapUiResponsiveMargin" visible="{= ${app>/pages/Material/type} === 'Material'}">
+		<f:GridList id="materialList" items="{ path: 'app>/pages/Material/materialList' }" mode="SingleSelectMaster"
+			selectionChange="onMaterialSelectionChange">
+			<f:customLayout>
+				<grid:GridBoxLayout boxWidth="15rem"/>
+			</f:customLayout>
+			<f:GridListItem>
+				<VBox class="sapUiSmallMargin" alignItems="Center">
+					<VBox>
+						<!--<layoutData>-->
+						<!--	<FlexItemData growFactor="1" shrinkFactor="0"/>-->
+						<!--</layoutData>-->
+						<!-- TODO: Fix all Images -->
+						<Image src="{app>mediaSrc}" width="12rem" error="onImageError"/>
+					</VBox>
+					<VBox width="100%">
+						<Title text="{app>MakeText} {app>ModelText}" wrapping="true"/>
+						<Label text="{ parts: [ 'app>DevelopmentLineText', 'app>Material' ], formatter: '.formatter.materialLabel' }" wrapping="true"/>
+					</VBox>
+				</VBox>
+			</f:GridListItem>
+		</f:GridList>
+	</VBox>
+	<VBox id="equipmentListVBox" class="sapUiResponsiveMargin" visible="{= ${app>/pages/Material/type} === 'Equipment'}" height="100%">
+		<t:Table id="equipmentList" rows="{app>/pages/Material/equipmentList}" selectionMode="Single" visibleRowCount="15"
+			rowSelectionChange="onEquipmentSelectionChange">
+			<t:columns>
+				<t:Column>
+					<m:Label text="{i18n>Equipment}"/>
+					<t:template>
+						<m:Text text="{app>Equipment}" wrapping="false"/>
+					</t:template>
+				</t:Column>
+				<t:Column width="11em">
+					<m:Label text="{i18n>VIN}"/>
+					<t:template>
+						<m:Text text="{app>FleetVin}" wrapping="false"/>
+					</t:template>
+				</t:Column>
+				<t:Column>
+					<m:Label text="{i18n>Plant}"/>
+					<t:template>
+						<m:Text text="{app>PlantName} {app>MainPlant}" wrapping="false"/>
+					</t:template>
+				</t:Column>
+				<t:Column>
+					<m:Label text="{i18n>Material1}"/>
+					<t:template>
+						<m:Text text="{app>MaterialName} ({app>Material})" wrapping="false"/>
+					</t:template>
+				</t:Column>
+				<t:Column>
+					<m:Label text="{i18n>Make1}"/>
+					<t:template>
+						<m:Text text="{app>MakeText}" wrapping="false"/>
+					</t:template>
+				</t:Column>
+				<t:Column>
+					<m:Label text="{i18n>BodyType}"/>
+					<t:template>
+						<m:Text text="{app>BodyTypeText}" wrapping="false"/>
+					</t:template>
+				</t:Column>
+				<t:Column>
+					<m:Label text="{i18n>Model1}"/>
+					<t:template>
+						<m:Text text="{app>ModelText}" wrapping="false"/>
+					</t:template>
+				</t:Column>
+				<t:Column>
+					<m:Label text="{i18n>ManufYear}"/>
+					<t:template>
+						<m:Text text="{app>MfgYear}" wrapping="false"/>
+					</t:template>
+				</t:Column>
+				<t:Column>
+					<m:Label text="{i18n>ExteriorColor}"/>
+					<t:template>
+						<m:Text text="{app>ColorExtText}" wrapping="false"/>
+					</t:template>
+				</t:Column>
+				<t:Column>
+					<m:Label text="{i18n>Trim}"/>
+					<t:template>
+						<m:Text text="{app>ColorIntText}" wrapping="false"/>
+					</t:template>
+				</t:Column>
+				<!--<t:Column>-->
+				<!--	<m:Label text="Model"/>-->
+				<!--	<t:template>-->
+				<!--		<m:Text text="{app>Model}" wrapping="false"/>-->
+				<!--	</t:template>-->
+				<!--</t:Column>-->
+			</t:columns>
+		</t:Table>
+	</VBox>
+</mvc:View>

@@ -1,0 +1,41 @@
+<core:FragmentDefinition xmlns="sap.ui.table" xmlns:m="sap.m" xmlns:core="sap.ui.core">
+	<m:Dialog id="CategoryVHDialog" class="sapUiPopupWithPadding" title="{i18n>CategoryTreeVHDialogTitle}" afterClose="afterClose">
+		<m:MessageStrip class="sapUiResponsiveMargin sapUiNoMarginTop" id="CategoryTreeVHMessageStrip" showCloseButton="false" showIcon="true"
+			visible="false"/>
+		<m:VBox>
+			<m:Label text="{i18n>COMPCODE}"></m:Label>
+			<m:ComboBox id="CompCode" items="{ path: '/ZAE_I_ServiceComplaint', sorter: { path: 'ComplaintCode' } }" width="100%"
+				showSecondaryValues="true">
+				<core:ListItem key="{ComplaintCode}" text="{ComplainCodeDescription}" additionalText="{ComplaintCode}"/>
+			</m:ComboBox>
+		</m:VBox>
+		<TreeTable id="CategoryTreeTable" selectionMode="MultiToggle" width="50rem" rowSelectionChange="onTreeMultiRowSelect"
+			enableSelectAll="false">
+			<extension>
+				<m:Toolbar>
+					<m:SearchField id="searchField" showRefreshButton="true" tooltip="{i18n>masterSearchTooltip}" search=".onSearchTreeTable" width="auto"></m:SearchField>
+				</m:Toolbar>
+			</extension>
+			<columns>
+				<Column >
+					<m:Label text="{i18n>Name}"/>
+					<template>
+						<m:Text text="{cat_label}" wrapping="false"/>
+					</template>
+				</Column>
+				<Column >
+					<m:Label text="{i18n>ID}"/>
+					<template>
+						<m:Text text="{cat_id}" wrapping="false"/>
+					</template>
+				</Column>
+			</columns>
+		</TreeTable>
+		<m:beginButton>
+			<m:Button id="IdSubmit" text="{i18n>BUTTON_Submit}" press="onSubmitPressed"/>
+		</m:beginButton>
+		<m:endButton>
+			<m:Button text="{i18n>BUTTON_Cancel}" press="onCancelPressed"/>
+		</m:endButton>
+	</m:Dialog>
+</core:FragmentDefinition>

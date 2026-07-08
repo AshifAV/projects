@@ -1,0 +1,219 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"
+	xmlns:smartField="sap.ui.comp.smartfield">
+	<l:VerticalLayout class="sapUiContentPadding" width="100%">
+		<l:content>
+			<f:SimpleForm id="appointmentCreateForm" editable="true" layout="ResponsiveGridLayout" singleContainerFullSize="false">
+				<f:content>
+					<Label text="{i18n>SalesOrg}"/>
+					<Select id="SALESORGANIZATION" change="fnSalesOrgChange" showSecondaryValues="true"
+						items="{mCreateCustomer>/oCreateCustomerData/CreateCustomerSalesOrg}" forceSelection="false">
+						<core:ListItem key="{mCreateCustomer>SalesOrganization}" text="{mCreateCustomer>SalesOrganizationName}"
+							additionalText="{mCreateCustomer>SalesOrganization}"/>
+					</Select>
+					<Label text="{i18n>DistrChannel}"/>
+					<Select id="DISTRIBUTIONCHANNEL" showSecondaryValues="true" change="fnDistributionChange" forceSelection="false"
+						items="{mCreateCustomer>/oCreateCustomerData/CreateCustomerDC}">
+						<core:ListItem key="{mCreateCustomer>DistributionChannel}" text="{mCreateCustomer>DistributionChannelName}"
+							additionalText="{mCreateCustomer>DistributionChannel}"/>
+					</Select>
+					<Label text="{i18n>Division}"/>
+					<Select id="DIVISION" showSecondaryValues="true" change="fnCheckCreateCustomerRequiredValidation" forceSelection="false"
+						items="{mCreateCustomer>/oCreateCustomerData/CreateCustomerDivision}">
+						<core:ListItem key="{mCreateCustomer>Division}" text="{mCreateCustomer>DivisionName}" additionalText="{mCreateCustomer>Division}"/>
+					</Select>
+					<Label text="{i18n>Salutation}"/>
+					<!--<smartField:SmartField entitySet="ZAE_F_Customer" value="{Saluatation}" id="SALUTATION" change="fnCheckCreateCustomerRequiredValidation"/>-->
+					<Select id="SALUTATION" showSecondaryValues="true" change="fnCheckCreateCustomerRequiredValidation" forceSelection="false"
+						items="{path: '/ZAE_VH_CustomerSaluatation_01', length:200}">
+						<core:ListItem key="{title}" text="{TitleText}" additionalText="{title}"/>
+					</Select>
+					<Label text="{i18n>FirstName}"/>
+					<Input id="FIRSTNAME" liveChange="fnCheckCreateCustomerRequiredValidation"
+						maxLength="{path: '/#ZAE_FM_SC_CUST_CREATE_FRM_CI/FirstName/@maxLength', formatter: 'parseInt'}"/>
+					<Label text="{i18n>LastName}"/>
+					<Input id="FAMILYNAME" liveChange="fnCheckCreateCustomerRequiredValidation"
+						maxLength="{path: '/#ZAE_FM_SC_CUST_CREATE_FRM_CI/LastName/@maxLength', formatter: 'parseInt'}"/>
+					<Label text="{i18n>NameMiddle}"/>
+					<Input id="NAMEMIDDLE" liveChange="fnCheckCreateCustomerRequiredValidation"
+						maxLength="{path: '/#ZAE_FM_SC_CUST_CREATE_FRM_CI/MiddleName/@maxLength', formatter: 'parseInt'}"/>
+					<!--<Label text="{i18n>Country}"  />-->
+					<!--<Input id="COUNTRY" editable="true" type="Text" showSuggestion="true" showValueHelp="true" valueHelpRequest="fnShowCountryValueHelp"-->
+					<!--	liveChange="fnCheckCreateCustomerRequiredValidation" suggest="handleCountrySuggest" filterSuggests="true"-->
+					<!--	suggestionItemSelected="onSelectCountry"-->
+					<!--	suggestionRows="{ path: '/ZAE_VH_Country', sorter: { path: 'Country' },suspended: true, length: 10 }">-->
+					<!--	<suggestionColumns>-->
+					<!--		<Column>-->
+					<!--			<Label text="{i18n>Country}"/>-->
+					<!--		</Column>-->
+					<!--		<Column>-->
+					<!--			<Label text="{i18n>CountryName}"/>-->
+					<!--		</Column>-->
+					<!--	</suggestionColumns>-->
+					<!--	<suggestionRows>-->
+					<!--		<ColumnListItem>-->
+					<!--			<cells>-->
+					<!--				<Label text="{Country}"/>-->
+					<!--				<Label text="{CountryName}"/>-->
+					<!--			</cells>-->
+					<!--		</ColumnListItem>-->
+					<!--	</suggestionRows>-->
+					<!--</Input>-->
+					<!--<Label text="{i18n>Region}"  />-->
+					<!--<Input id="REGION" type="Text" showSuggestion="true" showValueHelp="true" valueHelpRequest="fnShowRegionValueHelp"-->
+					<!--	liveChange="fnCheckCreateCustomerRequiredValidation" suggest="handleRegionSuggest" filterSuggests="true"-->
+					<!--	suggestionItemSelected="onSelectRegion" suggestionRows="{ path: '/ZAE_VH_Region', sorter: { path: 'Region' },suspended: true, length: 10 }">-->
+					<!--	<suggestionColumns>-->
+					<!--		<Column>-->
+					<!--			<Label text="{i18n>Region}"/>-->
+					<!--		</Column>-->
+					<!--		<Column>-->
+					<!--			<Label text="{i18n>RegionName}"/>-->
+					<!--		</Column>-->
+					<!--	</suggestionColumns>-->
+					<!--	<suggestionRows>-->
+					<!--		<ColumnListItem>-->
+					<!--			<cells>-->
+					<!--				<Label text="{Region}"/>-->
+					<!--				<Label text="{RegionName}"/>-->
+					<!--			</cells>-->
+					<!--		</ColumnListItem>-->
+					<!--	</suggestionRows>-->
+					<!--</Input>-->
+					<Label text="{i18n>Country}"/>
+					<MultiInput id="COUNTRY" valueHelpRequest="fnShowCountryValueHelp" valueHelpOnly="false" showValueHelp="true"
+						tokenUpdate="onCountryTokenUpdate" showSuggestion="true" suggestionItemSelected="onSelectCountry"
+						liveChange="handleCreateCustomerInputValidation"
+						suggestionRows="{ path: '/ZAE_VH_Country', sorter: { path: 'Country' },suspended: true, length: 10 }" filterSuggests="true"
+						suggest="handleCountrySuggest">
+						<suggestionColumns>
+							<Column>
+								<Label text="{i18n>Country}"/>
+							</Column>
+							<Column>
+								<Label text="{i18n>CountryName}"/>
+							</Column>
+							<Column visible="false">
+								<Label text="{i18n>CountryCode}"/>
+							</Column>
+						</suggestionColumns>
+						<suggestionRows>
+							<ColumnListItem>
+								<cells>
+									<Label text="{Country}"/>
+									<Label text="{CountryName}"/>
+									<Label text="{CountryCode}"/>
+								</cells>
+							</ColumnListItem>
+						</suggestionRows>
+					</MultiInput>
+					<Label text="{i18n>Region}"/>
+					<MultiInput id="REGION" valueHelpRequest="fnShowRegionValueHelp" valueHelpOnly="false" showValueHelp="true"
+						tokenUpdate="onRegionTokenUpdate" showSuggestion="true" suggestionItemSelected="onSelectRegion"
+						liveChange="handleCreateCustomerInputValidation"
+						suggestionRows="{ path: '/ZAE_VH_Region', sorter: { path: 'Region' },suspended: true, length: 10 }" filterSuggests="true"
+						suggest="handleRegionSuggest">
+						<suggestionColumns>
+							<Column>
+								<Label text="{i18n>Region}"/>
+							</Column>
+							<Column>
+								<Label text="{i18n>RegionName}"/>
+							</Column>
+						</suggestionColumns>
+						<suggestionRows>
+							<ColumnListItem>
+								<cells>
+									<Label text="{Region}"/>
+									<Label text="{RegionName}"/>
+								</cells>
+							</ColumnListItem>
+						</suggestionRows>
+					</MultiInput>
+					<Label text="{i18n>MobNo}"/>
+					<MaskInput id="MOBILENO" change="handleMobileNoValidation"/>
+					<Label text="{/#ZAE_FM_SC_CUST_CREATE_FRM_CI/FaxNumber/@sap:label}"/>
+					<MaskInput id="FAXNUMBER" change="handleMobileNoValidation"/>
+					<!--<Input id="MOBNO" liveChange="handleCreateCustomerInputValidation"/>-->
+					<Label text="{i18n>TelNo}"/>
+					<MaskInput id="TELNO" change="handleTeliphoneNoValidation"/>
+					<!--<Label text="{i18n>FaxNo}"/>-->
+					<!--<Input id="TELNO" liveChange="handleCreateCustomerInputValidation"/>-->
+					<Label text="{i18n>Email}"/>
+					<Input id="EMAIL" liveChange="handleEmailInputChange"/>
+					<Label text="{i18n>CPRNo}"/>
+					<Input id="CPRNO" liveChange="handleCreateCustomerInputValidation" maxLength="25"/>
+					<Label text="{i18n>Street}"/>
+					<Input id="STREET" maxLength="{path: '/#ZAE_FM_SC_CUST_CREATE_FRM_CI/Street/@maxLength', formatter: 'parseInt'}"/>
+					<Label text="{i18n>HouseNo}"/>
+					<Input id="HOUSENO" maxLength="{path: '/#ZAE_FM_SC_CUST_CREATE_FRM_CI/HouseNo/@maxLength', formatter: 'parseInt'}"/>
+					<Label text="{i18n>POBox}"/>
+					<Input id="POBOX" maxLength="{path: '/#ZAE_FM_SC_CUST_CREATE_FRM_CI/PoBox/@maxLength', formatter: 'parseInt'}"/>
+					<Label text="{i18n>PostalCode}"/>
+					<Input id="POSTALCODE" maxLength="{path: '/#ZAE_FM_SC_CUST_CREATE_FRM_CI/PostlCode/@maxLength', formatter: 'parseInt'}"/>
+					<Label text="{i18n>City}"/>
+					<Input id="CITY" liveChange="fnCheckCreateCustomerRequiredValidation"
+						maxLength="{path: '/#ZAE_FM_SC_CUST_CREATE_FRM_CI/City/@maxLength', formatter: 'parseInt'}"/>
+					<Label text="{i18n>Location}"/>
+					<!--<Input id="LOCATION" liveChange="fnCheckCreateCustomerRequiredValidation"-->
+					<!--	maxLength="{path: '/#ZAE_FM_SC_CUST_CREATE_SORG/Location/@maxLength', formatter: 'parseInt'}"/>-->
+					<Select id="REGIOGROUP" forceSelection="false"
+						items="{ path: '/I_RegionalStructureGroupingVH', sorter: { path: 'RegionalStructureGrouping' } }"
+						change="fnCheckCreateCustomerRequiredValidation">
+						<core:Item key="{RegionalStructureGrouping}" text="{RegionalStructureGroupingDesc}" additionalText="{RegionalStructureGrouping}"/>
+					</Select>
+					<Label text="{i18n>Nationality}"/>
+					<MultiInput id="NATIONALITY" valueHelpRequest="fnShowNationalityValueHelp" valueHelpOnly="false" showValueHelp="true"
+						tokenUpdate="onNationalityTokenUpdate" showSuggestion="true" suggestionItemSelected="onSelectNationality"
+						liveChange="handleCreateCustomerInputValidation"
+						suggestionRows="{ path: '/ZAE_VH_Country', sorter: { path: 'Country' },suspended: true, length: 10 }" filterSuggests="true"
+						suggest="handleNationalitySuggest">
+						<suggestionColumns>
+							<Column>
+								<Label text="{i18n>Country}"/>
+							</Column>
+							<Column>
+								<Label text="{i18n>CountryName}"/>
+							</Column>
+							<Column visible="false">
+								<Label text="{i18n>CountryCode}"/>
+							</Column>
+						</suggestionColumns>
+						<suggestionRows>
+							<ColumnListItem>
+								<cells>
+									<Label text="{Country}"/>
+									<Label text="{CountryName}"/>
+									<Label text="{CountryCode}"/>
+								</cells>
+							</ColumnListItem>
+						</suggestionRows>
+					</MultiInput>
+					<Label text="{i18n>Language}"/>
+					<Input id="LANGUAGE" showValueHelp="true" showSuggestion="true" liveChange="onLanguage" suggest="handleLanguageSuggest"
+						valueHelpRequest="handleValueHelpLanguage" filterSuggests="true" suggestionItemSelected="onSelectLanguage"
+						suggestionRows="{ path: '/ZAE_I_Languages', sorter: { path: 'LanguageISOCode' },suspended: true, length: 10 }">
+						<suggestionColumns>
+							<Column>
+								<Label text="{/#ZAE_I_Languages/LanguageName/@sap:label}"/>
+							</Column>
+							<Column>
+								<Label text="{/#ZAE_I_Languages/LanguageISOCode/@sap:label}"/>
+							</Column>
+						</suggestionColumns>
+						<suggestionRows>
+							<ColumnListItem>
+								<cells>
+									<Label text="{LanguageName}"/>
+									<Label text="{LanguageISOCode}"/>
+								</cells>
+							</ColumnListItem>
+						</suggestionRows>
+					</Input>
+					<!--<smartField:SmartField entitySet="ZAE_F_Customer" value="{Region}" id="REGION" change="fnCheckCreateCustomerRequiredValidation"/>-->
+					<!--<Label text="Postal Code"  />-->
+					<!--<Input id="PostlCode" change="fnCheckCreateCustomerRequiredValidation"/>-->
+				</f:content>
+			</f:SimpleForm>
+		</l:content>
+	</l:VerticalLayout>
+</core:FragmentDefinition>

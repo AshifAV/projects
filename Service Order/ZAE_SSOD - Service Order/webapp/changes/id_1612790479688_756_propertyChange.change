@@ -1,0 +1,41 @@
+{
+	"fileName": "id_1612790479688_756_propertyChange",
+	"fileType": "change",
+	"changeType": "propertyChange",
+	"moduleName": "",
+	"reference": "com.globalintelli.zae_ssod.Component",
+	"packageName": "$TMP",
+	"content": {
+		"property": "visible",
+		"newValue": "{isShowSSOD_B62}"
+	},
+	"selector": {
+		"id": "com.globalintelli.zae_ssod::sap.suite.ui.generic.template.ObjectPage.view.Details::ZAE_C_ServiceOrder_01--SSOD_B62Button",
+		"type": "sap.uxap.ObjectPageSection",
+		"idIsLocal": false
+	},
+	"layer": "CUSTOMER_BASE",
+	"texts": {},
+	"namespace": "apps/com.globalintelli.zae_ssod/changes/",
+	"projectId": "com.globalintelli.zae_ssod",
+	"creation": "2023-01-03T07:15:41.021Z",
+	"originalLanguage": "EN",
+	"support": {
+		"generator": "Change.createInitialFileContent",
+		"service": "",
+		"user": "",
+		"sapui5Version": "1.90.6",
+		"sourceChangeFileName": "",
+		"compositeCommand": ""
+	},
+	"oDataInformation": {},
+	"dependentSelector": {},
+	"validAppVersions": {
+		"creation": "1.0.0",
+		"from": "1.0.0",
+		"to": "1.0.0"
+	},
+	"jsOnly": false,
+	"variantReference": "",
+	"appDescriptorChange": false
+}

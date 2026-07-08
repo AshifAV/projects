@@ -1,0 +1,32 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m">
+	<ColumnListItem type="Inactive">
+		<cells>
+			<!-- Image -->
+			<!--<HBox></HBox>-->
+			<!-- Description -->
+			<VBox class="sapUiContentPadding">
+				<Text text="{app>Description}"></Text>
+			</VBox>
+			<!-- Qty -->
+			<!--<ObjectNumber number="{app>TargetQty}" unit="{app>TargetQu}"/>-->
+			<!-- Base Price -->
+			<!--<ObjectNumber-->
+			<!--	number="{parts: [{path:'app>basePrice'}, {path:'app>Currency'}], type: 'sap.ui.model.type.Currency', formatOptions: {showMeasure: false} }"-->
+			<!--	unit="{app>Currency}"/>-->
+			<!-- Discount Price -->
+			<!--<VBox></VBox>-->
+			<!-- Total Price -->
+			<!--<ObjectNumber-->
+			<!--	number="{parts: [{path:'app>Price'}, {path:'app>Currency'}], type: 'sap.ui.model.type.Currency', formatOptions: {showMeasure: false} }"-->
+			<!--	unit="{app>Currency}"/>-->
+			<!-- Tax Price -->
+			<!--<VBox></VBox>-->
+			<!-- Net Price -->
+			<!--<VBox></VBox>-->
+			<!-- Edit -->
+			<!--<VBox></VBox>-->
+			<!-- Remove -->
+			<!--<VBox></VBox>-->
+		</cells>
+	</ColumnListItem>
+</core:FragmentDefinition>

@@ -1,0 +1,119 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"
+	xmlns:smartField="sap.ui.comp.smartfield">
+	<l:VerticalLayout class="sapUiContentPadding" width="100%">
+		<l:content>
+			<f:SimpleForm id="appointmentCreateForm" editable="true" layout="ResponsiveGridLayout" singleContainerFullSize="false">
+				<f:content>
+					<Label text="{i18n>FleetObjectType} " required="true"/>
+					<!--<smartField:SmartField entitySet="ZAE_F_Equipment" value="{FleetCat}" id="FleetObjectType" editable="true"-->
+					<!--	change="fnCheckCreateEquiRequiredValidation"/>-->
+					<Select id="FleetObjectType" showSecondaryValues="true" change="fnCheckCreateEquiRequiredValidation" forceSelection="false"
+						items="{path: '/ZAE_VH_FleetCategory', length:200}">
+						<core:ListItem key="{FleetCat}" text="{FleetCatText}" additionalText="{FleetCat}"/>
+					</Select>
+					<!--	<Input id="FleetObjectType" change="fnCheckCreateEquiRequiredValidation"/>-->
+					<!--<Label text="Equipment Category" required="true"/>-->
+					<!--<smartField:SmartField entitySet="ZAE_F_Equipment" value="{EquipmentCategory}" id="EquipmentCategory"-->
+					<!--	change="fnCheckCreateEquiRequiredValidation"/>-->
+					<!--<Label text="Compny Code" required="true"/>-->
+					<!--<smartField:SmartField entitySet="ZAE_F_Equipment" value="{CompanyCode}" id="CompnyCode" change="fnCheckCreateEquiRequiredValidation"/>-->
+					<!--<Label text="Plan Plant" required="true"/>-->
+					<!--<smartField:SmartField entitySet="ZAE_F_Equipment" value="{MaintenancePlanningPlant}" id="PlanPlant"-->
+					<!--	change="fnCheckCreateEquiRequiredValidation"/>-->
+					<!--<Label text="Sales Org" required="true"/>
+					<smartField:SmartField entitySet="ZAE_F_Equipment" value="{SalesOrganization}" id="SalesOrg" change="fnCheckCreateEquiRequiredValidation"/>
+					<Label text="Dis. Channel" required="true"/>
+					<smartField:SmartField entitySet="ZAE_F_Equipment" value="{DistributionChannel}" id="DisChannel" change="fnCheckCreateEquiRequiredValidation"/> 
+					<Label text="Division" required="true"/>
+					<smartField:SmartField entitySet="ZAE_F_Equipment" value="{Division}" id="Division" change="fnCheckCreateEquiRequiredValidation"/>-->
+					<!--<Label text="{i18n>Material}" required="true"/>
+					<smartField:SmartField entitySet="ZAE_F_Equipment" value="{Material}" id="Material" change="fnCheckCreateEquiRequiredValidation"/>-->
+					<!--					<Label text="{i18n>Make}" required="true"/>
+					<smartField:SmartField entitySet="ZAE_F_Equipment" value="{Make}" id="Make" change="fnCheckCreateEquiRequiredValidation"/>
+					<Label text="{i18n>Model}" required="true"/>/
+					<smartField:SmartField entitySet="ZAE_F_Equipment" value="{Model}" id="Model" change="fnCheckCreateEquiRequiredValidation"/>-->
+					<Label text="{i18n>Make}" required="true"/>
+					<Select id="Make" items="{ path: '/ZAE_VH_MAKE', sorter: { path: 'Make' } }" forceSelection="false" change="onChangeEquipmentMake">
+						<core:Item key="{Make}" text="{MakeText}"/>
+					</Select>
+					<Label text="{i18n>Model}" required="true"/>
+					<Select id="Model" items="{ path: '/ZAE_VH_Model_01', sorter: { path: 'Model' } }" forceSelection="false">
+						<core:Item key="{Model}" text="{ModelText}"/>
+					</Select>
+					<Label text="{i18n>ModelYear}" required="true"/>
+					<Select id="ModelYear" showSecondaryValues="true" change="fnCheckCreateEquiRequiredValidation" forceSelection="false"
+						items="{path: '/ZAE_VH_Characteristics' , sorter: { path: 'Characteristic' }}">
+						<core:ListItem key="{CharacteristicValueDec}" text="{CharacteristicValueDec}"/>
+					</Select>
+					<Label text="{i18n>NoOfCylinders}"/>
+					<Input id="NoCyl" type="Number" maxLength="2" change="fnCheckCreateEquiRequiredValidation"/>
+					<Label text="{i18n>EngineCC}"/>
+					<Input id="EngCC" type="Number" change="fnCheckCreateEquiRequiredValidation"/>
+					<Label text="{i18n>Description}" required="true"/>
+					<Input id="Description" change="fnCheckCreateEquiRequiredValidation"/>
+					<!--	<Input id="Material"/>-->
+					<Label text="{i18n>RegistrationNumber}" required="true"/>
+					<Input id="LicenseNumber" change="fnCheckCreateEquiRequiredValidation"/>
+					<Label text="{i18n>VinNumber}" required="true"/>
+					<Input id="Vinno" maxLength="17" liveChange="fnCheckVinNumber" change="fnCheckCreateEquiRequiredValidation"/>
+					<Label text="{i18n>Customer}" required="true"/>
+					<MultiInput id="Customer" valueHelpRequest=".onCustomerValueHelpRequested" valueHelpOnly="false" showValueHelp="true"
+						tokenUpdate="onCustomerTokenUpdate" showSuggestion="true" suggestionItemSelected="onSelectCustomer"
+						suggestionRows="{ path: '/ZAE_I_Customer_02', sorter: { path: 'Customer' },suspended: true, length: 10 }" width="100%" filterSuggests="true"
+						suggest="handleCustomerSuggest">
+						<suggestionColumns>
+							<Column>
+								<Label text="{/#ZAE_I_Customer_02/Customer/@sap:label}"/>
+							</Column>
+							<Column>
+								<Label text="{/#ZAE_I_Customer_02/CustomerName/@sap:label}"/>
+							</Column>
+						</suggestionColumns>
+						<suggestionRows>
+							<ColumnListItem>
+								<cells>
+									<Label text="{Customer}"/>
+									<Label text="{CustomerName}"/>
+								</cells>
+							</ColumnListItem>
+						</suggestionRows>
+					</MultiInput>
+					<!--<Label text="{i18n>NoOfCylinders}"/>-->
+					<!--<Input id="NoCyl" type="Number" maxLength="2" change="fnCheckCreateEquiRequiredValidation"/>-->
+					<!--<Label text="{i18n>EngineCC}"/>-->
+					<!--<Input id="EngCC" change="fnCheckCreateEquiRequiredValidation"/>-->
+					<!--<Label text="{i18n>ModelMaterial}"/>-->
+					<!--<Input id="ModelMat" change="fnCheckCreateEquiRequiredValidation"/>-->
+					<!--<Label text="Manufacturer of Asset"/>-->
+					<!--<Input id="Manufacturer"/>-->
+					<!--<Label text="Manufacturer model number"/>-->
+					<!--<Input id="ManufacturerModelNumber"/>-->
+					<Label text="{i18n>VehicleDeliveryDate}"/>
+					<DatePicker id="idDeliveryDate" placeholder="Enter the Date" class="sapUiSmallMarginBottom"/>
+					<Label text="{i18n>Material}"/>
+					<MultiInput id="idMaterial" valueHelpRequest=".onMaterialValueHelpRequested" valueHelpOnly="false" showValueHelp="true"
+						tokenUpdate="onMaterialTokenUpdate" showSuggestion="true" suggestionItemSelected="onSelectMaterial"
+						suggestionRows="{ path: '/ZAE_VH_Material_11', sorter: { path: 'Material' },suspended: true, length: 10 }" width="100%"
+						filterSuggests="true" suggest="handleMaterialSuggest">
+						<suggestionColumns>
+							<Column>
+								<Label text="{/#ZAE_VH_Material_11/Material/@sap:label}"/>
+							</Column>
+							<Column>
+								<Label text="{/#ZAE_VH_Material_11/MaterialName/@sap:label}"/>
+							</Column>
+						</suggestionColumns>
+						<suggestionRows>
+							<ColumnListItem>
+								<cells>
+									<Label text="{Material}"/>
+									<Label text="{MaterialName}"/>
+								</cells>
+							</ColumnListItem>
+						</suggestionRows>
+					</MultiInput>
+				</f:content>
+			</f:SimpleForm>
+		</l:content>
+	</l:VerticalLayout>
+</core:FragmentDefinition>

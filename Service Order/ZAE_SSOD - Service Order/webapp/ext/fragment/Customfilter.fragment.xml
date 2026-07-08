@@ -1,0 +1,20 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:smartfilterbar="sap.ui.comp.smartfilterbar" xmlns="sap.m"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<smartfilterbar:ControlConfiguration id="ReqEndDate" groupId="_BASIC" key="ReqEndDate" index="53"
+		conditionType="{ module: 'sap.ui.comp.config.condition.DateRangeType', 
+		operations: { filter: { path: 'key' , contains: 'TOMORROW,NEXT,LASTYEAR,LAST2WEEKS,LAST3WEEKS,LAST4WEEKS,LAST5WEEKS,YEARTODATE,QUARTER1,QUARTER2,QUARTER3,QUARTER4' , exclude:true } } }">
+	</smartfilterbar:ControlConfiguration>
+	<smartfilterbar:ControlConfiguration id="ReqStartDate" groupId="_BASIC" key="ReqStartDate" index="52"
+		conditionType="{ module: 'sap.ui.comp.config.condition.DateRangeType', 
+		operations: { filter: { path: 'key' , contains: 'TOMORROW,NEXT,LASTYEAR,LAST2WEEKS,LAST3WEEKS,LAST4WEEKS,LAST5WEEKS,YEARTODATE,QUARTER1,QUARTER2,QUARTER3,QUARTER4' , exclude:true } } }">
+	</smartfilterbar:ControlConfiguration>
+	<smartfilterbar:ControlConfiguration id="PostingDate" key="PostingDate"  groupId="_BASIC" index="54"
+		conditionType="{ module: 'sap.ui.comp.config.condition.DateRangeType', 
+		operations: { filter: { path: 'key' , contains: 'TOMORROW,NEXT,LASTYEAR,LAST2WEEKS,LAST3WEEKS,LAST4WEEKS,LAST5WEEKS,YEARTODATE,QUARTER1,QUARTER2,QUARTER3,QUARTER4' , exclude:true } } }">
+	</smartfilterbar:ControlConfiguration>
+		<smartfilterbar:ControlConfiguration  key="Createddate_main" label="Created Date" groupId="_BASIC" index="150">
+		<smartfilterbar:customControl>
+			<DateRangeSelection id="idCreateddate" displayFormat="MM-yyyy"/>
+		</smartfilterbar:customControl>
+	</smartfilterbar:ControlConfiguration>
+</core:FragmentDefinition>

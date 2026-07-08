@@ -1,0 +1,105 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:f="sap.f" xmlns:l="sap.ui.layout"
+	controllerName="com.globalintelli.ZAE_SFQC.controller.subview.Config" xmlns:html="http://www.w3.org/1999/xhtml" height="100%">
+	<l:ResponsiveSplitter defaultPane="materialConfigPane">
+		<l:PaneContainer>
+			<l:SplitPane requiredParentWidth="400" id="materialConfigPane">
+				<l:layoutData>
+					<l:SplitterLayoutData resizable="true" size="30%" minSize="250"/>
+				</l:layoutData>
+				<VBox id="materialConfigVBox">
+					<Panel id="configPanel" width="auto">
+						<headerToolbar>
+							<OverflowToolbar height="3rem">
+								<Title text="{i18n>ContractItem}"/>
+							</OverflowToolbar>
+						</headerToolbar>
+						<content></content>
+					</Panel>
+					<Panel width="auto">
+						<headerToolbar>
+							<OverflowToolbar height="3rem">
+								<Title text="{i18n>ContractTerms}"/>
+							</OverflowToolbar>
+						</headerToolbar>
+						<content>
+							<Label text="{i18n>LastOdometerReading}" labelFor="tenureSelect"/>
+							<ObjectNumber class="sapUiSmallMarginBottom" number="{app>/pages/Material/selectedEquipmentData/OdometerReading}"
+								unit="{app>/pages/Material/selectedEquipmentData/MeasuringUnit}"/>
+							<Label text="{i18n>ExpectedStartDate}" labelFor="tenureSelect" required="true"/>
+							<DatePicker id="DP1" placeholder="Enter Date" change="onDateChange" class="sapUiSmallMarginBottom"/>
+							<Label text="{i18n>Type}" labelFor="typeSelect"/>
+							<Select id="typeSelect" enabled="false" name="typeSelect" width="100%" change="onTypeSelectChange" class="sapUiSmallMarginBottom"/>
+							<Label text="{i18n>Tenure}" labelFor="tenureSelect"/>
+							<Select id="tenureSelect" name="tenure" width="100%" change="onTenureSelectChange" class="sapUiSmallMarginBottom"/>
+							<!--	<items>-->
+							<!--		<core:Item text="6 Months" key="6"/>-->
+							<!--		<core:Item text="12 Months" key="12"/>-->
+							<!--		<core:Item text="18 Months" key="18"/>-->
+							<!--		<core:Item text="24 Months" key="24"/>-->
+							<!--		<core:Item text="30 Months" key="30"/>-->
+							<!--		<core:Item text="36 Months" key="36"/>-->
+							<!--		<core:Item text="42 Months" key="42"/>-->
+							<!--		<core:Item text="48 Months" key="48"/>-->
+							<!--		<core:Item text="54 Months" key="54"/>-->
+							<!--		<core:Item text="60 Months" key="60"/>-->
+							<!--	</items>-->
+							<!--</Select>-->
+							<Label text="{i18n>FromKMs}" labelFor="fromkmsSelect"/>
+							<Select id="fromkmsSelect" name="fromkms" width="100%" change="onFromSelectChange" class="sapUiSmallMarginBottom"/>
+							<!--	<items>-->
+							<!--		<core:Item text="5,000 KMs" key="5000"/>-->
+							<!--		<core:Item text="10,000 KMs" key="10000"/>-->
+							<!--		<core:Item text="15,000 KMs" key="15000"/>-->
+							<!--		<core:Item text="20,000 KMs" key="20000"/>-->
+							<!--		<core:Item text="25,000 KMs" key="25000"/>-->
+							<!--		<core:Item text="30,000 KMs" key="30000"/>-->
+							<!--		<core:Item text="35,000 KMs" key="35000"/>-->
+							<!--		<core:Item text="40,000 KMs" key="40000"/>-->
+							<!--		<core:Item text="45,000 KMs" key="45000"/>-->
+							<!--		<core:Item text="50,000 KMs" key="50000"/>-->
+							<!--	</items>-->
+							<!--</Select>-->
+							<Label text="{i18n>ToKMs}" labelFor="tokmsSelect"/>
+							<Select id="tokmsSelect" name="tokmsSelect" width="100%" change="onToSelectChange"/>
+							<!--	<items>-->
+							<!--		<core:Item text="10,000 KMs" key="10000"/>-->
+							<!--		<core:Item text="15,000 KMs" key="15000"/>-->
+							<!--		<core:Item text="20,000 KMs" key="20000"/>-->
+							<!--		<core:Item text="25,000 KMs" key="25000"/>-->
+							<!--		<core:Item text="30,000 KMs" key="30000"/>-->
+							<!--		<core:Item text="35,000 KMs" key="35000"/>-->
+							<!--		<core:Item text="40,000 KMs" key="40000"/>-->
+							<!--		<core:Item text="45,000 KMs" key="45000"/>-->
+							<!--		<core:Item text="50,000 KMs" key="50000"/>-->
+							<!--	</items>-->
+							<!--</Select>-->
+						</content>
+					</Panel>
+				</VBox>
+			</l:SplitPane>
+			<l:SplitPane requiredParentWidth="400" id="materialPreviewPane">
+				<VBox id="materialPreviewVBox">
+					<Panel width="auto">
+						<headerToolbar>
+							<OverflowToolbar height="3rem">
+								<Title level="H2" titleStyle="H2"
+									text="{app>/pages/Material/selectedMaterialData/MakeText} {app>/pages/Material/selectedMaterialData/ModelText}"/>
+								<Text
+									text="{ parts: [ 'app>/pages/Material/selectedMaterialData/DevelopmentLineText', 'app>/pages/Material/selectedMaterialData/Material' ], formatter: '.formatter.materialLabel' }"/>
+								<Text text="({app>/pages/Material/selectedEquipmentData/Equipment})" visible="{= ${app>/pages/configData/AppMode}.charAt(0) === 'U' }"/>
+								<ToolbarSpacer/>
+								<Link text="{parts: [{path:'app>/pages/Config/price'}, {path:'app>/pages/currency'}], type: 'sap.ui.model.type.Currency' }"
+									class="configPriceLink" press="openPricePopover"/>
+							</OverflowToolbar>
+						</headerToolbar>
+						<content>
+							<VBox alignItems="Center">
+								<Image src="{app>/pages/Material/selectedMaterialData/mediaSrc}" class="image-fit" error="onImageError"/>
+							</VBox>
+						</content>
+					</Panel>
+				</VBox>
+			</l:SplitPane>
+		</l:PaneContainer>
+	</l:ResponsiveSplitter>
+</mvc:View>

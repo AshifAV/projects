@@ -1,0 +1,6 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<SelectDialog noDataText="No Complaint Found" title="{i18n>AddComplaints}" search=".onSearchValueHelp" confirm=".onComplanitRefValueHelpDialogClose"
+		cancel=".onCancelComplaint" showClearButton="true" items="{/ZAE_I_ComplainCodeText}">
+		<StandardListItem title="{ComplainCode}" description="{ComplainCodeDesc}" type="Active"/>
+	</SelectDialog>
+</core:FragmentDefinition>

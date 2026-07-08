@@ -1,0 +1,270 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:core="sap.ui.core"
+    xmlns:smartField="sap.ui.comp.smartfield"
+    xmlns:nav="sap.ui.comp.navpopover"
+>
+    <l:VerticalLayout
+        class="sapUiContentPadding"
+        width="100%"
+    >
+        <l:content>
+            <f:SimpleForm
+                editable="true"
+                layout="ResponsiveGridLayout"
+                singleContainerFullSize="false"
+            >
+                <f:content>
+                    <Label
+                        text="{i18n>Title}"
+                        labelFor="appDescription"
+                    />
+                    <Input
+                        id="IDSRDescription"
+                        enabled="true"
+                        change="handleCreateButtonEnabled"
+                    />
+                    <Label
+                        text="{i18n>Customer}"
+                        labelFor="Customer"
+                    />
+                    <Input
+                        id="Customer"
+                        enabled="false"
+                    />
+                    <!--<VBox id="ServiceRequest" class="sapUiTinyMarginTop">-->
+                    <!--	<Label text="{i18n>OpenServiceRequest}"/>-->
+                    <!--	<nav:SmartLink id="ServiceRequestId" text="{ServiceRequest}" semanticObject="ServiceRequest" enableAvailableActionsPersonalization="false"/>-->
+                    <!--</VBox>-->
+                    <Label
+                        text="{i18n>ContactPerson}"
+                        labelFor="CPerson"
+                    />
+                    <Input
+                        id="CPerson"
+                        enabled="false"
+                    />
+                    <Label
+                        text="{i18n>Selectperson}"
+                        labelFor="idEmployee"
+                        required="true"
+                    />
+                    <Select
+                        id="IDSREmployee"
+                        change="handleCreateButtonEnabled"
+                        forceSelection="false"
+                        items="{ path: '/ZAE_I_Employee_02',length: 500 }"
+                    >
+                        <core:Item
+                            key="{Employee}"
+                            text="{EmployeeFullName}"
+                        />
+                    </Select>
+                    <Label
+                        text="{i18n>ServiceEmployeeGroup}"
+                        labelFor="idSEmpGrp"
+                        required="true"
+                        visible="{mServiceRequest>/UIOnly/visible/ServiceEmpGrp}"
+                    />
+                    <Select
+                        id="idSEmpGrp"
+                        items="{ path: '/ZAE_I_ServiceEmployeeGroup_02'}"
+                        showSecondaryValues="true"
+                        change="handleCreateButtonEnabled"
+                        visible="{mServiceRequest>/UIOnly/visible/ServiceEmpGrp}"
+                    >
+                        <core:ListItem
+                            key="{ServiceTeam}"
+                            text="{ServiceTeamName} ({ServiceTeam})"
+                            additionalText="{SalesEmployee}"
+                        />
+                    </Select>
+                    <Label text="{i18n>CourtesyCar}" />
+                    <ComboBox
+                        id="CourtesyCar"
+                        items="{/ZAE_I_CourtesyProgramNo}"
+                        change="fnAddLocZoneTime"
+                    >
+                        <core:ListItem
+                            key="{CourtesyCar}"
+                            text="{CourtesyCarDesc}"
+                            additionalText="{CourtesyCar}"
+                        />
+                    </ComboBox>
+                    <Label
+                        text="{i18n>Address}"
+                        labelFor="Address"
+                    />
+                    <TextArea
+                        id="idAddress"
+                        rows="4"
+                        maxLength="255"
+                    />
+                    <Label text="{i18n>Location}" />
+                    <ComboBox
+                        id="Location"
+                        items="{mServiceRequest>/Clocation}"
+                        change="fnChangeLocation"
+                    >
+                        <core:ListItem
+                            key="{mServiceRequest>Location}"
+                            text="{mServiceRequest>Location}"
+                        />
+                    </ComboBox>
+                    <!--<Label text="{i18n>Zone}"/>-->
+                    <!--<ComboBox id="Zone" items="{mServiceRequest>/zZone}" change="fnChangeZone">-->
+                    <!--	<core:ListItem key="{mServiceRequest>Zzone}" text="{mServiceRequest>Zzone}"/>-->
+                    <!--</ComboBox>-->
+                    <Label text="{i18n>TransitTime}" />
+                    <Input
+                        id="TransitTime"
+                        value="{mServiceRequest>/TransitTime/NoOfMinutes}"
+                        liveChange="handleChangeTime"
+                    />
+                    <!--<ComboBox id="TransitTime" items="{mServiceRequest>/TransitTime}">-->
+                    <!--	<core:ListItem key="{mServiceRequest>NoOfMinutes}" text="{mServiceRequest>NoOfMinutes}"/>-->
+                    <!--</ComboBox>-->
+                    <!-- <Label text="{i18n>CampaignID}" labelFor="CampaignID"/>
+					<MultiInput id="CampaignID" valueHelpRequest=".onCampaignValueHelpRequested" valueHelpOnly="false" showValueHelp="true"
+						tokenUpdate="onCampaignIDTokenUpdate" showSuggestion="true" suggestionItemSelected="onSelectCampaignID"
+						suggestionRows="{ path: '/ZAE_VH_CampaignData', sorter: { path: 'CampaignID' },suspended: true, length: 10 }" width="100%"
+						filterSuggests="true" suggest="handleCampaignSuggest">
+						<suggestionColumns>
+							<Column>
+								<Label text="{/#ZAE_VH_CampaignData/CampaignID/@sap:label}"/>
+							</Column>
+							<Column>
+								<Label text="{/#ZAE_VH_CampaignData/CampaignExternalID/@sap:label}"/>
+							</Column>
+						</suggestionColumns>
+						<suggestionRows>
+							<ColumnListItem>
+								<cells>
+									<Label text="{CampaignID}"/>
+									<Label text="{CampaignExternalID}"/>
+								</cells>
+							</ColumnListItem>
+						</suggestionRows>
+					</MultiInput> -->
+                    <Label
+                        text="{i18n>SalesOfc}"
+                        required="true"
+                    />
+                    <Select
+                        id="IdSalesoffice"
+                        enabled="false"
+                        change="handleCreateButtonEnabled"
+                        showSecondaryValues="true"
+                        items="{ path: '/ZAE_VH_PlantSalesOffice',length: 500 }"
+                    >
+                        <core:ListItem
+                            key="{SalesOffice}"
+                            text="{SalesOfficeName}"
+                            additionalText="{SalesOffice}"
+                        />
+                    </Select>
+                    <Label
+                        text="{i18n>SalesGrp}"
+                        required="true"
+                    />
+                    <Select
+                        id="IdSalesgroup"
+                        forceSelection="false"
+                        enabled="true"
+                        change="handleCreateButtonEnabled"
+                        showSecondaryValues="true"
+                        items="{ path: '/ZAE_I_SalesOfficeGroup_01',length: 500 }"
+                    >
+                        <core:ListItem
+                            key="{SalesGroup}"
+                            text="{SalesGroupName}"
+                            additionalText="{SalesGroup}"
+                        />
+                    </Select>
+
+                    <!-- Skip MSA Checkbox -->
+                    <Label
+                        text="Skip MSA"
+                        labelFor="SkipMsaCheckbox"
+                    />
+                    <CheckBox
+                        id="SkipMsaCheckbox"
+                        select="onSkipMsaCheckboxSelect"
+                    />
+
+                    <!-- Skip MSA Fields (visible when checkbox is selected) -->
+                    <Label
+                        text="Previous Odometer Reading"
+                        labelFor="PreviousOdometer"
+                        visible="{mServiceRequest>/UIOnly/visible/SkipMsaFields}"
+                    />
+                    <Input
+                        id="PreviousOdometer"
+                        enabled="false"
+                        visible="{mServiceRequest>/UIOnly/visible/SkipMsaFields}"
+                    />
+
+                    <Label
+                        text="Odometer Reading"
+                        labelFor="OdometerReading"
+                        visible="{mServiceRequest>/UIOnly/visible/SkipMsaFields}"
+                    />
+                    <Input
+                        id="OdometerReading"
+                        visible="{mServiceRequest>/UIOnly/visible/SkipMsaFields}"
+                        liveChange="handleCreateButtonEnabled"
+                        change="validateOdometerReading"
+                        valueLiveUpdate="true"
+                    />
+
+                    <Label
+                        text="Fuel Gauge"
+                        labelFor="FuelGauge"
+                        visible="{mServiceRequest>/UIOnly/visible/SkipMsaFields}"
+                    />
+                    <Select
+                        id="FuelGauge"
+                        visible="{mServiceRequest>/UIOnly/visible/SkipMsaFields}"
+                        change="handleCreateButtonEnabled"
+                        items="{/ZAE_I_DomainValueText(domname='ZAE_D_FUEL_LEVEL')/Set}"
+                    >
+                        <core:ListItem
+                            key="{DomainValue}"
+                            text="{DomainText}"
+                            additionalText="{DomainValue}"
+                        />
+                    </Select>
+
+                    <Label
+                        text="Delivery Date"
+                        required="true"
+                        visible="{mServiceRequest>/UIOnly/visible/SkipMsaFields}"
+                    />
+                    <DateTimePicker
+                        id="DeliveryDate"
+                        change="handleCreateButtonEnabled"
+                        width="100%"
+                        displayFormat="short"
+                        placeholder="Select Delivery Date"
+                        visible="{mServiceRequest>/UIOnly/visible/SkipMsaFields}"
+                    />
+
+                    <Label
+                        text="Notes"
+                        labelFor="Notes"
+                        visible="{mServiceRequest>/UIOnly/visible/SkipMsaFields}"
+                    />
+                    <TextArea
+                        id="Notes"
+                        rows="3"
+                        maxLength="500"
+                        visible="{mServiceRequest>/UIOnly/visible/SkipMsaFields}"
+                        liveChange="handleCreateButtonEnabled"
+                    />
+                </f:content>
+            </f:SimpleForm>
+        </l:content>
+    </l:VerticalLayout>
+</core:FragmentDefinition>

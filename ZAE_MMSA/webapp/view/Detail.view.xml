@@ -1,0 +1,451 @@
+<mvc:View controllerName="com.globalintelli.ZAE_MMSA.controller.Detail" xmlns:table="sap.ui.table" xmlns="sap.m"
+	xmlns:semantic="sap.f.semantic" xmlns:footerbar="sap.ushell.ui.footerbar" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core"
+	xmlns:smartFilterBar="sap.ui.comp.smartfilterbar" xmlns:smartTable="sap.ui.comp.smarttable" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:layout="sap.ui.layout">
+	<semantic:SemanticPage id="detailPage" busy="{detailView>/busy}" busyIndicatorDelay="{detailView>/delay}" showFooter="true"
+		enableScrolling="true">
+		<semantic:titleHeading>
+			<Title text="{ServiceRequest} • {ServiceDocumentDescription}" level="H2"/>
+		</semantic:titleHeading>
+		<semantic:headerContent>
+			<layout:HorizontalLayout allowWrapping="true">
+				<layout:VerticalLayout>
+					<layout:VerticalLayout class="sapUiMediumMarginEnd">
+						<ObjectAttribute text="{parts: ['EquipmentName', 'Equipment'], formatter: '.formatNameAndValuePair'}"
+							title="{/#ZAE_I_WorkOrder_03Type/Equipment/@sap:label}"/>
+						<!--<ObjectAttribute text="{EquipmentName}"/>-->
+						<!--<ObjectAttribute title="Cost Center" text="{/objectDescription/center}"/>
+					<ObjectAttribute title="Email" text="{/objectDescription/email}"/>-->
+					</layout:VerticalLayout>
+					<layout:VerticalLayout class="sapUiMediumMarginEnd">
+						<ObjectAttribute text="{parts: ['LicenseNum'], formatter: '.formatNameAndValuePair'}"
+							title="{/#ZAE_I_WorkOrder_03Type/LicenseNum/@sap:label}"/>
+						<!--<ObjectAttribute text="{LicenseNum} . {Equipment}"/>-->
+						<!--<ObjectAttribute title="Cost Center" text="{/objectDescription/center}"/>
+					<ObjectAttribute title="Email" text="{/objectDescription/email}"/>-->
+					</layout:VerticalLayout>
+					<layout:VerticalLayout class="sapUiMediumMarginEnd">
+						<ObjectAttribute text="{parts: ['FleetUseText' , 'FleetUse'], formatter: '.formatNameAndValuePair'}" title="Usage Indicator"/>
+					</layout:VerticalLayout>
+				</layout:VerticalLayout>
+				<layout:HorizontalLayout>
+					<layout:VerticalLayout class="sapUiMediumMarginEnd">
+						<ObjectAttribute text="{ConcatenatedActiveSystStsName}" title="System Status"/>
+					</layout:VerticalLayout>
+					<!--<layout:VerticalLayout class="sapUiMediumMarginEnd">-->
+					<!--	<ObjectAttribute title="{i18n>WarrantyStatus}"/>-->
+					<!--	<ObjectStatus text="{WarrantyStatusText_new}" state="{path:'WarrantyStatusText_new' , formatter: '.Statuscolorformat'}"/>-->
+					<!--</layout:VerticalLayout>-->
+					<layout:VerticalLayout class="sapUiMediumMarginBegin">
+						<ObjectAttribute title="{i18n>OEMWarrantyStatus}"/>
+						<ObjectStatus text="{OEMWarrantyStatusText_new}" state="{path:'OEMWarrantyStatusText_new' , formatter: '.Statuscolorformat'}"/>
+					</layout:VerticalLayout>
+					<layout:VerticalLayout class="sapUiMediumMarginBegin">
+						<ObjectAttribute title="{i18n>ContractStatus}"/>
+						<ObjectStatus text="{ContractStatusText_new}" state="{path:'ContractStatusText_new' , formatter: '.Statuscolorformat'}"/>
+					</layout:VerticalLayout>
+					<layout:VerticalLayout class="sapUiMediumMarginBegin">
+						<ObjectAttribute title="{i18n>RecallStatus}"/>
+						<ObjectStatus id="ObjectStatusRecall" class="sapUiSmallMarginBottom"/>
+					</layout:VerticalLayout>
+				</layout:HorizontalLayout>
+			</layout:HorizontalLayout>
+		</semantic:headerContent>
+		<VBox fitContainer="true">
+			<VBox id="idV1" fitContainer="true">
+				<f:Form id="Form2id" editable="true">
+					<f:title>
+						<core:Title text="{i18n>vehiclerecords}"/>
+					</f:title>
+					<f:layout>
+						<f:ResponsiveGridLayout labelSpanXL="4" labelSpanL="3" labelSpanM="4" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="4"
+							emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="1" singleContainerFullSize="false"/>
+					</f:layout>
+					<f:formContainers>
+						<f:FormContainer id="fcSelect">
+							<f:formElements>
+								<f:FormElement id="idLabelKMS" label="{i18n>previousmesauring}"
+									visible="{parts: ['detailView>/_EquipmentMeasuringPoint' ], formatter: '._fnEnableKMReading'}">
+									<!--<Text id="idPreviuos"/>-->
+									<Text id="idPreviousmesauringKMS"/>
+								</f:FormElement>
+								<f:FormElement id="idLabelHRS" label="{i18n>previousmesauring}"
+									visible="{parts: ['detailView>/_EquipmentMeasuringPoint' ], formatter: '._fnEnableHRSReading'}">
+									<!--<Text id="idPreviuos"/>-->
+									<Text id="idPreviousmesauringHRS"/>
+								</f:FormElement>
+								<f:FormElement
+									visible="{parts: ['detailView>/_EquipmentMeasuringPoint','detailView>/VisibleData/CaptOdomenter' ], formatter: '._fnEnableKMReading'}"
+									label="{i18n>odometer}">
+									<!--label="{i18n>odometer}" label="{Equipment}"-->
+									<Input id="idOdometer" type="Number" showValueStateMessage="true" liveChange="onLivechageOdometerValidation"
+										required="{= ${detailView>/VisibleData/CaptOdomenter} === '3' ? true : false }" width="auto"></Input>
+								</f:FormElement>
+								<f:FormElement visible="{parts: ['detailView>/_EquipmentMeasuringPoint' ], formatter: '._fnEnableHRSReading'}" label="HRs">
+									<!--label="{i18n>odometer}" label="{Equipment}"-->
+									<Input id="idHRS" type="Number" showValueStateMessage="true" width="auto"></Input>
+								</f:FormElement>
+								<f:FormElement label="{i18n>fuelgauge}" class="sapUiTinyMarginTop"
+									visible="{= ${detailView>/VisibleData/ChkFuelgauge} !== '1' ? true : false }">
+									<Select id="idFuelSelect" items="{/ZAE_I_DomainValueText(domname='ZAE_D_FUEL_LEVEL')/Set}"
+										required="{= ${detailView>/VisibleData/ChkFuelgauge} === '3' ? true : false }" forceSelection="false" width="auto"
+										change="onNextButtoncheck">
+										<core:Item key="{DomainText}" text="{DomainText}"></core:Item>
+									</Select>
+								</f:FormElement>
+								<f:FormElement label="{i18n>vehiclecondition}" class="sapUiTinyMarginTop"
+									visible="{= ${detailView>/VisibleData/ChkVehCond} !== '1' ? true : false }">
+									<Select id="idvehiclecondition" items="{/ZAE_I_VehicleConditionType}"
+										required="{= ${detailView>/VisibleData/ChkVehCond} === '3' ? true : false }" forceSelection="false" width="auto" change="onNextButtoncheck">
+										<core:Item key="{VehicleConditionTypeText}" text="{VehicleConditionTypeText}"></core:Item>
+									</Select>
+								</f:FormElement>
+								<f:FormElement id="idFE2" label="{i18n>notes}" class="sapUiTinyMarginTop"
+									visible="{= ${detailView>/VisibleData/ChkNote} !== '1' ? true : false }">
+									<TextArea id="idnotes" required="{= ${detailView>/VisibleData/ChkNote} === '3' ? true : false }" width="100%" showExceededText="true"
+										maxLength="500" liveChange="onNextButtoncheck" rows="3"></TextArea>
+								</f:FormElement>
+								<f:FormElement label="{i18n>servicerequest}" visible="{= ${detailView>/VisibleData/ChkAccAvl} !== '1' ? true : false }">
+									<!--<f:fields>-->
+									<!--	<Label text="{i18n>servicerequest}" required="{= ${detailView>/VisibleData/ChkAccAvl} === '3' ? true : false }"/>-->
+									<!--</f:fields>-->
+									<VBox id="idVBoxCheckList" items="{path:'to_ServiceRequestChecklist' , sorter: { path: 'CheckListId', descending: false} }">
+										<CheckBox id="idservicerequest" text="{CheckListIdDesc}" select="onNextButtoncheck">
+											<layoutData>
+												<l:GridData linebreak="true" indentL="4" indentM="4"/>
+											</layoutData>
+										</CheckBox>
+									</VBox>
+								</f:FormElement>
+								<f:FormElement id="idFE3" label="{i18n>PickNote}" class="sapUiLargeMarginTop"
+									visible="{= ${detailView>/VisibleData/ChkPicNote} !== '1' ? true : false }">
+									<TextArea id="idPickNote" required="{= ${detailView>/VisibleData/ChkPicNote} === '3' ? true : false }" width="100%" showExceededText="true"
+										maxLength="500" liveChange="onNextButtoncheck" rows="3"></TextArea>
+								</f:FormElement>
+							</f:formElements>
+						</f:FormContainer>
+					</f:formContainers>
+				</f:Form>
+			</VBox>
+			<!--<VBox fitContainer="true" class="sapUiMediumMarginTop" visible="{detailView>/VisibleData/ChkPicNote}">-->
+			<!--	<smartTable:SmartTable entitySet="ZAE_C_ServiceNotes_02" id="swlrsmartTable" smartFilterId="smartFilterBar" tableType="ResponsiveTable"-->
+			<!--		width="950px" useVariantManagement="false" useTablePersonalisation="true" useExportToExcel="false" header="Notes"-->
+			<!--		enableAutoColumnWidth="false" persistencyKey="SmartTableAnalytical_Explored" enableAutoBinding="true" demandPopin="true"-->
+			<!--		beforeRebindTable="onBeforeRebindTable" initiallyVisibleFields="ServiceRequest,IdText,IdUser,Notes">-->
+			<!--		<Table selectionMode="None" rowActionCount="1" growingThreshold="5" growing="true"></Table>-->
+			<!--	</smartTable:SmartTable>-->
+			<!--</VBox>-->
+			<VBox id="complaintsId" fitContainer="true" class="sapUiMediumMarginTop">
+				<!--<f:Form id="Form9id" editable="true" width="70em">-->
+				<!--	<f:title>-->
+				<!--		<core:Title text="{i18n>AddComplaints}"/>-->
+				<!--	</f:title>-->
+				<!--	<f:layout>-->
+				<!--		<f:ResponsiveGridLayout labelSpanXL="4" labelSpanL="3" labelSpanM="4" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="4"-->
+				<!--			emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="1" singleContainerFullSize="false"/>-->
+				<!--	</f:layout>-->
+				<!--	<f:formContainers>-->
+				<!--		<f:FormContainer id="fcTable">-->
+				<!--			<f:formElements>-->
+				<!--				<f:FormElement >-->
+				<!--	<Button text="Add Complaints" press="onAddComplantsPress" />-->
+				<Table id="idItemListListTable" growing="true" growingThreshold="10" paste="onPaste" items="{detailView>/vComplaints}" inset="false"
+					alternateRowColors="false">
+					<headerToolbar>
+						<OverflowToolbar >
+							<content>
+								<Title text="Add Complaint" level="H2"/>
+								<ToolbarSpacer/>
+								<Button id="idAddComplaint" text="{i18n>AddComplaint}" type="Transparent" press="onAddNewRow"/>
+							</content>
+						</OverflowToolbar>
+					</headerToolbar>
+					<columns>
+						<Column width="2em" hAlign="Center" visible="false">
+							<Label text="Item No"/>
+						</Column>
+						<Column width="2em" hAlign="Center">
+							<Label text="{i18n>ComplaintCode}" required="{= ${detailView>/VisibleData/ChkCompCode} === '3' ? true : false }"/>
+						</Column>
+						<Column width="2em" hAlign="Center">
+							<Label text="{i18n>ComplaintCodeDescription}" required="{= ${detailView>/VisibleData/ChkCompCode} === '3' ? true : false }"/>
+						</Column>
+						<Column width="2em" hAlign="Center">
+							<Label text="{i18n>Material}"/>
+						</Column>
+						<!--<Column width="4em" hAlign="Center">-->
+						<!--	<Label text="{i18n>ComplainMaterialDescription}"/>-->
+						<!--</Column>-->
+						<Column width="2em" hAlign="Center">
+							<Label text="{i18n>Quantity}"/>
+						</Column>
+						<Column width="1em" hAlign="Center" visible="false">
+							<Label text="{i18n>BaseUnit}"/>
+						</Column>
+						<Column width="1em" hAlign="Center" visible="true">
+							<Label text="{i18n>Price}"/>
+						</Column>
+						<Column width="1em" hAlign="Center" visible="false">
+							<Label text="{i18n>Currency}"/>
+						</Column>
+						<Column width="1em" hAlign="Center" visible="true">
+							<Label text="{i18n>Tax}"/>
+						</Column>
+						<Column width="1em" hAlign="Center" visible="false">
+							<Label text="{i18n>Currency}"/>
+						</Column>
+						<Column width="1em" hAlign="Center" visible="true">
+							<Label text="{i18n>TotalPrice}"/>
+						</Column>
+						<Column width="1em" hAlign="Center" visible="false">
+							<Label text="{i18n>Currency}"/>
+						</Column>
+						<Column width="1em" hAlign="Center">
+							<Label text="{i18n>Actions}"/>
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem>
+							<cells>
+								<Text text="{detailView>ItemNumber}"/>
+								<Input id="idComplants" value="{detailView>Complaint}" showValueHelp="true" editable="{detailViewEdit>/editable}" showSuggestion="true"
+									liveChange="onNextButtoncheck" suggest="handleComplaintSuggest" valueHelpRequest="handleValueHelp" filterSuggests="true"
+									enabled="{detailView>Enabled}" suggestionItemSelected="onSelectComplaint"
+									suggestionRows="{ path: '/ZAE_I_ComplainCodeText', sorter: { path: 'ComplainCode' },suspended: true, length: 10 }" width="130px">
+									<suggestionColumns>
+										<Column>
+											<Label text="{/#ZAE_I_ComplainCodeText/ComplainCode/@sap:label}"/>
+										</Column>
+										<Column>
+											<Label text="{i18n>ComplaintCodeDescription}"/>
+										</Column>
+										<Column visible="false">
+											<Label text="{/#ZAE_I_ComplainCodeText/ItemCatUsage/@sap:label}"/>
+										</Column>
+									</suggestionColumns>
+									<suggestionRows>
+										<ColumnListItem>
+											<cells>
+												<Label text="{ComplainCode}"/>
+												<Label text="{ComplainCodeDesc}"/>
+												<Label text="{ItemCatUsage}"/>
+											</cells>
+										</ColumnListItem>
+									</suggestionRows>
+								</Input>
+								<Input id="idCompDesc" value="{detailView>ComplaintDescription}" editable="{detailViewEdit>/editable}" enabled="{detailView>Enabled}"
+									liveChange="onNextButtoncheck"/>
+								<MultiInput id="IdMaterial" selectedKey="{detailView>Material}" valueHelpRequest=".onProductValueHelpRequested" valueHelpOnly="false"
+									tokens="{detailView>MaterialVHData}" showValueHelp="true" tokenUpdate="onMaterailTokenUpdate" showSuggestion="true"
+									suggestionItemSelected="onSelectMaterial" enabled="false"
+									suggestionRows="{ path: '/ZAE_I_MaterialChar_LAB', sorter: { path: 'Material' },suspended: true, length: 10 }" filterSuggests="true"
+									suggest="handleMaterialSuggest" maxSuggestionWidth="100px">
+									<suggestionColumns>
+										<Column>
+											<Label text="{i18n>Material}"/>
+										</Column>
+										<Column>
+											<Label text="{i18n>MaterialName}"/>
+										</Column>
+										<!--<Column>-->
+										<!--	<Label text="{i18n>MaterialType}"/>-->
+										<!--</Column>-->
+									</suggestionColumns>
+									<suggestionRows>
+										<ColumnListItem>
+											<cells>
+												<Label text="{Material}"/>
+												<Label text="{MaterialName}"/>
+												<!--<Label text="{MaterialType}"/>-->
+											</cells>
+										</ColumnListItem>
+									</suggestionRows>
+									<tokens>
+										<Token key="{detailView>Material}" text="{parts: ['detailView>MaterialName', 'detailView>Material'], formatter: '.formatNameAndValuePair'}"/>
+									</tokens>
+								</MultiInput>
+								<!--<Input value="{detailView>ComplainMaterialDescription}" maxLength="200" liveChange="onNextButtoncheck"/>-->
+								<Input type="Number" value="{detailView>Quantity}" liveChange="onNextButtoncheck" description="{detailView>QuantityUnit}" enabled="false"/>
+								<Text text="{detailView>QuantityUnit}"/>
+								<ObjectNumber number="{detailView>NetPrice}" unit="{detailView>Currency}"/>
+								<Text text="{detailView>Currency}"/>
+								<ObjectNumber number="{detailView>Tax}" unit="{detailView>Currency}"/>
+								<Text text="{detailView>Currency}"/>
+								<ObjectNumber number="{detailView>TotalPrice}" unit="{detailView>Currency}"/>
+								<Text text="{detailView>Currency}"/>
+								<Button icon="sap-icon://delete" type="Transparent" press="onDeletePress" enabled="{detailView>Enabled}"/>
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+				<!--				</f:FormElement>-->
+				<!--			</f:formElements>-->
+				<!--		</f:FormContainer>-->
+				<!--	</f:formContainers>-->
+				<!--</f:Form>-->
+			</VBox>
+			<VBox id="idV2" fitContainer="true">
+				<!--<f:Form id="Formid" editable="true" visible="{=!${CrtSrvReq}}" width="65em">-->
+				<!--	<f:title>-->
+				<!--		<core:Title text="{i18n>servicevcatalog}"/>-->
+				<!--	</f:title>-->
+				<!--	<f:layout>-->
+				<!--		<f:ResponsiveGridLayout labelSpanXL="4" labelSpanL="3" labelSpanM="4" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="4"-->
+				<!--			emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="1" singleContainerFullSize="false"/>-->
+				<!--	</f:layout>-->
+				<!--	<f:formContainers>-->
+				<!--		<f:FormContainer id="Select">-->
+				<!--			<f:formElements>-->
+				<!--				<f:FormElement class="sapUiTinyMarginTop">-->
+				<table:TreeTable class="sapUiMediumMarginTop" id="idTreeTable" selectionMode="MultiToggle" rowSelectionChange="onSelectTreeTableRow"
+					enableSelectAll="false">
+					<table:extension>
+						<OverflowToolbar>
+							<Title id="title" text="{i18n>servicevcatalog}" level="H3"/>
+						</OverflowToolbar>
+						<Toolbar height="auto">
+							<VBox width="100%">
+								<MessageStrip class="sapUiResponsiveMargin sapUiNoMarginTop" id="CategoryTreeVHMessageStrip" showCloseButton="false" visible="false"/>
+								<SearchField id="searchField" showRefreshButton="true" tooltip="{i18n>masterSearchTooltip}" search=".onSearchTreeTable" width="250px"></SearchField>
+							</VBox>
+						</Toolbar>
+					</table:extension>
+					<table:columns>
+						<table:Column width="20rem">
+							<Label text="{i18n>Service}"/>
+							<table:template>
+								<Text text="{cat_label}" wrapping="false"/>
+							</table:template>
+						</table:Column>
+						<table:Column >
+							<Label text="{i18n>ID}"/>
+							<table:template>
+								<Text text="{cat_id}" wrapping="false"/>
+							</table:template>
+						</table:Column>
+						<table:Column visible="{detailView>/visibleColumns/Recall}">
+							<Label text="{i18n>Info}"/>
+							<table:template>
+								<Text text="{Info}" wrapping="false"/>
+							</table:template>
+						</table:Column>
+						<table:Column visible="{detailView>/visibleColumns/Recall}">
+							<Label text="{i18n>ValidFrom}"/>
+							<table:template>
+								<Text text="{path: 'ValidFrom', type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'MMM dd,yyyy' }}" wrapping="false"/>
+							</table:template>
+						</table:Column>
+						<table:Column visible="{detailView>/visibleColumns/Recall}">
+							<Label text="{i18n>ValidTo}"/>
+							<table:template>
+								<Text text="{path: 'ValidTo', type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'MMM dd,yyyy' }}" wrapping="false"/>
+							</table:template>
+						</table:Column>
+					</table:columns>
+				</table:TreeTable>
+				<!--				</f:FormElement>-->
+				<!--			</f:formElements>-->
+				<!--		</f:FormContainer>-->
+				<!--	</f:formContainers>-->
+				<!--</f:Form>-->
+				<!--<f:Form id="Form5id" editable="true" width="60em">-->
+				<!--	<f:layout>-->
+				<!--		<f:ResponsiveGridLayout labelSpanXL="4" labelSpanL="3" labelSpanM="4" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="4"-->
+				<!--			emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="1" singleContainerFullSize="false"/>-->
+				<!--	</f:layout>-->
+				<!--	<f:formContainers>-->
+				<!--		<f:FormContainer id="fcSelect04">-->
+				<!--			<f:formElements>-->
+				<!--				<f:FormElement label="{i18n>deliverydate}" class="sapUiTinyMarginTop">-->
+				<!--<DatePicker id="DP2" required="true" valueFormat="yyyy-MM-dd" displayFormat="medium" change="onSubmitButtonCheck"
+										class="sapUiSmallMarginBottom"/>-->
+				<!--				</f:FormElement>-->
+				<!--			</f:formElements>-->
+				<!--		</f:FormContainer>-->
+				<!--	</f:formContainers>-->
+				<!--</f:Form>-->
+			</VBox>
+			<VBox id="idV3" class="sapUiMediumMarginTop">
+				<!--//	<HBox>-->
+				<Label text="{i18n>deliverydate}" design="Bold" required="{= ${detailView>/VisibleData/ChkDelivDate} === '3' ? true : false }"/>
+				<DateTimePicker id="DP2" required="true" change="onSubmitButtonCheck" displayFormat="short" class="sapUiSmallMarginBottom"/>
+				<!--</HBox>-->
+			</VBox>
+			<VBox id="idV4" fitContainer="true">
+				<!--<f:Form id="Form4id" editable="true" visible="{=!${CrtSrvReq}}" width="60em">-->
+				<!--	<f:title>-->
+				<!--		<core:Title text="{i18n>summary}"/>-->
+				<!--	</f:title>-->
+				<!--	<f:layout>-->
+				<!--		<f:ResponsiveGridLayout labelSpanXL="4" labelSpanL="3" labelSpanM="4" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="4"-->
+				<!--			emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="1" singleContainerFullSize="false"/>-->
+				<!--	</f:layout>-->
+				<!--	<f:formContainers>-->
+				<!--		<f:FormContainer id="fcSelect03">-->
+				<!--			<f:formElements>-->
+				<!--				<f:FormElement class="sapUiMarginBottom">-->
+				<Table id="idSummaryTable" items="{detailView>/SummaryList}" inset="false">
+					<headerToolbar>
+						<OverflowToolbar>
+							<content>
+								<Title text="{i18n>workreq}" level="H2"/>
+							</content>
+						</OverflowToolbar>
+					</headerToolbar>
+					<columns>
+						<Column width="12em">
+							<Label text="{i18n>Service}" required="{= ${detailView>/VisibleData/ChkWrkReqSc} === '3' ? true : false }"/>
+						</Column>
+						<Column width="12em">
+							<Label text="{i18n>ID}"/>
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem>
+							<cells>
+								<Text text="{detailView>cat_label}"/>
+								<Text text="{detailView>cat_id}"/>
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+				<!--				</f:FormElement>-->
+				<!--			</f:formElements>-->
+				<!--		</f:FormContainer>-->
+				<!--	</f:formContainers>-->
+				<!--</f:Form>-->
+			</VBox>
+		</VBox>
+		<semantic:content></semantic:content>
+		<!--<semantic:sendEmailAction>
+			<semantic:SendEmailAction id="shareEmail" press=".onSendEmailPress"/>
+		</semantic:sendEmailAction>
+		<semantic:shareInJamAction>
+			<semantic:ShareInJamAction id="shareInJam" visible="{FLP>/isShareInJamActive}" press=".onShareInJamPress"/>
+		</semantic:shareInJamAction>
+		<semantic:saveAsTileAction>
+			<footerbar:AddBookmarkButton id="shareTile" title="{detailView>/saveAsTileTitle}"/>
+		</semantic:saveAsTileAction>-->
+		<semantic:titleCustomTextActions>
+			<Button text="{i18n>MMSA_B01}" type="Emphasized" press="onClickMMSA_B01"/>
+			<OverflowToolbarButton id="closeColumn" icon="sap-icon://decline" tooltip="{i18n>Close}" press=".onCloseDetailPress"/>
+		</semantic:titleCustomTextActions>
+		<!--<semantic:closeAction>-->
+		<!--	<semantic:CloseAction id="closeColumn" press=".onCloseDetailPress"/>-->
+		<!--</semantic:closeAction>-->
+		<!--<semantic:fullScreenAction>-->
+		<!--	<semantic:FullScreenAction id="enterFullScreen"-->
+		<!--		visible="{= !${device>/system/phone} &amp;&amp; !${appView>/actionButtonsInfo/midColumn/fullScreen}}" press=".toggleFullScreen"/>-->
+		<!--</semantic:fullScreenAction>-->
+		<semantic:exitFullScreenAction>
+			<semantic:ExitFullScreenAction id="exitFullScreen"
+				visible="{= !${device>/system/phone} &amp;&amp; ${appView>/actionButtonsInfo/midColumn/fullScreen}}" press=".toggleFullScreen"/>
+		</semantic:exitFullScreenAction>
+		<semantic:footerCustomActions>
+			<Button id="SCIN_B06" icon="sap-icon://alert" text="{= ${message>/}.length }" visible="{= ${message>/}.length > 0 }" type="Emphasized"
+				press="onMessagePopoverPress"/>
+			<Button id="btnYrdOpr" text="{i18n>Next}" press="onClickNxt" enabled="{detailView>/IsNextenabled}"/>
+			<Button id="btnSubmit" text="{i18n>Submit}" press="btnSubmitPress" enabled="{detailView>/IsSubmitenabled}"/>
+		</semantic:footerCustomActions>
+	</semantic:SemanticPage>
+</mvc:View>

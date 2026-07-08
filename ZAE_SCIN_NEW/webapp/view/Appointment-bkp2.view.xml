@@ -1,0 +1,72 @@
+<mvc:View controllerName="com.globalintelli.ZAE_SCIN_NEW.controller.Appointment" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:unified="sap.ui.unified" xmlns:l="sap.ui.layout" xmlns="sap.m">
+	<App>
+		<pages>
+			<Page title="{i18n>createAppointment}" showNavButton="true" navButtonPress="navBack">
+				<content>
+					<l:DynamicSideContent id="DynamicSideContent" class="sapUiDSCExplored" sideContentVisibility="AlwaysShow"
+						showSideContent="{path: 'mAppointment>/legendShown'}" containerQuery="true" breakpointChanged="updateToggleButtonState">
+						<l:mainContent>
+							<VBox>
+								<PlanningCalendar id="SCIN_SAPlanCal" showEmptyIntervalHeaders="false" appointmentSelect="handleAppointmentSelect" showWeekNumbers="true"
+									visible="true" intervalSelect="handleAppointmentCreateSlotSelect" stickyHeader="true" rows="{path:'/ZAE_I_Employee_02'}" viewKey="A"
+									viewChange="handleViewChange">
+									<rows>
+										<PlanningCalendarRow icon="" title="{EmployeeFullName}" text="{Employee}" key="{Employee}" enableAppointmentsDragAndDrop="true"
+											nonWorkingDays="[]" nonWorkingHours="[-1,0,1,2,3,4,5,6,7,8,9,21,22,23]" appointmentDrop="handleAppointmentDrop"
+											appointmentDragEnter="handleAppointmentDragEnter" appointments="{path:'to_Appointment',sorter: { path: 'fromdate', descending: true}}"
+											intervalHeaders="{path: 'to_EMPL_LEAVES_03',sorter:{ path: 'fromdate', descending: true}, templateShareable: true}">
+											<appointments>
+												<unified:CalendarAppointment startDate="{ parts: ['fromdate', 'from_time'], formatter: '.aeFormatter.dateTimeToDate' }"
+													endDate="{ parts: ['todate', 'to_time'], formatter: '.aeFormatter.dateTimeToDate' }"
+													icon="{path:'Appointment',formatter: '._fnCheckNewAppointment' }" title="{description}" text="{UserStatusName}" key="{Appointment}"
+													type="{path:'Type',formatter: '._fnALType' }" tentative=""></unified:CalendarAppointment>
+											</appointments>
+											<intervalHeaders>
+												<unified:CalendarAppointment startDate="{ parts: ['fromdate', 'from_time'], formatter: '.aeFormatter.dateTimeToDate' }"
+													endDate="{ parts: ['todate', 'to_time'], formatter: '.aeFormatter.dateTimeToDate' }" icon="" title="Leave" type="Type02"></unified:CalendarAppointment>
+											</intervalHeaders>
+										</PlanningCalendarRow>
+									</rows>
+									<toolbarContent>
+										<Title text="{i18n>APP_TITLE}" titleStyle="H4"/>
+										<ToolbarSpacer/>
+										<Button id="SCIN_B01" icon="sap-icon://add" press="handleAppointmentCreate" tooltip="{i18n>createAppointment}"
+											enabled="{= ${mAppointment>/filters/Customer}? true: false}"/>
+										<ToggleButton pressed="{path: 'mAppointment>/legendShown'}" icon="sap-icon://legend"/>
+									</toolbarContent>
+									<views>
+										<PlanningCalendarView key="A" intervalType="Hour" description="hours view" intervalsS="2" intervalsM="4" intervalsL="8"
+											showSubIntervals="true"></PlanningCalendarView>
+										<PlanningCalendarView key="D" intervalType="Day" description="days view" intervalsS="1" intervalsM="3" intervalsL="8"
+											showSubIntervals="true"></PlanningCalendarView>
+										<PlanningCalendarView key="M" intervalType="Month" description="months view" intervalsS="1" intervalsM="2" intervalsL="3"
+											showSubIntervals="true"></PlanningCalendarView>
+									</views>
+								</PlanningCalendar>
+							</VBox>
+						</l:mainContent>
+						<l:sideContent width="200px">
+							<PlanningCalendarLegend id="PlanningCalendarLegend" items="{path : 'mAppointment>/legendItems', templateShareable: true}"
+								standardItems="Today,Selected,NonWorkingDay">
+								<items>
+									<unified:CalendarLegendItem text="{mAppointment>text}" type="{mAppointment>type}" tooltip="{mAppointment>text}"/>
+								</items>
+								<!--<appointmentItems> appointmentItems="{path : '/legendAppointmentItems', templateShareable: true}"
+									<unified:CalendarLegendItem text="{text}" type="{type}" tooltip="{text}"/>
+								</appointmentItems>-->
+							</PlanningCalendarLegend>
+						</l:sideContent>
+					</l:DynamicSideContent>
+				</content>
+				<footer>
+					<Toolbar>
+						<Button id="SCIN_B02" icon="sap-icon://alert" text="{= ${message>/}.length }" visible="{= ${message>/}.length > 0 }" type="Emphasized"
+							press="onMessagePopoverPress"/>
+						<ToolbarSpacer width="4px"/>
+					</Toolbar>
+				</footer>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

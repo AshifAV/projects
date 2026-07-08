@@ -1,0 +1,111 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"
+	xmlns:smartField="sap.ui.comp.smartfield">
+	<l:VerticalLayout class="sapUiContentPadding" width="100%">
+		<l:content>
+			<MessageStrip class="sapUiResponsiveMargin sapUiNoMarginTop" id="SCINCreateMessageStrip" showCloseButton="false" showIcon="true"
+				type="Error" visible="false"></MessageStrip>
+			<f:SimpleForm id="appointmentCreateForm" editable="true" layout="ResponsiveGridLayout" singleContainerFullSize="false">
+				<f:content>
+					<Label text="{i18n>Title}" required="true"/>
+					<Input id="appTitle" enabled="true" change="updateButtonEnabledState"/>
+					<Label text="{i18n>Customer}"/>
+					<Input id="Customer" enabled="false"/>
+					<Label text="{i18n>ContactPerson}"/>
+					<Input id="CPerson" enabled="false"/>
+					<Label text="{i18n>ServiceAdvisor}" labelFor="idEmployee" required="true"/>
+					<Select id="idEmployee" items="{ path: '/ZAE_I_Employee_02',length: 500 }" change="updateButtonEnabledState">
+						<core:Item key="{Employee}" text="{EmployeeFullName}"/>
+					</Select>
+					<Label text="{i18n>ServiceEmployeeGroup}" labelFor="idSEmpGrp" required="true" visible="{mAppointment>/UIOnly/visible/ServiceEmpGrp}"/>
+					<Select id="idSEmpGrp" items="{ path: '/ZAE_I_ServiceEmployeeGroup_02'}" showSecondaryValues="true" change="updateButtonEnabledState"
+						visible="{mAppointment>/UIOnly/visible/ServiceEmpGrp}">
+						<core:ListItem key="{ServiceTeam}" text="{ServiceTeamName} ({ServiceTeam})" additionalText="{SalesEmployee}"/>
+					</Select>
+					<!--<Label text="More information" labelFor="inputInfo"/>
+					<Input id="moreInfo"/>-->
+					<Label text="{i18n>ReasonforAppointment}" labelFor="reasonInput" required="true"/>
+					<Select id="reasonInput" showSecondaryValues="true" items="{ path: '/ZAE_I_ACTIVITYREASONCODE'}" change="updateButtonEnabledState">
+						<core:ListItem key="{Code}" text="{CodeText}" additionalText="{Catlog}#{CodeGroup}#{Code}"/>
+					</Select>
+					<Label text="{i18n>CampaignID}" labelFor="CampaignID"/>
+					<MultiInput id="CampaignID" valueHelpRequest=".onCampaignValueHelpRequested" valueHelpOnly="false" showValueHelp="true"
+						tokenUpdate="onCampaignIDTokenUpdate" showSuggestion="true" suggestionItemSelected="onSelectCampaignID"
+						suggestionRows="{ path: '/ZAE_VH_CampaignData', sorter: { path: 'CampaignID' },suspended: true, length: 10 }" width="100%"
+						filterSuggests="true" suggest="handleCampaignSuggest">
+						<suggestionColumns>
+							<Column>
+								<Label text="{/#ZAE_VH_CampaignData/CampaignID/@sap:label}"/>
+							</Column>
+							<Column>
+								<Label text="{/#ZAE_VH_CampaignData/CampaignExternalID/@sap:label}"/>
+							</Column>
+						</suggestionColumns>
+						<suggestionRows>
+							<ColumnListItem>
+								<cells>
+									<Label text="{CampaignID}"/>
+									<Label text="{CampaignExternalID}"/>
+								</cells>
+							</ColumnListItem>
+						</suggestionRows>
+					</MultiInput>
+					<Label text="{i18n>Startdate}" labelFor="startDate"/>
+					<DateTimePicker id="startDate" required="true" displayFormat="short" change="handleStartDateChange" dateValue="{/StartDate}"/>
+					<Label text="{i18n>Enddate}" labelFor="endDate" visible="true"/>
+					<DateTimePicker id="endDate" required="true" displayFormat="short" change="handleEndDateChange" dateValue="{/EndDate}" visible="true"/>
+					<!--<Label text="Additional Options"/>
+					<CheckBox id="loanCarChk" text="Loan Car"/>-->
+					<!--<Label text="Courtesy Car" labelFor="pickUpDD"/>-->
+					<!--	<ComboBox id="pickUpDD" width="100%" items="{ path: 'mAppointment>/pickdropDD' }" change="fnCourtesyCarSelect">
+						<core:Item key="{mAppointment>key}" text="{mAppointment>title}"/>
+					</ComboBox>-->
+					<!--<ComboBox id="pickUpDD" width="100%" change="fnCourtesyCarSelect">-->
+					<!--	<core:Item key="00" text=""/>-->
+					<!--	<core:Item key="01" text="Courtesy Car"/>-->
+					<!--	<core:Item key="02" text="Courtesy Car with Driver"/>-->
+					<!--</ComboBox>-->
+					<Label visible="{mAppointment>/UIOnly/visible/PlateNo}" text="{i18n>PlateNo}"/>
+					<Input visible="{mAppointment>/UIOnly/visible/PlateNo}" value="{mAppointment>/UIOnly/text/PlateNo}" enabled="false"/>
+					<Label visible="{mAppointment>/UIOnly/visible/Customer}" text="{i18n>Customer}"/>
+					<Input visible="{mAppointment>/UIOnly/visible/Customer}" value="{mAppointment>/UIOnly/text/Pernr}" enabled="false"/>
+					<Label text="{i18n>Note}" labelFor="Note"/>
+					<TextArea id="Note" rows="4"/>
+					<Label text="{i18n>CourtesyCar}"/>
+					<ComboBox id="CourtesyCar" items="{/ZAE_I_CourtesyProgramNo}" change="fnAddLocZoneTime">
+						<core:ListItem key="{CourtesyCar}" text="{CourtesyCarDesc}" additionalText="{CourtesyCar}"/>
+					</ComboBox>
+					<Label text="{i18n>Address}" labelFor="Address"/>
+					<TextArea id="idAddress" rows="4" maxLength="255"/>
+					<Label text="{i18n>Location}"/>
+					<ComboBox id="Location" items="{mAppointment>/Clocation}" change="fnChangeLocation">
+						<core:ListItem key="{mAppointment>Location}" text="{mAppointment>Location}"/>
+					</ComboBox>
+					<!--<Label text="{i18n>Zone}"/>-->
+					<!--<ComboBox id="Zone" items="{mAppointment>/zZone}" change="fnChangeZone">-->
+					<!--	<core:ListItem key="{mAppointment>Zzone}" text="{mAppointment>Zzone}"/>-->
+					<!--</ComboBox>-->
+					<Label text="{i18n>TransitTime}"/>
+					<Input id="TransitTime" value="{mAppointment>/TransitTime/NoOfMinutes}" liveChange="handleChangeTime"/>
+					<!--<ComboBox id="TransitTime" items="{mAppointment>/TransitTime}" >-->
+					<!--	<core:ListItem key="{mAppointment>NoOfMinutes}" text="{mAppointment>NoOfMinutes}"/>-->
+					<!--</ComboBox>-->
+					<Label text="{i18n>SalesOfc}" required="true"/>
+					<Select id="IdSalesoffice" enabled="false" change="updateButtonEnabledState" showSecondaryValues="true"
+						items="{ path: '/ZAE_VH_PlantSalesOffice',length: 500 }">
+						<core:ListItem key="{SalesOffice}" text="{SalesOfficeName}" additionalText="{SalesOffice}"/>
+					</Select>
+					<Label text="{i18n>SalesGrp}" required="true"/>
+					<Select id="IdSalesgroup" showSecondaryValues="true" change="updateButtonEnabledState" forceSelection="false"
+						items="{ path: '/ZAE_I_SalesOfficeGroup_01',length: 500 }" enabled="false">
+						<core:ListItem key="{SalesGroup}" text="{SalesGroupName}" additionalText="{SalesGroup}"/>
+					</Select>					
+					<Label text="{i18n>DataPrivacyClause}" required="true"/>
+					<Select id="IdDomainValue" showSecondaryValues="true" change="updateButtonEnabledState" forceSelection="true"
+						items="{/ZAE_I_DomainValueText(domname='ZAE_D_DATAPRIVACYCLAUSE')/Set}">
+						<core:ListItem key="{DomainValue}" text="{DomainText}" additionalText="{DomainValue}"/>
+					</Select>
+				</f:content>
+			</f:SimpleForm>
+		</l:content>
+	</l:VerticalLayout>
+</core:FragmentDefinition>

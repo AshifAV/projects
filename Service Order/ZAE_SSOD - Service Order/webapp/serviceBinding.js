@@ -1,0 +1,1 @@
+function initModel(){var a="/sap/opu/odata/sap/ZAE_FM_SSOD_INV_SPLIT_CUST_P_SRV/";var e=new sap.ui.model.odata.ODataModel(a,true);sap.ui.getCore().setModel(e)}

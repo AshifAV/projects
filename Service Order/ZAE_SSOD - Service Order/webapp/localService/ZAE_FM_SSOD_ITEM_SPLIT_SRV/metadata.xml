@@ -1,0 +1,32 @@
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+	xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+	<edmx:DataServices m:DataServiceVersion="2.0">
+		<Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZAE_FM_SSOD_ITEM_SPLIT_SRV" xml:lang="en" sap:schema-version="1"><Annotation xmlns="http://docs.oasis-open.org/odata/ns/edm" Term="Core.SchemaVersion" String="1.0.0"/>
+			<EntityType Name="Items" sap:content-version="1">
+				<Key><PropertyRef Name="Material"/><PropertyRef Name="Qty"/></Key><Property Name="NumberInt" Type="Edm.String" Nullable="false" MaxLength="6" sap:unicode="false" sap:label="Item Number in Doc."
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Higherlevelitem" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Higher-Lvl Item"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Material" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Material" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Qty" Type="Edm.Decimal" Nullable="false" Precision="13" Scale="3" sap:unicode="false" sap:label="Requirement qty"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Uom" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Sales Unit" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="unit-of-measure"/><Property Name="AcInd" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Account. Indic."
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="AcIndSplt" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Account. Indic."
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="CondValue" Type="Edm.Decimal" Nullable="false" Precision="16" Scale="3" sap:unicode="false" sap:label="Condition Value"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Partner" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="BusinessPartner"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="ZAE_FM_SSOD_ITEM_SPLIT" sap:content-version="1">
+				<Key><PropertyRef Name="ObjectId"/></Key><Property Name="ObjectId" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Transaction ID"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><NavigationProperty Name="NavSplitItems" Relationship="ZAE_FM_SSOD_ITEM_SPLIT_SRV.Asso_Split_Items" FromRole="FromRole_Asso_Split_Items"
+					ToRole="ToRole_Asso_Split_Items"/><NavigationProperty Name="NavSplitMain" Relationship="ZAE_FM_SSOD_ITEM_SPLIT_SRV.Asso_Split_Main" FromRole="FromRole_Asso_Split_Main"
+					ToRole="ToRole_Asso_Split_Main"/></EntityType>
+			<Association Name="Asso_Split_Items" sap:content-version="1"><End Type="ZAE_FM_SSOD_ITEM_SPLIT_SRV.ZAE_FM_SSOD_ITEM_SPLIT" Multiplicity="*" Role="FromRole_Asso_Split_Items"/><End Type="ZAE_FM_SSOD_ITEM_SPLIT_SRV.Items" Multiplicity="*" Role="ToRole_Asso_Split_Items"/></Association>
+			<Association Name="Asso_Split_Main" sap:content-version="1"><End Type="ZAE_FM_SSOD_ITEM_SPLIT_SRV.ZAE_FM_SSOD_ITEM_SPLIT" Multiplicity="*" Role="FromRole_Asso_Split_Main"/><End Type="ZAE_FM_SSOD_ITEM_SPLIT_SRV.ZAE_FM_SSOD_ITEM_SPLIT" Multiplicity="*" Role="ToRole_Asso_Split_Main"/></Association>
+			<EntityContainer Name="ZAE_FM_SSOD_ITEM_SPLIT_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx"><EntitySet Name="ItemsSet" EntityType="ZAE_FM_SSOD_ITEM_SPLIT_SRV.Items" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+				sap:pageable="false" sap:content-version="1"/><EntitySet Name="ZAE_FM_SSOD_ITEM_SPLITSet" EntityType="ZAE_FM_SSOD_ITEM_SPLIT_SRV.ZAE_FM_SSOD_ITEM_SPLIT" sap:creatable="false"
+				sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+				<AssociationSet Name="Asso_Split_Main_AssocSet" Association="ZAE_FM_SSOD_ITEM_SPLIT_SRV.Asso_Split_Main" sap:creatable="false"
+					sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="ZAE_FM_SSOD_ITEM_SPLITSet" Role="FromRole_Asso_Split_Main"/><End EntitySet="ZAE_FM_SSOD_ITEM_SPLITSet" Role="ToRole_Asso_Split_Main"/></AssociationSet>
+				<AssociationSet Name="Asso_Split_Items_AssocSet" Association="ZAE_FM_SSOD_ITEM_SPLIT_SRV.Asso_Split_Items" sap:creatable="false"
+					sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="ZAE_FM_SSOD_ITEM_SPLITSet" Role="FromRole_Asso_Split_Items"/><End EntitySet="ItemsSet" Role="ToRole_Asso_Split_Items"/></AssociationSet>
+			</EntityContainer><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="./sap/ZAE_FM_SSOD_ITEM_SPLIT_SRV/$metadata"/><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="./sap/ZAE_FM_SSOD_ITEM_SPLIT_SRV/$metadata"/></Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

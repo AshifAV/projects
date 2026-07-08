@@ -1,0 +1,35 @@
+<!--<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:smartfield="sap.ui.comp.smartfield" xmlns="sap.m">
+	<Dialog afterClose="afterClose" beforeOpen="beforeOpen" class="sapUiPopupWithPadding" id="SSOD_B71" title="{i18n>SSOD_B71}">
+		<MessageStrip class="sapUiResponsiveMargin sapUiNoMarginTop" id="SSOD_B71MessageStrip" showCloseButton="false" showIcon="true" type="Error"
+			visible="false"></MessageStrip>
+		<Label labelFor="BillingRuleInput"/>
+		<Input id="BillingRuleInput" valueHelpOnly="true" required="true" type="Text" showSuggestion="true" showValueHelp="true" valueHelpRequest="handleValueHelp"
+			class="sapUiSmallMarginBottom"/>
+		<beginButton>
+			<Button press="onSubmitPressed" text="{i18n>BUTTON_Submit}"/>
+		</beginButton>
+		<endButton>
+			<Button press="onCancelPressed" text="{i18n>BUTTON_Cancel}"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>
+-->
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"
+	xmlns:smartField="sap.ui.comp.smartfield">
+	<l:VerticalLayout class="sapUiContentPadding" width="100%">
+		<l:content>
+			<MessageStrip class="sapUiResponsiveMargin sapUiNoMarginTop" id="SSOD_B71MessageStrip" showCloseButton="false" showIcon="true" type="Error"
+				visible="false"></MessageStrip>
+			<f:SimpleForm id="SSOD_B71SimpleForm" editable="true" layout="ResponsiveGridLayout" singleContainerFullSize="false">
+				<f:content>
+					<Label text="{i18n>BillingRuleInput}" labelFor="EstTypeInput"/>
+					<Input id="BillingRuleInput" type="Text" showSuggestion="true" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onShowBillingRuleVH"
+						class="sapUiSmallMarginBottom"/>
+					<Label text="{i18n>PartnerChargeInput}" labelFor="PartnerChargeInput"/>
+					<Input id="PartnerChargeInput" type="Text" visible="false" showSuggestion="true" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onShowChargePartnerVH"
+						class="sapUiSmallMarginBottom"/>
+				</f:content>
+			</f:SimpleForm>
+		</l:content>
+	</l:VerticalLayout>
+</core:FragmentDefinition>

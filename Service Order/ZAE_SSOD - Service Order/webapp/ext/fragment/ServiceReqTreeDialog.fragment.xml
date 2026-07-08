@@ -1,0 +1,34 @@
+<core:FragmentDefinition xmlns="sap.ui.table" xmlns:m="sap.m" xmlns:core="sap.ui.core">
+	<m:Dialog id="CategoryVHDialog" class="sapUiPopupWithPadding" title="{i18n>CategoryTreeVHDialogTitle}" titleAlignment="Center">
+		<m:MessageStrip class="sapUiResponsiveMargin sapUiNoMarginTop" id="CategoryTreeVHMessageStrip" showCloseButton="false" showIcon="true"
+			visible="false"/>
+		<TreeTable id="CategoryTreeTable" selectionMode="Single" width="50rem" rowSelectionChange="onTreeMultiRowSelect"
+			enableSelectAll="false">
+			<extension>
+				<m:Toolbar>
+					<m:SearchField id="searchField" showRefreshButton="true" tooltip="{i18n>masterSearchTooltip}" search=".onSearchTreeTable" width="auto"></m:SearchField>
+				</m:Toolbar>
+			</extension>
+			<columns>
+				<Column >
+					<m:Label text="{i18n>Name}"/>
+					<template>
+						<m:Text text="{cat_label}" wrapping="false"/>
+					</template>
+				</Column>
+				<Column >
+					<m:Label text="{i18n>ID}"/>
+					<template>
+						<m:Text text="{cat_id}" wrapping="false"/>
+					</template>
+				</Column>
+			</columns>
+		</TreeTable>
+		<m:beginButton>
+			<m:Button id="IdSubmit" text="{i18n>BUTTON_Submit}" press="onSubmitPressed"/>
+		</m:beginButton>
+		<m:endButton>
+			<m:Button text="{i18n>BUTTON_Cancel}" press="onCancelPressed"/>
+		</m:endButton>
+	</m:Dialog>
+</core:FragmentDefinition>

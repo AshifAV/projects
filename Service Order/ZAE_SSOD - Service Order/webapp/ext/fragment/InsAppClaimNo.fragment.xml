@@ -1,0 +1,22 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"
+	xmlns:smartField="sap.ui.comp.smartfield">
+	<l:VerticalLayout class="sapUiContentPadding" width="100%">
+		<l:content>
+			<MessageStrip class="sapUiResponsiveMargin sapUiNoMarginTop" id="SSOD_B111MessageStrip" showCloseButton="false" showIcon="true" type="Error"
+				visible="false"></MessageStrip>
+			<f:SimpleForm id="SSOD_B111SimpleForm" editable="true" layout="ResponsiveGridLayout" singleContainerFullSize="false">
+				<f:content>
+					<Label text="{i18n>SplitRuleInput}" labelFor="SplitRuleInput" required="true"/>
+					<Select id="SplitRuleInput" showSecondaryValues="false" change="onChangeSplitRule" forceSelection="false"
+						items="{ path: '/ZAE_VH_SplitRule_02',length: 100 }">
+						<core:ListItem key="{SplitRule}" text="{SplitRuleName}" additionalText="{Excess}"/>
+					</Select>
+					<Label text="{i18n>SplitAmt}" labelFor="SplitAmt" required="true"/>
+					<Input id="SplitAmt" type="Number" visible="false" liveChange="_fnSubmitEnabledState"/>
+					<Label text="{i18n>SplitPercentage}" labelFor="SplitPercentage" required="true"/>
+					<Input id="SplitPercentage" type="Number" visible="false" liveChange="_fnSubmitEnabledState"/>
+				</f:content>
+			</f:SimpleForm>
+		</l:content>
+	</l:VerticalLayout>
+</core:FragmentDefinition>

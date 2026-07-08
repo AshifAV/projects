@@ -1,0 +1,138 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"
+	xmlns:smartField="sap.ui.comp.smartfield">
+	<l:VerticalLayout class="sapUiContentPadding" width="100%">
+		<l:content>
+			<f:SimpleForm id="appointmentCreateForm" editable="true" layout="ResponsiveGridLayout" singleContainerFullSize="false">
+				<f:content>
+					<Label text="{i18n>SalesOrganization}" />
+					<!-- -->
+					<!--<Select id="SALESORGANIZATION" showSecondaryValues="true" items="{ path: '/ZAE_I_TC_COMP_SERV'}" forceSelection="false"-->
+					<!--	change="fnCreateCompanySalesOrgChange">-->
+					<!--	<core:ListItem key="{SalesOrganization}" text="{SalesOrganizationName}" additionalText="{SalesOrganization}"/>-->
+					<!--</Select>-->
+					<Select id="SALESORGANIZATION" change="fnCreateCompanySalesOrgChange" showSecondaryValues="true"
+						items="{mCreateCustomer>/oCreateCustomerData/CreateCompanySalesOrg}" forceSelection="false">
+						<core:ListItem key="{mCreateCustomer>SalesOrganization}" text="{mCreateCustomer>SalesOrganizationName}"
+							additionalText="{mCreateCustomer>SalesOrganization}"/>
+					</Select>
+					<Label text="{i18n>DistrChannel}"  />
+					<!--<Select id="IdDistrChannel" showSecondaryValues="true" change="fnCreateCompanyDistributionChange" forceSelection="false"-->
+					<!--	items="{ path: '/ZAE_I_TC_COMP_SERV',length: 500 }">-->
+					<!--	<core:ListItem key="{DistributionChannel}" text="{DistributionChannelName}" additionalText="{DistributionChannel}"/>-->
+					<!--</Select>-->
+					<Select id="DISTRIBUTIONCHANNEL" showSecondaryValues="true" change="fnCreateCompanyDistributionChange" forceSelection="false"
+						items="{mCreateCustomer>/oCreateCustomerData/CreateCompanyDC}">
+						<core:ListItem key="{mCreateCustomer>DistributionChannel}" text="{mCreateCustomer>DistributionChannelName}"
+							additionalText="{mCreateCustomer>DistributionChannel}"/>
+					</Select>
+					<Label text="{i18n>Division}"  />
+					<!--<Select id="IdDivision" showSecondaryValues="true" change="fnCheckCreateCompanyRequiredValidation" forceSelection="false"-->
+					<!--	items="{ path: '/ZAE_I_TC_COMP_SERV',length: 500 }">-->
+					<!--	<core:ListItem key="{Division}" text="{DivisionName}" additionalText="{Division}"/>-->
+					<!--</Select>-->
+					<Select id="DIVISION" showSecondaryValues="true" change="fnCheckCreateCompanyRequiredValidation" forceSelection="false"
+						items="{mCreateCustomer>/oCreateCustomerData/CreateCompanyDivison}">
+						<core:ListItem key="{mCreateCustomer>Division}" text="{mCreateCustomer>DivisionName}" additionalText="{mCreateCustomer>Division}"/>
+					</Select>
+					<Label text="{i18n>Salutation}"  />
+					<smartField:SmartField entitySet="ZAE_F_Customer" value="{Saluatation}" id="SALUTATION" change="fnCheckCreateCompanyRequiredValidation"/>
+					<Label text="{i18n>Name1}"  />
+					<!-- -->
+					<Input id="NAME1" liveChange="handleCreateCompanyInputValidation"
+						maxLength="{path: '/#ZAE_FM_SC_COMP_CREATE_FRM_CI/CompanyName/@maxLength', formatter: 'parseInt'}"/>
+					<Label text="{i18n>Name2}"/>
+					<Input id="NAME2" liveChange="handleCreateCompanyInputValidation"
+						maxLength="{path: '/#ZAE_FM_SC_COMP_CREATE_FRM_CI/CompanyName2/@maxLength', formatter: 'parseInt'}"/>
+					<Label text="{i18n>Country}"  />
+					<!-- -->
+					<MultiInput id="COUNTRY" valueHelpRequest="fnShowCountryValueHelp" valueHelpOnly="false" showValueHelp="true"
+						tokenUpdate="onCountryTokenUpdate" showSuggestion="true" suggestionItemSelected="onSelectCountry"
+						liveChange="handleCreateCompanyInputValidation"
+						suggestionRows="{ path: '/ZAE_VH_Country', sorter: { path: 'Country' },suspended: true, length: 10 }" filterSuggests="true"
+						suggest="handleCountrySuggest">
+						<suggestionColumns>
+							<Column>
+								<Label text="{i18n>Country}"/>
+							</Column>
+							<Column>
+								<Label text="{i18n>CountryName}"/>
+							</Column>
+							<Column visible="false">
+								<Label text="{i18n>CountryCode}"/>
+							</Column>
+						</suggestionColumns>
+						<suggestionRows>
+							<ColumnListItem>
+								<cells>
+									<Label text="{Country}"/>
+									<Label text="{CountryName}"/>
+									<Label text="{CountryCode}"/>
+								</cells>
+							</ColumnListItem>
+						</suggestionRows>
+					</MultiInput>
+					<Label text="{i18n>Region}"  />
+					<!-- -->
+					<MultiInput id="REGION" valueHelpRequest="fnShowRegionValueHelp" valueHelpOnly="false" showValueHelp="true"
+						tokenUpdate="onRegionTokenUpdate" showSuggestion="true" suggestionItemSelected="onSelectRegion"
+						liveChange="handleCreateCompanyInputValidation"
+						suggestionRows="{ path: '/ZAE_VH_Region', sorter: { path: 'Region' },suspended: true, length: 10 }" filterSuggests="true"
+						suggest="handleRegionSuggest">
+						<suggestionColumns>
+							<Column>
+								<Label text="{i18n>Region}"/>
+							</Column>
+							<Column>
+								<Label text="{i18n>RegionName}"/>
+							</Column>
+						</suggestionColumns>
+						<suggestionRows>
+							<ColumnListItem>
+								<cells>
+									<Label text="{Region}"/>
+									<Label text="{RegionName}"/>
+								</cells>
+							</ColumnListItem>
+						</suggestionRows>
+					</MultiInput>
+					<Label text="{i18n>MobileNo}"/>
+					<MaskInput id="MOBILENO" change="handleMobileNoValidation"/>
+					<!--<Label text="{i18n>FaxNo}"/>-->
+					<Label text="{/#ZAE_FM_SC_COMP_CREATE_FRM_CI/FaxNumber/@sap:label}"/>
+					<MaskInput id="FAXNUMBER" change="handleMobileNoValidation"/>
+					<Label text="{i18n>TelNo}"  />
+					<MaskInput id="TELNO" change="handleTeliphoneNoValidation"/>
+					<Label text="{i18n>Email}"/>
+					<Input id="EMAIL" type="Email" liveChange="handleEmailInputChange"/>
+					<Label text="{i18n>CRNo}"/>
+					<Input id="CRNO" maxLength="25"/>
+					<Label text="{i18n>OfficeNo}"/>
+					<Input id="OFFICENO" maxLength="{path: '/#ZAE_FM_SC_COMP_CREATE_FRM_CI/HouseNo/@maxLength', formatter: 'parseInt'}"/>
+					<Label text="{i18n>Street}"/>
+					<Input id="STREET" maxLength="{path: '/#ZAE_FM_SC_COMP_CREATE_FRM_CI/Street/@maxLength', formatter: 'parseInt'}"/>
+					<Label text="{i18n>Street1}"/>
+					<Input id="STREET1" maxLength="{path: '/#ZAE_FM_SC_COMP_CREATE_FRM_CI/Street1/@maxLength', formatter: 'parseInt'}"/>
+					<Label text="{i18n>POBox}"  />
+					<!-- -->
+					<Input id="POBOX" liveChange="fnCheckCreateCompanyRequiredValidation"
+						maxLength="{path: '/#ZAE_FM_SC_COMP_CREATE_FRM_CI/PoBox/@maxLength', formatter: 'parseInt'}"/>
+					<Label text="{i18n>PostalCode}"  />
+					<Input id="POSTALCODE" liveChange="fnCheckCreateCompanyRequiredValidation"
+						maxLength="{path: '/#ZAE_FM_SC_COMP_CREATE_FRM_CI/PostlCode/@maxLength', formatter: 'parseInt'}"/>
+					<Label text="{i18n>City}"  />
+					<Input id="CITY" liveChange="fnCheckCreateCompanyRequiredValidation"
+						maxLength="{path: '/#ZAE_FM_SC_COMP_CREATE_FRM_CI/City/@maxLength', formatter: 'parseInt'}"/>
+					<Label text="{i18n>Location}"/>
+					<Select id="REGIOGROUP" forceSelection="false"
+						items="{ path: '/I_RegionalStructureGroupingVH', sorter: { path: 'RegionalStructureGrouping' } }"
+						change="fnCheckCreateCompanyRequiredValidation">
+						<core:Item key="{RegionalStructureGrouping}" text="{RegionalStructureGroupingDesc}" additionalText="{RegionalStructureGrouping}"/>
+					</Select>
+					<Label text="{i18n>VinRegistrationNumber}"/>
+					<Input id="TAXNUMXL" liveChange="fnCheckCreateCompanyRequiredValidation"
+						maxLength="{path: '/#ZAE_FM_SC_COMP_CREATE_FRM_CI/Vatregistrationnumber/@maxLength', formatter: 'parseInt'}"/>
+				</f:content>
+			</f:SimpleForm>
+		</l:content>
+	</l:VerticalLayout>
+</core:FragmentDefinition>

@@ -1,0 +1,19 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:smartfield="sap.ui.comp.smartfield" xmlns:f="sap.ui.layout.form" xmlns="sap.m">
+	<Dialog afterClose="afterClose" class="sapUiPopupWithPadding"  >
+		<MessageStrip class="sapUiResponsiveMargin sapUiNoMarginTop" id="NotesMessageStrip" showCloseButton="false" showIcon="true" type="Error"
+			visible="false"></MessageStrip>
+		<VBox >
+			<f:SimpleForm id="SimpleFormNotes" editable="true" layout="ResponsiveGridLayout" labelSpanXL="3" labelSpanL="3"
+				labelSpanM="3" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsXL="1"
+				columnsL="1" columnsM="1" singleContainerFullSize="false">
+				<f:content></f:content>
+			</f:SimpleForm>
+		</VBox>
+		<beginButton>
+			<Button id ="IdNotesSubmit" press="onSubmitPressed" text="{i18n>BUTTON_Submit}"/>
+		</beginButton>
+		<endButton>
+			<Button press="onCancelPressed" text="{i18n>BUTTON_Cancel}"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,116 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<Dialog class="sapUiSizeCompact sapUiContentPadding" contentHeight="30em" resizable="true" title="{i18n>SSOD_B66}">
+		<MessageStrip class="sapUiResponsiveMargin" id="SSOD_B66MessageStrip" showCloseButton="false" showIcon="true" type="Error" visible="false"></MessageStrip>
+		<content>
+			<Table id="idItemListListTable" growing="true" growingThreshold="10" paste="onPaste" items="{mServiceOrderOperation>/TableData/}"
+				inset="false" alternateRowColors="true">
+				<headerToolbar>
+					<OverflowToolbar >
+						<Title text="New Operations List" level="H2"/>
+						<ToolbarSpacer/>
+						<Button text="Add" type="Transparent" press="onAddNewRow"/>
+						<!--<Button id="saveButton" text="Save" type="Transparent" press="onSave" visible="false"/>
+					<Button id="cancelButton" text="Cancel" type="Transparent" press="onCancel" visible="false"/>-->
+					</OverflowToolbar>
+				</headerToolbar>
+				<columns>
+					<Column width="4em" hAlign="Center">
+						<Label text="Item Number"/>
+					</Column>
+					<!--<Column width="4em" hAlign="Center">
+						<Text text="Higher Level ItemNumber"/>
+					</Column>-->
+					<Column width="15em" hAlign="Center">
+						<Label text="Material" required="true"/>
+					</Column>
+					<Column width="8em" hAlign="Center">
+						<Label text="Quantity" required="true"/>
+					</Column>
+					<Column width="4em" hAlign="Center" visible="false">
+						<Label text="Base Unit"/>
+					</Column>
+					<Column width="10em" hAlign="Center">
+						<Label text="Complain Code" required="false"/>
+					</Column>
+					<Column width="10em" hAlign="Center">
+						<Label text="Inspection Lot / Characteristic" required="false"/>
+					</Column>
+					<Column width="10em" hAlign="Center">
+						<Label text="{i18n>ServiceType}" required="false"/>
+					</Column>
+					<Column width="10em" hAlign="Center">
+						<Label text="Item Category" required="true"/>
+					</Column>
+					<Column width="4em" hAlign="Center">
+						<Text text="{i18n>Severity}"/>
+					</Column>
+					<Column width="3em" hAlign="Center">
+						<Label text="Actions"/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<Text text="{mServiceOrderOperation>ItemNumber}"/>
+							<!--<Input type="Number" value="{mServiceOrderOperation>HighLevelItemNumber}" change="onHighLevelItemUpdated"/>-->
+							<MultiInput selectedKey="{mServiceOrderOperation>Material}" valueHelpRequest=".onProductValueHelpRequested" valueHelpOnly="false"
+								showValueHelp="true" tokenUpdate="onMaterailTokenUpdate" showSuggestion="true" suggestionItemSelected="onSelectMaterial"
+								suggestionRows="{ path: '/ZAE_C_MaterialSalesData_07', sorter: { path: 'Material' },suspended: true, length: 10 }" width="100%"
+								filterSuggests="true" suggest="handleMaterialSuggest" maxSuggestionWidth="600px">
+								<suggestionColumns>
+									<Column>
+										<Label text="{i18n>Material}"/>
+									</Column>
+									<Column>
+										<Label text="{i18n>MaterialName}"/>
+									</Column>
+									<Column>
+										<Label text="{i18n>MaterialType}"/>
+									</Column>
+								</suggestionColumns>
+								<suggestionRows>
+									<ColumnListItem>
+										<cells>
+											<Label text="{Material}"/>
+											<Label text="{MaterialName}"/>
+											<Label text="{MaterialType}"/>
+										</cells>
+									</ColumnListItem>
+								</suggestionRows>
+							</MultiInput>
+							<Input type="Number" value="{mServiceOrderOperation>Quantity}" liveChange="onChangeOperationsQty"
+								description="{mServiceOrderOperation>QuantityUnit}"/>
+							<Text text="{mServiceOrderOperation>QuantityUnit}"/>
+							<!--<ObjectNumber number="{ path:'mServiceOrderOperation>ItemCategory', type: 'sap.ui.model.type.String', formatOptions: {showMeasure: false} }"
+							unit="{mServiceOrderOperation>ItemCategoryDesc}"/>-->
+							<Select forceSelection="false" showSecondaryValues="false" selectedKey="{mServiceOrderOperation>ComplaintCode_New}"
+								items="{mServiceOrderOperation>CheckList}" enabled="{mServiceOrderOperation>CheckListEnabled}" change="fnSubmitButonValidation">
+								<core:ListItem key="{mServiceOrderOperation>ComplaintCode_New}"
+									text="{parts: ['mServiceOrderOperation>ComplainCodeDescription', 'mServiceOrderOperation>ComplaintCode_New'], formatter: '.formatNameAndValuePair'}"
+									additionalText="{mServiceOrderOperation>ComplaintCode}"/>
+								<!--additionalText="{mServiceOrderOperation>ComplainCodeDescription}"-->
+							</Select>
+							<MultiInput selectedKey="{mServiceOrderOperation>InspectionLot}" valueHelpRequest=".onInspectionLotValueHelpRequested" valueHelpOnly="true"
+								showValueHelp="true" tokenUpdate="onInspectionLotTokenUpdate"/>
+							<Select forceSelection="false" showSecondaryValues="true" selectedKey="{mServiceOrderOperation>ServiceType}" items="{path:'/ZAE_I_TC_SSOD_OPR',suspended: true}">
+								<core:ListItem key="{ServiceType}" text="{ServiceTypeName}" additionalText="{ServiceType}"/>
+							</Select>
+							<Text
+								text="{parts: ['mServiceOrderOperation>ItemCategoryDesc', 'mServiceOrderOperation>ItemCategory'], formatter: '.formatNameAndValuePair'}"/>
+								<!--<Input value="{mServiceOrderOperation>Severity}" change="fnSubmitButonValidation" enabled="{mServiceOrderOperation>Enabled}"/>-->
+							<Select forceSelection="false" showSecondaryValues="true" selectedKey="{mServiceOrderOperation>Severity}" items="{/ZAE_VH_SEVERITY}">
+								<core:ListItem key="{Severity}" text="{Description}" additionalText="{Severity}"/>
+							</Select>
+							<Button icon="sap-icon://delete" type="Transparent" press="onDeletePress"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+		<buttons>
+			<Button id="BTNSubmit" text="Submit" press="onSubmit"/>
+			<Button text="Reset" press="onReset"/>
+			<Button text="Cancel" press="onCancel"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

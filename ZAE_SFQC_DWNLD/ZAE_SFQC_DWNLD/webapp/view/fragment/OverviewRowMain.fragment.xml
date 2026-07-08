@@ -1,0 +1,77 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m">
+	<ColumnListItem type="Navigation">
+		<cells>
+			<!-- Image -->
+			<!--<HBox class="sapUiSmallMarginTopBottom">-->
+			<!--	<Image densityAware="false" height="6em" src="{app>materialData/mediaSrc}" error="onImageError"/>-->
+			<!--</HBox>-->
+			<!-- Description -->
+			<VBox class="sapUiContentPadding">
+				<HBox>
+					<Label text="{i18n>ServiceContract}" labelFor="mainRowMaterial"/>
+					<Text id="mainRowMaterial" class="sapUiTinyMarginBegin" text="{app>serviceDesc}"></Text>
+				</HBox>
+				<!--<HBox>-->
+				<!--	<Label text="Make:" labelFor="mainRowMake"/>-->
+				<!--	<Text id="mainRowMake" class="sapUiTinyMarginBegin" text="{app>materialData/MakeText}"></Text>-->
+				<!--</HBox>-->
+				<!--<HBox>-->
+				<!--	<Label text="Model:" labelFor="mainRowModel"/>-->
+				<!--	<Text id="mainRowModel" class="sapUiTinyMarginBegin" text="{app>materialData/ModelText}"></Text>-->
+				<!--</HBox>-->
+				<!--<HBox visible="{= ${app>/pages/configData/AppMode}.charAt(0) !== 'L'}">-->
+				<!--	<Label text="Mfg. Year:" labelFor="mainRowMfgYear"/>-->
+				<!--	<Text id="mainRowMfgYear" class="sapUiTinyMarginBegin" text="{app>mfgYear/MfgYear}"></Text>-->
+				<!--</HBox>-->
+				<!--<HBox visible="{= ${app>/pages/configData/AppMode}.charAt(0) !== 'L'}">-->
+				<!--	<Label text="Colour:" labelFor="mainRowColour"/>-->
+				<!--	<Text id="mainRowColour" class="sapUiTinyMarginBegin" text="{app>colour/ColorExtText}"></Text>-->
+				<!--</HBox>-->
+				<!--<HBox visible="{= ${app>/pages/configData/AppMode}.charAt(0) !== 'L'}">-->
+				<!--	<Label text="Trim:" labelFor="mainRowTrim"/>-->
+				<!--	<Text id="mainRowTrim" class="sapUiTinyMarginBegin" text="{app>trim/ColorIntText}"></Text>-->
+				<!--</HBox>-->
+				<!--<HBox visible="{= ${app>/pages/configData/AppMode}.charAt(0) === 'L'}">-->
+				<!--	<Label text="Start Date:" labelFor="mainRowStartDate"/>-->
+				<!--	<Text id="mainRowStartDate" class="sapUiTinyMarginBegin" text="{path: 'app>leaseItemData/startdate', formatter: '.formatter.dateToStr'}"></Text>-->
+				<!--, type: 'sap.ui.model.type.Date' , formatOptions: { pattern: 'MMM d, yyyy' }-->
+				<!--</HBox>-->
+				<!--<HBox visible="{= ${app>/pages/configData/AppMode}.charAt(0) === 'L'}">-->
+				<!--	<Label text="Duration:" labelFor="mainRowDuration"/>-->
+				<!--	<Text id="mainRowDuration" class="sapUiTinyMarginBegin"-->
+				<!--		text="{= ${app>leaseItemData/duration} === 1 ? ${app>leaseItemData/duration} + ' Month' : ${app>leaseItemData/duration} + ' Months' }"></Text>-->
+				<!--</HBox>-->
+			</VBox>
+			<!-- Qty -->
+			<!--<Input type="Number" value="{app>tempQty}" description="EA" change="onQtyChange" fieldWidth="70%"/>-->
+			<!-- Base Price -->
+			<!--<ObjectNumber-->
+			<!--	number="{parts: [{path:'app>Price04/Kbetr'}, {path:'app>Price04/Konwa'}], type: 'sap.ui.model.type.Currency', formatOptions: {showMeasure: false} }"-->
+			<!--	unit="{app>Price04/Konwa}"/>-->
+			<!-- Discount Price -->
+			<!--<VBox alignItems="End">-->
+			<!--	<Link text="0%" subtle="true" press="openDiscountPopover"/>-->
+			<!--	<ObjectNumber-->
+			<!--		number="{parts: [{path:'app>addOnsPrice'}, {path:'app>Price04/Konwa'}], type: 'sap.ui.model.type.Currency', formatOptions: {showMeasure: false} }"-->
+			<!--		unit="{app>Price04/Konwa}"/>-->
+			<!--</VBox>-->
+			<!-- Total Price -->
+			<!--<Link text="{parts: [{path:'app>cartPrice'}, {path:'app>Price04/Konwa'}, {path:'app>qty'}], formatter: '.formatter.sumPriceCurr'}"-->
+			<!--	subtle="true" press="openTotalPricePopover"/>-->
+			<!-- Tax Price -->
+			<!--<ObjectNumber number="{parts: [{path:'app>taxPrice'}, {path:'app>Price04/Konwa'}, {path:'app>qty'}], formatter: '.formatter.sumPrice'}"-->
+			<!--	unit="{app>Price04/Konwa}"/>-->
+			<!-- Net Price -->
+			<!--<ObjectNumber number="{parts: [{path:'app>netPrice'}, {path:'app>Price04/Konwa'}, {path:'app>qty'}], formatter: '.formatter.sumPrice'}"-->
+			<!--	unit="{app>Price04/Konwa}"/>-->
+			<!-- Edit -->
+			<!--<VBox>-->
+			<!--	<Button icon="sap-icon://edit" press="onCartItemEdit"/>-->
+			<!--</VBox>-->
+			<!-- Remove -->
+			<!--<VBox>-->
+			<!--	<Button icon="sap-icon://delete" enabled="{= ${app>/cart}.length > 1 }" press="onCartItemRemove"/>-->
+			<!--</VBox>-->
+		</cells>
+	</ColumnListItem>
+</core:FragmentDefinition>

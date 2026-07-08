@@ -1,0 +1,594 @@
+<mvc:View controllerName="com.globalintelli.ZAE_SCIN_NEW.controller.Main" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m" xmlns:layout="sap.ui.layout" height="100%" xmlns:f="sap.ui.layout.form"
+	xmlns:smartFilterBar="sap.ui.comp.smartfilterbar" xmlns:form="sap.ui.comp.smartform" xmlns:smartField="sap.ui.comp.smartfield"
+	xmlns:t="sap.ui.table" xmlns:smartTable="sap.ui.comp.smarttable" xmlns:ux="sap.uxap" xmlns:nav="sap.ui.comp.navpopover"
+	xmlns:sl="sap.ui.comp.navpopover" xmlns:mc="sap.suite.ui.microchart" xmlns:CustRMC="com.globalintelli.ZAE_SCIN_NEW.controller.microchart">
+	<App id="Main">
+		<pages>
+			<Page title="{i18n>title}">
+				<headerContent>
+					<!--<Button id="SCIN_B15" text="Create Complain" type="Default" tooltip="Create Complain" press="onCreateComplain"-->
+					<!--	enabled="{= ${mCustIdentification>/TBLSalesAreaLength} > 0 ? ${mCustIdentification>/TBLContactPersonLength} > 0 ? true :false : false}"/>-->
+					<Button id="SCIN_B01" text="{i18n>CreateCustomer}" type="Default" tooltip="{i18n>CreateCustomer}" press="onCreateCustomer"
+						enabled="{= ${mCustIdentification>/WorkShop}? true:false }"/>
+					<Button id="SCIN_B02" text="{i18n>CreateEquipment}" type="Default" tooltip="{i18n>CreateEquipment}" press="onCreateEquipment"/>
+					<Button id="SCIN_B13" text="{i18n>CreateServiceContractQuotation} " type="Default" tooltip="{i18n>CreateServiceContractQuotation} "
+						press="onPressCreateServiceContractQuotation"
+						enabled="{ parts: ['mCustIdentification>/WorkShop', 'mCustIdentification>/customerInfo/to_CurrentOwner/Partner' ],formatter:'.fnEnableCreateServiceContractQuotation'}"/>
+					<Button id="SCIN_B03" icon="sap-icon://notification-2" text="{= ${mCustIdentification>/ServiceRequestList}.length }"
+						visible="{= ${mCustIdentification>/ServiceRequestList}.length > 0 }" type="Default" tooltip="Message" press="handleMessagePress"/>
+				</headerContent>
+				<content>
+					<smartFilterBar:SmartFilterBar id="SCIN_smartFilterBar" enableBasicSearch="false" entitySet="ZAE_I_Equipment_04"
+						persistencyKey="SCINUniqueAndStablePersistencyKey" initialized="onEquipmentInputInitialized" considerSelectionVariants="false"
+						visible="true" search="onSearch" liveMode="false" showFilterConfiguration="false" useToolbar="false">
+						<smartFilterBar:controlConfiguration>
+							<smartFilterBar:ControlConfiguration index="" key="Plant" label="{i18n>Plantt}" visibleInAdvancedArea="true" groupId="_BASIC"
+								mandatory="mandatory">
+								<smartFilterBar:customControl>
+									<Input id="SCIN_I01" placeholder="{i18n>PLANT}" type="Text" showSuggestion="true" showValueHelp="true" valueHelpOnly="true"
+										valueHelpRequest="handlePlantValueHelp" width="15rem" value="{mCustIdentification>/WorkShop}" maxSuggestionWidth="25%"
+										change="onPlantSelected" suggestionItems="{/ZAE_I_Plant_03}" textFormatMode="ValueKey" suggest="suggestHelp">
+										<suggestionItems>
+											<core:ListItem key="{ValuationArea}" text="{PlantName}" additionalText="{ValuationArea}"/>
+										</suggestionItems>
+									</Input>
+								</smartFilterBar:customControl>
+							</smartFilterBar:ControlConfiguration>
+							<!--<smartFilterBar:ControlConfiguration   key="Equipment" visibleInAdvancedArea="true" filterType="single" index="05"/>-->
+							<smartFilterBar:ControlConfiguration key="Equipment" visibleInAdvancedArea="true" filterType="single" index="10">
+								<smartFilterBar:customControl>
+									<MultiInput id="EquipmentVH" valueHelpRequest=".onEQUIValueHelpRequested" valueHelpOnly="true" showValueHelp="true" enabled="true"
+										editable="{= ${mCustIdentification>/WorkShop} !== ''}"
+										suggestionRows="{ path: '/ZAE_VH_Equipment_06', sorter: { path: 'Equipment' }, length: 10 }" placeholder="{i18n>SelectEquipment}"
+										change="fnRequiredFieldValidation">
+										<suggestionColumns>
+											<Column>
+												<Label text="{i18n>Equipment}"/>
+											</Column>
+											<Column>
+												<Label text="{i18n>EquipmentName}"/>
+											</Column>
+											<Column>
+												<Label text="{i18n>LicenseNum}"/>
+											</Column>
+										</suggestionColumns>
+										<suggestionRows>
+											<ColumnListItem>
+												<cells>
+													<Label text="{Equipment}"/>
+													<Label text="{EquipmentName}"/>
+													<Label text="{LicenseNum}"/>
+												</cells>
+											</ColumnListItem>
+										</suggestionRows>
+									</MultiInput>
+								</smartFilterBar:customControl>
+							</smartFilterBar:ControlConfiguration>
+						</smartFilterBar:controlConfiguration>
+					</smartFilterBar:SmartFilterBar>
+					<MessagePage id="msgPage" class="CustMessagePage" visible="{mCustIdentification>/uiOnly/visible/MessagePage}" showHeader="false"
+						text="{i18n>Searchplate}" description="" icon="" iconAlt=""/>
+					<VBox id="SCIN_BoxSearchResults" class="sapUiSmallMargin" visible="{mCustIdentification>/uiOnly/visible/vBoxSearchResults}">
+						<f:Form editable="false">
+							<f:toolbar>
+								<Toolbar >
+									<Title text="{i18n>vehicleInfo}" level="H4" titleStyle="H4"/>
+									<ToolbarSpacer/>
+									<Button id="SCIN_B04" icon="sap-icon://action" text="{i18n>MoreInfo}" type="Default" tooltip="More Information" press="fnMoreEquipmentInfo"/>
+								</Toolbar>
+							</f:toolbar>
+							<f:layout>
+								<f:ColumnLayout columnsM="2" columnsL="2" columnsXL="4"/>
+							</f:layout>
+							<f:formContainers>
+								<f:FormContainer title="{i18n>GenInfo}">
+									<f:formElements>
+										<f:FormElement label="{i18n>Equipment}">
+											<smartField:SmartField value="{Equipment}">
+												<smartField:configuration>
+													<smartField:Configuration displayBehaviour="descriptionAndId"/>
+												</smartField:configuration>
+											</smartField:SmartField>
+										</f:FormElement>
+										<f:FormElement label="{i18n>VinNumber}">
+											<smartField:SmartField value="{FleetVin}">
+												<smartField:configuration>
+													<smartField:Configuration displayBehaviour="descriptionAndId"/>
+												</smartField:configuration>
+											</smartField:SmartField>
+										</f:FormElement>
+										<f:FormElement label="{i18n>RegistrationNumber}">
+											<smartField:SmartField value="{LicenseNum}"/>
+										</f:FormElement>
+										<f:FormElement label="{i18n>InsurPolicy}">
+											<smartField:SmartField value="{FleetNum}"/>
+										</f:FormElement>
+										<!--	<f:FormElement label="Business Partner">
+											<smartField:SmartField value="{Partner}"/> 
+										</f:FormElement>-->
+										<f:FormElement label="{i18n>Material}">
+											<smartField:SmartField value="{Material}"/>
+										</f:FormElement>
+										<f:FormElement label="{i18n>Make}">
+											<smartField:SmartField value="{Make}">
+												<smartField:configuration>
+													<smartField:Configuration displayBehaviour="descriptionAndId"/>
+												</smartField:configuration>
+											</smartField:SmartField>
+										</f:FormElement>
+										<f:FormElement label="{i18n>Model}">
+											<smartField:SmartField value="{Model}">
+												<smartField:configuration>
+													<smartField:Configuration displayBehaviour="descriptionAndId"/>
+												</smartField:configuration>
+											</smartField:SmartField>
+										</f:FormElement>
+										<f:FormElement label="{i18n>DevelopmentLine}">
+											<smartField:SmartField value="{DevelopmentLine}">
+												<smartField:configuration>
+													<smartField:Configuration displayBehaviour="descriptionAndId"/>
+												</smartField:configuration>
+											</smartField:SmartField>
+										</f:FormElement>
+										<f:FormElement label="{i18n>ModelLine}">
+											<smartField:SmartField value="{ModelLine}">
+												<smartField:configuration>
+													<smartField:Configuration displayBehaviour="descriptionAndId"/>
+												</smartField:configuration>
+											</smartField:SmartField>
+										</f:FormElement>
+										<f:FormElement label="{i18n>ProductYear}">
+											<smartField:SmartField id="idModelYear" value="{ModelYear}"/>
+										</f:FormElement>
+										<f:FormElement label="{i18n>ManufactureYear}">
+											<smartField:SmartField id="idMfgYear" value="{MfgYear}"/>
+										</f:FormElement>
+										<f:FormElement label="{i18n>ExternalColor}">
+											<smartField:SmartField value="{BodyColor}">
+												<smartField:configuration>
+													<smartField:Configuration displayBehaviour="descriptionAndId"/>
+												</smartField:configuration>
+											</smartField:SmartField>
+										</f:FormElement>
+										<!--	<f:FormElement label="Service Contract Status" visible="{mCustIdentification>/SchemaTransactionType/RelForWarRecSC}">
+											<smartField:SmartField value="{to_EQUIPMENTCURRCONTSTS/ContractStatus}">
+												<smartField:controlProposal>
+													<smartField:ControlProposal>
+														<smartField:objectStatus>
+															<smartField:ObjectStatus criticality="{to_EQUIPMENTCURRCONTSTS/ContractStatusCriti}"/>
+														</smartField:objectStatus>
+													</smartField:ControlProposal>
+												</smartField:controlProposal>
+											</smartField:SmartField>
+										</f:FormElement>-->
+										<f:FormElement label="Used Car Type">
+											<smartField:SmartField value="{UsedCarType}">
+												<smartField:configuration>
+													<smartField:Configuration displayBehaviour="descriptionAndId"/>
+												</smartField:configuration>
+											</smartField:SmartField>
+										</f:FormElement>
+										<f:FormElement label="{i18n>ServiceContractStatus}" visible="{mCustIdentification>/SchemaTransactionType/RelForWarRecSC}">
+											<ObjectStatus class="sapUiSmallMarginBottom" text="{ContractStatusText_new}"
+												icon="{ parts: ['ContractStatusCriti_new'],formatter:'.fnServiceContractStatusIcon'}"
+												state="{ parts: ['ContractStatusCriti_new'],formatter:'.fnServiceContractStatusCriti'}"/>
+										</f:FormElement>
+										<f:FormElement label="{i18n>RecallStatus}" visible="{mCustIdentification>/SchemaTransactionType/RelForWarRecSC}">
+											<ObjectStatus id="ObjectStatusRecall" class="sapUiSmallMarginBottom"/>
+										</f:FormElement>
+									</f:formElements>
+								</f:FormContainer>
+								<f:FormContainer title="{i18n>WarrantyInformation} " visible="{mCustIdentification>/SchemaTransactionType/RelForWarRecSC}">
+									<f:FormElement label="{i18n>CustomerWarrantyStatus}">
+										<smartField:SmartField value="{WarrantyStatus_new}">
+											<smartField:controlProposal>
+												<smartField:ControlProposal>
+													<smartField:objectStatus>
+														<smartField:ObjectStatus criticality="{WarrantyStatusCriti_new}"/>
+													</smartField:objectStatus>
+												</smartField:ControlProposal>
+											</smartField:controlProposal>
+										</smartField:SmartField>
+									</f:FormElement>
+									<f:FormElement label="{i18n>CustomerWarrantyDescription}">
+										<smartField:SmartField value="{to_EquipmentWarrantyStatus/MasterWarrantyDescription}"/>
+									</f:FormElement>
+									<f:FormElement label="{i18n>CustomerWarrantyStartDate}">
+										<smartField:SmartField value="{to_EquipmentWarrantyStatus/WarrantyStartDate}"/>
+									</f:FormElement>
+									<f:FormElement label="{i18n>CustomerWarrantyEndDate}">
+										<smartField:SmartField value="{to_EquipmentWarrantyStatus/WarrantyEndDate}"/>
+									</f:FormElement>
+									<f:FormElement label="{i18n>OEMWarrantyStatus}">
+										<smartField:SmartField value="{OEMWarrantyStatus_new}">
+											<smartField:controlProposal>
+												<smartField:ControlProposal>
+													<smartField:objectStatus>
+														<smartField:ObjectStatus criticality="{OEMWarrantyStatusCriti_new}"/>
+													</smartField:objectStatus>
+												</smartField:ControlProposal>
+											</smartField:controlProposal>
+										</smartField:SmartField>
+									</f:FormElement>
+									<f:FormElement label="{i18n>OEMWarrantyDescription}">
+										<smartField:SmartField value="{OEMWarrantyStatusText_new}"/>
+									</f:FormElement>
+									<f:FormElement label="{i18n>OEMWarrantyStartdate}">
+										<smartField:SmartField value="{to_EquipmentWarrantyStatusOEM/WarrantyStartDate}"/>
+									</f:FormElement>
+									<f:FormElement label="{i18n>OEMWarrantyEndDate}">
+										<smartField:SmartField value="{to_EquipmentWarrantyStatusOEM/WarrantyEndDate}"/>
+									</f:FormElement>
+								</f:FormContainer>
+								<f:FormContainer title="{i18n>ServiceContract} "
+									visible="{ parts: ['ContractStatus_new','mCustIdentification>/SchemaTransactionType/RelForWarRecSC'],formatter:'.fnServiceContractVisible'}">
+									<f:FormElement label="{i18n>Service Contract}">
+										<Link text="{ parts: ['mCustIdentification>/customerInfo/to_ServiceContract01/results'],formatter:'.fnfindServiceContractNumber'}"
+											press="onContractLinkPress"/>
+									</f:FormElement>
+									<f:FormElement label="{i18n>Defarred Revenue}">
+										<ObjectNumber number="{ parts:['mCustIdentification>/customerInfo/to_ServiceContract01/results'], formatter:'.fnFormatDeferredRevenue' }"
+											unit="{ parts:['mCustIdentification>/customerInfo/to_ServiceContract01/results'], formatter:'.fnFormatCurrency' }"/>
+									</f:FormElement>
+								</f:FormContainer>
+								<f:FormContainer title="{i18n>SmartContract}" visible="false">
+									<f:FormElement label="{i18n>SmartServiceContract}">
+										<Link text="{ parts: ['mCustIdentification>/customerInfo/to_SmartServiceContract/results'],formatter:'.fnfindSmartServiceContractNumber'}"
+											press="onSmartContractLinkPress"/>
+									</f:FormElement>
+									<f:FormElement label="{i18n>Defarred Revenue}">
+										<ObjectNumber number="{ parts:['mCustIdentification>/customerInfo/to_SmartServiceContract/results'], formatter:'.fnFormatDeferredRevenue' }"
+											unit="{ parts:['mCustIdentification>/customerInfo/to_SmartServiceContract/results'], formatter:'.fnFormatCurrency' }"/>
+									</f:FormElement>
+								</f:FormContainer>
+								<f:FormContainer title="{i18n>SMARTInsurance}" visible="{= ${SMARTInsuranceType}?true:false}">
+									<f:FormElement label="Insurance Number">
+										<ObjectStatus text="{SMARTInsuranceNumber}" state="{SMARTInsuranceStatus}"/>
+									</f:FormElement>
+									<f:FormElement label="{i18n>SMARTInsuranceStartDate}">
+										<smartField:SmartField value="{SMARTInsuranceStartDate}"/>
+									</f:FormElement>
+									<f:FormElement label="{i18n>SMARTInsuranceEndDate}">
+										<smartField:SmartField value="{SMARTInsuranceEndDate}"/>
+									</f:FormElement>
+								</f:FormContainer>
+								<!--	<f:FormContainer title="{i18n>NPSScoreAndPDSSScore}">
+									<f:FormElement label="{i18n>SMARTInsuranceEndDate}"></f:FormElement>
+								</f:FormContainer>-->
+							</f:formContainers>
+						</f:Form>
+					</VBox>
+					<layout:VerticalLayout>
+						<layout:HorizontalLayout>
+							<CustRMC:RadialMicroChart size="S"
+								percentage="{ parts:['mCustIdentification>/customerInfo/to_EquipmentVBAPSOTagData/'], formatter:'.fnNPSScoreFormat' }" press="press"
+								class="sapUiSmallMargin"></CustRMC:RadialMicroChart>
+							<CustRMC:RadialMicroChart size="S"
+								percentage="{ parts:['mCustIdentification>/customerInfo/to_EquipmentVBAPSOTagData/'], formatter:'.fnPDSSScoreFormat' }" press="press"
+								class="sapUiSmallMargin"></CustRMC:RadialMicroChart>
+						</layout:HorizontalLayout>
+					</layout:VerticalLayout>
+					<VBox visible="{mCustIdentification>/uiOnly/visible/vBoxSearchResults}" class="sapUiSmallMargin">
+						<f:Form id="FormCustomerInfo" editable="false">
+							<f:toolbar>
+								<Toolbar >
+									<Title text="{i18n>customerInfo}" level="H4" titleStyle="H4"/>
+									<ToolbarSpacer/>
+									<Button id="SCIN_B10" text="{i18n>SelectBP}" type="Default" tooltip="{i18n>SelectBP}" press="onPressSelectPB"/>
+									<!--visible="{mCustIdentification>/uiOnly/visible/BTNSelctBP}"-->
+									<Button id="SCIN_B12" text="{i18n>ExtendCustomer}" type="Default" tooltip="{i18n>ExtendCustomer}" press="onExtendCustomer"
+										enabled="{ parts: ['mCustIdentification>/WorkShop','mCustIdentification>/customerInfo/to_CurrentOwner/Partner'],formatter:'.fnCheckExtendCustomerButtonEnable'}"/>
+									<Button id="SCIN_B11" text="{i18n>CreateContactPerson}" type="Default" tooltip="{i18n>CreateContactPerson}"
+										press="onPressCreateContactPerson" visible="{mCustIdentification>/uiOnly/visible/BTNCreateContractPersonBP}"/>
+									<Button id="SCIN_B05" icon="sap-icon://action" text="{i18n>MoreInfo}" type="Default" tooltip="{i18n>MoreInfo}" press="fnMoreCustomerInfo"/>
+								</Toolbar>
+							</f:toolbar>
+							<f:layout>
+								<f:ColumnLayout columnsM="2" columnsL="3" columnsXL="4"/>
+							</f:layout>
+							<f:formContainers>
+								<f:FormContainer>
+									<f:formElements>
+										<f:FormElement label="{i18n>Name}">
+											<f:fields>
+												<Text id="SCIN_T11"
+													text="{parts: ['mCustIdentification>/customerInfo/to_CurrentOwner/CustomerName', 'mCustIdentification>/customerInfo/to_CurrentOwner/Partner'], formatter: '.formatNameAndValuePair'}"/>
+											</f:fields>
+										</f:FormElement>
+										<f:FormElement label="{i18n>City}">
+											<f:fields>
+												<Text id="SCIN_T12" text="{mCustIdentification>/customerInfo/to_CurrentOwner/CityName}"/>
+											</f:fields>
+										</f:FormElement>
+										<f:FormElement label="{i18n>Country}">
+											<f:fields>
+												<Text id="SCIN_T13" text="{mCustIdentification>/customerInfo/to_CurrentOwner/Country}"/>
+											</f:fields>
+										</f:FormElement>
+										<f:FormElement label="{i18n>PostalCode}">
+											<f:fields>
+												<Text id="SCIN_T14" text="{mCustIdentification>/customerInfo/to_CurrentOwner/PostalCode}"/>
+											</f:fields>
+										</f:FormElement>
+										<f:FormElement label="{i18n>Telephone}">
+											<f:fields>
+												<Text id="SCIN_T15" text="{mCustIdentification>/customerInfo/to_CurrentOwner/TelephoneNumber1}"/>
+											</f:fields>
+										</f:FormElement>
+										<f:FormElement label="{i18n>Email}">
+											<f:fields>
+												<Text id="SCIN_T16" text="{mCustIdentification>/customerInfo/to_CurrentOwner/EmailAddress}"/>
+											</f:fields>
+										</f:FormElement>
+										<f:FormElement label="{i18n>CPRNo}">
+											<f:fields>
+												<Text text="{mCustIdentification>/customerInfo/to_CurrentOwner/idnumber}"/>
+											</f:fields>
+										</f:FormElement>
+										<f:FormElement label="{i18n>MobileNo}">
+											<f:fields>
+												<Text text="{mCustIdentification>/customerInfo/to_CurrentOwner/TelephoneNumber2}"/>
+											</f:fields>
+										</f:FormElement>
+										<f:FormElement label="{i18n>CustomerBlockedStatus}" visible="false">
+											<f:fields>
+												<Text text="{mCustIdentification>/customerInfo/to_CurrentOwner/BlockedStatus}"/>
+											</f:fields>
+										</f:FormElement>
+									</f:formElements>
+								</f:FormContainer>
+							</f:formContainers>
+						</f:Form>
+						<!--	<Panel visible="{= ${mCustIdentification>/BPContactPersonList}.length > 0 ? true : true }">
+							<headerToolbar>
+								<OverflowToolbar height="3rem">
+									<Title text="Contact Person List"/>
+									<ToolbarSpacer/>
+								</OverflowToolbar>
+							</headerToolbar>
+							<content>
+								<Table id="TBLBPContactPersonList" inset="false" items="{mCustIdentification>/BPContactPersonList}">
+									<columns>
+										<Column >
+											<Text text="Business Partner"/>
+										</Column>
+										<Column >
+											<Text text="Contact Person"/>
+										</Column>
+										<Column >
+											<Text text="Salutation"/>
+										</Column>
+										<Column width="12em">
+											<Text text="Contact Person Name"/>
+										</Column>
+										<Column >
+											<Text text="CPR Number"/>
+										</Column>
+										<Column >
+											<Text text="TelephoneNumber"/>
+										</Column>
+										<Column >
+											<Text text="Country"/>
+										</Column>
+										<Column >
+											<Text text="Email Address"/>
+										</Column>
+									</columns>
+									<items>
+										<ColumnListItem>
+											<cells>
+												<Text text="{mCustIdentification>BusinessPartner}"/>
+												<Text text="{mCustIdentification>ContactPerson}"/>
+												<Text text="{mCustIdentification>Salutation}"/>
+												<Text text="{mCustIdentification>ContactPersonName}"/>
+												<Text text="{mCustIdentification>CPRNumber}"/>
+												<Text text="{mCustIdentification>TelephoneNumber}"/>
+												<Text text="{mCustIdentification>Country}"/>
+												<Text text="{mCustIdentification>EmailAddress}"/>
+											</cells>
+										</ColumnListItem>
+									</items>
+								</Table>
+							</content>
+						</Panel> -->
+					</VBox>
+					<VBox class="sapUiSmallMargin" visible="{mCustIdentification>/uiOnly/visible/vBoxSearchResults}">
+						<Panel >
+							<headerToolbar>
+								<OverflowToolbar height="3rem">
+									<Title text="{i18n>ExtendedWarranty}"/>
+									<ToolbarSpacer/>
+								</OverflowToolbar>
+							</headerToolbar>
+							<content>
+								<smartTable:SmartTable id="SmartTableExtendedWarranty" entitySet="ZAE_C_T_EQU_EXW" tableType="ResponsiveTable" useExportToExcel="false"
+									useVariantManagement="false" useTablePersonalisation="true" header="{i18n>LineItems}" showRowCount="true" enableAutoBinding="true"
+									initiallyVisibleFields='ExtendedWarrantyType,vendor,ExtendedWarrantyNumber,StartDate,EndDate'
+									beforeRebindTable="onBeforeRebindSmartTableExtendedWarranty"></smartTable:SmartTable>
+							</content>
+						</Panel>
+					</VBox>
+					<VBox class="sapUiSmallMargin" visible="{mCustIdentification>/uiOnly/visible/vBoxSearchResults}">
+						<Panel >
+							<headerToolbar>
+								<OverflowToolbar height="3rem">
+									<Title text="{i18n>SalesArea}"/>
+									<ToolbarSpacer/>
+								</OverflowToolbar>
+							</headerToolbar>
+							<content>
+								<smartTable:SmartTable id="SmartTableSalesArea" entitySet="ZAE_C_CustomerMasterSalesData" tableType="ResponsiveTable"
+									useExportToExcel="false" useVariantManagement="false" useTablePersonalisation="true" header="{i18n>LineItems}" showRowCount="true"
+									enableAutoBinding="true"
+									initiallyVisibleFields='Customer,SalesOrganization,DistrChannel,Division,CustomerGroup,CreditSegment,BlockReason,CreditBlock,CreditLimit,AvailableCredit'
+									beforeRebindTable="onBeforeRebindSmartTableSalesArea">
+									<smartTable:layoutData >
+										<FlexItemData growFactor="1" baseSize="0%"/>
+									</smartTable:layoutData>
+									<Table mode="SingleSelectLeft" updateFinished="onAfterRebindSmartTableSalesArea"/>
+								</smartTable:SmartTable>
+							</content>
+						</Panel>
+					</VBox>
+					<VBox class="sapUiSmallMargin" visible="{mCustIdentification>/uiOnly/visible/vBoxSearchResults}">
+						<Panel >
+							<headerToolbar>
+								<OverflowToolbar height="3rem">
+									<Title text="{i18n>ContactPersonList}"/>
+									<ToolbarSpacer/>
+								</OverflowToolbar>
+							</headerToolbar>
+							<content>
+								<smartTable:SmartTable id="SmartTableContactPersonList" entitySet="ZAE_C_BPContactPerson" tableType="ResponsiveTable"
+									useExportToExcel="false" useVariantManagement="false" useTablePersonalisation="true" header="{i18n>LineItems}" showRowCount="true"
+									enableAutoBinding="true" initiallyVisibleFields='BusinessPartner,ContactPerson,ContactPersonName,CPRNumber,CityName'
+									beforeRebindTable="onBeforeRebindSmartTableContactPersonList">
+									<smartTable:layoutData >
+										<FlexItemData growFactor="1" baseSize="0%"/>
+									</smartTable:layoutData>
+									<Table mode="SingleSelectLeft" updateFinished="onAfterRebindSmartTableContactPersonList"/>
+								</smartTable:SmartTable>
+							</content>
+						</Panel>
+					</VBox>
+					<VBox class="sapUiSmallMargin" visible="{mCustIdentification>/uiOnly/visible/vBoxSearchResults}">
+						<Panel >
+							<headerToolbar>
+								<OverflowToolbar height="3rem">
+									<Title text="{i18n>Complains}"/>
+									<ToolbarSpacer/>
+								</OverflowToolbar>
+							</headerToolbar>
+							<content>
+								<smartTable:SmartTable id="SmartTableComplainList" entitySet="ZAE_C_Activity_05" tableType="ResponsiveTable" useExportToExcel="false"
+									useVariantManagement="false" useTablePersonalisation="true" header="{i18n>LineItems}" showRowCount="true" enableAutoBinding="true"
+									initiallyVisibleFields="Activity,CreatedOn,created_by,person_resp,UserStatus,description"
+									beforeRebindTable="onBeforeRebindSmartTableComplainList">
+									<smartTable:customToolbar>
+										<OverflowToolbar design="Transparent">
+											<ToolbarSpacer/>
+											<Button id="SCIN_B15" text="{i18n>CreateComplain}" type="Default" tooltip="{i18n>CreateComplain}" press="onCreateComplain"
+												enabled="{= ${mCustIdentification>/TBLSalesAreaLength} > 0 ? ${mCustIdentification>/TBLContactPersonLength} > 0 ? true :false : false}"/>
+										</OverflowToolbar>
+									</smartTable:customToolbar>
+									<smartTable:layoutData >
+										<FlexItemData growFactor="1" baseSize="0%"/>
+									</smartTable:layoutData>
+									<Table mode="None" updateFinished="onBeforeRebindSmartTableComplainList">
+										<columns>
+											<Column hAlign="Left">
+												<customData>
+													<core:CustomData key="p13nData" value='\{"columnKey": "Activity1", "maxLength": "10","columnIndex":"0"}'/>
+												</customData>
+												<Text text="{i18n>Complains}"/>
+											</Column>
+										</columns>
+										<items>
+											<ColumnListItem>
+												<cells>
+													<VBox>
+														<Link text="{Activity}" press="fnHandelComplainLinkPress"/>
+													</VBox>
+												</cells>
+											</ColumnListItem>
+										</items>
+									</Table>
+								</smartTable:SmartTable>
+							</content>
+						</Panel>
+					</VBox>
+					<VBox id="idvehiclehistory" class="sapUiSmallMargin" visible="{mCustIdentification>/uiOnly/visible/vBoxSearchResults}">
+						<Panel >
+							<headerToolbar>
+								<OverflowToolbar height="3rem">
+									<Title text="{i18n>vehiclehistory}"/>
+									<ToolbarSpacer/>
+								</OverflowToolbar>
+							</headerToolbar>
+							<content>
+								<smartTable:SmartTable id="vehiclehistory" entitySet="ZAE_C_ServiceOrderHistory_01" tableType="ResponsiveTable" useExportToExcel="true"
+									useVariantManagement="false" useTablePersonalisation="true" header="{i18n>LineItems}" showRowCount="true"
+									persistencyKey="SmartTableAnalytical_Explored" enableAutoBinding="true"
+									initiallyVisibleFields='ServiceOrder,ServiceOrderType,Invoice,Equipment,ServiceDocumentDescription,SoldToParty,BillToParty,LicenseNum,HistoryItems,PostingDate'
+									beforeRebindTable="onBeforeRebindHistoryTable">
+									<smartTable:layoutData >
+										<FlexItemData growFactor="1" baseSize="0%"/>
+									</smartTable:layoutData>
+									<!--<smartTable:semanticObjectController>   	app:p13nDialogSettings="{sort:{items:[{ columnKey: 'PostingDate', operation: 'Ascending' }]}}"
+										<sl:SemanticObjectController enableAvailableActionsPersonalization='\{"ServiceOrder":true\}'/>
+									</smartTable:semanticObjectController>-->
+									<Table alternateRowColors="true" growing="true" growingThreshold="10">
+										<columns>
+											<Column hAlign="Left">
+												<customData>
+													<core:CustomData key="p13nData" value='\{"columnKey": "ServiceOrder1", "maxLength": "15","columnIndex":"0"}'/>
+												</customData>
+												<Text text="{i18n>ServiceOrderNumber}"/>
+											</Column>
+											<!--<Column hAlign="Left">
+												<customData>
+													<core:CustomData key="p13nData"
+														value='\{"columnKey": "ServiceOrder2",  "maxLength": "15","columnIndex":"1"}'/>
+												</customData>
+												<Text text="Service Order"/>
+											</Column>-->
+										</columns>
+										<items>
+											<ColumnListItem type="Navigation" press="onServiceListPress">
+												<cells>
+													<!--	<Link text="{ServiceOrder}" press="fnHandelServiceOrderLinkPress"/>-->
+													<VBox>
+														<Link text="{ServiceOrder}" press="fnHandelServiceOrderLinkPress" visible="{= ${HistoryItems}==='NEW' ? true:false }"/>
+														<Text text="{ServiceOrder}" visible="{= ${HistoryItems}==='NEW' ? false:true }"/>
+													</VBox>
+												</cells>
+											</ColumnListItem>
+										</items>
+									</Table>
+								</smartTable:SmartTable>
+							</content>
+						</Panel>
+					</VBox>
+				</content>
+				<footer>
+					<Toolbar>
+						<Button id="SCIN_B06" icon="sap-icon://alert" text="{= ${message>/}.length }" visible="{= ${message>/}.length > 0 }" type="Emphasized"
+							press="onMessagePopoverPress"/>
+						<ToolbarSpacer width="4px"/>
+						<!--	<Input id="SCIN_I01" placeholder="{i18n>PLANT}" type="Text" showSuggestion="true" showValueHelp="true"
+							valueHelpRequest="handlePlantValueHelp" width="15rem" value="{mCustIdentification>/WorkShop}" maxSuggestionWidth="25%"
+							change="onPlantSelected" suggestionItems="{/ZAE_I_Plant_03}" textFormatMode="ValueKey" suggest="suggestHelp">
+							<suggestionItems>
+								<core:ListItem key="{ValuationArea}" text="{PlantName}" additionalText="{ValuationArea}"/>
+							</suggestionItems>
+						</Input>-->
+						<Input id="SCIN_I02" placeholder="{i18n>Category}" type="Text" showSuggestion="true" showValueHelp="true"
+							valueHelpRequest="handleCategoryValueHelp" value="{mCustIdentification>/Category}" width="15rem" maxSuggestionWidth="25%"
+							textFormatMode="ValueKey" editable="{= ${mCustIdentification>/WorkShop} !== '' &amp;&amp; ${mCustIdentification>/Equipment} !== ''}"/>
+						<!-- suggestionItems="{/ZAE_I_CategorizationSchema}"   suggest="suggestHelp"   editable
+					   <suggestionItems>
+								<core:ListItem key="{cat_id}" text="{cat_label}" additionalText="{cat_id}"/>
+							</suggestionItems>
+						</Input>-->
+						<Input id="SCIN_I03" placeholder="{i18n>InsuranceCompany}" type="Text" showSuggestion="true" showValueHelp="true"
+							valueHelpRequest="handleInsurerValueHelp" width="15rem" value="{mCustIdentification>/Insurer}" maxSuggestionWidth="25%"
+							suggestionItems="{/ZAE_I_Insurer}" textFormatMode="ValueKey" suggest="suggestHelp">
+							<suggestionItems>
+								<core:ListItem key="{BusinessPartner}" text="{BusinessPartnerFullName}" additionalText="{BusinessPartner}"/>
+							</suggestionItems>
+						</Input>
+						<Button id="SCIN_B07" text="{i18n>ResourceLoad}" type="Accept" press="fnResourceLoad"/>
+						<Button id="SCIN_B14" text="{i18n>WorkshopLoad}" type="Accept" enabled="{mCustIdentification>/customerInfo/isshowSCIN_B14}"
+							press="fnWorkshopLoad"/>
+						<ToolbarSpacer/>
+						<Button id="SCIN_B08" text="{i18n>CreateAppointment}" type="Accept" press="fnPressCreateAppointment"
+							enabled="{ parts: ['mCustIdentification>/WorkShop','mCustIdentification>/Category','mCustIdentification>/TBLSalesAreaLength','mCustIdentification>/customerInfo/CurrentOwner','mCustIdentification>/customerInfo/to_CurrentOwner/Partner','mCustIdentification>/customerInfo/to_CurrentOwner/BlockedStatus'],formatter:'.fnCheckCreateAppointmentButtonEnable'}"/>
+						<Button id="SCIN_B09" text="{i18n>CreateServiceRequest}" type="Accept" press="onCreateRequestPress"
+							enabled="{ parts: ['mCustIdentification>/WorkShop','mCustIdentification>/Category','mCustIdentification>/TBLSalesAreaLength','mCustIdentification>/customerInfo/CurrentOwner','mCustIdentification>/customerInfo/to_CurrentOwner/Partner','mCustIdentification>/customerInfo/to_CurrentOwner/BlockedStatus'],formatter:'.fnCheckCreateAppointmentButtonEnable'}"/>
+					</Toolbar>
+				</footer>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

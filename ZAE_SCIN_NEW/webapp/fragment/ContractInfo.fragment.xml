@@ -1,0 +1,29 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:smartField="sap.ui.comp.smartfield">
+	<Popover showHeader="false" contentWidth="300px" contentHeight="410px" placement="Right" title="{i18n>ContractDetails}">
+		<Page title="{i18n>ContractDetails}" titleAlignment="Center">
+			<VBox class="sapUiSmallMargin">
+				<Label text="{i18n>ContractNo}" class="sapUiTinyMarginTop"/>
+				<Link text="{mCustIdentification>/customerInfo/ServiceContract/MoreInfo/SalesContract}" press="handleContractLinkPress"/>
+				<Label text="{i18n>ContractDetail}" class="sapUiTinyMarginTop"/>
+				<Text text="{mCustIdentification>/customerInfo/ServiceContract/MoreInfo/to_Item_01/results/0/SalesContractItemText}"/>
+				<Label text="{i18n>ContractStatus}" class="sapUiTinyMarginTop"/>
+				<ObjectStatus text="{mCustIdentification>/customerInfo/ContractStatus_new}"
+					state="{parts: ['mCustIdentification>/customerInfo/ContractStatusText_new'], formatter: '.formatStatus'}"/>
+				<Label text="{i18n>ContractType}" class="sapUiTinyMarginTop"/>
+				<Text
+					text="{parts: ['mCustIdentification>/customerInfo/ServiceContract/MoreInfo/SalesDocumentTypeName', 'mCustIdentification>/customerInfo/ServiceContract/MoreInfo/SalesContractType'], formatter: '.formatNameAndValuePair'}"/>
+				<Label text="{i18n>KMCoverted}" class="sapUiTinyMarginTop"/>
+				<Text text="{mCustIdentification>/customerInfo/ServiceContract/MoreInfo/WarrantyCounterValue_KM}"/>
+				<Label text="{i18n>UserStatus}" class="sapUiTinyMarginTop"/>
+				<Text
+					text="{parts: ['mCustIdentification>/customerInfo/ServiceContract/MoreInfo/UserStatusTxt', 'mCustIdentification>/customerInfo/ServiceContract/MoreInfo/UserStatus'], formatter: '.formatNameAndValuePair'}"/>
+				<Label text="{i18n>ContractStartDate}" class="sapUiTinyMarginTop"/>
+				<Text
+					text="{ path: 'mCustIdentification>/customerInfo/ServiceContract/MoreInfo/SalesContractValidityStartDate', type: 'sap.ui.model.type.Date', formatOptions: { style: 'full' } }"/>
+				<Label text="{i18n>ContractEndDate}" class="sapUiTinyMarginTop"/>
+				<Text
+					text="{ path: 'mCustIdentification>/customerInfo/ServiceContract/MoreInfo/SalesContractValidityEndDate', type: 'sap.ui.model.type.Date', formatOptions: { style: 'full' } }"/>
+			</VBox>
+		</Page>
+	</Popover>
+</core:FragmentDefinition>

@@ -1,0 +1,63 @@
+<mvc:View controllerName="com.globalintelli.ZAE_MMSA.controller.Master" xmlns:tnt="sap.tnt" xmlns="sap.m" xmlns:semantic="sap.f.semantic"
+	xmlns:mvc="sap.ui.core.mvc" class="sapUiNoContentPadding">
+	<semantic:SemanticPage id="masterPage" preserveHeaderStateOnScroll="true" toggleHeaderOnTitleClick="false">
+		<semantic:titleHeading>
+			<Title id="masterPageTitle" text="{masterView>/title}" level="H2"/>
+		</semantic:titleHeading>
+		<semantic:content class="sapUiNoContentPadding">
+			<!-- For client side filtering add this to the items attribute: parameters: {operationMode: 'Client'}}" -->
+			<!--<IconTabBar select="onSelectTab">-->
+			<!--	<items>-->
+			<!--		<IconTabFilter text="{i18n>upcoming}" key="upcoming"></IconTabFilter>-->
+			<!--		<IconTabFilter text="{i18n>past}" key="past">-->
+			<!--		</IconTabFilter>-->
+			<!--	</items>-->
+			<!--	<content>-->
+			<List id="list" width="auto"
+				items="{ path: '/ZAE_I_ServiceRequest_03',parameters:{expand : 'to_EquipmentRecall,to_ServiceHistory,to_ServiceRequestChecklist,to_MeasuringDocument'} , sorter: { path: 'ServiceRequest', descending: true }, groupHeaderFactory: '.createGroupHeader' ,suspended: true}"
+				busyIndicatorDelay="{masterView>/delay}" noDataText="{masterView>/noDataText}"
+				mode="{= ${device>/system/phone} ? 'None' : 'SingleSelectMaster'}" growing="true" growingThreshold="10" updateFinished=".onUpdateFinished"
+				updateStarted="onUpdateStarted" selectionChange=".onSelectionChange">
+				<headerToolbar>
+					<OverflowToolbar>
+						<SearchField id="searchField" showRefreshButton="true" tooltip="{i18n>masterSearchTooltip}" search=".onSearch" width="auto">
+							<layoutData>
+								<OverflowToolbarLayoutData minWidth="150px" maxWidth="240px" shrinkable="true" priority="NeverOverflow"/>
+							</layoutData>
+						</SearchField>
+						<ToolbarSpacer/>
+						<Button id="sortButton" press=".onOpenViewSettings" icon="sap-icon://sort" type="Transparent"/>
+						<!--<Button id="filterButton" press=".onOpenViewSettings" icon="sap-icon://filter" type="Transparent"/>-->
+					</OverflowToolbar>
+				</headerToolbar>
+				<items>
+					<!--	<ObjectListItem type="Navigation" press=".onSelectionChange" title="{ServiceRequest} . {ServiceDocumentDescription}">
+						<ObjectAttribute text="{LicenseNum} . {EquipmentName}" />
+					</ObjectListItem>-->
+					<CustomListItem>
+						<VBox class="sapUiSmallMargin" width="95%">
+							<HBox>
+								<HBox width="90%">
+									<Title width="{otitleModel>/width}" text="{ServiceRequest} • {ServiceDocumentDescription}"/>
+								</HBox>
+								<HBox class="sapUiLargeMarginBegin">
+									<ObjectStatus class="sapUiTinyMarginBegin" text="{i18n>W}" inverted="true"
+										state="{path:'WarrantyStatus_Crit_new', formatter:'.warrantyStatusformat'}"/>
+									<ObjectStatus class="sapUiTinyMarginBegin" text="{i18n>O}" inverted="true"
+										state="{path:'OEMWarrantyStatus_Crit_new', formatter:'.warrantyStatusformat'}"/>
+									<ObjectStatus class="sapUiTinyMarginBegin" text="{i18n>C}" inverted="true"
+										state="{path:'ContractStatusCrit_new', formatter:'.warrantyStatusformat'}"/>
+									<ObjectStatus id="idRecall" class="sapUiTinyMarginBegin" text="{i18n>R}" inverted="true"
+										state="{parts: [{path:'WarrantyClaim'},{path:'ServiceOrder'}], formatter: '.Statusformat'}"/>
+								</HBox>
+							</HBox>
+							<ObjectStatus class="sapUiTinyMarginTop" text="{LicenseNum} • {EquipmentName}" state="None"/>
+						</VBox>
+					</CustomListItem>
+				</items>
+			</List>
+			<!--</content>-->
+			<!--</IconTabBar>-->
+		</semantic:content>
+	</semantic:SemanticPage>
+</mvc:View>

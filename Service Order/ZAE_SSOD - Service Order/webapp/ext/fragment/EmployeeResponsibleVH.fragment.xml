@@ -1,0 +1,4 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<SelectDialog noDataText="No Partner Found" title="Select Partner" search="onSearchEmpRespValueHelp"
+		confirm="onShowEmpRespValueHelpDialogClose" cancel="onCancelEmpRespValueHelp" showClearButton="false"></SelectDialog>
+</core:FragmentDefinition>

@@ -1,0 +1,15 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns="sap.m">
+	<l:VerticalLayout class="sapUiContentPadding" width="100%">
+		<l:content>
+			<MessageStrip class="sapUiResponsiveMargin sapUiNoMarginTop" id="SSOD_B159MessageStrip" showCloseButton="false" showIcon="true" type="Error"
+				visible="false"></MessageStrip>
+			<f:SimpleForm id="PartnerUpdate" layout="ResponsiveGridLayout" singleContainerFullSize="false">
+				<f:content>
+					<Label text="{i18n>idPartnerInput}" required="true"/>
+					<Input id="idPartnerInput" required="true" type="Text" showSuggestion="true" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="onShowPartnerVH1"
+						class="sapUiSmallMarginBottom"/>
+				</f:content>
+			</f:SimpleForm>
+		</l:content>
+	</l:VerticalLayout>
+</core:FragmentDefinition>

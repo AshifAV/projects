@@ -1,0 +1,65 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+	controllerName="com.globalintelli.ZAE_SCIN_NEW.controller.Appointment" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:unified="sap.ui.unified"
+	xmlns:l="sap.ui.layout">
+	<App>
+		<pages>
+			<Page title="{i18n>createAppointment}" showNavButton="true" navButtonPress="navBack">
+				<content>
+					<!--<PlanningCalendar id="SCIN_SAPlanCal" appointmentsVisualization="Filled" appointmentSelect="handleAppointmentSelect"
+						showEmptyIntervalHeaders="false" showWeekNumbers="true" visible="true" intervalSelect="handleAppointmentCreateSlotSelect"
+						stickyHeader="true" class="sapMPlanCalSuppressAlternatingRowColors">
+						<toolbarContent>
+							<Title text="{i18n>APP_TITLE}" titleStyle="H4"/>
+							<ToolbarSpacer/>
+							<Button id="SCIN_B01" icon="sap-icon://add" press="handleAppointmentCreate" tooltip="Create Appointment"
+								enabled="{= ${mAppointment>/filters/Customer}? true: false}"/>
+						</toolbarContent>
+					</PlanningCalendar>-->
+					<PlanningCalendar id="SCIN_SAPlanCal" showEmptyIntervalHeaders="false"  appointmentSelect="handleAppointmentSelect" showWeekNumbers="true" visible="true"
+						intervalSelect="handleAppointmentCreateSlotSelect" stickyHeader="true" rows="{path:'mAppointment>/EmployeeAppointments/'}" viewKey="A">
+						<rows>
+							<PlanningCalendarRow icon="" title="{mAppointment>EmployeeFullName}" text="{mAppointment>Employee}" key="{mAppointment>Employee}"
+								enableAppointmentsDragAndDrop="true" nonWorkingDays="[]" nonWorkingHours="[-1,0,1,2,3,4,5,6,7,8,9,21,22,23]"
+								appointmentDrop="handleAppointmentDrop" appointmentDragEnter="handleAppointmentDragEnter"
+								specialDates="{mAppointment>to_EMPL_LEAVES_03/results}" appointments="{mAppointment>to_Appointment/results/}">
+								<specialDates>
+									<unified:DateTypeRange type="NonWorking"
+										startDate="{ parts: ['mAppointment>FromDate', 'mAppointment>ToDate'], formatter: '.formatLeaveStart' }"
+										endDate="{ parts: ['mAppointment>FromDate', 'mAppointment>ToDate'], formatter: '.formatLeaveEnd' }"/>
+								</specialDates>
+								<appointments>
+									<unified:CalendarAppointment
+										startDate="{ parts: ['mAppointment>fromdate', 'mAppointment>from_time'], formatter: '.aeFormatter.dateTimeToDate' }"
+										endDate="{ parts: ['mAppointment>todate', 'mAppointment>to_time'], formatter: '.aeFormatter.dateTimeToDate' }" icon="{mAppointment>icon}"
+										title="{mAppointment>description}" text="{mAppointment>UserStatusName}" key="{mAppointment>Appointment}" type="{mAppointment>type}"
+										tentative=""></unified:CalendarAppointment>
+								</appointments>
+							</PlanningCalendarRow>
+						</rows>
+						<toolbarContent>
+							<Title text="{i18n>APP_TITLE}" titleStyle="H4"/>
+							<ToolbarSpacer/>
+							<Button id="SCIN_B01" icon="sap-icon://add" press="handleAppointmentCreate" tooltip="{i18n>createAppointment}"
+								enabled="{= ${mAppointment>/filters/Customer}? true: false}"/>
+						</toolbarContent>
+						<views>
+							<PlanningCalendarView key="A" intervalType="Hour" description="hours view" intervalsS="2" intervalsM="4" intervalsL="8"
+								showSubIntervals="true"></PlanningCalendarView>
+							<PlanningCalendarView key="D" intervalType="Day" description="days view" intervalsS="1" intervalsM="3" intervalsL="8"
+								showSubIntervals="true"></PlanningCalendarView>
+							<PlanningCalendarView key="M" intervalType="Month" description="months view" intervalsS="1" intervalsM="2" intervalsL="3"
+								showSubIntervals="true"></PlanningCalendarView>
+						</views>
+					</PlanningCalendar>
+				</content>
+				<footer>
+					<Toolbar>
+						<Button id="SCIN_B02" icon="sap-icon://alert" text="{= ${message>/}.length }" visible="{= ${message>/}.length > 0 }" type="Emphasized"
+							press="onMessagePopoverPress"/>
+						<ToolbarSpacer width="4px"/>
+					</Toolbar>
+				</footer>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

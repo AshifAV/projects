@@ -1,0 +1,50 @@
+specVersion: "4.0"
+metadata:
+  name: com.globalintelli.zae_mmsa
+type: application
+framework:
+  name: SAPUI5
+  version: 1.79.0
+  libraries:
+    - name: sap.collaboration
+    - name: sap.f
+    - name: sap.m
+    - name: sap.ui.core
+    - name: sap.ushell
+    - name: sap.ui.comp
+    - name: sap.ui.table
+    - name: sap.ui.generic.app
+    - name: themelib_sap_bluecrystal
+    - name: themelib_sap_fiori_3
+server:
+  customMiddleware:
+    - name: fiori-tools-proxy
+      afterMiddleware: compression
+      configuration:
+        ignoreCertErrors: false
+        backend:
+          - path: /sap
+            url: http://otegroup.server.com:44380
+            client: "050"
+            destination: DS4
+          - path: /resources/com/globalintelli/zae_flib
+            destination: DS4
+            url: http://otegroup.server.com:44380
+            client: "050"
+            pathPrefix: /sap/bc/ui5_ui5/sap/ZAE_FLIB
+          - path: /resources/com/globalintelli/zae_flib
+            destination: DS4
+            url: http://otegroup.server.com:44380
+            client: "050"
+            pathPrefix: /sap/bc/ui5_ui5/sap/ZAE_FLIB
+    - name: fiori-tools-appreload
+      afterMiddleware: compression
+      configuration:
+        port: 35729
+        path: webapp
+        delay: 300
+    - name: fiori-tools-preview
+      afterMiddleware: fiori-tools-appreload
+      configuration:
+        component: com.globalintelli.ZAE_MMSA
+        ui5Theme: sap_fiori_3

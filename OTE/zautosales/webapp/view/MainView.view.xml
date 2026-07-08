@@ -1,0 +1,76 @@
+<mvc:View
+    controllerName="zautosales.controller.MainView"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    height="100%">
+
+    <App>
+        <pages>
+            <Page title="Material Stock Overview">
+
+                <content>
+
+                    <!-- SEARCH -->
+                    <SearchField
+                        placeholder="Search Material..."
+                        liveChange="onSearch"
+                        width="300px"
+                        class="sapUiSmallMargin"/>
+
+                    <!-- TABLE -->
+                    <Table
+                        id="materialTable"
+                        mode="MultiSelect"
+                        items="{/MaterialStockSet}"
+                        growing="true"
+                        growingThreshold="20"
+                        updateFinished="onUpdateFinished">
+
+                        <columns>
+                            <Column><Text text="Material"/></Column>
+                            <Column><Text text="Description"/></Column>
+                            <Column><Text text="Plant"/></Column>
+                            <Column><Text text="Storage"/></Column>
+                            <Column hAlign="End"><Text text="Stock"/></Column>
+                            <Column hAlign="End"><Text text="Price"/></Column>
+                            <Column hAlign="End"><Text text="Quantity"/></Column>
+                        </columns>
+
+                        <items>
+                            <ColumnListItem>
+                                <cells>
+
+                                    <Text text="{Matnr}"/>
+                                    <Text text="{Maktx}"/>
+                                    <Text text="{Werks}"/>
+                                    <Text text="{Lgort}"/>
+                                    <ObjectNumber number="{Labst}"/>
+                                    <ObjectNumber number="{Kbetr}"/>
+
+                                    <!-- Quantity Input -->
+                                    <Input
+                                        value=""
+                                        type="Number"
+                                        liveChange="onQuantityChange"
+                                        width="100%"/>
+
+                                </cells>
+                            </ColumnListItem>
+                        </items>
+
+                    </Table>
+
+                </content>
+
+                <footer>
+                    <OverflowToolbar>
+                        <Button text="Clear" press="onClear"/>
+                        <ToolbarSpacer/>
+                        <Button text="Process Selected" type="Emphasized" press="onProcess"/>
+                    </OverflowToolbar>
+                </footer>
+
+            </Page>
+        </pages>
+    </App>
+</mvc:View>

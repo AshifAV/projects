@@ -1,0 +1,110 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"
+	xmlns:smartField="sap.ui.comp.smartfield">
+	<l:VerticalLayout class="sapUiContentPadding" width="100%">
+		<l:content>
+			<MessageStrip class="sapUiResponsiveMargin sapUiNoMarginTop" id="SCINCreateMessageStrip" showCloseButton="false" showIcon="true"
+				type="Error" visible="false"></MessageStrip>
+			<f:SimpleForm id="appointmentCreateForm" editable="true" layout="ResponsiveGridLayout" singleContainerFullSize="false">
+				<f:content>
+					<Label text="{i18n>Description}" labelFor="Description" required="true"/>
+					<Input id="Description" liveChange="fnBeginButtonValidation" maxLength="{path: '/#ZAE_FM_SCIN_CRE_ACT_COMPLAIN/Description/@maxLength', formatter: 'parseInt'}"/>
+					<Label text="{i18n>ComplainText}" labelFor="ComplainText" required="true"/>
+					<TextArea id="ComplainText" rows="3" liveChange="fnBeginButtonValidation"/>
+					<Label text="{i18n>ReferenceNo}" labelFor="ReferenceNo"/>
+					<Input id="ReferenceNo" change="fnBeginButtonValidation" maxLength="{path: '/#ZAE_FM_SCIN_CRE_ACT_COMPLAIN/Reference/@maxLength', formatter: 'parseInt'}"/>
+					<Label text="{i18n>RefernceDocType}" labelFor="RefernceDocType"/>
+					<Select id="RefernceDocType" items="{ path: '/ZAE_VH_ExternalRefType' }" forceSelection="false" showSecondaryValues="true">
+						<core:ListItem key="{ExternalReferenceType}" text="{ExternalReferenceTypeName}" additionalText="{ExternalReferenceType}"/>
+					</Select>
+					<Label text="{i18n>Salesoffice}" labelFor="Salesoffice" required="true"/>
+					<Select id="CCSalesoffice" items="{ path: '/ZAE_VH_PlantSalesOffice' }" change="fnSalesOfficeChange" showSecondaryValues="true">
+						<core:ListItem key="{SalesOffice}" text="{SalesOfficeName}" additionalText="{SalesOffice}"/>
+					</Select>
+					<Label text="{i18n>Salesgroup}" labelFor="Salesgroup" required="true"/>
+					<Select id="CCSalesgroup" items="{ path: '/ZAE_I_SalesOfficeGroup_01' }" forceSelection="false" change="fnSalesGroupChange"
+						showSecondaryValues="true">
+						<core:ListItem key="{SalesGroup}" text="{SalesGroupName}" additionalText="{SalesGroup}"/>
+					</Select>
+					<Label text="{i18n>Activitytype}" labelFor="Activitytype"/>
+					<Input id="Activitytype" change="fnBeginButtonValidation"/>
+					<!--<Select id="Activitytype" items="{mCustIdentification>/CreateComplaint/CreateCompActivityType}" forceSelection="false"-->
+					<!--	showSecondaryValues="true">-->
+					<!--	<core:ListItem key="{mCustIdentification>ActivityType}" text="{mCustIdentification>ActivityType}"-->
+					<!--		additionalText="{mCustIdentification>ActivityType}"/>-->
+					<!--</Select>-->
+					<Label text="{i18n>ComplianReasonCodeGroup}" labelFor="ComplianReasonCodeGroup" required="true"/>
+					<Select id="ComplianReason" items="{ path: '/ZAE_I_ActivityReasonCode_01' }" change="fnComplainReasonCodeGroup" forceSelection="false"
+						showSecondaryValues="true">
+						<core:ListItem key="{CodeGroup}" text="{CodeGroupText}" additionalText="{CodeGroup}"/>
+					</Select>
+					<Label text="{i18n>ComplianReasonCode}" labelFor="ComplianReasonCode" required="true"/>
+					<Select id="ComplianReasonCode" items="{ path: '/ZAE_I_ACTIVITYREASONCODE' }" change="fnBeginButtonValidation" forceSelection="false"
+						showSecondaryValues="true">
+						<core:ListItem key="{Code}" text="{CodeText}" additionalText="{Code}"/>
+					</Select>
+					<Label text="{i18n>ActivityID}" labelFor="ActivityID"/>
+					<Input id="ActivityID" change="fnBeginButtonValidation" enabled="false"/>
+					<Label text="{i18n>Contactperson}" labelFor="Contactperson"/>
+					<Select id="Contactperson" items="{ path: '/ZAE_C_BPContactPerson' }" forceSelection="false" showSecondaryValues="true">
+						<core:ListItem key="{ContactPerson}" text="{ContactPersonName}" additionalText="{ContactPerson}"/>
+					</Select>
+					<Label text="{i18n>EmployeeResponsible}" labelFor="EmployeeResp"/>
+					<!--<Select id="EmployeeResp" items="{ path: '/ZRD_VH_SalesRepresentative' }"  showSecondaryValues="true">
+						<core:Item key="{Employee}" text="{EmployeeFullName}" additionalText="{Employee}"/>
+					</Select>-->
+					<!--<ComboBox id="EmployeeResp" items="{path: '/ZAE_VH_BusinessPartner_06', length:2000}" showSecondaryValues="true"-->
+					<!--	change="fnBeginButtonValidation">-->
+					<!--	<core:ListItem key="{Partner}" text="{PartnerName}" additionalText="{Partner}"/>-->
+					<!--</ComboBox>-->
+					<Label text="{i18n>EmployeeResponsible}" labelFor="EmployeeResp"/>
+					<MultiInput id="EmployeeResp" valueHelpRequest=".onEmpRespValueHelpRequested" valueHelpOnly="false" showValueHelp="true"
+						tokenUpdate="onEmpRespTokenUpdate" showSuggestion="true" suggestionItemSelected="onSelectEmpResp"
+						suggestionRows="{ path: '/ZAE_VH_BusinessPartner_06', sorter: { path: 'Partner' },suspended: true, length: 10 }" width="100%"
+						filterSuggests="true" suggest="handleEmpRespSuggest">
+						<suggestionColumns>
+							<Column>
+								<Label text="{i18n>EmployeeResponsible}"/>
+							</Column>
+							<Column>
+								<Label text="{i18n>EmployeeResponsibleName}"/>
+							</Column>
+						</suggestionColumns>
+						<suggestionRows>
+							<ColumnListItem>
+								<cells>
+									<Label text="{Partner}"/>
+									<Label text="{PartnerName}"/>
+								</cells>
+							</ColumnListItem>
+						</suggestionRows>
+					</MultiInput>
+					<!--<Label text="{i18n>ServiceManager}" labelFor="ServiceManager"/>-->
+					<!--<Select id="ServiceManager" items="{ path: '/ZAE_VH_BusinessPartner_06' }" 	change="fnBeginButtonValidation" forceSelection="false" showSecondaryValues="true">-->
+					<!--	<core:ListItem key="{Partner}" text="{PartnerName}" additionalText="{Partner}"/>-->
+					<!--</Select>-->
+					<!--<MultiInput id="ServiceManager" valueHelpRequest=".onServManagerValueHelpRequested" valueHelpOnly="false" showValueHelp="true"-->
+					<!--	tokenUpdate="onServManagerTokenUpdate" showSuggestion="true" suggestionItemSelected="onSelectServManager"-->
+					<!--	suggestionRows="{ path: '/ZAE_VH_BusinessPartner_06', sorter: { path: 'Partner' },suspended: true, length: 10 }" width="100%"-->
+					<!--	filterSuggests="true" suggest="handleServManagerSuggest">-->
+					<!--	<suggestionColumns>-->
+					<!--		<Column>-->
+					<!--			<Label text="{i18n>ServiceManager}"/>-->
+					<!--		</Column>-->
+					<!--		<Column>-->
+					<!--			<Label text="{i18n>ServiceManagerName}"/>-->
+					<!--		</Column>-->
+					<!--	</suggestionColumns>-->
+					<!--	<suggestionRows>-->
+					<!--		<ColumnListItem>-->
+					<!--			<cells>-->
+					<!--				<Label text="{Partner}"/>-->
+					<!--				<Label text="{PartnerName}"/>-->
+					<!--			</cells>-->
+					<!--		</ColumnListItem>-->
+					<!--	</suggestionRows>-->
+					<!--</MultiInput>-->
+				</f:content>
+			</f:SimpleForm>
+		</l:content>
+	</l:VerticalLayout>
+</core:FragmentDefinition>

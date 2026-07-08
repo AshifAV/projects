@@ -1,0 +1,54 @@
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+	xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+	<edmx:DataServices m:DataServiceVersion="2.0">
+		<Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZAE_FM_SCIN_CREAAPP_FROM_CI_03_SRV" xml:lang="en"
+			sap:schema-version="1"><Annotation xmlns="http://docs.oasis-open.org/odata/ns/edm" Term="Core.SchemaVersion" String="1.0.0"/>
+			<EntityType Name="ZAE_FM_SCIN_CREAAPP_FROM_CI_03" sap:content-version="1">
+				<Key><PropertyRef Name="IEmpResp"/></Key><Property Name="SubjectProfile" Type="Edm.String" Nullable="false" MaxLength="9" sap:unicode="false" sap:label="Subject Profile"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="SalesOrg" Type="Edm.String" Nullable="false" MaxLength="14" sap:unicode="false" sap:label="Sales Org. ID"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="SalesOffice" Type="Edm.String" Nullable="false" MaxLength="14" sap:unicode="false" sap:label="Sales Office"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="SalesGroup" Type="Edm.String" Nullable="false" MaxLength="14" sap:unicode="false" sap:label="Sales Group"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ProgNo" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Program Number"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Partner" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Partner" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="IStartTime" Type="Edm.Time" Nullable="false" Precision="0" sap:unicode="false" sap:label="Time" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="IStartDate" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="Date" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ISerEmpGrp" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Object abbr."
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ISalesRep" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="BusinessPartner"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="IPrivateFlag" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Private" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="IPriority" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Priority" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="IPlant" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Plant" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="IPartner" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="BusinessPartner"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ILocation" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="Location" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="IIntRecordId" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="ID" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="IInsurer" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="BusinessPartner"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="IEquipNo" Type="Edm.String" Nullable="false" MaxLength="18" sap:unicode="false" sap:label="Equipment" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="IEndTime" Type="Edm.Time" Nullable="false" Precision="0" sap:unicode="false" sap:label="Time" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="IEndDate" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="Date" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="IEmpResp" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="BusinessPartner"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="IDescription" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Description"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Equnr" Type="Edm.String" Nullable="false" MaxLength="18" sap:unicode="false" sap:label="Equipment" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Division" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Division" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="DisChannel" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Distribution Channel"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="CPerson" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="BusinessPartner"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="CodeGroup" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Code Group" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Code" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Code" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="CatType" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Catalog" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="A002Text" Type="Edm.String" Nullable="false" MaxLength="132" sap:unicode="false" sap:label="Text Line" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="EActivityNo" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Transaction ID"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><NavigationProperty Name="N_CI03" Relationship="ZAE_FM_SCIN_CREAAPP_FROM_CI_03_SRV.ASS_CI03" FromRole="FromRole_ASS_CI03"
+					ToRole="ToRole_ASS_CI03" sap:label="N_CI03"/><NavigationProperty Name="N_CATID" Relationship="ZAE_FM_SCIN_CREAAPP_FROM_CI_03_SRV.ASS_CatID" FromRole="FromRole_ASS_CatID"
+					ToRole="ToRole_ASS_CatID" sap:label="N_CATID"/></EntityType>
+			<EntityType Name="CAT_ID" sap:content-version="1">
+				<Key><PropertyRef Name="CatId"/></Key><Property Name="CatId" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Category ID" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<Association Name="ASS_CI03" sap:content-version="1"><End Type="ZAE_FM_SCIN_CREAAPP_FROM_CI_03_SRV.ZAE_FM_SCIN_CREAAPP_FROM_CI_03" Multiplicity="*" Role="FromRole_ASS_CI03"/><End Type="ZAE_FM_SCIN_CREAAPP_FROM_CI_03_SRV.ZAE_FM_SCIN_CREAAPP_FROM_CI_03" Multiplicity="*" Role="ToRole_ASS_CI03"/></Association>
+			<Association Name="ASS_CatID" sap:content-version="1"><End Type="ZAE_FM_SCIN_CREAAPP_FROM_CI_03_SRV.ZAE_FM_SCIN_CREAAPP_FROM_CI_03" Multiplicity="*" Role="FromRole_ASS_CatID"/><End Type="ZAE_FM_SCIN_CREAAPP_FROM_CI_03_SRV.CAT_ID" Multiplicity="*" Role="ToRole_ASS_CatID"/></Association>
+			<EntityContainer Name="ZAE_FM_SCIN_CREAAPP_FROM_CI_03_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx"><EntitySet Name="ZAE_FM_SCIN_CREAAPP_FROM_CI_03Set" EntityType="ZAE_FM_SCIN_CREAAPP_FROM_CI_03_SRV.ZAE_FM_SCIN_CREAAPP_FROM_CI_03"
+				sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/><EntitySet Name="CAT_IDCollection" EntityType="ZAE_FM_SCIN_CREAAPP_FROM_CI_03_SRV.CAT_ID" sap:content-version="1"/>
+				<AssociationSet Name="ASS_CatID_AssocSet" Association="ZAE_FM_SCIN_CREAAPP_FROM_CI_03_SRV.ASS_CatID" sap:creatable="false"
+					sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="ZAE_FM_SCIN_CREAAPP_FROM_CI_03Set" Role="FromRole_ASS_CatID"/><End EntitySet="CAT_IDCollection" Role="ToRole_ASS_CatID"/></AssociationSet>
+				<AssociationSet Name="ASS_CI03_AssocSet" Association="ZAE_FM_SCIN_CREAAPP_FROM_CI_03_SRV.ASS_CI03" sap:creatable="false"
+					sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="ZAE_FM_SCIN_CREAAPP_FROM_CI_03Set" Role="FromRole_ASS_CI03"/><End EntitySet="ZAE_FM_SCIN_CREAAPP_FROM_CI_03Set" Role="ToRole_ASS_CI03"/></AssociationSet>
+			</EntityContainer><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="./sap/ZAE_FM_SCIN_CREAAPP_FROM_CI_03_SRV/$metadata"/><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="./sap/ZAE_FM_SCIN_CREAAPP_FROM_CI_03_SRV/$metadata"/></Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

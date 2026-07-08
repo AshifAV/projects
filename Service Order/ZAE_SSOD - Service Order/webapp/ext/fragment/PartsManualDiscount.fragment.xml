@@ -1,0 +1,11 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:tab="sap.ui.table" xmlns="sap.m">
+	<ActionSheet placement="Bottom">
+		<buttons>
+			<Button text="{i18n>SSOD_B132}" id="SSOD_B132" press="onClickSSOD_B132" type="Transparent"></Button>
+			<Button text="{i18n>SSOD_B133}" id="SSOD_B133" press="onClickSSOD_B133" type="Transparent"></Button>
+			<Button text="{i18n>SSOD_B134}" id="SSOD_B134" press="onClickSSOD_B134" type="Transparent"></Button>
+			<Button text="{i18n>SSOD_B135}" id="SSOD_B135" press="onClickSSOD_B135" type="Transparent"></Button>
+			<Button text="{i18n>SSOD_B136}" id="SSOD_B136" press="onClickSSOD_B136" type="Transparent"></Button>
+		</buttons>
+	</ActionSheet>
+</core:FragmentDefinition>

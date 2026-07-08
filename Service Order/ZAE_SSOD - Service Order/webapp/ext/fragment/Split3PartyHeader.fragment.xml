@@ -1,0 +1,116 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:smartfield="sap.ui.comp.smartfield" xmlns:f="sap.ui.layout.form" xmlns="sap.m"
+	xmlns:l="sap.ui.layout">
+	<Dialog afterClose="afterClose" class="sapUiPopupWithPadding" id="SSOD_B103Dialog" title="{i18n>SSOD_B103}">
+		<content>
+			<MessageStrip class="sapUiResponsiveMargin sapUiNoMarginTop" id="SSOD_B103MessageStrip" showCloseButton="false" showIcon="true" type="Error"
+				visible="false"/>
+			<Table id="SplitTable" items="{mSplitHeader>/TableList/}" visible="true" sticky="ColumnHeaders" mode="MultiSelect"
+				modelContextChange="onModelContextChange" selectionChange="fnSplitTableSelectionChange">
+				<headerToolbar>
+					<OverflowToolbar>
+						<content>
+							<ToolbarSpacer/>
+							<!--	<Label text="Split Accounting Indicator:"/>-->
+							<Label text="Split Accounting Indicator 2:"/>
+							<Select id="SplitAccountingIndicator" items="{mSplitHeader>/NewAccIndVH/}" forceSelection="false" change="fnOnSelectHeaderAccInd">
+								<core:Item key="{mSplitHeader>AccountingIndicatorSplit}"
+									text="{parts: ['mSplitHeader>AccountingIndicatorSplitText', 'mSplitHeader>AccountingIndicatorSplit'], formatter: '.formatNameAndValuePair'}"></core:Item>
+							</Select>
+							<!-- Added for AE-4241-->
+							<Label text="Split Accounting Indicator 3:"/>
+							<Select id="SplitAccountingIndicator1" items="{mSplitHeader>/NewAccIndVH1/}" forceSelection="false" change="fnOnSelectHeaderAccInd1">
+								<core:Item key="{mSplitHeader>AccountingIndicatorSplit}"
+									text="{parts: ['mSplitHeader>AccountingIndicatorSplitText', 'mSplitHeader>AccountingIndicatorSplit'], formatter: '.formatNameAndValuePair'}"></core:Item>
+							</Select>
+						</content>
+					</OverflowToolbar>
+				</headerToolbar>
+				<columns>
+					<Column>
+						<Text text="Item"/>
+					</Column>
+					<Column>
+						<Text text="High Level Item"/>
+					</Column>
+					<Column>
+						<Text text="Complaint"/>
+					</Column>
+					<Column>
+						<Text text="Quantity"/>
+					</Column>
+					<Column>
+						<Text text="Current AI"/>
+					</Column>
+					<Column>
+						<!--	<Text text="Proposed AI"/>-->
+						<Text text="Split AI 1"/>
+					</Column>
+					<!--					<Column>
+						<Text text="Split AI"/>
+					</Column>-->
+					<Column width="12em">
+						<Text text="Split AI 2"/>
+					</Column>
+					<Column width="12em">
+						<Text text="Split AI 3"/>
+					</Column>
+					<!--					<Column>
+						<Text id="SplitCustom" text="Split Custom"/>
+					</Column>-->
+					<Column width="5em" hAlign="End">
+						<Text id="SplitCustom1" text="Split 1"/>
+					</Column>
+					<Column width="5em" hAlign="End">
+						<Text id="SplitCustom2" text="Split 2"/>
+					</Column>
+					<Column>
+						<!--	<Text id="ProposedSplit" text="Proposed Split"/>-->
+						<Text id="ProposedSplit" text="Split 3"/>
+					</Column>
+					<Column id="ColumnCustomer">
+						<Text text="Business Partner"/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem >
+						<cells>
+							<Text text="{mSplitHeader>Item}"/>
+							<Text text="{mSplitHeader>HigherLevelItem}"/>
+							<Text text="{mSplitHeader>MaterialName}"/>
+							<ObjectNumber number="{mSplitHeader>ItemQuantity}" unit="{mSplitHeader>QuantityUnit}"/>
+							<Text
+								text="{parts: ['mSplitHeader>CurrentAccountingIndicatorName', 'mSplitHeader>CurrentAccountingIndicator'], formatter: '.formatNameAndValuePair'}"/>
+							<Text text="{parts: ['mSplitHeader>ProposedAccIndName', 'mSplitHeader>ProposedAccInd'], formatter: '.formatNameAndValuePair'}"/>
+							<Select selectedKey="{mSplitHeader>NewAccInd}" items="{mSplitHeader>NewAccIndVH}" forceSelection="false"
+								change="fnNewAccIndSelectionChange2">
+								<core:Item key="{mSplitHeader>AccountingIndicatorSplit}"
+									text="{parts: ['mSplitHeader>AccountingIndicatorSplitText', 'mSplitHeader>AccountingIndicatorSplit'], formatter: '.formatNameAndValuePair'}"></core:Item>
+							</Select>
+							<Select selectedKey="{mSplitHeader>NewAccInd1}" items="{mSplitHeader>NewAccIndVH1}" forceSelection="false"
+								change="fnNewAccIndSelectionChange3">
+								<core:Item key="{mSplitHeader>AccountingIndicatorSplit}"
+									text="{parts: ['mSplitHeader>AccountingIndicatorSplitText', 'mSplitHeader>AccountingIndicatorSplit'], formatter: '.formatNameAndValuePair'}"></core:Item>
+							</Select>
+							<!--	<Input value="{mSplitHeader>SplitCustomer}" type="Number" valueLiveUpdate="true" liveChange="fnliveChangeSplit"/>-->
+							<Input value="{mSplitHeader>SplitCustomer1}" type="Number" valueLiveUpdate="true" liveChange="fnliveChangeSplit"/>
+							<Input value="{mSplitHeader>SplitCustomer2}" type="Number" valueLiveUpdate="true" liveChange="fnliveChangeSplit"/>
+							<Text text="{mSplitHeader>ProposedSplit}"/>
+							<Input type="Text" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="handleBPValueHelp" width="6rem" enabled="false" value="{mSplitHeader>Customer}"
+								change="onBPselected" textFormatMode="ValueKey"></Input>
+							<!--<ComboBox selectedKey="{mSplitHeader>Customer}" items="{/ZAE_VH_BusinessPartner_07}" enabled="false"-->
+							<!--	forceSelection="false">-->
+							<!--	<core:Item key="{Partner}" text="{PartnerName}"></core:Item>-->
+							<!--</ComboBox>-->
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+		<beginButton>
+			<Button id="IDSubmit" press="onSubmitPressed" text="{i18n>BUTTON_Submit}"/>
+		</beginButton>
+		<endButton>
+			<Button press="onCancelPressed" text="{i18n>BUTTON_Cancel}"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

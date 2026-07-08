@@ -1,0 +1,18 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m">
+	<Popover id="totalPricePopover" placement="Bottom" showHeader="false" beforeOpen="beforeTotalPricePopoverOpen">
+		<VBox class="sapUiTinyMargin">
+			<VBox class="sapUiTinyMargin">
+				<Label text="{= ${app>/pages/configData/AppMode}.charAt(0) === 'L' ? 'Monthly Price' : 'Base Price' }"></Label>
+				<ObjectNumber number="{parts: [{path:'app>Price04/Kbetr'}, {path:'app>Price04/Konwa'}, {path:'app>qty'}], formatter: '.formatter.sumPrice'}"
+					unit="{app>Price04/Konwa}"/>
+			</VBox>
+			<VBox class="sapUiTinyMargin">
+				<Label text="{= ${app>/pages/configData/AppMode}.charAt(0) === 'L' ? 'No. of Months' : 'Add Ons Price' }"></Label>
+				<ObjectNumber visible="{= ${app>/pages/configData/AppMode}.charAt(0) !== 'L'}"
+					number="{parts: [{path:'app>addOnsPrice'}, {path:'app>Price04/Konwa'}, {path:'app>qty'}], formatter: '.formatter.sumPrice'}"
+					unit="{app>Price04/Konwa}"/>
+				<Text visible="{= ${app>/pages/configData/AppMode}.charAt(0) === 'L'}" text="{app>noOfMonths}"/>
+			</VBox>
+		</VBox>
+	</Popover>
+</core:FragmentDefinition>

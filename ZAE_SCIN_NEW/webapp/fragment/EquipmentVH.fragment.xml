@@ -1,0 +1,108 @@
+<core:FragmentDefinition xmlns="sap.ui.comp.valuehelpdialog" xmlns:m="sap.m" xmlns:fb="sap.ui.comp.filterbar" xmlns:core="sap.ui.core">
+	<ValueHelpDialog title="{i18n>Equipment}" ok=".onValueHelpOkPress" cancel=".onValueHelpCancelPress" afterClose=".onValueHelpAfterClose"
+		supportRanges="true" supportMultiselect="false" key="Equipment" descriptionKey="EquipmentName">
+		<filterBar>
+			<fb:FilterBar advancedMode="true" search=".onFilterBarSearch">
+				<fb:filterGroupItems>
+					<fb:FilterGroupItem groupName="__$INTERNAL$" name="Equipment" label="{i18n>Equipment1}" visibleInFilterBar="true">
+						<fb:control>
+							<m:Input name="Equipment"/>
+						</fb:control>
+					</fb:FilterGroupItem>
+					<fb:FilterGroupItem groupName="__$INTERNAL$" name="EquipmentName" label="{i18n>EquipmentName}" visibleInFilterBar="true">
+						<fb:control>
+							<m:Input name="EquipmentName"/>
+						</fb:control>
+					</fb:FilterGroupItem>
+					<fb:FilterGroupItem groupName="__$INTERNAL$" name="FleetVin" label="{i18n>ManufacturerVIN}" visibleInFilterBar="true">
+						<fb:control>
+							<m:Input name="FleetVin"/>
+						</fb:control>
+					</fb:FilterGroupItem>
+					<fb:FilterGroupItem groupName="__$INTERNAL$" name="LicenseNum" label="{i18n>RegistrationNumber}" visibleInFilterBar="true">
+						<fb:control>
+							<m:Input name="LicenseNum"/>
+						</fb:control>
+					</fb:FilterGroupItem>
+					<fb:FilterGroupItem groupName="__$INTERNAL$" name="FleetNum" label="{i18n>Fleetobjectnumber}" visibleInFilterBar="true">
+						<fb:control>
+							<m:Input name="FleetNum"/>
+						</fb:control>
+					</fb:FilterGroupItem>
+					<fb:FilterGroupItem groupName="__$INTERNAL$" name="idnumber" label="{/#ZAE_C_BPContactPersonType/CPRNumber/@sap:label}"
+						visibleInFilterBar="true">
+						<fb:control>
+							<m:Input name="idnumber"/>
+						</fb:control>
+					</fb:FilterGroupItem>
+					<fb:FilterGroupItem groupName="__$INTERNAL$" name="Partner" label="{i18n>CustomerNumber}" visibleInFilterBar="true">
+						<fb:control>
+							<m:Input name="Partner"/>
+						</fb:control>
+					</fb:FilterGroupItem>
+					<fb:FilterGroupItem groupName="__$INTERNAL$" name="CustomerName" label="{i18n>CustomerName}" visibleInFilterBar="true">
+						<fb:control>
+							<m:Input name="CustomerName"/>
+						</fb:control>
+					</fb:FilterGroupItem>
+					<fb:FilterGroupItem groupName="__$INTERNAL$" name="TelephoneNumber1" label="{i18n>Telephone1}" visibleInFilterBar="true">
+						<fb:control>
+							<m:Input name="TelephoneNumber1"/>
+						</fb:control>
+					</fb:FilterGroupItem>
+						<fb:FilterGroupItem groupName="__$INTERNAL$" name="FaxNumber" label="{/#ZAE_FM_SC_CONTACT_CREATE/FaxNumber/@sap:label}" visibleInFilterBar="true">
+						<fb:control>
+							<m:Input name="FaxNumber"/>
+						</fb:control>
+					</fb:FilterGroupItem>
+					
+					<!--<fb:FilterGroupItem groupName="__$INTERNAL$" name="FaxNumber" label="{i18n>FaxNo}" visibleInFilterBar="true">-->
+					<!--	<fb:control>-->
+					<!--		<m:Input name="FaxNumber"/>-->
+					<!--	</fb:control>-->
+					<!--</fb:FilterGroupItem>-->
+					<!--<fb:FilterGroupItem groupName="__$INTERNAL$" name="Lidnumber" label="{i18n>LesseeCPRNo}" visibleInFilterBar="true">-->
+					<!--	<fb:control>-->
+					<!--		<m:Input name="Lidnumber"/>-->
+					<!--	</fb:control>-->
+					<!--</fb:FilterGroupItem>-->
+					<!--<fb:FilterGroupItem groupName="__$INTERNAL$" name="LPartner" label="{i18n>LesseeCustomerNumber}" visibleInFilterBar="true">-->
+					<!--	<fb:control>-->
+					<!--		<m:Input name="LPartner"/>-->
+					<!--	</fb:control>-->
+					<!--</fb:FilterGroupItem>-->
+					<!--<fb:FilterGroupItem groupName="__$INTERNAL$" name="LCustomerName" label="{i18n>LesseeCustomerName}" visibleInFilterBar="true">-->
+					<!--	<fb:control>-->
+					<!--		<m:Input name="LCustomerName"/>-->
+					<!--	</fb:control>-->
+					<!--</fb:FilterGroupItem>-->
+					<!--<fb:FilterGroupItem groupName="__$INTERNAL$" name="LTelephoneNumber1" label="{i18n>LesseeCustPhone}" visibleInFilterBar="true">-->
+					<!--	<fb:control>-->
+					<!--		<m:Input name="LTelephoneNumber1"/>-->
+					<!--	</fb:control>-->
+					<!--</fb:FilterGroupItem>-->
+					<fb:FilterGroupItem groupName="__$INTERNAL$"  name="Make" label="{i18n>Make}" visibleInFilterBar="true">
+						<fb:control>
+							<m:Input  name="Make"/>
+						</fb:control>
+					</fb:FilterGroupItem>
+					<fb:FilterGroupItem groupName="__$INTERNAL$" name="MakeText" label="{i18n>MakeText}" visibleInFilterBar="true">
+						<fb:control>
+							<m:Input name="MakeText"/>
+						</fb:control>
+					</fb:FilterGroupItem>
+					<fb:FilterGroupItem groupName="__$INTERNAL$" name="Model" label="{i18n>Model}" visibleInFilterBar="true">
+						<fb:control>
+							<m:Input name="Model"/>
+						</fb:control>
+					</fb:FilterGroupItem>
+					<fb:FilterGroupItem groupName="__$INTERNAL$" name="ModelText" label="{i18n>ModelText}" visibleInFilterBar="true">
+						<fb:control>
+							<m:Input name="ModelText"/>
+						</fb:control>
+					</fb:FilterGroupItem>
+				</fb:filterGroupItems>
+			</fb:FilterBar>
+		</filterBar>
+	</ValueHelpDialog>
+</core:FragmentDefinition>

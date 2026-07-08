@@ -1,0 +1,82 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:core="sap.ui.core"
+    xmlns:smartField="sap.ui.comp.smartfield"
+>
+    <l:VerticalLayout
+        class="sapUiContentPadding"
+        width="100%"
+    >
+        <l:content>
+            <f:SimpleForm
+                id="skipMsaForm"
+                editable="true"
+                layout="ResponsiveGridLayout"
+                singleContainerFullSize="false"
+            >
+                <f:content>
+                    <Label text="Service Request" required="true" />
+                    <Input
+                        id="SERVICEREQUEST1"
+                        enabled="false"
+                        width="100%"
+                    />
+
+                    <Label text="Previous Odometer Reading" />
+                    <Input
+                        id="PREVIOUSODOMETER"
+                        enabled="false"
+                        width="100%"
+                    />
+                    <Label
+                        text="Odometer Reading"
+                        required="true"
+                    />
+                    <Input
+                        id="ODOMETERREADING"
+                        liveChange="fnCheckSkipMsaRequiredValidation"
+                        width="100%"
+                    />
+                    <Label
+                        text="Fuel Gauge"
+                        required="true"
+                    />
+                    <Select
+                        id="FUELGAUGE"
+                        change="fnCheckSkipMsaRequiredValidation"
+                        items="{/ZAE_I_DomainValueText(domname='ZAE_D_FUEL_LEVEL')/Set}"
+                        width="100%"
+                    >
+                        <core:ListItem
+                            key="{DomainValue}"
+                            text="{DomainText}"
+                            additionalText="{DomainValue}"
+                        />
+                    </Select>
+                    <Label
+                        text="Delivery Date"
+                        required="true"
+                    />
+                    <DateTimePicker
+                        id="DELIVERYDATE"
+                        change="fnCheckSkipMsaRequiredValidation"
+                        width="100%"
+                        displayFormat="short"
+                        placeholder="Select Delivery Date"
+                    />
+
+                    <Label text="Notes" />
+                    <TextArea
+                        id="NOTES"
+                        rows="3"
+                        maxLength="500"
+                        liveChange="fnCheckSkipMsaRequiredValidation"
+                        width="100%"
+                    />
+                </f:content>
+            </f:SimpleForm>
+        </l:content>
+    </l:VerticalLayout>
+</core:FragmentDefinition>

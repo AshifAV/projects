@@ -1,0 +1,8 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m">
+	<Column importance="High">
+		<Text text="{i18n>AvailableQuantity}"/>
+		<customData>
+			<core:CustomData key="p13nData" value='\{"columnKey": "AvailableQuantity", "columnIndex" : "6"}'/>
+		</customData>
+	</Column>
+</core:FragmentDefinition>

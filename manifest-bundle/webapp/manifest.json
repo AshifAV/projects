@@ -1,0 +1,275 @@
+{
+    "_version": "1.12.0",
+    "sap.app": {
+        "id": "com.globalintelli.ZAE_SFQC",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "1.0.0"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "sourceTemplate": {
+            "id": "servicecatalog.connectivityComponentForManifest",
+            "version": "0.0.0",
+            "toolsId": "95c5ddf6-8d6b-4a8d-a54b-c5b509b3a4d7"
+        },
+        "dataSources": {
+            "appModel": {
+                "uri": "model/app.json",
+                "type": "JSON"
+            },
+            "ZAE_SFQC_SRV": {
+                "uri": "/sap/opu/odata/sap/ZAE_SFQC_SRV/",
+                "type": "OData",
+                "settings": {
+                    "localUri": "localService/metadata.xml"
+                }
+            },
+            "ZAE_FM_QTN_CREATE_SCQTN_SRV": {
+                "uri": "/sap/opu/odata/sap/ZAE_FM_QTN_CREATE_SCQTN_SRV/",
+                "type": "OData",
+                "settings": {
+                    "localUri": "localService/metadata.xml"
+                }
+            },
+            "ZAE_FM_INQUIRY_CREATE_SRV": {
+                "uri": "/sap/opu/odata/sap/ZAE_FM_INQUIRY_CREATE_SRV/",
+                "type": "OData",
+                "settings": {
+                    "localUri": "localService/metadata.xml"
+                }
+            },
+            "ZAE_FM_CQTC_CREATE_TRDIN_NOTIF_SRV": {
+                "uri": "/sap/opu/odata/sap/ZAE_FM_CQTC_CREATE_TRDIN_NOTIF_SRV/",
+                "type": "OData",
+                "settings": {
+                    "localUri": "localService/metadata.xml"
+                }
+            },
+            "ZAE_FM_GET_PRICING_02_SRV": {
+                "uri": "/sap/opu/odata/sap/ZAE_FM_GET_PRICING_02_SRV/",
+                "type": "OData",
+                "settings": {
+                    "localUri": "localService/metadata.xml"
+                }
+            },
+            "ZAE_FM_GET_PRICING_05_SRV": {
+                "uri": "/sap/opu/odata/sap/ZAE_FM_GET_PRICING_05_SRV/",
+                "type": "OData",
+                "settings": {
+                    "localUri": "localService/metadata.xml"
+                }
+            },
+            "ZAE_FM_GET_PRICING_06_SRV": {
+                "uri": "/sap/opu/odata/sap/ZAE_FM_GET_PRICING_06_SRV/",
+                "type": "OData",
+                "settings": {
+                    "localUri": "localService/metadata.xml"
+                }
+            },
+            "ZAE_FM_DOC_SIMULATE_GET_PRICE_SRV": {
+                "uri": "/sap/opu/odata/sap/ZAE_FM_DOC_SIMULATE_GET_PRICE_SRV/",
+                "type": "OData",
+                "settings": {
+                    "localUri": "localService/metadata.xml"
+                }
+            },
+            "CV_ATTACHMENT_SRV": {
+                "uri": "/sap/opu/odata/sap/CV_ATTACHMENT_SRV/",
+                "type": "OData",
+                "settings": {
+                    "localUri": "localService/metadata.xml"
+                }
+            }
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "flexEnabled": false,
+        "rootView": {
+            "viewName": "com.globalintelli.ZAE_SFQC.view.Main",
+            "type": "XML",
+            "async": true,
+            "id": "Main"
+        },
+        "dependencies": {
+            "minUI5Version": "1.65.6",
+            "libs": {
+                "sap.m": {},
+                "sap.ui.core": {},
+                "sap.ui.layout": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "com.globalintelli.ZAE_SFQC.i18n.i18n"
+                }
+            },
+            "app": {
+                "type": "sap.ui.model.json.JSONModel",
+                "dataSource": "appModel"
+            },
+            "attachment": {
+                "type": "sap.ui.model.odata.v2.ODataModel",
+                "settings": {
+                    "defaultOperationMode": "Server",
+                    "defaultBindingMode": "OneWay",
+                    "defaultCountMode": "Request"
+                },
+                "dataSource": "CV_ATTACHMENT_SRV",
+                "preload": true
+            },
+            "quotationCreate": {
+                "type": "sap.ui.model.odata.v2.ODataModel",
+                "settings": {
+                    "defaultOperationMode": "Server",
+                    "defaultBindingMode": "OneWay",
+                    "defaultCountMode": "Request"
+                },
+                "dataSource": "ZAE_FM_QTN_CREATE_SCQTN_SRV",
+                "preload": true
+            },
+            "inquiryCreate": {
+                "type": "sap.ui.model.odata.v2.ODataModel",
+                "settings": {
+                    "defaultOperationMode": "Server",
+                    "defaultBindingMode": "OneWay",
+                    "defaultCountMode": "Request"
+                },
+                "dataSource": "ZAE_FM_INQUIRY_CREATE_SRV",
+                "preload": true
+            },
+            "notifCreate": {
+                "type": "sap.ui.model.odata.v2.ODataModel",
+                "settings": {
+                    "defaultOperationMode": "Server",
+                    "defaultBindingMode": "OneWay",
+                    "defaultCountMode": "Request"
+                },
+                "dataSource": "ZAE_FM_CQTC_CREATE_TRDIN_NOTIF_SRV",
+                "preload": true
+            },
+            "price02": {
+                "type": "sap.ui.model.odata.v2.ODataModel",
+                "settings": {
+                    "defaultOperationMode": "Server",
+                    "defaultBindingMode": "OneWay",
+                    "defaultCountMode": "Request"
+                },
+                "dataSource": "ZAE_FM_GET_PRICING_02_SRV",
+                "preload": true
+            },
+            "price05": {
+                "type": "sap.ui.model.odata.v2.ODataModel",
+                "settings": {
+                    "defaultOperationMode": "Server",
+                    "defaultBindingMode": "OneWay",
+                    "defaultCountMode": "Request"
+                },
+                "dataSource": "ZAE_FM_GET_PRICING_05_SRV",
+                "preload": true
+            },
+            "price06": {
+                "type": "sap.ui.model.odata.v2.ODataModel",
+                "settings": {
+                    "defaultOperationMode": "Server",
+                    "defaultBindingMode": "OneWay",
+                    "defaultCountMode": "Request"
+                },
+                "dataSource": "ZAE_FM_GET_PRICING_06_SRV",
+                "preload": true
+            },
+            "": {
+                "type": "sap.ui.model.odata.v2.ODataModel",
+                "settings": {
+                    "defaultOperationMode": "Server",
+                    "defaultBindingMode": "OneWay",
+                    "defaultCountMode": "Request"
+                },
+                "dataSource": "ZAE_SFQC_SRV",
+                "preload": true
+            },
+            "ZAE_FM_DOC_SIMULATE_GET_PRICE": {
+                "type": "sap.ui.model.odata.v2.ODataModel",
+                "settings": {
+                    "defaultOperationMode": "Server",
+                    "defaultBindingMode": "OneWay",
+                    "defaultCountMode": "Request"
+                },
+                "dataSource": "ZAE_FM_DOC_SIMULATE_GET_PRICE_SRV",
+                "preload": true
+            }
+        },
+        "resources": {
+            "css": [
+                {
+                    "uri": "css/style.css"
+                }
+            ],
+            "js": [
+                {
+                    "uri": "lib/lodash.js"
+                }
+            ]
+        },
+        "routing": {
+            "config": {
+                "routerClass": "sap.m.routing.Router",
+                "viewType": "XML",
+                "async": true,
+                "viewPath": "com.globalintelli.ZAE_SFQC.view",
+                "controlAggregation": "pages",
+                "controlId": "app",
+                "clearControlAggregation": false
+            },
+            "routes": [
+                {
+                    "name": "RouteMain",
+                    "pattern": "RouteMain",
+                    "target": [
+                        "TargetMain"
+                    ]
+                }
+            ],
+            "targets": {
+                "TargetMain": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId": "Main",
+                    "viewName": "Main"
+                },
+                "test": {
+                    "viewType": "XML",
+                    "viewName": "test"
+                }
+            }
+        }
+    },
+    "sap.platform.abap": {
+        "uri": "/sap/bc/ui5_ui5/sap/zae_sfqc/webapp",
+        "_version": "1.1.0"
+    }
+}

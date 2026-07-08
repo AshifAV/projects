@@ -1,0 +1,81 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+	controllerName="com.globalintelli.ZAE_SFQC.controller.subview.Confirmation" xmlns:html="http://www.w3.org/1999/xhtml">
+	<VBox>
+		<VBox alignItems="Center" class="sapUiLargeMarginTop sapUiTinyMarginBottom sapUiLargeMarginBeginEnd">
+			<Title level="H2" titleStyle="H2" text="{app>/pages/Confirmation/data/message}"/>
+			<HBox>
+				<Button class="sapUiSmallMarginEnd" text="{app>/pages/Overview/type} {app>/pages/Confirmation/data/document}" icon="sap-icon://action"
+					press="onDocumentNavigate"/>
+				<Button text="{i18n>TradeIn} {app>/pages/Confirmation/data/tradeInDoc}" icon="sap-icon://action"
+					visible="{= ${app>/pages/Confirmation/data/tradeInDoc} !== undefined }" press="onTradeInNavigate"/>
+			</HBox>
+		</VBox>
+	</VBox>
+	<VBox class="sapUiResponsiveMargin">
+		<Table id="cartTable" items="{ path: 'app>/cart' }" class="sapUiSmallMarginBottom">
+			<headerToolbar>
+				<OverflowToolbar>
+					<content>
+						<Title text="{i18n>Summary}" level="H2"/>
+					</content>
+				</OverflowToolbar>
+			</headerToolbar>
+			<columns>
+				<Column hAlign="Left" width="10em">
+					<header></header>
+				</Column>
+				<Column demandPopin="true" hAlign="Left">
+					<header><Label text="{i18n>Description}" textAlign="Center"/></header>
+				</Column>
+				<!--<Column demandPopin="true" hAlign="Center" minScreenWidth="Tablet">-->
+				<!--	<header><Label text="{i18n>Status}" textAlign="Center" tooltip="{i18n>Status}" visible="false"/></header>-->
+				<!--</Column>-->
+				<!--<Column demandPopin="true" hAlign="Right" minScreenWidth="Tablet" id="quantityColumn" width="30%">-->
+				<!--	<header><Label text="{i18n>overviewQuantity}" tooltip="{i18n>overviewQuantity}"/></header>-->
+				<!--</Column>-->
+				<Column demandPopin="true" hAlign="Right" width="10em">
+					<header><Label text="{i18n>BasePrice}"/></header>
+				</Column>
+				<Column demandPopin="true" hAlign="Right" width="10em">
+					<header><Label text="{i18n>AddOnsPrice}"/></header>
+				</Column>
+				<Column demandPopin="true" hAlign="Right" width="10em">
+					<header><Label text="{i18n>TotalPrice}"/></header>
+				</Column>
+			</columns>
+			<items>
+				<ColumnListItem>
+					<cells>
+						<HBox class="sapUiSmallMarginTopBottom">
+							<Image densityAware="false" height="6em" src="https://i.ibb.co/5kkWFT1/DFLT.png" error="onImageError"/>
+						</HBox>
+						<VBox class="sapUiContentPadding">
+							<HBox>
+								<Label text="{i18n>Make}"></Label>
+								<Text class="sapUiTinyMarginBegin" text="{app>materialData/MakeText}"></Text>
+							</HBox>
+							<HBox>
+								<Label text="{i18n>Model}"></Label>
+								<Text class="sapUiTinyMarginBegin" text="{app>materialData/ModelText}"></Text>
+							</HBox>
+							<HBox>
+								<Label text="{i18n>Material}"></Label>
+								<Text class="sapUiTinyMarginBegin" text="{app>materialData/Material}"></Text>
+							</HBox>
+						</VBox>
+						<ObjectNumber
+							number="{parts: [{path:'app>Price04/Kbetr'}, {path:'app>Price04/Konwa'}], type: 'sap.ui.model.type.Currency', formatOptions: {showMeasure: false} }"
+							unit="{app>Price04/Konwa}"/>
+						<ObjectNumber
+							number="{parts: [{path:'app>addOnsPrice'}, {path:'app>Price04/Konwa'}], type: 'sap.ui.model.type.Currency', formatOptions: {showMeasure: false} }"
+							unit="{app>Price04/Konwa}"/>
+						<ObjectNumber
+							number="{parts: [{path:'app>cartPrice'}, {path:'app>Price04/Konwa'}], type: 'sap.ui.model.type.Currency', formatOptions: {showMeasure: false} }"
+							unit="{app>Price04/Konwa}"/>
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+		<core:Fragment fragmentName="com.globalintelli.ZAE_SFQC.view.fragment.OpportunityDetails" id="confirmationTab" type="XML"/>
+	</VBox>
+</mvc:View>

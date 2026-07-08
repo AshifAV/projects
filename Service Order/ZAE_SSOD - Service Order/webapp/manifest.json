@@ -1,0 +1,1871 @@
+{
+    "_version": "1.8.0",
+    "sap.app": {
+        "id": "com.globalintelli.zae_ssod",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "1.0.0"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "tags": {
+            "keywords": []
+        },
+        "dataSources": {
+            "mainService": {
+                "uri": "/sap/opu/odata/sap/ZAE_SSOD_SRV/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [
+                        "ZAE_SSOD_ANNO_MDL",
+                        "localAnnotations"
+                    ],
+                    "localUri": "localService/metadata.xml"
+                }
+            },
+            "ZAE_SSOD_ANNO_MDL": {
+                "uri": "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='ZAE_SSOD_ANNO_MDL',Version='0001')/$value/",
+                "type": "ODataAnnotation",
+                "settings": {
+                    "localUri": "localService/ZAE_SSOD_ANNO_MDL.xml"
+                }
+            },
+            "localAnnotations": {
+                "uri": "annotations/annotations.xml",
+                "type": "ODataAnnotation",
+                "settings": {
+                    "localUri": "annotations/annotations.xml"
+                }
+            },
+            "ZAE_FM_CRM_JOB_CARD_SRV": {
+                "uri": "/sap/opu/odata/sap/ZAE_FM_CRM_JOB_CARD_SRV/",
+                "type": "OData",
+                "settings": {
+                    "localUri": "localService/metadata.xml"
+                }
+            },
+            "ZAE_FM_SSOD_DWNPAYMENT_INV_P_SRV": {
+                "uri": "/sap/opu/odata/sap/ZAE_FM_SSOD_DWNPAYMENT_INV_P_SRV/",
+                "type": "OData",
+                "settings": {
+                    "localUri": "localService/metadata.xml"
+                }
+            },
+            "ZAE_FM_CRM_PRO_INVOICE_SRV": {
+                "uri": "/sap/opu/odata/sap/ZAE_FM_CRM_PRO_INVOICE_SRV/",
+                "type": "OData",
+                "settings": {
+                    "localUri": "localService/metadata.xml"
+                }
+            },
+            "ZAE_FM_CRM_INVOICE_SRV": {
+                "uri": "/sap/opu/odata/sap/ZAE_FM_CRM_INVOICE_SRV/",
+                "type": "OData",
+                "settings": {
+                    "localUri": "localService/metadata.xml"
+                }
+            },
+            "ZAE_FM_CRM_INVOICE_01_SRV": {
+                "uri": "/sap/opu/odata/sap/ZAE_FM_CRM_INVOICE_01_SRV/",
+                "type": "OData",
+                "settings": {
+                    "localUri": "localService/metadata.xml"
+                }
+            },
+            "ZAE_FM_SSOD_ESTIMATE_PRINT_P_SRV": {
+                "uri": "/sap/opu/odata/sap/ZAE_FM_SSOD_ESTIMATE_PRINT_P_SRV/",
+                "type": "OData",
+                "settings": {
+                    "localUri": "localService/metadata.xml"
+                }
+            },
+            "ZAE_FM_SSOD_ITEM_SPLIT_01_SRV": {
+                "uri": "/sap/opu/odata/sap/ZAE_FM_SSOD_ITEM_SPLIT_01_SRV/",
+                "type": "OData",
+                "settings": {
+                    "localUri": "localService/metadata.xml"
+                }
+            },
+            "ZAE_FM_SSOD_CRT_SPLIT_SRV_ORD_SRV": {
+                "uri": "/sap/opu/odata/sap/ZAE_FM_SSOD_CRT_SPLIT_SRV_ORD_SRV/",
+                "type": "OData",
+                "settings": {
+                    "localUri": "localService/metadata.xml"
+                }
+            },
+            "ZAE_FM_CRM_GATEPASS_SRV": {
+                "uri": "/sap/opu/odata/sap/ZAE_FM_CRM_GATEPASS_SRV/",
+                "type": "OData",
+                "settings": {
+                    "localUri": "localService/metadata.xml"
+                }
+            },
+            "ZAE_FM_CRM_PER_INVOICE_SRV": {
+                "uri": "/sap/opu/odata/sap/ZAE_FM_CRM_PER_INVOICE_SRV/",
+                "type": "OData",
+                "settings": {
+                    "localUri": "localService/ZAE_FM_CRM_PER_INVOICE_SRV/metadata.xml"
+                }
+            },
+            "ZAE_FM_SSOD_SER_INV_LS_BW_P_SRV": {
+                "uri": "/sap/opu/odata/sap/ZAE_FM_SSOD_SER_INV_LS_BW_P_SRV/",
+                "type": "OData",
+                "settings": {
+                    "localUri": "localService/ZAE_FM_SSOD_SER_INV_LS_BW_P_SRV/metadata.xml"
+                }
+            },
+            "ZAE_FM_SSOD_SER_INV_LS_BW_SRV": {
+                "uri": "/sap/opu/odata/sap/ZAE_FM_SSOD_SER_INV_LS_BW_SRV/",
+                "type": "OData",
+                "settings": {
+                    "localUri": "localService/ZAE_FM_SSOD_SER_INV_LS_BW_SRV/metadata.xml"
+                }
+            },
+            "ZAE_FM_SSOD_BDR_SPLIT_IN_P_SRV": {
+                "uri": "/sap/opu/odata/sap/ZAE_FM_SSOD_BDR_SPLIT_IN_P_SRV/",
+                "type": "OData",
+                "settings": {
+                    "localUri": "localService/ZAE_FM_SSOD_BDR_SPLIT_IN_P_SRV/metadata.xml"
+                }
+            },
+            "ZAE_FM_SSOD_BDR_SPLIT_CUST_P_SRV": {
+                "uri": "/sap/opu/odata/sap/ZAE_FM_SSOD_BDR_SPLIT_CUST_P_SRV/",
+                "type": "OData",
+                "settings": {
+                    "localUri": "localService/ZAE_FM_SSOD_BDR_SPLIT_CUST_P_SRV/metadata.xml"
+                }
+            },
+            "ZAE_FM_SSOD_INV_SPLIT_IN_P_SRV": {
+                "uri": "/sap/opu/odata/sap/ZAE_FM_SSOD_INV_SPLIT_IN_P_SRV/",
+                "type": "OData",
+                "settings": {
+                    "localUri": "localService/ZAE_FM_SSOD_INV_SPLIT_IN_P_SRV/metadata.xml"
+                }
+            },
+            "ZAE_FM_SSOD_INV_SPLIT_CUST_P_SRV": {
+                "uri": "/sap/opu/odata/sap/ZAE_FM_SSOD_INV_SPLIT_CUST_P_SRV/",
+                "type": "OData",
+                "settings": {
+                    "localUri": "localService/ZAE_FM_SSOD_INV_SPLIT_CUST_P_SRV/metadata.xml"
+                }
+            },
+            "ZAE_FM_SSOD_ADDCOND_TYPE_LINE_SRV": {
+                "uri": "/sap/opu/odata/sap/ZAE_FM_SSOD_ADDCOND_TYPE_LINE_SRV/",
+                "type": "OData",
+                "settings": {
+                    "localUri": "localService/metadata.xml"
+                }
+            },
+            "ZAE_FM_SSOD_ADD_OPERATIONS_SRV": {
+                "uri": "/sap/opu/odata/sap/ZAE_FM_SSOD_ADD_OPERATIONS_SRV/",
+                "type": "OData",
+                "settings": {
+                    "localUri": "localService/metadata.xml"
+                }
+            },
+            "ZAE_FM_SSOD_ITEM_SPLIT_SRV": {
+                "uri": "/sap/opu/odata/sap/ZAE_FM_SSOD_ITEM_SPLIT_SRV/",
+                "type": "OData",
+                "settings": {
+                    "localUri": "localService/ZAE_FM_SSOD_ITEM_SPLIT_SRV/metadata.xml"
+                }
+            },
+            "ZAE_FM_SSOD_DRAFT_PROFORMA_P_SRV": {
+                "uri": "/sap/opu/odata/sap/ZAE_FM_SSOD_DRAFT_PROFORMA_P_SRV/",
+                "type": "OData",
+                "settings": {
+                    "localUri": "localService/metadata.xml"
+                }
+            },
+            "ZAE_FM_SERVDOCITEM_ADD_NOTES_SRV": {
+                "uri": "/sap/opu/odata/sap/ZAE_FM_SERVDOCITEM_ADD_NOTES_SRV/",
+                "type": "OData",
+                "settings": {
+                    "localUri": "localService/metadata.xml"
+                }
+            },
+            "ZAE_FM_SSOD_STATUS_WITHPARTS_SRV": {
+                "uri": "/sap/opu/odata/sap/ZAE_FM_SSOD_STATUS_WITHPARTS_SRV/",
+                "type": "OData",
+                "settings": {
+                    "localUri": "localService/metadata.xml"
+                }
+            },
+            "ZAE_FM_SSOD_STATUS_RELPARTS_SRV": {
+                "uri": "/sap/opu/odata/sap/ZAE_FM_SSOD_STATUS_RELPARTS_SRV/",
+                "type": "OData",
+                "settings": {
+                    "localUri": "localService/metadata.xml"
+                }
+            },
+            "ZAE_FM_SSOD_STATUS_JC_SRV": {
+                "uri": "/sap/opu/odata/sap/ZAE_FM_SSOD_STATUS_JC_SRV/",
+                "type": "OData",
+                "settings": {
+                    "localUri": "localService/metadata.xml"
+                }
+            },
+            "ZAE_FM_SSOD_STATUS_WPQR_SRV": {
+                "uri": "/sap/opu/odata/sap/ZAE_FM_SSOD_STATUS_WPQR_SRV/",
+                "type": "OData",
+                "settings": {
+                    "localUri": "localService/metadata.xml"
+                }
+            },
+            "ZAE_FM_SSOD_STATUS_WP_SRV": {
+                "uri": "/sap/opu/odata/sap/ZAE_FM_SSOD_STATUS_WP_SRV/",
+                "type": "OData",
+                "settings": {
+                    "localUri": "localService/metadata.xml"
+                }
+            },
+            "ZAE_FM_SSOD_STATUS_PC_SRV": {
+                "uri": "/sap/opu/odata/sap/ZAE_FM_SSOD_STATUS_PC_SRV/",
+                "type": "OData",
+                "settings": {
+                    "localUri": "localService/metadata.xml"
+                }
+            },
+            "ZAE_FM_SSOD_STATUS_CC_SRV": {
+                "uri": "/sap/opu/odata/sap/ZAE_FM_SSOD_STATUS_CC_SRV/",
+                "type": "OData",
+                "settings": {
+                    "localUri": "localService/metadata.xml"
+                }
+            },
+            "ZAE_FM_SSOD_STATUS_JC_RET_SRV": {
+                "uri": "/sap/opu/odata/sap/ZAE_FM_SSOD_STATUS_JC_RET_SRV/",
+                "type": "OData",
+                "settings": {
+                    "localUri": "localService/metadata.xml"
+                }
+            },
+            "ZAE_FM_SRV_ADD_EDIT_CONDS_M_SRV": {
+                "uri": "/sap/opu/odata/sap/ZAE_FM_SRV_ADD_EDIT_CONDS_M_SRV/",
+                "type": "OData",
+                "settings": {
+                    "localUri": "localService/metadata.xml"
+                }
+            },
+            "ZAE_FM_SRV_DOC_LOCK_UNLOCK_SRV": {
+                "uri": "/sap/opu/odata/sap/ZAE_FM_SRV_DOC_LOCK_UNLOCK_SRV/",
+                "type": "OData",
+                "settings": {
+                    "localUri": "localService/metadata.xml"
+                }
+            },
+            "ZAE_FM_SSOD_STATUS_APPBY_INTDP_SRV": {
+                "uri": "/sap/opu/odata/sap/ZAE_FM_SSOD_STATUS_APPBY_INTDP_SRV/",
+                "type": "OData",
+                "settings": {
+                    "localUri": "localService/metadata.xml"
+                }
+            },
+            "ZAE_FM_SSWE_ADD_COMPONENTS_SRV": {
+                "uri": "/sap/opu/odata/sap/ZAE_FM_SSWE_ADD_COMPONENTS_SRV/",
+                "type": "OData",
+                "settings": {
+                    "localUri": "localService/metadata.xml"
+                }
+            },
+            "ZAE_FM_SSOD_ADD_SUBLET_OPR_SRV": {
+                "uri": "/sap/opu/odata/sap/ZAE_FM_SSOD_ADD_SUBLET_OPR_SRV/",
+                "type": "OData",
+                "settings": {
+                    "localUri": "localService/metadata.xml"
+                }
+            },
+            "ZAE_FM_SSQT_APPLY_DISCOUNT_M_SRV": {
+                "uri": "/sap/opu/odata/sap/ZAE_FM_SSQT_APPLY_DISCOUNT_M_SRV/",
+                "type": "OData",
+                "settings": {
+                    "localUri": "localService/metadata.xml"
+                }
+            },
+            "ZAE_FM_SSOD_DELETE_ITEM_M_SRV": {
+                "uri": "/sap/opu/odata/sap/ZAE_FM_SSOD_DELETE_ITEM_M_SRV/",
+                "type": "OData",
+                "settings": {
+                    "localUri": "localService/metadata.xml"
+                }
+            },
+            "ZAE_FM_SSWE_ADD_COMPONENTS_M_SRV": {
+                "uri": "/sap/opu/odata/sap/ZAE_FM_SSWE_ADD_COMPONENTS_M_SRV/",
+                "type": "OData",
+                "settings": {
+                    "localUri": "localService/metadata.xml"
+                }
+            },
+            "ZAE_FM_SSOD_ITEM_RESERVE_STOCK_SRV": {
+                "uri": "/sap/opu/odata/sap/ZAE_FM_SSOD_ITEM_RESERVE_STOCK_SRV/",
+                "type": "OData",
+                "settings": {
+                    "localUri": "localService/metadata.xml"
+                }
+            },
+            "ZAE_FM_SSOD_DERESERVE_STOCK_SRV": {
+                "uri": "/sap/opu/odata/sap/ZAE_FM_SSOD_DERESERVE_STOCK_SRV/",
+                "type": "OData",
+                "settings": {
+                    "localUri": "localService/metadata.xml"
+                }
+            }
+        },
+        "offline": false,
+        "sourceTemplate": {
+            "id": "servicecatalog.connectivityComponentForManifest",
+            "version": "0.0.0",
+            "toolsId": "0059fff9-8742-469b-917d-c1f4fa545ebb"
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        },
+        "supportedThemes": [
+            "sap_fiori_3"
+        ]
+    },
+    "sap.ui5": {
+        "resources": {
+            "js": [],
+            "css": [
+                {
+                    "uri": "css/style.css"
+                }
+            ]
+        },
+        "dependencies": {
+            "minUI5Version": "1.65.6",
+            "libs": {
+                "sap.suite.ui.generic.template": {
+                    "lazy": false
+                },
+                "sap.ui.core": {
+                    "lazy": false
+                },
+                "sap.ui.generic.app": {
+                    "lazy": false
+                },
+                "com.globalintelli.zae_flib": {
+                    "minVersion": "1.0.0"
+                },
+                "sap.cus.sd.lib.slsdoc.manage": {
+                    "lazy": false
+                },
+                "sap.se.mi.plm.lib.attachmentservice": {
+                    "minVersion": "8.0.2",
+                    "lazy": true
+                }
+            },
+            "components": {
+                "sap.nw.core.changedocs.lib.reuse": {
+                    "lazy": true
+                }
+            }
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "uri": "i18n/i18n.properties"
+            },
+            "@i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "uri": "i18n/i18n.properties"
+            },
+            "i18n|sap.suite.ui.generic.template.ListReport|ZAE_C_ServiceOrder_01": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "uri": "i18n/ListReport/ZAE_C_ServiceOrder_01/i18n.properties"
+            },
+            "i18n|sap.suite.ui.generic.template.ObjectPage|ZAE_C_ServiceOrder_01": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "uri": "i18n/ObjectPage/ZAE_C_ServiceOrder_01/i18n.properties"
+            },
+            "jobCardPreview": {
+                "type": "sap.ui.model.odata.v2.ODataModel",
+                "settings": {
+                    "defaultOperationMode": "Server",
+                    "defaultBindingMode": "OneWay",
+                    "defaultCountMode": "None",
+                    "useBatch": false
+                },
+                "dataSource": "ZAE_FM_CRM_JOB_CARD_SRV",
+                "preload": true
+            },
+            "PrepaymentInvoicePreview": {
+                "type": "sap.ui.model.odata.v2.ODataModel",
+                "settings": {
+                    "defaultOperationMode": "Server",
+                    "defaultBindingMode": "OneWay",
+                    "defaultCountMode": "None",
+                    "useBatch": false
+                },
+                "dataSource": "ZAE_FM_SSOD_DWNPAYMENT_INV_P_SRV",
+                "preload": true
+            },
+            "ProformaInvoicePreview": {
+                "type": "sap.ui.model.odata.v2.ODataModel",
+                "settings": {
+                    "defaultOperationMode": "Server",
+                    "defaultBindingMode": "OneWay",
+                    "defaultCountMode": "None",
+                    "useBatch": false
+                },
+                "dataSource": "ZAE_FM_CRM_PRO_INVOICE_SRV",
+                "preload": true
+            },
+            "InvoicePreview": {
+                "type": "sap.ui.model.odata.v2.ODataModel",
+                "settings": {
+                    "defaultOperationMode": "Server",
+                    "defaultBindingMode": "OneWay",
+                    "defaultCountMode": "None",
+                    "useBatch": false
+                },
+                "dataSource": "ZAE_FM_CRM_INVOICE_SRV",
+                "preload": true
+            },
+            "Invoice01Preview": {
+                "type": "sap.ui.model.odata.v2.ODataModel",
+                "settings": {
+                    "defaultOperationMode": "Server",
+                    "defaultBindingMode": "OneWay",
+                    "defaultCountMode": "None",
+                    "useBatch": false
+                },
+                "dataSource": "ZAE_FM_CRM_INVOICE_01_SRV",
+                "preload": true
+            },
+            "GatePassPreview": {
+                "type": "sap.ui.model.odata.v2.ODataModel",
+                "settings": {
+                    "defaultOperationMode": "Server",
+                    "defaultBindingMode": "OneWay",
+                    "defaultCountMode": "None",
+                    "useBatch": false
+                },
+                "dataSource": "ZAE_FM_CRM_GATEPASS_SRV",
+                "preload": true
+            },
+            "MultipleCompDiscount": {
+                "type": "sap.ui.model.odata.v2.ODataModel",
+                "settings": {
+                    "defaultOperationMode": "Server",
+                    "defaultBindingMode": "OneWay",
+                    "defaultCountMode": "Request"
+                },
+                "dataSource": "ZAE_FM_SRV_ADD_EDIT_CONDS_M_SRV",
+                "preload": true
+            },
+            "DraftProformaPreview": {
+                "type": "sap.ui.model.odata.v2.ODataModel",
+                "settings": {
+                    "defaultOperationMode": "Server",
+                    "defaultBindingMode": "OneWay",
+                    "defaultCountMode": "None",
+                    "useBatch": false
+                },
+                "dataSource": "ZAE_FM_SSOD_DRAFT_PROFORMA_P_SRV",
+                "preload": true
+            },
+            "Split3Preview": {
+                "type": "sap.ui.model.odata.v2.ODataModel",
+                "settings": {
+                    "defaultOperationMode": "Server",
+                    "defaultBindingMode": "OneWay",
+                    "defaultCountMode": "None",
+                    "useBatch": false
+                },
+                "dataSource": "ZAE_FM_SSOD_ITEM_SPLIT_01_SRV",
+                "preload": true
+            },
+            "SplitToNewOrder": {
+                "type": "sap.ui.model.odata.v2.ODataModel",
+                "settings": {
+                    "defaultOperationMode": "Server",
+                    "defaultBindingMode": "OneWay",
+                    "defaultCountMode": "None",
+                    "useBatch": false
+                },
+                "dataSource": "ZAE_FM_SSOD_CRT_SPLIT_SRV_ORD_SRV",
+                "preload": true
+            },
+            "EstimatePreview": {
+                "type": "sap.ui.model.odata.v2.ODataModel",
+                "settings": {
+                    "defaultOperationMode": "Server",
+                    "defaultBindingMode": "OneWay",
+                    "defaultCountMode": "None",
+                    "useBatch": false
+                },
+                "dataSource": "ZAE_FM_SSOD_ESTIMATE_PRINT_P_SRV",
+                "preload": true
+            },
+            "": {
+                "dataSource": "mainService",
+                "preload": true,
+                "settings": {
+                    "defaultBindingMode": "TwoWay",
+                    "defaultCountMode": "Inline",
+                    "refreshAfterChange": false,
+                    "metadataUrlParams": {
+                        "sap-value-list": "none"
+                    }
+                }
+            },
+            "ZAE_FM_CRM_PER_INVOICE_SRV": {
+                "type": "sap.ui.model.odata.v2.ODataModel",
+                "settings": {
+                    "defaultOperationMode": "Server",
+                    "defaultBindingMode": "OneWay",
+                    "defaultCountMode": "Request"
+                },
+                "dataSource": "ZAE_FM_CRM_PER_INVOICE_SRV",
+                "preload": true
+            },
+            "InvoiceBDRPreview": {
+                "type": "sap.ui.model.odata.v2.ODataModel",
+                "settings": {
+                    "defaultOperationMode": "Server",
+                    "defaultBindingMode": "OneWay",
+                    "defaultCountMode": "Request",
+                    "useBatch": false
+                },
+                "dataSource": "ZAE_FM_SSOD_SER_INV_LS_BW_P_SRV",
+                "preload": true
+            },
+            "InvoiceBDPreview": {
+                "type": "sap.ui.model.odata.v2.ODataModel",
+                "settings": {
+                    "defaultOperationMode": "Server",
+                    "defaultBindingMode": "OneWay",
+                    "defaultCountMode": "Request",
+                    "useBatch": false
+                },
+                "dataSource": "ZAE_FM_SSOD_SER_INV_LS_BW_SRV",
+                "preload": true
+            },
+            "SplitInBDRPreview": {
+                "type": "sap.ui.model.odata.v2.ODataModel",
+                "settings": {
+                    "defaultOperationMode": "Server",
+                    "defaultBindingMode": "OneWay",
+                    "defaultCountMode": "Request",
+                    "useBatch": false
+                },
+                "dataSource": "ZAE_FM_SSOD_BDR_SPLIT_IN_P_SRV",
+                "preload": true
+            },
+            "SplitCustBDRPreview": {
+                "type": "sap.ui.model.odata.v2.ODataModel",
+                "settings": {
+                    "defaultOperationMode": "Server",
+                    "defaultBindingMode": "OneWay",
+                    "defaultCountMode": "Request",
+                    "useBatch": false
+                },
+                "dataSource": "ZAE_FM_SSOD_BDR_SPLIT_CUST_P_SRV",
+                "preload": true
+            },
+            "SplitInINVPreview": {
+                "type": "sap.ui.model.odata.v2.ODataModel",
+                "settings": {
+                    "defaultOperationMode": "Server",
+                    "defaultBindingMode": "OneWay",
+                    "defaultCountMode": "Request",
+                    "useBatch": false
+                },
+                "dataSource": "ZAE_FM_SSOD_INV_SPLIT_IN_P_SRV",
+                "preload": true
+            },
+            "SplitCustINVPreview": {
+                "type": "sap.ui.model.odata.v2.ODataModel",
+                "settings": {
+                    "defaultOperationMode": "Server",
+                    "defaultBindingMode": "OneWay",
+                    "defaultCountMode": "Request",
+                    "useBatch": false
+                },
+                "dataSource": "ZAE_FM_SSOD_INV_SPLIT_CUST_P_SRV",
+                "preload": true
+            },
+            "OEMPartsReturn": {
+                "type": "sap.ui.model.odata.v2.ODataModel",
+                "settings": {
+                    "defaultOperationMode": "Server",
+                    "defaultBindingMode": "OneWay",
+                    "defaultCountMode": "Request"
+                },
+                "dataSource": "ZAE_FM_SSOD_ADDCOND_TYPE_LINE_SRV",
+                "preload": true
+            },
+            "AddOperations": {
+                "type": "sap.ui.model.odata.v2.ODataModel",
+                "settings": {
+                    "defaultOperationMode": "Server",
+                    "defaultBindingMode": "OneWay",
+                    "defaultCountMode": "Request"
+                },
+                "dataSource": "ZAE_FM_SSOD_ADD_OPERATIONS_SRV",
+                "preload": true
+            },
+            "ZAE_FM_SSOD_ITEM_SPLIT_SRV": {
+                "type": "sap.ui.model.odata.v2.ODataModel",
+                "settings": {
+                    "defaultOperationMode": "Server",
+                    "defaultBindingMode": "OneWay",
+                    "defaultCountMode": "Request"
+                },
+                "dataSource": "ZAE_FM_SSOD_ITEM_SPLIT_SRV",
+                "preload": true
+            },
+            "AddNotes": {
+                "type": "sap.ui.model.odata.v2.ODataModel",
+                "settings": {
+                    "defaultOperationMode": "Server",
+                    "defaultBindingMode": "OneWay",
+                    "defaultCountMode": "Request"
+                },
+                "dataSource": "ZAE_FM_SERVDOCITEM_ADD_NOTES_SRV",
+                "preload": true
+            },
+            "Sharewithpartsteam": {
+                "type": "sap.ui.model.odata.v2.ODataModel",
+                "settings": {
+                    "defaultOperationMode": "Server",
+                    "defaultBindingMode": "OneWay",
+                    "defaultCountMode": "Request"
+                },
+                "dataSource": "ZAE_FM_SSOD_STATUS_WITHPARTS_SRV",
+                "preload": true
+            },
+            "UpdatedbyPartsteam": {
+                "type": "sap.ui.model.odata.v2.ODataModel",
+                "settings": {
+                    "defaultOperationMode": "Server",
+                    "defaultBindingMode": "OneWay",
+                    "defaultCountMode": "Request"
+                },
+                "dataSource": "ZAE_FM_SSOD_STATUS_RELPARTS_SRV",
+                "preload": true
+            },
+            "JCrecvdbywarantyteam": {
+                "type": "sap.ui.model.odata.v2.ODataModel",
+                "settings": {
+                    "defaultOperationMode": "Server",
+                    "defaultBindingMode": "OneWay",
+                    "defaultCountMode": "Request"
+                },
+                "dataSource": "ZAE_FM_SSOD_STATUS_JC_SRV",
+                "preload": true
+            },
+            "WaitingPQRreport": {
+                "type": "sap.ui.model.odata.v2.ODataModel",
+                "settings": {
+                    "defaultOperationMode": "Server",
+                    "defaultBindingMode": "OneWay",
+                    "defaultCountMode": "Request"
+                },
+                "dataSource": "ZAE_FM_SSOD_STATUS_WPQR_SRV",
+                "preload": true
+            },
+            "WarrantyProcesssing": {
+                "type": "sap.ui.model.odata.v2.ODataModel",
+                "settings": {
+                    "defaultOperationMode": "Server",
+                    "defaultBindingMode": "OneWay",
+                    "defaultCountMode": "Request"
+                },
+                "dataSource": "ZAE_FM_SSOD_STATUS_WP_SRV",
+                "preload": true
+            },
+            "WarrantyPartiallyClosed": {
+                "type": "sap.ui.model.odata.v2.ODataModel",
+                "settings": {
+                    "defaultOperationMode": "Server",
+                    "defaultBindingMode": "OneWay",
+                    "defaultCountMode": "Request"
+                },
+                "dataSource": "ZAE_FM_SSOD_STATUS_PC_SRV",
+                "preload": true
+            },
+            "WarrantyClosedandClaimed": {
+                "type": "sap.ui.model.odata.v2.ODataModel",
+                "settings": {
+                    "defaultOperationMode": "Server",
+                    "defaultBindingMode": "OneWay",
+                    "defaultCountMode": "Request"
+                },
+                "dataSource": "ZAE_FM_SSOD_STATUS_CC_SRV",
+                "preload": true
+            },
+            "LockModel": {
+                "type": "sap.ui.model.odata.v2.ODataModel",
+                "settings": {
+                    "defaultOperationMode": "Server",
+                    "defaultBindingMode": "OneWay",
+                    "defaultCountMode": "Request"
+                },
+                "dataSource": "ZAE_FM_SRV_DOC_LOCK_UNLOCK_SRV",
+                "preload": true
+            },
+            "SetStatustoJCreturnedforcorrection": {
+                "type": "sap.ui.model.odata.v2.ODataModel",
+                "settings": {
+                    "defaultOperationMode": "Server",
+                    "defaultBindingMode": "OneWay",
+                    "defaultCountMode": "Request"
+                },
+                "dataSource": "ZAE_FM_SSOD_STATUS_JC_RET_SRV",
+                "preload": true
+            },
+            "ApprovalbyInternalDepartment": {
+                "type": "sap.ui.model.odata.v2.ODataModel",
+                "settings": {
+                    "defaultOperationMode": "Server",
+                    "defaultBindingMode": "OneWay",
+                    "defaultCountMode": "Request"
+                },
+                "dataSource": "ZAE_FM_SSOD_STATUS_APPBY_INTDP_SRV",
+                "preload": true
+            },
+            "AddComponents": {
+                "type": "sap.ui.model.odata.v2.ODataModel",
+                "settings": {
+                    "defaultOperationMode": "Server",
+                    "defaultBindingMode": "OneWay",
+                    "defaultCountMode": "Request"
+                },
+                "dataSource": "ZAE_FM_SSWE_ADD_COMPONENTS_SRV",
+                "preload": true
+            },
+            "AddSubletOperation": {
+                "type": "sap.ui.model.odata.v2.ODataModel",
+                "settings": {
+                    "defaultOperationMode": "Server",
+                    "defaultBindingMode": "OneWay",
+                    "defaultCountMode": "Request"
+                },
+                "dataSource": "ZAE_FM_SSOD_ADD_SUBLET_OPR_SRV",
+                "preload": false
+            },
+            "MultipleCompDiscountOP": {
+                "type": "sap.ui.model.odata.v2.ODataModel",
+                "settings": {
+                    "defaultOperationMode": "Server",
+                    "defaultBindingMode": "OneWay",
+                    "defaultCountMode": "Request"
+                },
+                "dataSource": "ZAE_FM_SSQT_APPLY_DISCOUNT_M_SRV",
+                "preload": false
+            },
+            "DeleteComponent": {
+                "type": "sap.ui.model.odata.v2.ODataModel",
+                "settings": {
+                    "defaultOperationMode": "Server",
+                    "defaultBindingMode": "OneWay",
+                    "defaultCountMode": "Request"
+                },
+                "dataSource": "ZAE_FM_SSOD_DELETE_ITEM_M_SRV",
+                "preload": true
+            },
+            "AddComponents1": {
+                "type": "sap.ui.model.odata.v2.ODataModel",
+                "settings": {
+                    "defaultOperationMode": "Server",
+                    "defaultBindingMode": "OneWay",
+                    "defaultCountMode": "Request"
+                },
+                "dataSource": "ZAE_FM_SSWE_ADD_COMPONENTS_M_SRV",
+                "preload": true
+            },
+            "ReserveStock": {
+                "type": "sap.ui.model.odata.v2.ODataModel",
+                "settings": {
+                    "defaultOperationMode": "Server",
+                    "defaultBindingMode": "OneWay",
+                    "defaultCountMode": "Request"
+                },
+                "dataSource": "ZAE_FM_SSOD_ITEM_RESERVE_STOCK_SRV",
+                "preload": true
+            },
+            "DeReserveStock": {
+                "type": "sap.ui.model.odata.v2.ODataModel",
+                "settings": {
+                    "defaultOperationMode": "Server",
+                    "defaultBindingMode": "OneWay",
+                    "defaultCountMode": "Request"
+                },
+                "dataSource": "ZAE_FM_SSOD_DERESERVE_STOCK_SRV",
+                "preload": true
+            }
+        },
+        "extends": {
+            "extensions": {
+                "sap.ui.controllerExtensions": {
+                    "sap.suite.ui.generic.template.ObjectPage.view.Details": {
+                        "controllerName": "com.globalintelli.zae_ssod.ext.controller.ObjectPageExt",
+                        "sap.ui.generic.app": {
+                            "ZAE_C_ServiceOrder_01": {
+                                "EntitySet": "ZAE_C_ServiceOrder_01",
+                                "Header": {
+                                    "Actions": {
+                                        "SSOD_B08": {
+                                            "id": "SSOD_B08Button",
+                                            "text": "{@i18n>SSOD_B08}",
+                                            "press": "onClickSSOD_B08",
+                                            "applicablePath": "isShowSSOD_B08"
+                                        },
+                                        "SSOD_B12": {
+                                            "id": "SSOD_B12Button",
+                                            "text": "{@i18n>SSOD_B12}",
+                                            "press": "onClickSSOD_B12",
+                                            "applicablePath": "isShowSSOD_B12"
+                                        },
+                                        "SSOD_B02": {
+                                            "id": "SSOD_B02Button",
+                                            "text": "{@i18n>SSOD_B02}",
+                                            "press": "onClickSSOD_B02",
+                                            "applicablePath": "isShowSSOD_B02"
+                                        },
+                                        "SSOD_B24": {
+                                            "id": "SSOD_B24Button",
+                                            "text": "{@i18n>SSOD_B24}",
+                                            "press": "onClickSSOD_B24",
+                                            "applicablePath": "isShowSSOD_B24"
+                                        },
+                                        "SSOD_B25": {
+                                            "id": "SSOD_B25Button",
+                                            "text": "{@i18n>SSOD_B25}",
+                                            "press": "onClickSSOD_B25",
+                                            "applicablePath": "isShowSSOD_B25"
+                                        },
+                                        "SSOD_B01": {
+                                            "id": "SSOD_B01Button",
+                                            "text": "{@i18n>SSOD_B01}",
+                                            "press": "onClickSSOD_B01",
+                                            "applicablePath": "isShowSSOD_B01"
+                                        },
+                                        "SSOD_B164": {
+                                            "id": "SSOD_B164Button",
+                                            "text": "{@i18n>SSOD_B164}",
+                                            "press": "onClickSSOD_B164",
+                                            "applicablePath": "isShowSSOD_B164"
+                                        },
+                                        "SSOD_B22": {
+                                            "id": "SSOD_B22Button",
+                                            "text": "{@i18n>SSOD_B22}",
+                                            "press": "onClickSSOD_B22",
+                                            "applicablePath": "isShowSSOD_B22"
+                                        },
+                                        "SSOD_B26": {
+                                            "id": "SSOD_B26Button",
+                                            "text": "{@i18n>SSOD_B26}",
+                                            "press": "onClickSSOD_B26",
+                                            "applicablePath": "isShowSSOD_B26"
+                                        },
+                                        "SSOD_B05": {
+                                            "id": "SSOD_B05Button",
+                                            "text": "{@i18n>SSOD_B05}",
+                                            "press": "onClickSSOD_B05",
+                                            "applicablePath": "isShowSSOD_B05"
+                                        },
+                                        "SSOD_B10": {
+                                            "id": "SSOD_B10Button",
+                                            "text": "{@i18n>SSOD_B10}",
+                                            "press": "onClickSSOD_B10",
+                                            "applicablePath": "isShowSSOD_B10"
+                                        },
+                                        "SSOD_B32": {
+                                            "id": "SSOD_B32Button",
+                                            "text": "{@i18n>SSOD_B32}",
+                                            "press": "onClickSSOD_B32",
+                                            "applicablePath": "isShowSSOD_B32"
+                                        },
+                                        "SSOD_B49": {
+                                            "id": "SSOD_B49Button",
+                                            "text": "{@i18n>SSOD_B49}",
+                                            "press": "onClickSSOD_B49",
+                                            "applicablePath": "isShowSSOD_B49"
+                                        },
+                                        "SSOD_B66": {
+                                            "id": "SSOD_B66Button",
+                                            "text": "{@i18n>SSOD_B66}",
+                                            "press": "onClickSSOD_B66",
+                                            "applicablePath": "isShowSSOD_B66"
+                                        },
+                                        "SSOD_B156": {
+                                            "id": "SSOD_B156Button",
+                                            "text": "{@i18n>SSOD_B156}",
+                                            "press": "onClickSSOD_B156",
+                                            "applicablePath": "isShowSSOD_B156"
+                                        },
+                                        "SSOD_B149": {
+                                            "id": "SSOD_B149Button",
+                                            "text": "{@i18n>SSOD_B149}",
+                                            "press": "onClickSSOD_B149",
+                                            "applicablePath": "isShowSSOD_B149"
+                                        },
+                                        "SSOD_B90": {
+                                            "id": "SSOD_B90Button",
+                                            "text": "{@i18n>SSOD_B90}",
+                                            "press": "onClickSSOD_B90",
+                                            "applicablePath": "isShowSSOD_B90"
+                                        },
+                                        "SSOD_B92": {
+                                            "id": "SSOD_B92Button",
+                                            "text": "{@i18n>SSOD_B92}",
+                                            "press": "onClickSSOD_B92",
+                                            "applicablePath": "isShowSSOD_B92"
+                                        },
+                                        "SSOD_B45": {
+                                            "id": "SSOD_B45Button",
+                                            "text": "{@i18n>SSOD_B45}",
+                                            "press": "onClickSSOD_B45",
+                                            "applicablePath": "isShowSSOD_B45"
+                                        },
+                                        "SSOD_B48": {
+                                            "id": "SSOD_B48Button",
+                                            "text": "{@i18n>SSOD_B48}",
+                                            "press": "onClickSSOD_B48",
+                                            "applicablePath": "isShowSSOD_B48"
+                                        },
+                                        "SSOD_B102": {
+                                            "id": "SSOD_B102Button",
+                                            "text": "{@i18n>SSOD_B102}",
+                                            "press": "onClickSSOD_B102",
+                                            "applicablePath": "isShowSSOD_B102"
+                                        },
+                                        "SSOD_B58": {
+                                            "id": "SSOD_B58Button",
+                                            "text": "{@i18n>SSOD_B58}",
+                                            "press": "onClickSSOD_B58",
+                                            "applicablePath": "isShowSSOD_B58"
+                                        },
+                                        "SSOD_B57": {
+                                            "id": "SSOD_B57Button",
+                                            "text": "{@i18n>SSOD_B57}",
+                                            "press": "onClickSSOD_B57",
+                                            "applicablePath": "isShowSSOD_B57"
+                                        },
+                                        "SSOD_B16": {
+                                            "id": "SSOD_B16Button",
+                                            "text": "{@i18n>SSOD_B16}",
+                                            "press": "onClickSSOD_B16",
+                                            "applicablePath": "isShowSSOD_B16"
+                                        },
+                                        "SSOD_B17": {
+                                            "id": "SSOD_B17Button",
+                                            "text": "{@i18n>SSOD_B17}",
+                                            "press": "onClickSSOD_B17",
+                                            "applicablePath": "isShowSSOD_B17"
+                                        },
+                                        "SSOD_B18": {
+                                            "id": "SSOD_B18Button",
+                                            "text": "{@i18n>SSOD_B18}",
+                                            "press": "onClickSSOD_B18",
+                                            "applicablePath": "isShowSSOD_B18"
+                                        },
+                                        "SSOD_B19": {
+                                            "id": "SSOD_B19Button",
+                                            "text": "{@i18n>SSOD_B19}",
+                                            "press": "onClickSSOD_B19",
+                                            "applicablePath": "isShowSSOD_B19"
+                                        },
+                                        "SSOD_B20": {
+                                            "id": "SSOD_B20Button",
+                                            "text": "{@i18n>SSOD_B20}",
+                                            "press": "onClickSSOD_B20",
+                                            "applicablePath": "isShowSSOD_B20"
+                                        },
+                                        "SSOD_B21": {
+                                            "id": "SSOD_B21Button",
+                                            "text": "{@i18n>SSOD_B21}",
+                                            "press": "onClickSSOD_B21",
+                                            "applicablePath": "isShowSSOD_B21"
+                                        },
+                                        "SSOD_B23": {
+                                            "id": "SSOD_B23Button",
+                                            "text": "{@i18n>SSOD_B23}",
+                                            "press": "onClickSSOD_B23",
+                                            "applicablePath": "isShowSSOD_B23"
+                                        },
+                                        "SSOD_B83": {
+                                            "id": "SSOD_B83Button",
+                                            "text": "{@i18n>SSOD_B83}",
+                                            "press": "onClickSSOD_B83",
+                                            "applicablePath": "isShowSSOD_B83"
+                                        },
+                                        "SSOD_B27": {
+                                            "id": "SSOD_B27Button",
+                                            "text": "{@i18n>SSOD_B27}",
+                                            "press": "onClickSSOD_B27",
+                                            "applicablePath": "isShowSSOD_B27"
+                                        },
+                                        "SSOD_B122": {
+                                            "id": "SSOD_B122Button",
+                                            "text": "{@i18n>SSOD_B122}",
+                                            "press": "onClickSSOD_B122",
+                                            "applicablePath": "isShowSSOD_B122"
+                                        },
+                                        "SSOD_B123": {
+                                            "id": "SSOD_B123Button",
+                                            "text": "{@i18n>SSOD_B123}",
+                                            "press": "onClickSSOD_B123",
+                                            "applicablePath": "isShowSSOD_B123"
+                                        },
+                                        "SSOD_B124": {
+                                            "id": "SSOD_B124Button",
+                                            "text": "{@i18n>SSOD_B124}",
+                                            "press": "onClickSSOD_B124",
+                                            "applicablePath": "isShowSSOD_B124"
+                                        },
+                                        "SSOD_B111": {
+                                            "id": "SSOD_B111Button",
+                                            "text": "{@i18n>SSOD_B111}",
+                                            "press": "onClickSSOD_B111",
+                                            "applicablePath": "isShowSSOD_B111"
+                                        },
+                                        "SSOD_B77": {
+                                            "id": "SSOD_B77Button",
+                                            "text": "{@i18n>SSOD_B77}",
+                                            "press": "onClickSSOD_B77",
+                                            "applicablePath": "isShowSSOD_B77"
+                                        },
+                                        "SSOD_B68": {
+                                            "id": "SSOD_B68Button",
+                                            "text": "{@i18n>SSOD_B68}",
+                                            "press": "onClickSSOD_B68",
+                                            "applicablePath": "isShowSSOD_B68"
+                                        },
+                                        "SSOD_B103": {
+                                            "id": "SSOD_B103Button",
+                                            "text": "{@i18n>SSOD_B103}",
+                                            "press": "onClickSSOD_B103",
+                                            "applicablePath": "isShowSSOD_B103"
+                                        },
+                                        "SSOD_B43": {
+                                            "id": "SSOD_B43Button",
+                                            "text": "{@i18n>SSOD_B43}",
+                                            "press": "onClickSSOD_B43",
+                                            "applicablePath": "isShowSSOD_B43"
+                                        },
+                                        "SSOD_B33": {
+                                            "id": "SSOD_B33Button",
+                                            "text": "{@i18n>SSOD_B33}",
+                                            "press": "onClickSSOD_B33",
+                                            "applicablePath": "isShowSSOD_B33"
+                                        },
+                                        "SSOD_B37": {
+                                            "id": "SSOD_B37Button",
+                                            "text": "{@i18n>SSOD_B37}",
+                                            "press": "onClickSSOD_B37",
+                                            "applicablePath": "isShowSSOD_B37"
+                                        },
+                                        "SSOD_B52": {
+                                            "id": "SSOD_B52Button",
+                                            "text": "{@i18n>SSOD_B52}",
+                                            "press": "onClickSSOD_B52",
+                                            "applicablePath": "isShowSSOD_B52"
+                                        },
+                                        "SSOD_B162": {
+                                            "id": "SSOD_B162Button",
+                                            "text": "{@i18n>SSOD_B162}",
+                                            "press": "onClickSSOD_B162",
+                                            "applicablePath": "isShowSSOD_B162"
+                                        },
+                                        "SSOD_B03": {
+                                            "id": "SSOD_B03Button",
+                                            "text": "{@i18n>SSOD_B03}",
+                                            "press": "onClickSSOD_B03",
+                                            "applicablePath": "isShowSSOD_B03"
+                                        },
+                                        "SSOD_B04": {
+                                            "id": "SSOD_B04Button",
+                                            "text": "{@i18n>SSOD_B04}",
+                                            "press": "onClickSSOD_B04",
+                                            "applicablePath": "isShowSSOD_B04"
+                                        },
+                                        "SSOD_B76": {
+                                            "id": "SSOD_B76Button",
+                                            "text": "{@i18n>SSOD_B76}",
+                                            "press": "onClickSSOD_B76",
+                                            "applicablePath": "isShowSSOD_B76"
+                                        },
+                                        "SSOD_B159": {
+                                            "id": "SSOD_B159Button",
+                                            "text": "{@i18n>SSOD_B159}",
+                                            "press": "onClickSSOD_B159",
+                                            "applicablePath": "isShowSSOD_B159"
+                                        }
+                                    }
+                                },
+                                "Sections": {
+                                    "BDFacet": {
+                                        "id": "BDFacet",
+                                        "Actions": {
+                                            "SSOD_B73": {
+                                                "id": "SSOD_B73Button",
+                                                "text": "{@i18n>SSOD_B73}",
+                                                "press": "onClickSSOD_B73",
+                                                "requiresSelection": true,
+                                                "applicablePath": "isShowSSOD_B73"
+                                            },
+                                            "SSOD_B07": {
+                                                "id": "SSOD_B07Button",
+                                                "text": "{@i18n>SSOD_B07}",
+                                                "press": "onClickSSOD_B07",
+                                                "requiresSelection": true,
+                                                "applicablePath": "isShowSSOD_B07"
+                                            },
+                                            "SSOD_B47": {
+                                                "id": "SSOD_B47Button",
+                                                "text": "{@i18n>SSOD_B47}",
+                                                "press": "onClickSSOD_B47",
+                                                "requiresSelection": true,
+                                                "applicablePath": "isShowSSOD_B47"
+                                            },
+                                            "SSOD_B50": {
+                                                "id": "SSOD_B50Button",
+                                                "text": "{@i18n>SSOD_B50}",
+                                                "press": "onClickSSOD_B50",
+                                                "requiresSelection": true,
+                                                "applicablePath": "isShowSSOD_B50"
+                                            },
+                                            "SSOD_B53": {
+                                                "id": "SSOD_B53Button",
+                                                "text": "{@i18n>SSOD_B53}",
+                                                "press": "onClickSSOD_B53",
+                                                "applicablePath": "isShowSSOD_B53",
+                                                "requiresSelection": true
+                                            },
+                                            "SSOD_B54": {
+                                                "id": "SSOD_B54Button",
+                                                "text": "{@i18n>SSOD_B54}",
+                                                "press": "onClickSSOD_B54",
+                                                "applicablePath": "isShowSSOD_B54",
+                                                "requiresSelection": true
+                                            }
+                                        }
+                                    },
+                                    "SNfacet": {
+                                        "id": "SNfacet",
+                                        "Actions": {
+                                            "SSOD_B09": {
+                                                "id": "SSOD_B09Button",
+                                                "text": "{@i18n>SSOD_B09}",
+                                                "press": "onClickSSOD_B09",
+                                                "requiresSelection": true,
+                                                "applicablePath": "isShowSSOD_B09"
+                                            }
+                                        }
+                                    },
+                                    "BLFacet": {
+                                        "id": "BLFacet",
+                                        "Actions": {
+                                            "SSOD_B78": {
+                                                "id": "SSOD_B78Button",
+                                                "text": "{@i18n>SSOD_B78}",
+                                                "press": "onClickSSOD_B78",
+                                                "requiresSelection": true,
+                                                "applicablePath": "isShowSSOD_B78"
+                                            },
+                                            "SSOD_B75": {
+                                                "id": "SSOD_B75Button",
+                                                "text": "{@i18n>SSOD_B75}",
+                                                "press": "onClickSSOD_B75",
+                                                "requiresSelection": true,
+                                                "applicablePath": "isShowSSOD_B75"
+                                            },
+                                            "SSOD_B13": {
+                                                "id": "SSOD_B13Button",
+                                                "text": "{@i18n>SSOD_B13}",
+                                                "press": "onClickSSOD_B13",
+                                                "requiresSelection": true,
+                                                "applicablePath": "isShowSSOD_B13"
+                                            },
+                                            "SSOD_B51": {
+                                                "id": "SSOD_B51Button",
+                                                "text": "{@i18n>SSOD_B51}",
+                                                "press": "onClickSSOD_B51",
+                                                "requiresSelection": true,
+                                                "applicablePath": "isShowSSOD_B51"
+                                            },
+                                            "SSOD_B55": {
+                                                "id": "SSOD_B55Button",
+                                                "text": "{@i18n>SSOD_B55}",
+                                                "press": "onClickSSOD_B55",
+                                                "applicablePath": "isShowSSOD_B55",
+                                                "requiresSelection": true
+                                            },
+                                            "SSOD_B56": {
+                                                "id": "SSOD_B56Button",
+                                                "text": "{@i18n>SSOD_B56}",
+                                                "press": "onClickSSOD_B56",
+                                                "applicablePath": "isShowSSOD_B56",
+                                                "requiresSelection": true
+                                            }
+                                        }
+                                    },
+                                    "CDMRFacet": {
+                                        "id": "CDMRFacet",
+                                        "Actions": {
+                                            "SSOD_B79": {
+                                                "id": "SSOD_B79Button",
+                                                "text": "{@i18n>SSOD_B79}",
+                                                "press": "onClickSSOD_B79",
+                                                "requiresSelection": true,
+                                                "applicablePath": "isShowSSOD_B79"
+                                            }
+                                        }
+                                    },
+                                    "CPFacet": {
+                                        "id": "CPFacet",
+                                        "Actions": {
+                                            "SSOD_B34": {
+                                                "id": "SSOD_B34Button",
+                                                "text": "{@i18n>SSOD_B34}",
+                                                "press": "onClickSSOD_B34",
+                                                "requiresSelection": true,
+                                                "applicablePath": "isShowSSOD_B34"
+                                            },
+                                            "SSOD_B41": {
+                                                "id": "SSOD_B41Button",
+                                                "text": "{@i18n>SSOD_B41}",
+                                                "press": "onClickSSOD_B41",
+                                                "requiresSelection": true,
+                                                "applicablePath": "isShowSSOD_B41"
+                                            },
+                                            "SSOD_B131": {
+                                                "id": "SSOD_B131Button",
+                                                "text": "{@i18n>SSOD_B131}",
+                                                "press": "onClickSSOD_B131",
+                                                "requiresSelection": true,
+                                                "applicablePath": "isShowSSOD_B131"
+                                            },
+                                            "SSOD_B125": {
+                                                "id": "SSOD_B125Button",
+                                                "text": "{@i18n>SSOD_B125}",
+                                                "press": "onClickSSOD_B125",
+                                                "requiresSelection": true,
+                                                "applicablePath": "isShowSSOD_B125"
+                                            },
+                                            "SSOD_B142": {
+                                                "id": "SSOD_B142Button",
+                                                "text": "{@i18n>SSOD_B142}",
+                                                "press": "onClickSSOD_B142",
+                                                "requiresSelection": true,
+                                                "applicablePath": "isShowSSOD_B142"
+                                            },
+                                            "SSOD_B59": {
+                                                "id": "SSOD_B59Button",
+                                                "text": "{@i18n>SSOD_B59}",
+                                                "press": "onClickSSOD_B59",
+                                                "requiresSelection": true,
+                                                "applicablePath": "isShowSSOD_B59"
+                                            },
+                                            "SSOD_B62": {
+                                                "id": "SSOD_B62Button",
+                                                "text": "{@i18n>SSOD_B62}",
+                                                "press": "onClickSSOD_B62",
+                                                "requiresSelection": true,
+                                                "applicablePath": "isShowSSOD_B62"
+                                            },
+                                            "SSOD_B69": {
+                                                "id": "SSOD_B69Button",
+                                                "text": "{@i18n>SSOD_B69}",
+                                                "press": "onClickSSOD_B69",
+                                                "applicablePath": "isShowSSOD_B69",
+                                                "requiresSelection": true
+                                            },
+                                            "SSOD_B70": {
+                                                "id": "SSOD_B70Button",
+                                                "text": "{@i18n>SSOD_B70}",
+                                                "press": "onClickSSOD_B70",
+                                                "applicablePath": "isShowSSOD_B70",
+                                                "requiresSelection": true
+                                            },
+                                            "SSOD_B81": {
+                                                "id": "SSOD_B81Button",
+                                                "text": "{@i18n>SSOD_B81}",
+                                                "press": "onClickSSOD_B81",
+                                                "applicablePath": "isShowSSOD_B81",
+                                                "requiresSelection": true
+                                            },
+                                            "SSOD_B85": {
+                                                "id": "SSOD_B85Button",
+                                                "text": "{@i18n>SSOD_B85}",
+                                                "press": "onClickSSOD_B85",
+                                                "requiresSelection": true,
+                                                "applicablePath": "isShowSSOD_B85"
+                                            },
+                                            "SSOD_B87": {
+                                                "id": "SSOD_B87Button",
+                                                "text": "{@i18n>SSOD_B87}",
+                                                "press": "onClickSSOD_B87",
+                                                "requiresSelection": true,
+                                                "applicablePath": "isShowSSOD_B87"
+                                            },
+                                            "SSOD_B89": {
+                                                "id": "SSOD_B89Button",
+                                                "text": "{@i18n>SSOD_B89}",
+                                                "press": "onClickSSOD_B89",
+                                                "requiresSelection": true,
+                                                "applicablePath": "isShowSSOD_B89"
+                                            },
+                                            "SSOD_B93": {
+                                                "id": "SSOD_B93Button",
+                                                "text": "{@i18n>SSOD_B93}",
+                                                "press": "onClickSSOD_B93",
+                                                "applicablePath": "isShowSSOD_B93",
+                                                "requiresSelection": true
+                                            },
+                                            "SSOD_B97": {
+                                                "id": "SSOD_B97Button",
+                                                "text": "{@i18n>SSOD_B97}",
+                                                "press": "onClickSSOD_B97",
+                                                "applicablePath": "isShowSSOD_B97",
+                                                "requiresSelection": true
+                                            },
+                                            "SSOD_B139": {
+                                                "id": "SSOD_B139Button",
+                                                "text": "{@i18n>SSOD_B139}",
+                                                "press": "onClickSSOD_B139",
+                                                "requiresSelection": true,
+                                                "applicablePath": "isShowSSOD_B139"
+                                            },
+                                            "SSOD_B140": {
+                                                "id": "SSOD_B140Button",
+                                                "text": "{@i18n>SSOD_B140}",
+                                                "press": "onClickSSOD_B140",
+                                                "requiresSelection": true,
+                                                "applicablePath": "isShowSSOD_B140"
+                                            },
+                                            "SSOD_B160": {
+                                                "id": "SSOD_B160Button",
+                                                "text": "{@i18n>SSOD_B160}",
+                                                "press": "onClickSSOD_B160",
+                                                "requiresSelection": true,
+                                                "applicablePath": "isShowSSOD_B160"
+                                            },
+                                            "SSOD_B161": {
+                                                "id": "SSOD_B161Button",
+                                                "text": "{@i18n>SSOD_B161}",
+                                                "press": "onClickSSOD_B161",
+                                                "requiresSelection": true,
+                                                "applicablePath": "isShowSSOD_B161"
+                                            },
+                                            "SSOD_B165": {
+                                                "id": "SSOD_B165Button",
+                                                "text": "{@i18n>SSOD_B165}",
+                                                "press": "onClickSSOD_B165",
+                                                "requiresSelection": true,
+                                                "applicablePath": "isShowSSOD_B165"
+                                            },
+                                            "SSOD_B166": {
+                                                "id": "SSOD_B166Button",
+                                                "text": "{@i18n>SSOD_B166}",
+                                                "press": "onClickSSOD_B166",
+                                                "requiresSelection": true,
+                                                "applicablePath": "isShowSSOD_B166"
+                                            },
+                                            "SSOD_B167": {
+                                                "id": "SSOD_B167Button",
+                                                "text": "{@i18n>SSOD_B167}",
+                                                "press": "onClickSSOD_B167",
+                                                "requiresSelection": true,
+                                                "applicablePath": "isShowSSOD_B167"
+                                            }
+                                        }
+                                    },
+                                    "OPFacet": {
+                                        "id": "OPFacet",
+                                        "Actions": {
+                                            "SSOD_B38": {
+                                                "id": "SSOD_B38Button",
+                                                "text": "{@i18n>SSOD_B38}",
+                                                "press": "onClickSSOD_B38",
+                                                "requiresSelection": true,
+                                                "applicablePath": "isShowSSOD_B38"
+                                            },
+                                            "SSOD_B96": {
+                                                "id": "SSOD_B96Button",
+                                                "text": "{@i18n>SSOD_B96}",
+                                                "press": "onClickSSOD_B96",
+                                                "requiresSelection": true,
+                                                "applicablePath": "isShowSSOD_B96"
+                                            },
+                                            "SSOD_B116": {
+                                                "id": "SSOD_B116Button",
+                                                "text": "{@i18n>SSOD_B116}",
+                                                "press": "onClickSSOD_B116",
+                                                "requiresSelection": true,
+                                                "applicablePath": "isShowSSOD_B116"
+                                            },
+                                            "SSOD_B40": {
+                                                "id": "SSOD_B40Button",
+                                                "text": "{@i18n>SSOD_B40}",
+                                                "press": "onClickSSOD_B40",
+                                                "requiresSelection": true,
+                                                "applicablePath": "isShowSSOD_B40"
+                                            },
+                                            "SSOD_B150": {
+                                                "id": "SSOD_B150Button",
+                                                "text": "{@i18n>SSOD_B150}",
+                                                "press": "onClickSSOD_B150",
+                                                "requiresSelection": true,
+                                                "applicablePath": "isShowSSOD_B150"
+                                            },
+                                            "SSOD_B42": {
+                                                "id": "SSOD_B42Button",
+                                                "text": "{@i18n>SSOD_B42}",
+                                                "press": "onClickSSOD_B42",
+                                                "requiresSelection": true,
+                                                "applicablePath": "isShowSSOD_B42"
+                                            },
+                                            "SSOD_B46": {
+                                                "id": "SSOD_B46Button",
+                                                "text": "{@i18n>SSOD_B46}",
+                                                "press": "onClickSSOD_B46",
+                                                "requiresSelection": true,
+                                                "applicablePath": "isShowSSOD_B46"
+                                            },
+                                            "SSOD_B67": {
+                                                "id": "SSOD_B67Button",
+                                                "text": "{@i18n>SSOD_B67}",
+                                                "press": "onClickSSOD_B67",
+                                                "requiresSelection": true,
+                                                "applicablePath": "isShowSSOD_B67"
+                                            },
+                                            "SSOD_B71": {
+                                                "id": "SSOD_B71Button",
+                                                "text": "{@i18n>SSOD_B71}",
+                                                "press": "onClickSSOD_B71",
+                                                "requiresSelection": true,
+                                                "applicablePath": "isShowSSOD_B71"
+                                            },
+                                            "SSOD_B72": {
+                                                "id": "SSOD_B72Button",
+                                                "text": "{@i18n>SSOD_B72}",
+                                                "press": "onClickSSOD_B72",
+                                                "requiresSelection": true,
+                                                "applicablePath": "isShowSSOD_B72"
+                                            },
+                                            "SSOD_B80": {
+                                                "id": "SSOD_B80Button",
+                                                "text": "{@i18n>SSOD_B80}",
+                                                "press": "onClickSSOD_B80",
+                                                "requiresSelection": true,
+                                                "applicablePath": "isShowSSOD_B80"
+                                            },
+                                            "SSOD_B82": {
+                                                "id": "SSOD_B82Button",
+                                                "text": "{@i18n>SSOD_B82}",
+                                                "press": "onClickSSOD_B82",
+                                                "requiresSelection": true,
+                                                "applicablePath": "isShowSSOD_B82"
+                                            },
+                                            "SSOD_B84": {
+                                                "id": "SSOD_B84Button",
+                                                "text": "{@i18n>SSOD_B84}",
+                                                "press": "onClickSSOD_B84",
+                                                "requiresSelection": true,
+                                                "applicablePath": "isShowSSOD_B84"
+                                            },
+                                            "SSOD_B86": {
+                                                "id": "SSOD_B86Button",
+                                                "text": "{@i18n>SSOD_B86}",
+                                                "press": "onClickSSOD_B86",
+                                                "requiresSelection": true,
+                                                "applicablePath": "isShowSSOD_B86"
+                                            },
+                                            "SSOD_B88": {
+                                                "id": "SSOD_B88Button",
+                                                "text": "{@i18n>SSOD_B88}",
+                                                "press": "onClickSSOD_B88",
+                                                "requiresSelection": true,
+                                                "applicablePath": "isShowSSOD_B88"
+                                            },
+                                            "SSOD_B91": {
+                                                "id": "SSOD_B91Button",
+                                                "text": "{@i18n>SSOD_B91}",
+                                                "press": "onClickSSOD_B91",
+                                                "requiresSelection": true,
+                                                "applicablePath": "isShowSSOD_B91"
+                                            },
+                                            "SSOD_B95": {
+                                                "id": "SSOD_B95Button",
+                                                "text": "{@i18n>SSOD_B95}",
+                                                "press": "onClickSSOD_B95",
+                                                "requiresSelection": true,
+                                                "applicablePath": "isShowSSOD_B95"
+                                            },
+                                            "SSOD_B104": {
+                                                "id": "SSOD_B104Button",
+                                                "text": "{@i18n>SSOD_B104}",
+                                                "press": "onClickSSOD_B104",
+                                                "requiresSelection": true,
+                                                "applicablePath": "isShowSSOD_B104"
+                                            },
+                                            "SSOD_B138": {
+                                                "id": "SSOD_B138Button",
+                                                "text": "{@i18n>SSOD_B138}",
+                                                "press": "onClickSSOD_B138",
+                                                "requiresSelection": true,
+                                                "applicablePath": "isShowSSOD_B138"
+                                            },
+                                            "SSOD_B141": {
+                                                "id": "SSOD_B141Button",
+                                                "text": "{@i18n>SSOD_B141}",
+                                                "press": "onClickSSOD_B141",
+                                                "requiresSelection": true,
+                                                "applicablePath": "isShowSSOD_B141"
+                                            },
+                                            "SSOD_B148": {
+                                                "id": "SSOD_B148Button",
+                                                "text": "{@i18n>SSOD_B148}",
+                                                "press": "onClickSSOD_B148",
+                                                "requiresSelection": true,
+                                                "applicablePath": "isShowSSOD_B148"
+                                            },
+                                            "SSOD_B163": {
+                                                "id": "SSOD_B163Button",
+                                                "text": "{@i18n>SSOD_B163}",
+                                                "press": "onClickSSOD_B163",
+                                                "requiresSelection": true,
+                                                "applicablePath": "isShowSSOD_B163"
+                                            }
+                                        }
+                                    },
+                                    "SHFFacet": {
+                                        "id": "SHFFacet",
+                                        "Actions": {
+                                            "SSOD_B101": {
+                                                "id": "SSOD_B101Button",
+                                                "text": "{@i18n>SSOD_B101}",
+                                                "press": "onClickSSOD_B101"
+                                            }
+                                        }
+                                    },
+                                    "RBSFacet": {
+                                        "id": "RBSFacet",
+                                        "Actions": {
+                                            "SSOD_B44": {
+                                                "id": "SSOD_B44Button",
+                                                "text": "{@i18n>SSOD_B44}",
+                                                "press": "onClickSSOD_B44",
+                                                "requiresSelection": true,
+                                                "applicablePath": "isShowSSOD_B44"
+                                            }
+                                        }
+                                    },
+                                    "PSFacet": {
+                                        "id": "PSFacet",
+                                        "Actions": {
+                                            "SSOD_B137": {
+                                                "id": "SSOD_B137Button",
+                                                "text": "",
+                                                "press": "onClickSSOD_B137"
+                                            }
+                                        }
+                                    },
+                                    "HSLFacet": {
+                                        "id": "HSLFacet",
+                                        "Actions": {
+                                            "SSOD_B115": {
+                                                "id": "SSOD_B115Button",
+                                                "text": "{@i18n>SSOD_B115}",
+                                                "press": "onClickSSOD_B115"
+                                            }
+                                        }
+                                    },
+                                    "HSFacet": {
+                                        "id": "HSFacet",
+                                        "Actions": {
+                                            "SSOD_B114": {
+                                                "id": "SSOD_B114Button",
+                                                "text": "{@i18n>SSOD_B114}",
+                                                "press": "onClickSSOD_B114"
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "ZAE_C_ServiceOrderOP_01": {
+                                "EntitySet": "ZAE_C_ServiceOrderOP_01",
+                                "Sections": {
+                                    "INOPFacet": {
+                                        "id": "INOPFacet",
+                                        "Actions": {
+                                            "SSOD_B112": {
+                                                "id": "SSOD_B112Button",
+                                                "text": "{@i18n>SSOD_B112}",
+                                                "press": "onClickSSOD_B112",
+                                                "requiresSelection": true
+                                            }
+                                        }
+                                    },
+                                    "CRFacet": {
+                                        "id": "CRFacet",
+                                        "Actions": {
+                                            "SSOD_B157": {
+                                                "id": "SSOD_B157Button",
+                                                "text": "{@i18n>SSOD_B157}",
+                                                "press": "onClickSSOD_B157"
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "ZAE_C_ServiceOrderComp_01": {
+                                "EntitySet": "ZAE_C_ServiceOrderComp_01",
+                                "Sections": {
+                                    "INCPFacet": {
+                                        "id": "INCPFacet",
+                                        "Actions": {
+                                            "SSOD_B113": {
+                                                "id": "SSOD_B113Button",
+                                                "text": "{@i18n>SSOD_B113}",
+                                                "press": "onClickSSOD_B113",
+                                                "requiresSelection": true
+                                            }
+                                        }
+                                    },
+                                    "CCRFacet": {
+                                        "id": "CCRFacet",
+                                        "Actions": {
+                                            "SSOD_B158": {
+                                                "id": "SSOD_B158Button",
+                                                "text": "{@i18n>SSOD_B158}",
+                                                "press": "onClickSSOD_B158"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "sap.suite.ui.generic.template.ListReport.view.ListReport": {
+                        "controllerName": "com.globalintelli.zae_ssod.ext.controller.ListReportExt"
+                    }
+                },
+                "sap.ui.viewExtensions": {
+                    "sap.suite.ui.generic.template.ListReport.view.ListReport": {
+                        "SmartFilterBarControlConfigurationExtension|ZAE_C_ServiceOrder_01": {
+                            "className": "sap.ui.core.Fragment",
+                            "fragmentName": "com.globalintelli.zae_ssod.ext.fragment.Customfilter",
+                            "type": "XML"
+                        }
+                    },
+                    "sap.suite.ui.generic.template.ObjectPage.view.Details": {
+                        "ResponsiveTableColumnsExtension|ZAE_C_ServiceOrderOP_01|OPFacet": {
+                            "type": "XML",
+                            "className": "sap.ui.core.Fragment",
+                            "fragmentName": "com.globalintelli.zae_ssod.ext.fragment.LongtextColumnOP"
+                        },
+                        "ResponsiveTableCellsExtension|ZAE_C_ServiceOrderOP_01|OPFacet": {
+                            "type": "XML",
+                            "className": "sap.ui.core.Fragment",
+                            "fragmentName": "com.globalintelli.zae_ssod.ext.fragment.LongTextCellOP"
+                        },
+                        "ResponsiveTableColumnsExtension|ZAE_C_ServiceOrderComp_01|CPFacet": {
+                            "type": "XML",
+                            "className": "sap.ui.core.Fragment",
+                            "fragmentName": "com.globalintelli.zae_ssod.ext.fragment.AvailableQtyColumnCP"
+                        },
+                        "ResponsiveTableCellsExtension|ZAE_C_ServiceOrderComp_01|CPFacet": {
+                            "type": "XML",
+                            "className": "sap.ui.core.Fragment",
+                            "fragmentName": "com.globalintelli.zae_ssod.ext.fragment.AvaliableQtyCellCP"
+                        }
+                    }
+                }
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        }
+    },
+    "sap.ui.generic.app": {
+        "_version": "1.3.0",
+        "settings": {
+            "forceGlobalRefresh": false,
+            "objectPageHeaderType": "Dynamic",
+            "showDraftToggle": false
+        },
+        "pages": {
+            "ListReport|ZAE_C_ServiceOrder_01": {
+                "entitySet": "ZAE_C_ServiceOrder_01",
+                "component": {
+                    "name": "sap.suite.ui.generic.template.ListReport",
+                    "list": true,
+                    "settings": {
+                        "condensedTableLayout": true,
+                        "smartVariantManagement": false
+                    }
+                },
+                "pages": {
+                    "ObjectPage|ZAE_C_ServiceOrder_01": {
+                        "entitySet": "ZAE_C_ServiceOrder_01",
+                        "component": {
+                            "name": "sap.suite.ui.generic.template.ObjectPage",
+                            "settings": {
+                                "showRelatedApps": true,
+                                "tableSettings": {
+                                    "variantManagement": true
+                                },
+                                "sections": {
+                                    "RBSFacet": {
+                                        "multiSelect": true
+                                    },
+                                    "OPFacet": {
+                                        "multiSelect": true
+                                    },
+                                    "CPFacet": {
+                                        "multiSelect": true
+                                    }
+                                }
+                            }
+                        },
+                        "embeddedComponents": {
+                            "simple::Attachments": {
+                                "id": "simple::Attachments",
+                                "componentName": "sap.se.mi.plm.lib.attachmentservice.attachment.components.stcomponent",
+                                "title": "{{Attachments}}",
+                                "settings": {
+                                    "mode": "{= ${isShowUpload} === true ? ${ui>/editable} ? 'C' : 'D' : 'D'}",
+                                    "objectType": "BUS2000116",
+                                    "objectKey": "{ServiceOrderWithLeadingZeros}",
+                                    "visible": false,
+                                    "attributeHandling": {
+                                        "_VisibleActions": {
+                                            "RENAME": false,
+                                            "DELETE": false,
+                                            "ADD": true,
+                                            "ADDURL": false,
+                                            "DOWNLOAD": false
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "pages": {
+                            "ObjectPage|to_EquipmentWarranty": {
+                                "navigationProperty": "to_EquipmentWarranty",
+                                "entitySet": "ZAE_C_EquipmentWarranty",
+                                "component": {
+                                    "name": "sap.suite.ui.generic.template.ObjectPage"
+                                },
+                                "pages": {
+                                    "ObjectPage|to_EquipmentWarrantyLI": {
+                                        "navigationProperty": "to_EquipmentWarrantyLI",
+                                        "entitySet": "ZAE_C_EquipmentWarrantyLI",
+                                        "component": {
+                                            "name": "sap.suite.ui.generic.template.ObjectPage"
+                                        }
+                                    }
+                                }
+                            },
+                            "ObjectPage|to_EquipmentWarrantyOEM": {
+                                "navigationProperty": "to_EquipmentWarrantyOEM",
+                                "entitySet": "ZAE_C_EquipmentWarrantyOEM",
+                                "component": {
+                                    "name": "sap.suite.ui.generic.template.ObjectPage"
+                                },
+                                "pages": {
+                                    "ObjectPage|to_EquipmentWarrantyLI": {
+                                        "navigationProperty": "to_EquipmentWarrantyLI",
+                                        "entitySet": "ZAE_C_EquipmentWarrantyLI",
+                                        "component": {
+                                            "name": "sap.suite.ui.generic.template.ObjectPage"
+                                        }
+                                    }
+                                }
+                            },
+                            "ObjectPage|to_ServiceOrderOP": {
+                                "navigationProperty": "to_ServiceOrderOP",
+                                "entitySet": "ZAE_C_ServiceOrderOP_01",
+                                "component": {
+                                    "name": "sap.suite.ui.generic.template.ObjectPage"
+                                },
+                                "pages": {
+                                    "ObjectPage|to_PricingConditionRecords": {
+                                        "navigationProperty": "to_PricingConditionRecords",
+                                        "entitySet": "ZAE_C_ServiceDocumentPrice_01",
+                                        "component": {
+                                            "name": "sap.suite.ui.generic.template.ObjectPage"
+                                        }
+                                    }
+                                }
+                            },
+                            "ObjectPage|to_ServiceOrderComp": {
+                                "navigationProperty": "to_ServiceOrderComp",
+                                "entitySet": "ZAE_C_ServiceOrderComp_01",
+                                "component": {
+                                    "name": "sap.suite.ui.generic.template.ObjectPage"
+                                },
+                                "pages": {
+                                    "ObjectPage|to_ConditionRecords": {
+                                        "navigationProperty": "to_ConditionRecords",
+                                        "entitySet": "ZAE_C_ServiceDocumentPrice",
+                                        "component": {
+                                            "name": "sap.suite.ui.generic.template.ObjectPage"
+                                        }
+                                    }
+                                }
+                            },
+                            "ObjectPage|to_MeasuringPoint": {
+                                "navigationProperty": "to_MeasuringPoint",
+                                "entitySet": "ZAE_C_EquipmentMeasuringPoint",
+                                "component": {
+                                    "name": "sap.suite.ui.generic.template.ObjectPage"
+                                }
+                            },
+                            "ObjectPage|to_ServiceOrderHistory_04": {
+                                "navigationProperty": "to_ServiceOrderHistory_04",
+                                "entitySet": "ZAE_C_ServiceOrderHistory_04",
+                                "component": {
+                                    "name": "sap.suite.ui.generic.template.ObjectPage"
+                                }
+                            },
+                            "ObjectPage|to_ServiceOrderHistory_03": {
+                                "navigationProperty": "to_ServiceOrderHistory_03",
+                                "entitySet": "ZAE_C_ServiceOrderHistory_03",
+                                "component": {
+                                    "name": "sap.suite.ui.generic.template.ObjectPage"
+                                }
+                            },
+                            "ObjectPage|to_ServiceContract": {
+                                "navigationProperty": "to_ServiceContract",
+                                "entitySet": "ZAE_C_ServiceContract_01",
+                                "component": {
+                                    "name": "sap.suite.ui.generic.template.ObjectPage"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "sap.platform.hcp": {
+        "uri": ""
+    },
+    "sap.platform.abap": {
+        "uri": "/sap/bc/ui5_ui5/sap/zae_ssod/webapp",
+        "_version": "1.1.0"
+    }
+}

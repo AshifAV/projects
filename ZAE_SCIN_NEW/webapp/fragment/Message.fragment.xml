@@ -1,0 +1,14 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core">
+	<Popover title="{i18n>ServiceRequestList}" class="sapUiContentPadding" placement="Bottom" initialFocus="email">
+		<content>
+			<l:VerticalLayout width="100%">
+				<l:content>
+					<List class="sapContrast sapContrastPlus" items="{path: 'mSearchDetail>/', templateShareable : 'true'}">
+						<NotificationListItem title="{mSearchDetail>requestNo}" description="{i18n>ServiceRequest} {mSearchDetail>requestNo} {i18n>Created}" priority="Low"
+							showCloseButton="false" press="onPressServiceRequest"/>
+					</List>
+				</l:content>
+			</l:VerticalLayout>
+		</content>
+	</Popover>
+</core:FragmentDefinition>

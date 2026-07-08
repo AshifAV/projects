@@ -1,0 +1,169 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form">
+	<Dialog class="sapUiSizeCompact sapUiContentPadding" contentHeight="32em" contentWidth="90em" resizable="true" title="{i18n>SSOD_B149}">
+		<content>
+			<f:Form id="FormCustomerInfo" editable="false">
+				<f:layout>
+					<f:ColumnLayout columnsM="2" columnsL="3" columnsXL="4"/>
+				</f:layout>
+				<f:formContainers>
+					<f:FormContainer title="{i18n>Operation}">
+						<f:formElements>
+							<f:FormElement label="{/#ZAE_C_MaterialSalesData_06Type/Material/@sap:label}">
+								<f:fields>
+									<MultiInput id="opMaterial" valueHelpRequest=".onProductValueHelpRequested" valueHelpOnly="false" showValueHelp="true"
+										tokenUpdate="onMaterailTokenUpdate1" showSuggestion="true" suggestionItemSelected="onSelectMaterial"
+										suggestionRows="{ path: '/ZAE_C_MaterialSalesData_05', sorter: { path: 'Material' },suspended: true, length: 10 }" width="100%"
+										filterSuggests="true" suggest="handleMaterialSuggest" maxSuggestionWidth="600px">
+										<suggestionColumns>
+											<Column>
+												<Label text="{i18n>Material}"/>
+											</Column>
+											<Column>
+												<Label text="{i18n>MaterialName}"/>
+											</Column>
+											<Column>
+												<Label text="{i18n>MaterialType}"/>
+											</Column>
+										</suggestionColumns>
+										<suggestionRows>
+											<ColumnListItem>
+												<cells>
+													<Label text="{Material}"/>
+													<Label text="{MaterialName}"/>
+													<Label text="{MaterialType}"/>
+												</cells>
+											</ColumnListItem>
+										</suggestionRows>
+									</MultiInput>
+									<!--<MultiInput id="idMaterial" selectedKey="" valueHelpRequest=".onMaterialValueHelpRequested" valueHelpOnly="false" showValueHelp="true"-->
+									<!--	tokenUpdate="onMaterailTokenUpdate" showSuggestion="true" suggestionItemSelected="onSelectMaterial"-->
+									<!--	suggestionRows="{ path: '/ZAE_C_MaterialSalesData_06', sorter: { path: 'Material' },suspended: true, length: 10 }" width="100%"-->
+									<!--	filterSuggests="true" suggest="handleMaterialSuggest" maxSuggestionWidth="600px">-->
+									<!--	<suggestionColumns>-->
+									<!--		<Column>-->
+									<!--			<Label text="{/#ZAE_C_MaterialSalesData_06Type/Material/@sap:label}"/>-->
+									<!--		</Column>-->
+									<!--		<Column>-->
+									<!--			<Label text="{/#ZAE_C_MaterialSalesData_06Type/MaterialName/@sap:label}"/>-->
+									<!--		</Column>-->
+									<!--		<Column>-->
+									<!--			<Label text="{/#ZAE_C_MaterialSalesData_06Type/MaterialType/@sap:label}"/>-->
+									<!--		</Column>-->
+									<!--	</suggestionColumns>-->
+									<!--	<suggestionRows>-->
+									<!--		<ColumnListItem>-->
+									<!--			<cells>-->
+									<!--				<Label text="{Material}"/>-->
+									<!--				<Label text="{MaterialName}"/>-->
+									<!--				<Label text="{MaterialType}"/>-->
+									<!--			</cells>-->
+									<!--		</ColumnListItem>-->
+									<!--	</suggestionRows>-->
+									<!--</MultiInput>-->
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Inspection Lot / Characteristic">
+								<f:fields>
+									<MultiInput id="InspectionLot" valueHelpRequest=".onInspectionLotValueHelpRequested" valueHelpOnly="true" showValueHelp="true"
+										tokenUpdate="onInspectionLotTokenUpdate"/>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="{i18n>Severity}">
+								<f:fields>
+									<Select id="Severity" forceSelection="false" showSecondaryValues="true" selectedKey="{mServiceOrderOperation>Severity}"
+										items="{/ZAE_VH_SEVERITY}">
+										<core:ListItem key="{Severity}" text="{Description}" additionalText="{Severity}"/>
+									</Select>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Quantity">
+								<f:fields>
+									<Input id="Quantity" type="Number" required="true" value="" liveChange="onChangeOperationsQty" description=""/>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Item Category">
+								<f:fields>
+									<!--<Input value=""/>-->
+									<Select id="ItemCategory" forceSelection="true" showSecondaryValues="true" items="{path:'/ZAE_I_ItemCategoryDetermine',suspended: true}"
+										enabled="false" required="true">
+										<core:ListItem key="{ItemCategory}" text="{ItemCategoryDesc}" additionalText="{ItemCategory}"/>
+									</Select>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Complain Code">
+								<f:fields>
+									<Select id="ComplaintCode" forceSelection="false" showSecondaryValues="true" items="{path:'/ZAE_I_ServiceComplaint_01',suspended: true}">
+										<core:ListItem key="{ComplaintCode_New}" text="{ComplainCodeDescription}" additionalText="{ComplaintCode_New}"/>
+									</Select>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="{i18n>ServiceType}">
+								<f:fields>
+									<Select id="ServiceType" width="240%" forceSelection="false" showSecondaryValues="true" items="{path:'/ZAE_I_TC_SSOD_OPR',suspended: true}">
+										<core:ListItem key="{ServiceType}" text="{ServiceTypeName}" additionalText="{ServiceType}"/>
+									</Select>
+								</f:fields>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+				</f:formContainers>
+			</f:Form>
+			<Table id="idAddSubletComponentTable" growing="true" growingThreshold="10" paste="onPaste" items="{path:'/ZAE_C_MaterialSalesData_06'}"
+				inset="false" alternateRowColors="true" mode="MultiSelect" selectionChange="onSelectionChange" updateFinished="updateFinished">
+				<headerToolbar>
+					<OverflowToolbar>
+						<!--class="CustomHeight"-->
+						<content>
+							<Title text="{i18n>Components}"/>
+							<SearchField id="searchField" placeholder="{i18n>SearchWithMat}" search=".onFilterSearchMaterial" width="25%"/>
+						</content>
+					</OverflowToolbar>
+				</headerToolbar>
+				<columns>
+					<Column hAlign="Center" width="8em">
+						<Text text="{/#ZAE_C_MaterialSalesData_06Type/Material/@sap:label}"/>
+					</Column>
+					<Column hAlign="Center" width="18em">
+						<Text text="{/#ZAE_C_MaterialSalesData_06Type/MaterialName/@sap:label}"/>
+					</Column>
+					<Column hAlign="Begin" width="10em">
+						<Text text="{i18n>Quantity}"/>
+					</Column>
+					<Column hAlign="Center" width="13em">
+						<Text text="{/#ZAE_C_MaterialSalesData_06Type/ItemCategory/@sap:label}"/>
+					</Column>
+					<Column width="5em" hAlign="Center">
+						<Text text="{i18n>CostPrice}"/>
+					</Column>
+					<Column width="5em" hAlign="Center">
+						<Text text="{i18n>SalesPrice}"/>
+					</Column>
+					<Column width="6em" hAlign="Center">
+						<Text text="{i18n>Severity}"/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<Text text="{Material}"/>
+							<Input value="{MaterialName}" enabled="{Enabled}" liveChange="fnSubmitButonValidation"/>
+							<Input type="Number" value="" liveChange="fnSubmitButonValidation" description="{MaterialBaseUnit}" enabled="{Enabled}"/>
+							<Text text="{parts: ['ItemCategoryDesc', 'ItemCategory'], formatter: '.formatNameAndValuePair'}"/>
+							<Input type="Number" value="{parts: ['Cost'], formatter: '.fnCostValue'}" liveChange="onChangeCost"
+								enabled="{= ${Cost} > 0 ? false : ${Enabled} }"/>
+							<Input type="Number" value="" liveChange="onChangeSalesPrice" enabled="{Enabled}"/>
+							<Select forceSelection="false" showSecondaryValues="true" selectedKey="" items="{/ZAE_VH_SEVERITY}" enabled="{Enabled}"
+								change="fnSubmitButonValidation">
+								<core:ListItem key="{Severity}" text="{Description}" additionalText="{Severity}"/>
+							</Select>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+		<buttons>
+			<Button id="BTNSubmit" text="{i18n>Submit}" press="onSubmit"/>
+			<Button text="{i18n>Cancel}" press="onCancel"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

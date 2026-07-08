@@ -1,0 +1,141 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:viz="sap.viz.ui5.controls"
+	xmlns:l="sap.ui.layout" xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds" xmlns:viz.data="sap.viz.ui5.data">
+	<Panel class="sapUiMediumMarginTop" expandable="true" expand="EMIPanelExpand">
+		<headerToolbar>
+			<OverflowToolbar height="3rem" class="pl12">
+				<Title text="{i18n>EMIDetails}" level="H2"/>
+			</OverflowToolbar>
+		</headerToolbar>
+		<content>
+			<VBox>
+				<FlexBox>
+					<VBox>
+						<f:Form>
+							<f:layout>
+								<f:ColumnLayout columnsM="1" columnsL="1" columnsXL="1"/>
+							</f:layout>
+							<f:formContainers>
+								<f:FormContainer>
+									<f:formElements>
+										<f:FormElement label="{i18n>LoanAmount}">
+											<f:fields>
+												<Text id="amount"
+													text="{parts:[{path:'app>/pages/Overview/emiData/amount'}, {path:'app>/pages/currency'}], formatter: '.formatter.currencyFormat' }"/>
+											</f:fields>
+										</f:FormElement>
+										<f:FormElement label="{i18n>LoanEMI}">
+											<f:fields>
+												<Text id="loanEMI"
+													text="{parts:[{path:'app>/pages/Overview/emiData/emi'}, {path:'app>/pages/currency'}], formatter: '.formatter.currencyFormat' }"/>
+											</f:fields>
+										</f:FormElement>
+										<f:FormElement label="{i18n>TotalInterestPayable}">
+											<f:fields>
+												<Text id="totalInterestPayable"
+													text="{parts:[{path:'app>/pages/Overview/emiData/interest'}, {path:'app>/pages/currency'}], formatter: '.formatter.currencyFormat' }"/>
+											</f:fields>
+										</f:FormElement>
+										<f:FormElement label="{i18n>TotalPayment}">
+											<f:fields>
+												<Text id="totalPayment"
+													text="{parts:[{path:'app>/pages/Overview/emiData/total'}, {path:'app>/pages/currency'}], formatter: '.formatter.currencyFormat' }"/>
+											</f:fields>
+										</f:FormElement>
+									</f:formElements>
+								</f:FormContainer>
+							</f:formContainers>
+						</f:Form>
+						<layoutData>
+							<FlexItemData growFactor="1" baseSize="0" styleClass="sapUiTinyMargin"/>
+						</layoutData>
+					</VBox>
+					<VBox>
+						<f:Form editable="true">
+							<f:layout>
+								<f:ColumnLayout columnsM="2" columnsL="2" columnsXL="2"/>
+							</f:layout>
+							<f:formContainers>
+								<f:FormContainer>
+									<f:formElements>
+										<!--<f:FormElement label="Loan Amount">-->
+										<!--	<f:fields>-->
+										<!--		<Input id="loanAmount" editable="false" type="Number"-->
+										<!--			value="{= ${app>/pages/Overview/totalPrice} - ${app>/pages/Overview/downPaymentAmount/value} }" description="{app>/pages/currency}"-->
+										<!--			fieldWidth="80%"/>-->
+										<!--	</f:fields>-->
+										<!--</f:FormElement>-->
+										<f:FormElement label="{i18n>InterestRate}">
+											<f:fields>
+												<Input id="interestRate" name="EMIPercent" type="Number" value="{app>/pages/configData/EMIPercent}" liveChange="onEMIInputChange"
+													description="%" fieldWidth="80%"/>
+											</f:fields>
+										</f:FormElement>
+										<f:FormElement label="{i18n>LoanTenure}">
+											<f:fields>
+												<Input id="loanTenure" name="EMITenure" type="Number" value="{app>/pages/configData/EMITenure}" liveChange="onEMIInputChange"
+													description="Months" fieldWidth="80%"/>
+											</f:fields>
+										</f:FormElement>
+									</f:formElements>
+								</f:FormContainer>
+							</f:formContainers>
+						</f:Form>
+						<layoutData>
+							<FlexItemData growFactor="1" baseSize="0" styleClass="sapUiTinyMargin"/>
+						</layoutData>
+					</VBox>
+					<VBox class="flexGrowOne">
+						<!--<VBox>-->
+						<!--<viz:Popover id="idPopOver"></viz:Popover>-->
+						<viz:VizFrame xmlns="sap.viz" id="pie" uiConfig="{applicationSet:'fiori'}"
+							vizProperties="{title: {visible:false}, legendGroup: {layout: {alignment: 'center'}}, plotArea: {dataLabel: {visible: true}}}" height='100%'
+							width="100%" vizType='pie'>
+							<viz:dataset>
+								<viz.data:FlattenedDataset data="{app>/pages/Overview/emiData/chartData/pie/items}">
+									<viz.data:dimensions>
+										<viz.data:DimensionDefinition name="Type" value="{app>Type}"/>
+									</viz.data:dimensions>
+									<viz.data:measures>
+										<viz.data:MeasureDefinition name="Percent" value="{app>Percent}"/>
+									</viz.data:measures>
+								</viz.data:FlattenedDataset>
+							</viz:dataset>
+							<viz:feeds>
+								<viz.feeds:FeedItem uid="color" type="Dimension" values="Type"/>
+								<viz.feeds:FeedItem uid="size" type="Measure" values="Percent"/>
+							</viz:feeds>
+						</viz:VizFrame>
+						<!--</VBox>-->
+						<layoutData>
+							<FlexItemData growFactor="1" baseSize="0" styleClass="sapUiTinyMargin"/>
+						</layoutData>
+					</VBox>
+				</FlexBox>
+				<VBox class="sapUiMediumMargin flexGrowOne">
+					<viz:VizFrame xmlns="sap.viz" id="bar" uiConfig="{applicationSet:'fiori'}"
+						vizProperties="{plotArea: {dataShape: {primaryAxis: ['line', 'bar', 'bar']}}, valueAxis: { title: { visible: false } }, categoryAxis: { title: { visible: false } }, title: { visible: false }}"
+						vizScales="{'feed': 'color', 'palette': ['#748CB2', '#9CC677', '#EACF5E']}" height='400px' width="100%" vizType='stacked_combination'>
+						<viz:dataset>
+							<viz.data:FlattenedDataset data="{app>/pages/Overview/emiData/chartData/bar/items}">
+								<viz.data:dimensions>
+									<viz.data:DimensionDefinition name="Year" value="{app>Year}"/>
+								</viz.data:dimensions>
+								<viz.data:measures>
+									<viz.data:MeasureDefinition name="Balance" value="{app>Balance}"/>
+									<viz.data:MeasureDefinition name="Interest" value="{app>Interest}"/>
+									<viz.data:MeasureDefinition name="Principle" value="{app>Principle}"/>
+								</viz.data:measures>
+							</viz.data:FlattenedDataset>
+						</viz:dataset>
+						<viz:feeds>
+							<viz.feeds:FeedItem id="feedCategoryAxis" uid="categoryAxis" type="Dimension" values="Year"/>
+							<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Balance"/>
+							<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Interest"/>
+							<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Principle"/>
+						</viz:feeds>
+					</viz:VizFrame>
+				</VBox>
+			</VBox>
+		</content>
+	</Panel>
+</core:FragmentDefinition>

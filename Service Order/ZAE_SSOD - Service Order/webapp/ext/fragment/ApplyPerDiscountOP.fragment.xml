@@ -1,0 +1,20 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:smartfield="sap.ui.comp.smartfield" xmlns:f="sap.ui.layout.form" xmlns="sap.m"
+	xmlns:l="sap.ui.layout">
+	<Dialog afterClose="afterClose" id="applyDiscount" title="{i18n>SSOD_B150}">
+		<content >
+			<f:SimpleForm editable="true" layout="ResponsiveGridLayout" singleContainerFullSize="false">
+				<f:content>
+					<Label text="{i18n>Discount}" visible="true"/>
+					<StepInput id="SliderDiscountOP" value="0" displayValuePrecision="2" step="0.01" change="onChangeDiscountPercentageOP"
+						valueStateText="{mApplyPercentageDis>/valueStateText}" valueState="Information"></StepInput>
+				</f:content>
+			</f:SimpleForm>
+		</content>
+		<beginButton>
+			<Button id="IDSubmitButton" press="onSubmit" text="{i18n>BUTTON_Submit}"/>
+		</beginButton>
+		<endButton>
+			<Button press="onCancel" text="{i18n>BUTTON_Cancel}"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

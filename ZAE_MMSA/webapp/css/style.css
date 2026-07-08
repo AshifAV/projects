@@ -1,0 +1,8 @@
+.twentysixpoint {
+    line-height: 50pt;
+}
+
+.disabledbutton {
+    pointer-events: none !important;
+    opacity: 0.4 !important;
+}

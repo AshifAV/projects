@@ -1,0 +1,16 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<ViewSettingsDialog id="viewSettingsDialog" confirm=".onConfirmViewSettingsDialog">
+		<sortItems>
+			<ViewSettingsItem text="{i18n>masterSort1}" key="ServiceRequest" selected="true"/>
+		</sortItems>
+		<!--<filterItems>
+			<ViewSettingsFilterItem id="filterItems" text="{i18n>masterFilterName}" multiSelect="false">
+				<items>
+					<ViewSettingsItem id="viewFilter1" text="{i18n>masterFilter1}" key="ServiceRequest"/>
+					<ViewSettingsItem id="viewFilter2" text="{i18n>masterFilter2}" key="LicenseNum"/>
+					<ViewSettingsItem id="viewFilter3" text="{i18n>masterFilter3}" key="ContactPerson"/>
+				</items>
+			</ViewSettingsFilterItem>
+		</filterItems>-->
+	</ViewSettingsDialog>
+</core:FragmentDefinition>

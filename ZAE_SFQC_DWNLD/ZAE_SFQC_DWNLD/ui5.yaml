@@ -1,0 +1,40 @@
+specVersion: "3.1"
+metadata:
+  name: com.globalintelli.zae_sfqc
+type: application
+server:
+  customMiddleware:
+    - name: fiori-tools-proxy
+      afterMiddleware: compression
+      configuration:
+        ignoreCertError: false
+        backend:
+          - path: /sap
+            url: 10.50.2.44
+            client: "100"
+            destination: MANUAL_INPUT
+          - path: /resources/com/globalintelli/zae_flib
+            destination: ISS-SH1
+            url: ""
+            pathPrefix: /sap/bc/ui5_ui5/sap/ZAE_FLIB
+          - path: /resources/com/globalintelli/zae_flib
+            destination: ISS-SH1
+            url: ""
+            pathPrefix: /sap/bc/ui5_ui5/sap/ZAE_FLIB
+        ui5:
+          path:
+            - /resources
+            - /test-resources
+          url: https://ui5.sap.com
+          version: 1.102.8
+    - name: fiori-tools-appreload
+      afterMiddleware: compression
+      configuration:
+        port: 35729
+        path: webapp
+        delay: 300
+    - name: fiori-tools-preview
+      afterMiddleware: fiori-tools-appreload
+      configuration:
+        component: com.globalintelli.ZAE_SFQC
+        ui5Theme: sap_horizon

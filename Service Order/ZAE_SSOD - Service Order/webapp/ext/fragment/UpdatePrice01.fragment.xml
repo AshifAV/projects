@@ -1,0 +1,39 @@
+<!--<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:smartfield="sap.ui.comp.smartfield" xmlns="sap.m">
+	<Dialog afterClose="afterClose" beforeOpen="beforeOpen" class="sapUiPopupWithPadding" id="SSOD_B138" title="{i18n>SSOD_B138}">
+		<MessageStrip class="sapUiResponsiveMargin sapUiNoMarginTop" id="SSOD_B138MessageStrip" showCloseButton="false" showIcon="true" type="Error"
+			visible="false"></MessageStrip>
+		<Label labelFor="priceInput"/>
+		<Input id="priceInput" required="true" type="Number" showSuggestion="true" showValueHelp="false" class="sapUiSmallMarginBottom"/>
+		<beginButton>
+			<Button press="onSubmitPressed" text="{i18n>BUTTON_Submit}"/>
+		</beginButton>
+		<endButton>
+			<Button press="onCancelPressed" text="{i18n>BUTTON_Cancel}"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>-->
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"
+	xmlns:smartField="sap.ui.comp.smartfield">
+	<l:VerticalLayout width="100%">
+		<l:content>
+			<MessageStrip class="sapUiResponsiveMargin" id="SSOD_B138MessageStrip" showCloseButton="false" showIcon="true" type="Error" visible="false"></MessageStrip>
+			<f:SimpleForm id="FragUpdatePriceDialog" editable="true" layout="ResponsiveGridLayout" singleContainerFullSize="false">
+				<f:content>
+					<Label text="Lumpsum price" labelFor="LumsumpriceInput"/>
+					<Input id="LumsumpriceInput" required="true" type="Number" showSuggestion="true" showValueHelp="false" class="sapUiSmallMarginBottom"/>
+					<Label text="Price" labelFor="priceInput"/>
+					<Input id="priceInput" required="true" type="Number" showSuggestion="true" showValueHelp="false" class="sapUiSmallMarginBottom"/>
+					<!--					<Label labelFor="CurrencyInput"/>
+					<ComboBox id="CurrencyInput" items="{/ZAE_I_ServiceOrderCurrency}">
+						<core:Item key="{TransactionCurrency}" text="TransactionCurrency}"/>
+						<core:Item key="{CompanyCodeCurrency}" text="{CompanyCodeCurrency}"/>
+					</ComboBox>-->
+					<Label text="Currency"/>
+					<Select forceSelection="false" id="CurrencyInput" showSecondaryValues="true" items="{ path: '/ZAE_I_ServiceOrderCurrency_01' }">
+						<core:ListItem key="{Currency}" text="{Currency}"/>
+					</Select>
+				</f:content>
+			</f:SimpleForm>
+		</l:content>
+	</l:VerticalLayout>
+</core:FragmentDefinition>

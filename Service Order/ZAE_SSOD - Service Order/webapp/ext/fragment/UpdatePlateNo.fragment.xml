@@ -1,0 +1,18 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:smartfield="sap.ui.comp.smartfield" xmlns="sap.m">
+	<Dialog afterClose="afterClose" class="sapUiPopupWithPadding" id="SSOD_B33Dialog" title="{i18n>SSOD_B33}">
+		<MessageStrip class="sapUiResponsiveMargin sapUiNoMarginTop" id="SSOD_B33MessageStrip" showCloseButton="false" showIcon="true" type="Error"
+			visible="false"></MessageStrip>
+		<content>
+			<Label labelFor="VINNoInput" required="true"/>
+			<Input id="VINNoInput" class="sapUiSmallMarginBottom"/>
+			<Label labelFor="LicenseNoInput" required="true"/>
+			<Input id="LicenseNoInput" class="sapUiSmallMarginBottom"/>
+		</content>
+		<beginButton>
+			<Button press="onSubmitPressed" text="{i18n>BUTTON_Submit}"/>
+		</beginButton>
+		<endButton>
+			<Button press="onCancelPressed" text="{i18n>BUTTON_Cancel}"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

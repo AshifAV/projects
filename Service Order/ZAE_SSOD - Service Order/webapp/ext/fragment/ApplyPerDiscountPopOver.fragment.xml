@@ -1,0 +1,22 @@
+<!--<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:tab="sap.ui.table" xmlns="sap.m">-->
+<!--	<ActionSheet placement="Bottom">-->
+<!--		<buttons>-->
+<!--			<Button text="{i18n>SSOD_B143}" id="SSOD_B143" press="onClickSSOD_B143" type="Transparent"></Button>-->
+<!--			<Button text="{i18n>SSOD_B144}" id="SSOD_B143" press="onClickSSOD_B143" type="Transparent"></Button>-->
+<!--			<Button text="{i18n>SSOD_B145}" id="SSOD_B145" press="onClickSSOD_B145" type="Transparent"></Button>-->
+<!--			<Button text="{i18n>SSOD_B146}" id="SSOD_B145" press="onClickSSOD_B145" type="Transparent"></Button>-->
+<!--			<Button text="{i18n>SSOD_B147}" id="SSOD_B147" press="onClickSSOD_B147" type="Transparent"></Button>-->
+<!--		</buttons>-->
+<!--	</ActionSheet>-->
+<!--</core:FragmentDefinition>-->
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:tab="sap.ui.table" xmlns="sap.m">
+	<ActionSheet placement="Bottom">
+		<buttons>
+			<Button text="{i18n>SSOD_B143}" id="SSOD_B143" press="onClickSSOD_B143" type="Transparent"></Button>
+			<Button text="{i18n>SSOD_B144}" id="SSOD_B144" press="onClickSSOD_B144" type="Transparent"></Button>
+			<Button text="{i18n>SSOD_B145}" id="SSOD_B145" press="onClickSSOD_B145" type="Transparent"></Button>
+			<Button text="{i18n>SSOD_B146}" id="SSOD_B146" press="onClickSSOD_B146" type="Transparent"></Button>
+			<Button text="{i18n>SSOD_B147}" id="SSOD_B147" press="onClickSSOD_B147" type="Transparent"></Button>
+		</buttons>
+	</ActionSheet>
+</core:FragmentDefinition>

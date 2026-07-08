@@ -1,0 +1,260 @@
+{
+    "_version": "1.12.0",
+    "sap.app": {
+        "id": "com.globalintelli.ZAE_SCIN_NEW",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "1.0.0"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "sourceTemplate": {
+            "id": "servicecatalog.connectivityComponentForManifest",
+            "version": "0.0.0",
+            "toolsId": "4a89d683-c40d-4c21-b8aa-41b04d09da54"
+        },
+        "dataSources": {
+            "ZAE_SCIN_N_SRV": {
+                "uri": "/sap/opu/odata/sap/ZAE_SCIN_N_SRV/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [],
+                    "localUri": "localService/metadata.xml"
+                }
+            },
+            "ZAE_FM_SCIN_CREAAPP_FROM_CI_03_SRV": {
+                "uri": "/sap/opu/odata/sap/ZAE_FM_SCIN_CREAAPP_FROM_CI_03_SRV/",
+                "type": "OData",
+                "settings": {
+                    "localUri": "localService/ZAE_FM_SCIN_CREAAPP_FROM_CI_03_SRV/metadata.xml"
+                }
+            },
+            "ZAE_FM_SCIN_CR_SERREQ_CIAP_V1_SRV": {
+                "uri": "/sap/opu/odata/sap/ZAE_FM_SCIN_CR_SERREQ_CIAP_V1_SRV/",
+                "type": "OData",
+                "settings": {
+                    "localUri": "localService/ZAE_FM_SCIN_CR_SERREQ_CIAP_V1_SRV/metadata.xml"
+                }
+            },
+            "ZAE_FM_SC_CUST_EXT_FRM_CI_01_SRV": {
+                "uri": "/sap/opu/odata/sap/ZAE_FM_SC_CUST_EXT_FRM_CI_01_SRV/",
+                "type": "OData",
+                "settings": {
+                    "localUri": "localService/ZAE_FM_SC_CUST_EXT_FRM_CI_01_SRV/metadata.xml"
+                }
+            },
+            "ZOTE_FM_SRV_QRC_UPD_SERREQ_SRV": {
+                "uri": "/sap/opu/odata/sap/ZOTE_FM_SRV_QRC_UPD_SERREQ_SRV/",
+                "type": "OData",
+                "settings": {
+                    "localUri": "localService/ZOTE_FM_SRV_QRC_UPD_SERREQ_SRV/metadata.xml"
+                }
+            },
+            "ZOTE_FM_SRV_QRC_CRT_SERREQ_SRV": {
+                "uri": "/sap/opu/odata/sap/ZOTE_FM_SRV_QRC_CRT_SERREQ_SRV/",
+                "type": "OData",
+                "settings": {
+                    "localUri": "localService/ZOTE_FM_SRV_QRC_CRT_SERREQ_SRV/metadata.xml"
+                }
+            }
+        }
+    },
+    "sap.ui": {
+        "fullWidth": true,
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "flexEnabled": false,
+        "handleValidation": true,
+        "rootView": {
+            "viewName": "com.globalintelli.ZAE_SCIN_NEW.view.Main",
+            "type": "XML",
+            "async": true,
+            "id": "Main",
+            "smartVariantManagement": true
+        },
+        "dependencies": {
+            "minUI5Version": "1.65.6",
+            "libs": {
+                "sap.m": {},
+                "sap.ui.core": {},
+                "sap.ui.layout": {},
+                "sap.suite.ui.microchart": {},
+                "sap.suite.ui.commons": {},
+                "sap.viz": {},
+                "sap.cus.sd.lib.slsdoc.manage": {
+                    "lazy": false
+                },
+                "com.globalintelli.zae_flib": {
+                    "minVersion": "1.0.0"
+                }
+            },
+            "components": {
+                "sap.nw.core.changedocs.lib.reuse": {
+                    "lazy": true
+                }
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "com.globalintelli.ZAE_SCIN_NEW.i18n.i18n"
+                }
+            },
+            "": {
+                "type": "sap.ui.model.odata.v2.ODataModel",
+                "settings": {
+                    "defaultOperationMode": "Server",
+                    "defaultBindingMode": "OneWay",
+                    "defaultCountMode": "Request"
+                },
+                "dataSource": "ZAE_SCIN_N_SRV",
+                "preload": true
+            },
+            "@i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "uri": "i18n/i18n.properties"
+            },
+            "ZAE_FM_SCIN_CREAAPP_FROM_CI_03_SRV": {
+                "type": "sap.ui.model.odata.v2.ODataModel",
+                "settings": {
+                    "defaultOperationMode": "Server",
+                    "defaultBindingMode": "OneWay",
+                    "defaultCountMode": "Request"
+                },
+                "dataSource": "ZAE_FM_SCIN_CREAAPP_FROM_CI_03_SRV",
+                "preload": true
+            },
+            "ZAE_FM_SCIN_CR_SERREQ_CIAP_V1_SRV": {
+                "type": "sap.ui.model.odata.v2.ODataModel",
+                "settings": {
+                    "defaultOperationMode": "Server",
+                    "defaultBindingMode": "OneWay",
+                    "defaultCountMode": "Request"
+                },
+                "dataSource": "ZAE_FM_SCIN_CR_SERREQ_CIAP_V1_SRV",
+                "preload": true
+            },
+            "ZOTE_FM_SRV_QRC_UPD_SERREQ_SRV": {
+                "type": "sap.ui.model.odata.v2.ODataModel",
+                "settings": {
+                    "defaultOperationMode": "Server",
+                    "defaultBindingMode": "OneWay",
+                    "defaultCountMode": "Request"
+                },
+                "dataSource": "ZOTE_FM_SRV_QRC_UPD_SERREQ_SRV",
+                "preload": true
+            },
+            "ZOTE_FM_SRV_QRC_CRT_SERREQ_SRV": {
+                "type": "sap.ui.model.odata.v2.ODataModel",
+                "settings": {
+                    "defaultOperationMode": "Server",
+                    "defaultBindingMode": "OneWay",
+                    "defaultCountMode": "Request"
+                },
+                "dataSource": "ZOTE_FM_SRV_QRC_CRT_SERREQ_SRV",
+                "preload": true
+            },
+            "CountryCodes": {
+                "type": "sap.ui.model.json.JSONModel",
+                "settings": {},
+                "uri": "model/CountryCodes.json",
+                "preload": false
+            },
+            "RegionToCountry": {
+                "type": "sap.ui.model.json.JSONModel",
+                "settings": {},
+                "uri": "model/RegionToCountry.json",
+                "preload": false
+            },
+            "ExtendCustomer": {
+                "type": "sap.ui.model.odata.v2.ODataModel",
+                "settings": {
+                    "defaultOperationMode": "Server",
+                    "defaultBindingMode": "OneWay",
+                    "defaultCountMode": "Request"
+                },
+                "dataSource": "ZAE_FM_SC_CUST_EXT_FRM_CI_01_SRV",
+                "preload": true
+            }
+        },
+        "resources": {
+            "css": [
+                {
+                    "uri": "css/style.css"
+                }
+            ]
+        },
+        "routing": {
+            "config": {
+                "routerClass": "sap.m.routing.Router",
+                "viewType": "XML",
+                "async": true,
+                "viewPath": "com.globalintelli.ZAE_SCIN_NEW.view",
+                "controlAggregation": "pages",
+                "controlId": "Main",
+                "clearControlAggregation": false
+            },
+            "routes": [
+                {
+                    "name": "MainView",
+                    "pattern": "",
+                    "target": [
+                        "Main"
+                    ]
+                },
+                {
+                    "name": "AppointmentView",
+                    "pattern": "Appointment/{param1}",
+                    "target": [
+                        "Appointment"
+                    ]
+                },
+                {
+                    "name": "ServiceRequestView",
+                    "pattern": "ServiceRequest/{param1}",
+                    "target": [
+                        "ServiceRequest"
+                    ]
+                }
+            ],
+            "targets": {
+                "Main": {
+                    "viewType": "XML",
+                    "viewName": "Main"
+                },
+                "Appointment": {
+                    "viewType": "XML",
+                    "viewName": "Appointment"
+                },
+                "ServiceRequest": {
+                    "viewType": "XML",
+                    "viewName": "ServiceRequest"
+                }
+            }
+        }
+    },
+    "sap.platform.abap": {
+        "uri": "/sap/bc/ui5_ui5/sap/zae_scin_new/webapp",
+        "_version": "1.1.0"
+    }
+}

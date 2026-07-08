@@ -1,0 +1,93 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"
+	xmlns:smartField="sap.ui.comp.smartfield">
+	<Dialog id="SOSGDialog" class="sapUiPopupWithPadding" title="{i18n>SOSGTitle}" afterClose="afterClose" resizable="true">
+		<content>
+			<!--<MessageStrip class="sapUiResponsiveMargin sapUiNoMarginTop" id="SCINSOSGMessageStrip" showCloseButton="false" showIcon="true" type="Error"-->
+			<!--	visible="false"></MessageStrip>-->
+			<f:SimpleForm id="appointmentCreateForm" editable="true" layout="ResponsiveGridLayout" singleContainerFullSize="false">
+				<f:content>
+					<Label text="{i18n>SalesOfc}" required="true"/>
+					<Select id="IdSalesoffice1" change="fnSalesofficeChange" enabled="false" showSecondaryValues="true"
+						items="{ path: '/ZAE_VH_PlantSalesOffice',length: 500 }" forceSelection="false">
+						<core:ListItem key="{SalesOffice}" text="{SalesOfficeName}" additionalText="{SalesOffice}"/>
+					</Select>
+					<Label text="{i18n>SalesGrp}" required="true"/>
+					<Select id="IdSalesgroup" showSecondaryValues="true" change="fnSalesofficeChange" forceSelection="false"
+						items="{ path: '/ZAE_I_SalesOfficeGroup_01',length: 500 }">
+						<core:ListItem key="{SalesGroup}" text="{SalesGroupName}" additionalText="{SalesGroup}"/>
+					</Select>
+					<Label text="{i18n>Title}" required="true" visible="{mCustIdentification>/CreateAppointmentDirect}"/>
+					<Input id="appTitle" enabled="true" liveChange="updateButtonEnabledState" visible="{mCustIdentification>/CreateAppointmentDirect}"/>
+					<Label text="{i18n>Customer}" visible="{mCustIdentification>/CreateAppointmentDirect}"/>
+					<Input id="Customer" enabled="false" visible="{mCustIdentification>/CreateAppointmentDirect}"/>
+					<Label text="{i18n>ContactPerson}" visible="{mCustIdentification>/CreateAppointmentDirect}"/>
+					<Input id="CPerson" enabled="false" visible="{mCustIdentification>/CreateAppointmentDirect}"/>
+					<Label text="{i18n>ServiceAdvisor}" labelFor="idEmployee" required="true" visible="{mCustIdentification>/CreateAppointmentDirect}"/>
+					<!--<Select id="idEmployee" items="{ path: '/ZAE_I_Employee_02',length: 500 }" change="updateButtonEnabledState"-->
+					<!--	visible="{mCustIdentification>/CreateAppointmentDirect}">-->
+					<!--	<core:Item key="{Employee}" text="{EmployeeFullName}"/>-->
+					<!--</Select>-->
+					<Input id="idEmployee" enabled="false" visible="{mCustIdentification>/CreateAppointmentDirect}" change="updateButtonEnabledState"/>
+					<Label text="{i18n>ReasonforAppointment}" labelFor="reasonInput" required="true" visible="{mCustIdentification>/CreateAppointmentDirect}"/>
+					<Select id="reasonInput" showSecondaryValues="true" items="{ path: '/ZAE_I_ACTIVITYREASONCODE'}" change="updateButtonEnabledState"
+						visible="{mCustIdentification>/CreateAppointmentDirect}">
+						<core:ListItem key="{Code}" text="{CodeText}" additionalText="{Catlog}#{CodeGroup}#{Code}"/>
+					</Select>
+					<Label text="{i18n>CampaignID}" labelFor="CampaignID" visible="{mCustIdentification>/CreateAppointmentDirect}"/>
+					<MultiInput id="CampaignID" valueHelpRequest=".onCampaignValueHelpRequested" valueHelpOnly="false" showValueHelp="true"
+						visible="{mCustIdentification>/CreateAppointmentDirect}" tokenUpdate="onCampaignIDTokenUpdate" showSuggestion="true"
+						suggestionItemSelected="onSelectCampaignID"
+						suggestionRows="{ path: '/ZAE_VH_CampaignData', sorter: { path: 'CampaignID' },suspended: true, length: 10 }" width="100%"
+						filterSuggests="true" suggest="handleCampaignSuggest">
+						<suggestionColumns>
+							<Column>
+								<Label text="{/#ZAE_VH_CampaignData/CampaignID/@sap:label}"/>
+							</Column>
+							<Column>
+								<Label text="{/#ZAE_VH_CampaignData/CampaignExternalID/@sap:label}"/>
+							</Column>
+						</suggestionColumns>
+						<suggestionRows>
+							<ColumnListItem>
+								<cells>
+									<Label text="{CampaignID}"/>
+									<Label text="{CampaignExternalID}"/>
+								</cells>
+							</ColumnListItem>
+						</suggestionRows>
+					</MultiInput>
+					<Label text="{i18n>Startdate}" labelFor="startDate" visible="{mCustIdentification>/CreateAppointmentDirect}"/>
+					<DateTimePicker id="startDate" required="true" displayFormat="short" change="handleStartDateChange"
+						visible="{mCustIdentification>/CreateAppointmentDirect}"/>
+					<Label text="{i18n>Enddate}" labelFor="endDate" visible="{mCustIdentification>/CreateAppointmentDirect}"/>
+					<DateTimePicker id="endDate" required="true" displayFormat="short" change="handleEndDateChange"
+						visible="{mCustIdentification>/CreateAppointmentDirect}"/>
+					<!--Added for AE-5300 by BHANUP	-->
+					<Label text="{i18n>Customer}"/>
+					<Text id="idCustomerVerify" visible="{mCustIdentification>/VerifyDataCheck}"/>
+					<!--<Label text="{i18n>CustomerName}"/>-->
+					<!--<Text id="idCustomerName" visible="{mCustIdentification>/VerifyDataCheck}"/>-->
+					<Label text="{i18n>ContactPerson}"/>
+					<Text id="idCPerson" visible="{mCustIdentification>/VerifyDataCheck}"/>
+					<!--<Label text="{i18n>ContactPersonName}"/>-->
+					<!--<Text id="idCPersonName" visible="{mCustIdentification>/VerifyDataCheck}"/>-->
+					<Label text="{i18n>MobileNo}"/>
+					<Text id="idCPersonNum" visible="{mCustIdentification>/VerifyDataCheck}"/>
+					<Label text="{/#ZAE_C_BPContactPerson/FaxNumber/@sap:label}"/>
+					<Text id="idCPersonNameFax" visible="{mCustIdentification>/VerifyDataCheck}"/>
+					<Label text="{i18n>EmailAddress}"/>
+					<Text id="idCPersonEmail" visible="{mCustIdentification>/VerifyDataCheck}"/>
+					<!--<Label text="{i18n>DetailsVer}" labelFor="uploaConfirmation" required="true"/>-->
+					<CheckBox id="idVerifyBpData" visible="{mCustIdentification>/VerifyDataCheck}"
+						text="{i18n>AboveDetails}" valueState="Warning" select="onDetailsConfirmationCheck"/>
+				</f:content>
+			</f:SimpleForm>
+		</content>
+		<beginButton>
+			<Button id="BUTTONSubmit" text="{i18n>SOSGBUTTON_Submit}" press="onSubmitPressed"/>
+		</beginButton>
+		<endButton>
+			<Button text="{i18n>BUTTON_Cancel}" press="onCancelPressed"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

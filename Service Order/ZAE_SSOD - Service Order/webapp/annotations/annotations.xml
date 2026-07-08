@@ -1,0 +1,1789 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Version="4.0">
+	<edmx:Reference Uri="/sap/bc/ui5_ui5/ui2/ushell/resources/sap/ushell/components/factsheet/vocabularies/UI.xml">
+		<edmx:Include Alias="UI" Namespace="com.sap.vocabularies.UI.v1"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="/sap/opu/odata/sap/ZAE_SSOD_SRV/$metadata">
+		<edmx:Include Alias="ZAE_SSOD_SRV" Namespace="ZAE_SSOD_SRV"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Aggregation.V1.xml">
+		<edmx:Include Alias="Aggregation" Namespace="Org.OData.Aggregation.V1"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Authorization.V1.xml">
+		<edmx:Include Alias="Auth" Namespace="Org.OData.Authorization.V1"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Capabilities.V1.xml">
+		<edmx:Include Alias="Capabilities" Namespace="Org.OData.Capabilities.V1"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="https://wiki.scn.sap.com/wiki/download/attachments/448470974/Common.xml?api=v2">
+		<edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="https://wiki.scn.sap.com/wiki/download/attachments/448470971/Communication.xml?api=v2">
+		<edmx:Include Alias="Communication" Namespace="com.sap.vocabularies.Communication.v1"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml">
+		<edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Measures.V1.xml">
+		<edmx:Include Alias="Measures" Namespace="Org.OData.Measures.V1"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Validation.V1.xml">
+		<edmx:Include Alias="Validation" Namespace="Org.OData.Validation.V1"/>
+	</edmx:Reference>
+	<edmx:Reference
+		Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='LOCAL')/$value">
+		<edmx:Include Alias="Communication" Namespace="com.sap.vocabularies.Communication.v1"/>
+	</edmx:Reference>
+	<edmx:DataServices>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="com.globalintelli.zae_ssod.ZAE_SSOD_SRV">
+			<!--===============================================================================
+                Entity Type from chosen collection 
+                ================================================================================-->
+			<Annotations Target="ZAE_SSOD_SRV.ZAE_C_ServiceOrder_01Type">
+				<Annotation Term="UI.HeaderInfo">
+					<Record>
+						<PropertyValue Property="TypeName" String="{@i18n&gt;appTitle}"/>
+						<PropertyValue Property="TypeNamePlural" String="{@i18n&gt;SERVICE_ORDERS}"/>
+						<PropertyValue Property="Title">
+							<Record Type="UI.DataField">
+								<PropertyValue Property="Value" Path="ServiceDocumentDescription"/>
+							</Record>
+						</PropertyValue>
+						<PropertyValue Property="Description">
+							<Record Type="UI.DataField">
+								<PropertyValue Property="Value" Path="SalesDocumentTypeName"/>
+							</Record>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+				<Annotation Term="UI.LineItem">
+					<Collection>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="ServiceOrder"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;appTitle}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="ServiceDocumentType"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;ORDER_TYPE}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="ServiceDocumentPriority"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;PriorityInput}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="SoldToParty"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;SOLD-TO_PARTY}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="{@i18n&gt;REQUESTED_START_DATE}"/>
+							<PropertyValue Property="Value" Path="ReqStartDate"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/Low"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="{@i18n&gt;REQUESTED_END_DATE}"/>
+							<PropertyValue Property="Value" Path="ReqEndDate"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="{@i18n&gt;WORK_CENTER_PLANT}"/>
+							<PropertyValue Property="Value" Path="ServiceTeam"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/Medium"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="ServiceDocNetAmount"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;NET_VALUE}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="{@i18n&gt;CONTACT_INFORMATION_(CREATED_BY)}"/>
+							<PropertyValue Property="Value" Path="ServiceDocumentCreatedByUser"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/Medium"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="{@i18n&gt;CONTACT_INFORMATION_(PERSON_RESPONSIBLE)}"/>
+							<PropertyValue Property="Value" Path="ResponsibleEmployee"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/Medium"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Criticality" Path="UserStatusCriti"/>
+							<PropertyValue Property="Value" Path="UserStatus"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/Medium"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;STATUS}"/>
+						</Record>
+						<!--<Record Type="UI.DataField">-->
+						<!--	<PropertyValue Property="Value" Path="WarrantyStatus_new"/>-->
+						<!--	<PropertyValue Property="Criticality" Path="WarrantyStatus_Crit_new"/>-->
+						<!--	<PropertyValue Property="Label" String="{@i18n&gt;WARRANTY_STATUS}"/>-->
+						<!--</Record>-->
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="OEMWarrantyStatus_new"/>
+							<PropertyValue Property="Criticality" Path="OEMWarrantyStatus_Crit_new"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;OEM_WARRANTY_STATUS}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="ContractStatus_new"/>
+							<PropertyValue Property="Criticality" Path="ContractStatusCrit_new"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;CONTRACT_STATUS}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="StatusForVehicle"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;VEHICLE_STATUS}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Value" Path="ContactPerson"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;ContactPerson}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Value" Path="EmailAddress"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;EMAIL}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Value" Path="InternationalPhoneNumber"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;Mobile}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Value" Path="FaxNumber"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Value" Path="usage_type"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;usage_type}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Value" Path="Createddate_main"/>
+							<PropertyValue Property="Label" String="Created Date"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Value" Path="TotalLabor"/>
+							<PropertyValue Property="Label" String=" Total Labor"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Value" Path="TotalParts"/>
+							<PropertyValue Property="Label" String="Total Parts"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Value" Path="TotalSublets"/>
+							<PropertyValue Property="Label" String="Total Sublets"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Value" Path="TotalConsumables"/>
+							<PropertyValue Property="Label" String="Total Consumables"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="LicenseNum"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="Make"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="Model"/>
+						</Record>
+					</Collection>
+				</Annotation>
+				<Annotation Term="com.sap.vocabularies.UI.v1.PresentationVariant">
+					<Record>
+						<PropertyValue Property="SortOrder">
+							<Collection>
+								<Record>
+									<PropertyValue Property="Property" PropertyPath="ServiceOrder"/>
+									<PropertyValue Property="Descending" Bool="true"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+				<Annotation Term="UI.HeaderFacets">
+					<Collection>
+						<Record Type="UI.ReferenceFacet">
+							<PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#Info"/>
+						</Record>
+						<Record Type="UI.ReferenceFacet">
+							<PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#Date"/>
+						</Record>
+						<Record Type="UI.ReferenceFacet">
+							<PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#moreInfo"/>
+						</Record>
+						<Record Type="UI.ReferenceFacet">
+							<PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#WARRSTSNEW"/>
+							<Annotation Term="UI.Hidden" Path="isHideWarranty"/>
+						</Record>
+						<Record Type="UI.ReferenceFacet">
+							<PropertyValue Property="Target" AnnotationPath="@UI.DataPoint#TotalGrossValue"/>
+						</Record>
+						<Record Type="UI.ReferenceFacet">
+							<PropertyValue Property="Target" AnnotationPath="@UI.DataPoint#DeferredRevenue"/>
+						</Record>
+						<Record Type="UI.ReferenceFacet">
+							<PropertyValue Property="Target" AnnotationPath="@UI.DataPoint#ServiceContractCostingValue"/>
+						</Record>
+						<Record Type="UI.ReferenceFacet">
+							<PropertyValue Property="Target" AnnotationPath="@UI.DataPoint#TotalDiscount"/>
+						</Record>
+						<Record Type="UI.ReferenceFacet">
+							<PropertyValue Property="Target" AnnotationPath="@UI.DataPoint#ServiceDocNetAmount"/>
+						</Record>
+						<Record Type="UI.ReferenceFacet">
+							<PropertyValue Property="Target" AnnotationPath="@UI.DataPoint#ServiceDocTaxAmount"/>
+						</Record>
+						<Record Type="UI.ReferenceFacet">
+							<PropertyValue Property="Target" AnnotationPath="@UI.DataPoint#TotalNetValue"/>
+						</Record>
+						<Record Type="UI.ReferenceFacet">
+							<PropertyValue Property="Target" AnnotationPath="@UI.DataPoint#RejectedItemValue"/>
+						</Record>
+						<Record Type="UI.ReferenceFacet">
+							<PropertyValue Property="Target" AnnotationPath="@UI.DataPoint#DownPayment"/>
+						</Record>
+						<Record Type="UI.ReferenceFacet">
+							<PropertyValue Property="Target" AnnotationPath="@UI.DataPoint#BalanceDP"/>
+						</Record>
+						<Record Type="UI.ReferenceFacet">
+							<PropertyValue Property="Target" AnnotationPath="@UI.DataPoint#UserStatus"/>
+						</Record>
+						<Record Type="UI.ReferenceFacet">
+							<PropertyValue Property="Target" AnnotationPath="@UI.DataPoint#StatusForVehicle"/>
+							<Annotation Term="UI.Hidden" Path="isHideVehicleStatusDP"/>
+						</Record>
+						<Record Type="UI.ReferenceFacet">
+							<PropertyValue Property="Target" AnnotationPath="@UI.DataPoint#StatusForWork"/>
+							<Annotation Term="UI.Hidden" Path="isHideVehicleStatusDP"/>
+						</Record>
+						<Record Type="UI.ReferenceFacet">
+							<PropertyValue Property="Target" AnnotationPath="@UI.DataPoint#GPSLocation"/>
+							<Annotation Term="UI.Hidden" Path="isShowGPSLocation"/>
+						</Record>
+						<Record Type="UI.ReferenceFacet">
+							<PropertyValue Property="Target" AnnotationPath="@UI.DataPoint#CreditStatus"/>
+							<Annotation Term="UI.Hidden" Path="isHideCreditStatusDP"/>
+						</Record>
+						<Record Type="UI.ReferenceFacet">
+							<PropertyValue Property="Target" AnnotationPath="@UI.DataPoint#ServiceDocBillingStatus"/>
+						</Record>
+						<Record Type="UI.ReferenceFacet">
+							<PropertyValue Property="Target" AnnotationPath="@UI.DataPoint#ServiceCompletion"/>
+						</Record>
+					</Collection>
+				</Annotation>
+				<Annotation Term="UI.Facets">
+					<Collection>
+						<!--<Record Type="UI.ReferenceFacet">-->
+						<!--	<PropertyValue Property="Target" AnnotationPath="to_ServiceRequestNotes/@UI.LineItem"/>-->
+						<!--	<PropertyValue Property="Label" String="{@i18n&gt;CUSTOMER_NOTE_FROM_SERVICE_REQUEST}"/>-->
+						<!--	<PropertyValue Property="ID" String="CNfacet"/>-->
+						<!--</Record>-->
+						<!--<Record Type="UI.ReferenceFacet">-->
+						<!--	<PropertyValue Property="Target" AnnotationPath="to_EquipmentWarrantyOEM/@UI.LineItem"/>-->
+						<!--	<PropertyValue Property="Label" String="{@i18n&gt;OEM_WARRANTY_DETAILS__}"/>-->
+						<!--	<PropertyValue Property="ID" String="OEWFacet"/>-->
+						<!--	<Annotation Term="UI.Hidden" Path="isHideWarranty"/>-->
+						<!--</Record>-->
+						<!--<Record Type="UI.ReferenceFacet">-->
+						<!--	<PropertyValue Property="Target" AnnotationPath="to_EquipmentWarranty/@UI.LineItem"/>-->
+						<!--	<PropertyValue Property="Label" String="{@i18n&gt;VENDOR_WARRANTY_DETAILS}"/>-->
+						<!--	<PropertyValue Property="ID" String="WDFacet"/>-->
+						<!--	<Annotation Term="UI.Hidden" Path="isHideWarranty"/>-->
+						<!--</Record>-->
+						<!--<Record Type="UI.ReferenceFacet">-->
+						<!--	<PropertyValue Property="Target" AnnotationPath="to_ServiceOrderHistory/@UI.LineItem"/>-->
+						<!--	<PropertyValue Property="Label" String="{@i18n&gt;SERVICE_HISTORY}"/>-->
+						<!--	<PropertyValue Property="ID" String="SOHFacet"/>-->
+						<!--	<Annotation Term="UI.Hidden" Path="isHideSHFacet"/>-->
+						<!--</Record>-->
+						<!--<Record Type="UI.ReferenceFacet">-->
+						<!--	<PropertyValue Property="Target" AnnotationPath="to_ServiceOrderHistory_03/@UI.LineItem"/>-->
+						<!--	<PropertyValue Property="Label" String="{@i18n&gt;HISTORY}"/>-->
+						<!--	<PropertyValue Property="ID" String="HSFacet"/>-->
+						<!--<Annotation Term="UI.Hidden" Path="isHideFacetSH"/>-->
+						<!--</Record>-->
+						<!--<Record Type="UI.ReferenceFacet">-->
+						<!--	<PropertyValue Property="Target" AnnotationPath="to_ServiceOrderHistory_04/@UI.LineItem"/>-->
+						<!--	<PropertyValue Property="Label" String="{@i18n&gt;LEGACYHISTORY}"/>-->
+						<!--	<PropertyValue Property="ID" String="HSLFacet"/>-->
+						<!--<Annotation Term="UI.Hidden" Path="isHideFacetLSH"/>-->
+						<!--</Record>-->
+						<!--<Record Type="UI.ReferenceFacet">-->
+						<!--	<PropertyValue Property="Target" AnnotationPath="to_ServiceOrderHistory_Filtered/@UI.LineItem"/>-->
+						<!--	<PropertyValue Property="Label" String="{@i18n&gt;SERVICE_HISTORY}"/>-->
+						<!--	<PropertyValue Property="ID" String="SHFFacet"/>-->
+						<!--	<Annotation Term="UI.Hidden" Path="isHideSHFFacet"/>-->
+						<!--</Record>-->
+						<!--<Record Type="UI.ReferenceFacet">-->
+						<!--	<PropertyValue Property="Target" AnnotationPath="to_ExtendedWarranty/@UI.LineItem"/>-->
+						<!--	<PropertyValue Property="Label" String="{@i18n&gt;ExtendedWarranty}"/>-->
+						<!--	<PropertyValue Property="ID" String="EWFacet"/>-->
+						<!--</Record>-->
+						<!--<Record Type="UI.ReferenceFacet">-->
+						<!--	<PropertyValue Property="Target" AnnotationPath="to_MeasuringPoint/@UI.LineItem"/>-->
+						<!--	<PropertyValue Property="Label" String="{@i18n&gt;MEASURING_POINT}"/>-->
+						<!--	<PropertyValue Property="ID" String="MPFacet"/>-->
+						<!--</Record>-->
+						<Record Type="UI.CollectionFacet">
+							<PropertyValue Property="ID" String="GeneralInformation"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;@GeneralInfoFacetLabel}"/>
+							<PropertyValue Property="Facets">
+								<Collection>
+									<Record Type="UI.ReferenceFacet">
+										<PropertyValue Property="Label" String="{@i18n&gt;@GeneralInfoFacetLabel}"/>
+										<PropertyValue Property="Target" AnnotationPath="@UI.Identification"/>
+									</Record>
+									<Record Type="UI.ReferenceFacet">
+										<PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#orgData"/>
+										<PropertyValue Property="Label" String="{@i18n&gt;ORGANIZATIONAL_DATA}"/>
+									</Record>
+									<Record Type="UI.ReferenceFacet">
+										<PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#ReferenceObject"/>
+										<PropertyValue Property="Label" String="{@i18n&gt;REFROBJ_}"/>
+										<Annotation Term="UI.PartOfPreview" Bool="true"/>
+										<Annotation Term="UI.Map" Bool="false"/>
+										<Annotation Term="UI.IsSummary" Bool="false"/>
+										<Annotation Term="UI.Hidden" Path="isShowRefernceObj"/>
+									</Record>
+								</Collection>
+							</PropertyValue>
+						</Record>
+						<Record Type="UI.CollectionFacet">
+							<PropertyValue Property="Label" String="{@i18n&gt;STATUS}"/>
+							<PropertyValue Property="ID" String="STFacet"/>
+							<PropertyValue Property="Facets">
+								<Collection>
+									<Record Type="UI.CollectionFacet">
+										<PropertyValue Property="Label" String="{@i18n&gt;USER_STATUS}"/>
+										<PropertyValue Property="ID" String="USFacet"/>
+										<PropertyValue Property="Facets">
+											<Collection>
+												<Record Type="UI.ReferenceFacet">
+													<PropertyValue Property="Target" AnnotationPath="to_SCUserStatus1/@UI.LineItem"/>
+												</Record>
+											</Collection>
+										</PropertyValue>
+									</Record>
+									<Record Type="UI.CollectionFacet">
+										<PropertyValue Property="Label" String="{@i18n&gt;SYSTEM_STATUS}"/>
+										<PropertyValue Property="ID" String="SYFacet"/>
+										<PropertyValue Property="Facets">
+											<Collection>
+												<Record Type="UI.ReferenceFacet">
+													<PropertyValue Property="Target" AnnotationPath="to_SCSystemStatus/@UI.LineItem"/>
+												</Record>
+											</Collection>
+										</PropertyValue>
+									</Record>
+								</Collection>
+							</PropertyValue>
+						</Record>
+						<Record Type="UI.ReferenceFacet">
+							<PropertyValue Property="Target" AnnotationPath="to_SCPartners/@Communication.Contact"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;BUSINESS_PARTNERS}"/>
+							<PropertyValue Property="ID" String="BPFacet"/>
+						</Record>
+						<Record Type="UI.ReferenceFacet">
+							<PropertyValue Property="Target" AnnotationPath="to_ServiceNotes/@UI.LineItem"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;NOTES}"/>
+							<PropertyValue Property="ID" String="SNfacet"/>
+						</Record>
+						<Record Type="UI.ReferenceFacet">
+							<PropertyValue Property="Target" AnnotationPath="to_ServiceContract/@UI.LineItem"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;SERVICE_CONTRACT}"/>
+							<PropertyValue Property="ID" String="SCFacet"/>
+							<Annotation Term="UI.Hidden" Path="isHideWarranty"/>
+						</Record>
+						<Record Type="UI.ReferenceFacet">
+							<PropertyValue Property="Target" AnnotationPath="to_ServiceRequest/@UI.LineItem"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;SERVICE_REQUEST}"/>
+							<PropertyValue Property="ID" String="SRFacet"/>
+						</Record>
+						<Record Type="UI.ReferenceFacet">
+							<PropertyValue Property="Target" AnnotationPath="to_ServiceOrderOP/@UI.LineItem"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;OPERATIONS}"/>
+							<PropertyValue Property="ID" String="OPFacet"/>
+						</Record>
+						<Record Type="UI.ReferenceFacet">
+							<PropertyValue Property="Target" AnnotationPath="to_ServiceOrderComp/@UI.LineItem"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;COMPONENTS}"/>
+							<PropertyValue Property="ID" String="CPFacet"/>
+						</Record>
+						<Record Type="UI.ReferenceFacet">
+							<PropertyValue Property="Target" AnnotationPath="to_ServiceDocumentPricing/@UI.LineItem"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;PRICINGSUMMARY}"/>
+							<PropertyValue Property="ID" String="PSFacet"/>
+						</Record>
+						<Record Type="UI.ReferenceFacet">
+							<PropertyValue Property="Target" AnnotationPath="to_WorkOrder/@UI.LineItem"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;WORK_ORDER}"/>
+							<PropertyValue Property="ID" String="WOFacet"/>
+						</Record>
+						<Record Type="UI.ReferenceFacet">
+							<PropertyValue Property="Target" AnnotationPath="to_SalesOrder/@UI.LineItem"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;SERVICE_SALES_ORDER}"/>
+							<PropertyValue Property="ID" String="SOFacet"/>
+							<Annotation Term="UI.Hidden" Bool="true"/>
+						</Record>
+						<Record Type="UI.ReferenceFacet">
+							<PropertyValue Property="Target" AnnotationPath="to_VinReservRequest/@UI.LineItem"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;DOWNPAYMENT}"/>
+							<PropertyValue Property="ID" String="DPFacet"/>
+						</Record>
+						<!--<Record Type="UI.ReferenceFacet">-->
+						<!--	<PropertyValue Property="Target" AnnotationPath="to_ServiceOrderItems/@UI.LineItem"/>-->
+						<!--	<PropertyValue Property="Label" String="{@i18n&gt;RELEASE_TO_BILLING_(_COMBINED_/_SPLIT_)}"/>-->
+						<!--	<PropertyValue Property="ID" String="RBSFacet"/>-->
+						<!--</Record>-->
+						<Record Type="UI.ReferenceFacet">
+							<PropertyValue Property="Target" AnnotationPath="to_BillingDueList/@UI.LineItem"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;BILLING_DUE_LIST}"/>
+							<PropertyValue Property="ID" String="BDFacet"/>
+						</Record>
+						<Record Type="UI.ReferenceFacet">
+							<PropertyValue Property="Target" AnnotationPath="to_ServiceDocumentBillDoc/@UI.LineItem"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;BILLING_DOCUMENT}"/>
+							<PropertyValue Property="ID" String="BLFacet"/>
+						</Record>
+						<Record Type="UI.ReferenceFacet">
+							<PropertyValue Property="Target" AnnotationPath="to_CreditMemo/@UI.LineItem"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;Credit_Debit_Memo_Request}"/>
+							<PropertyValue Property="ID" String="CDMRFacet"/>
+						</Record>
+						<Record Type="UI.ReferenceFacet">
+							<PropertyValue Property="Target" AnnotationPath="to_CreditMemo01/@UI.LineItem"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;Credit_Debit_Memo}"/>
+							<PropertyValue Property="ID" String="CDMFacet"/>
+						</Record>
+						<Record Type="UI.ReferenceFacet">
+							<PropertyValue Property="Target" AnnotationPath="to_MeasuringDocument/@UI.LineItem"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;MEASURING_DOCUMENTS}"/>
+							<PropertyValue Property="ID" String="MDFAcet"/>
+							<Annotation Term="UI.Hidden" Bool="true"/>
+						</Record>
+						<Record Type="UI.ReferenceFacet">
+							<PropertyValue Property="Target" AnnotationPath="to_ClaimWarranty/@UI.LineItem"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;WARRANTY_CLAIMS}"/>
+							<PropertyValue Property="ID" String="WCFacet"/>
+							<Annotation Term="UI.Hidden" Bool="true"/>
+						</Record>
+						<Record Type="UI.ReferenceFacet">
+							<PropertyValue Property="Target" AnnotationPath="to_Activity/@UI.LineItem"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;SERVICE_INITIATION}"/>
+							<PropertyValue Property="ID" String="SIFacet"/>
+						</Record>
+					</Collection>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="ZAE_SSOD_SRV.ZAE_C_EquipmentWarrantyOEMType">
+				<Annotation Term="UI.HeaderInfo">
+					<Record>
+						<PropertyValue Property="TypeName" String="{@i18n&gt;EQUIPMENT_WARRANTY}"/>
+						<PropertyValue Property="Title">
+							<Record Type="UI.DataField">
+								<PropertyValue Property="Value" Path="OEMWarrantyDescription"/>
+							</Record>
+						</PropertyValue>
+						<PropertyValue Property="Description">
+							<Record Type="UI.DataField">
+								<PropertyValue Property="Value" Path="OEMWarranty"/>
+							</Record>
+						</PropertyValue>
+						<PropertyValue Property="TypeNamePlural" String="{@i18n&gt;EQUIPMENT_WARRANTY}"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="UI.LineItem">
+					<Collection>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="OEMWarranty"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;OEM_WARRANTY}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="OEMWarrantyDescription"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;WARRANTY_DESCRIPTION}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="OEMWarratyStartdate"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;WARRANTY_START_DATE}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="OEWarrantyEndDate"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;WARRANTY_END_DATE}"/>
+						</Record>
+					</Collection>
+				</Annotation>
+				<Annotation Term="UI.Facets">
+					<Collection>
+						<Record Type="UI.ReferenceFacet">
+							<PropertyValue Property="Target" AnnotationPath="to_EquipmentWarrantyLI/@UI.LineItem"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;OEM_WARRANTY_ITEMS}"/>
+							<PropertyValue Property="ID" String="OWIFacet"/>
+						</Record>
+					</Collection>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="ZAE_SSOD_SRV.ZAE_C_EquipmentWarrantyLIType">
+				<Annotation Term="UI.Facets">
+					<Collection>
+						<Record Type="UI.ReferenceFacet">
+							<PropertyValue Property="Target" AnnotationPath="to_WarrantyCounter/@UI.LineItem"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;WARRANTY_COUNTER}"/>
+							<PropertyValue Property="ID" String="WCFacet"/>
+						</Record>
+					</Collection>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="ZAE_SSOD_SRV.ZAE_C_EquipmentWarrantyType">
+				<Annotation Term="UI.HeaderInfo">
+					<Record>
+						<PropertyValue Property="TypeName" String="{@i18n&gt;EQUIPMENT_WARRANTY}"/>
+						<PropertyValue Property="Title">
+							<Record Type="UI.DataField">
+								<PropertyValue Property="Value" Path="MasterWarrantyDescription"/>
+							</Record>
+						</PropertyValue>
+						<PropertyValue Property="Description">
+							<Record Type="UI.DataField">
+								<PropertyValue Property="Value" Path="MasterWarranty"/>
+							</Record>
+						</PropertyValue>
+						<PropertyValue Property="TypeNamePlural" String="{@i18n&gt;EQUIPMENT_WARRANTY}"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="UI.LineItem">
+					<Collection>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="MasterWarranty"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;MASTER_WARRANTY}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="MasterWarrantyDescription"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;WARRANTY_DESCRIPTION}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="WarrantyEndDate"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;WARRANTY_END_DATE}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="WarratyStartdate"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;WARRANTY_START_DATE}"/>
+						</Record>
+					</Collection>
+				</Annotation>
+				<Annotation Term="UI.Facets">
+					<Collection>
+						<Record Type="UI.ReferenceFacet">
+							<PropertyValue Property="Target" AnnotationPath="to_EquipmentWarrantyLI/@UI.LineItem"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;VENDOR_WARRANTY_ITEMS}"/>
+							<PropertyValue Property="ID" String="VWFacet"/>
+						</Record>
+					</Collection>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="ZAE_SSOD_SRV.ZAE_C_ServiceRequest_01Type">
+				<Annotation Term="UI.HeaderInfo">
+					<Record>
+						<PropertyValue Property="TypeName" String="{@i18n&gt;SERVICE_REQUEST}"/>
+						<PropertyValue Property="TypeNamePlural" String="{@i18n&gt;SERVICE_REQUESTS}"/>
+						<PropertyValue Property="Title">
+							<Record Type="UI.DataField">
+								<PropertyValue Property="Value" Path="SalesDocumentTypeName"/>
+							</Record>
+						</PropertyValue>
+						<PropertyValue Property="Description">
+							<Record Type="UI.DataField">
+								<PropertyValue Property="Value" Path="ServiceDocumentDescription"/>
+							</Record>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+				<Annotation Term="UI.LineItem">
+					<Collection>
+						<!--<Record Type="UI.DataField">-->
+						<!--	<PropertyValue Property="Criticality" Path="to_EquipmentWarrantyStatus/WarrantyStatusCriti"/>-->
+						<!--	<PropertyValue Property="Value" Path="to_EquipmentWarrantyStatus/WarrantyStatus"/>-->
+						<!--	<PropertyValue Property="Label" String="{@i18n&gt;VENDOR_WARRANTY_STATUS}"/>-->
+						<!--</Record>-->
+						<!--<Record Type="UI.DataField">-->
+						<!--	<PropertyValue Property="Criticality" Path="to_EquipmentWarrantyStatusOEM/OEMWarrantyStatusCriti"/>-->
+						<!--	<PropertyValue Property="Value" Path="to_EquipmentWarrantyStatusOEM/OEMWarrantyStatus"/>-->
+						<!--	<PropertyValue Property="Label" String="{@i18n&gt;OEM_WARRANTY_STATUS}"/>-->
+						<!--</Record>-->
+						<!--<Record Type="UI.DataField">-->
+						<!--	<PropertyValue Property="Criticality" Path="to_EQUIPMENTCURRCONTSTS/ContractStatusCriti"/>-->
+						<!--	<PropertyValue Property="Value" Path="to_EQUIPMENTCURRCONTSTS/ContractStatus"/>-->
+						<!--	<PropertyValue Property="Label" String="{@i18n&gt;SERVICE_CONTRACT_STATUS}"/>-->
+						<!--</Record>-->
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="ServiceRequest"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;SERVICE_REQUEST}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="ServiceDocumentType"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;ORDER_TYPE}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="ServiceDocumentPriority"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;PriorityInput}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="ShipToParty"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;SHIP-TO_PARTY}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="{@i18n&gt;START_DATE}"/>
+							<PropertyValue Property="Value" Path="ReqStartDate"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/Low"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="{@i18n&gt;END_DATE}"/>
+							<PropertyValue Property="Value" Path="ReqEndDate"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="{@i18n&gt;SERVICE_EMPLOYEE_GROUP}"/>
+							<PropertyValue Property="Value" Path="ServiceTeam"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/Medium"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="SystemStatus"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/Medium"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;STATUS}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="{@i18n&gt;CREATED_BY}"/>
+							<PropertyValue Property="Value" Path="ServiceDocumentCreatedByUser"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/Medium"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="{@i18n&gt;PERSON_RESPONSIBLE}"/>
+							<PropertyValue Property="Value" Path="ResponsibleEmployee"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/Medium"/>
+						</Record>
+					</Collection>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="ZAE_SSOD_SRV.ZAE_SSOD_SRV_Entities/ZAE_C_ServiceOrder_01">
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record Type="Capabilities.UpdateRestrictionsType">
+						<PropertyValue Property="Updatable" Path="isEditButton"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record Type="Capabilities.DeleteRestrictionsType">
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="ZAE_SSOD_SRV.ZAE_C_ServiceOrderComp_01Type">
+				<Annotation Term="UI.HeaderInfo">
+					<Record>
+						<PropertyValue Property="TypeName" String="{@i18n&gt;SERVICE_ORDER_COMPONENTS}"/>
+						<PropertyValue Property="TypeNamePlural" String="{@i18n&gt;SERVICE_ORDER_COMPONENTS}"/>
+						<PropertyValue Property="Title">
+							<Record Type="UI.DataField">
+								<PropertyValue Property="Value" Path="ServiceOrderOperation"/>
+							</Record>
+						</PropertyValue>
+						<PropertyValue Property="Description">
+							<Record Type="UI.DataField">
+								<PropertyValue Property="Value" Path="OperationDescription"/>
+							</Record>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+				<Annotation Term="UI.LineItem">
+					<Collection>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="ServiceOrderOperation"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;COMPONENT}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="HigherLevelItem"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;HIGHER-LEVEL_ITEM}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="{@i18n&gt;MATERIAL}"/>
+							<PropertyValue Property="Value" Path="OriginallyRequestedProduct"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="OperationDescription"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;COMPONENT_DESCRIPTION}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="ServiceDocItemCategory"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;ITEM_CATEGORY}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="{@i18n&gt;WORK_CENTER}"/>
+							<PropertyValue Property="Value" Path="ResponsibleGroup"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="OperationQuantity"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;QUANTITY}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="{@i18n&gt;ACCOUNTING_INDICATOR}"/>
+							<PropertyValue Property="Value" Path="BillableControl"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="GrossValue"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;GROSS_VALUE}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="ServiceDocItemRejectionReason"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;REASON_FOR_REJECTION}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="Discount"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;DISCOUNT}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="NetValue"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;NET_VALUE}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="BillingBlockReason"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;BILLING_BLOCK_REASON}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="PreApprovalNo"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;PreAppNoOpInput}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="PurchaseRequisition"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;PURCHASE_REQUISITION}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Criticality" Path="AvailableQuantityCriti"/>
+							<PropertyValue Property="Value" Path="AvailableQuantity"/>
+							<PropertyValue Property="CriticalityRepresentation" EnumMember="UI.CriticalityRepresentationType/WithoutIcon"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;AVAILABLE_QUANTITY}"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="BillingRule"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;BILLING_RULE}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="ReferenceDocument"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;REFERENCE_DOCUMENT}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="ReferenceDocumentItem"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;REFERENCE_DOCUMENT_ITEM}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="MaterialLongText"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;MATERIAL_LONG_TEXT}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="Severity"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;Severity}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="ServiceContractNo"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;SERVICE_CONTRACT_NO}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="RecallNo"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;RECALL_NO}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Criticality" Path="WithDrawnQuantityCriti"/>
+							<PropertyValue Property="CriticalityRepresentation" EnumMember="UI.CriticalityRepresentationType/WithoutIcon"/>
+							<PropertyValue Property="Value" Path="WithDrawnQuantity"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;WithDrawnQuantity}"/>
+						</Record>
+					</Collection>
+				</Annotation>
+				<Annotation Term="UI.Facets">
+					<Collection>
+						<Record Type="UI.ReferenceFacet">
+							<PropertyValue Property="Target" AnnotationPath="to_PurchaseRequisition/@UI.LineItem"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;PURCHASE_REQUISITION}"/>
+							<PropertyValue Property="ID" String="PRFacet"/>
+						</Record>
+						<Record Type="UI.ReferenceFacet">
+							<PropertyValue Property="Target" AnnotationPath="to_SCPartners/@Communication.Contact"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;BUSINESS_PARTNERS}"/>
+							<PropertyValue Property="ID" String="BPCFacet"/>
+							<Annotation Term="UI.Hidden" Path="isHideItemPartnersFacet"/>
+						</Record>
+						<Record Type="UI.ReferenceFacet">
+							<PropertyValue Property="Target" AnnotationPath="to_SCPartners_Header/@Communication.Contact"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;BUSINESS_PARTNERS}"/>
+							<PropertyValue Property="ID" String="BPCHFacet"/>
+							<Annotation Term="UI.Hidden" Path="isHideHeaderPartnersFacet"/>
+						</Record>
+						<Record Type="UI.ReferenceFacet">
+							<PropertyValue Property="Target" AnnotationPath="to_STO/@UI.LineItem"/>
+							<PropertyValue Property="Label" String="Stock Transfer Order"/>
+							<PropertyValue Property="ID" String="CPSTOFacet"/>
+						</Record>
+						<Record Type="UI.ReferenceFacet">
+							<PropertyValue Property="Target" AnnotationPath="to_ServiceDocItemNotes/@UI.LineItem"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;NOTES}"/>
+							<PropertyValue Property="ID" String="INCPFacet"/>
+						</Record>
+						<Record Type="UI.ReferenceFacet">
+							<PropertyValue Property="Target" AnnotationPath="to_ConditionRecords/@UI.LineItem"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;PRICINGSUMMARY}"/>
+							<PropertyValue Property="ID" String="CCRFacet"/>
+						</Record>
+						<Record Type="UI.ReferenceFacet">
+							<PropertyValue Property="Target" AnnotationPath="to_ReservedStock/@UI.LineItem"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;RESERVED_STOCK}"/>
+							<PropertyValue Property="ID" String="RSFacet"/>
+						</Record>
+					</Collection>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="ZAE_SSOD_SRV.ZAE_C_ServiceOrderOP_01Type">
+				<Annotation Term="UI.HeaderInfo">
+					<Record>
+						<PropertyValue Property="TypeName" String="{@i18n&gt;SERVICE_ORDER_OPERATION}"/>
+						<PropertyValue Property="TypeNamePlural" String="{@i18n&gt;SERVICE_ORDER_OPERATIONS}"/>
+						<PropertyValue Property="Title">
+							<Record Type="UI.DataField">
+								<PropertyValue Property="Value" Path="ServiceOrderOperation"/>
+							</Record>
+						</PropertyValue>
+						<PropertyValue Property="Description">
+							<Record Type="UI.DataField">
+								<PropertyValue Property="Value" Path="OperationDescription"/>
+							</Record>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+				<Annotation Term="UI.LineItem">
+					<Collection>
+						<!--<Record Type="UI.DataField">-->
+						<!--	<PropertyValue Property="Label" String="{@i18n&gt;ComplainID}"/>-->
+						<!--	<PropertyValue Property="Value" Path="ChecklistStepID"/>-->
+						<!--	<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>-->
+						<!--</Record>-->
+						<!--<Record Type="UI.DataField">-->
+						<!--	<PropertyValue Property="Label" String="{@i18n&gt;Complain_desc}"/>-->
+						<!--	<PropertyValue Property="Value" Path="ChecklistStepDescription"/>-->
+						<!--	<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>-->
+						<!--</Record>-->
+						<!--						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="{@i18n&gt;MATERIAL_DESC}"/>
+							<PropertyValue Property="Value" Path="MaterialName"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+						</Record>-->
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="ServiceOrderOperation"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;OPERATION}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="ComplaintCode"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;ComplaintCode}"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="ComplainCodeDescription"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;ComplaintCodeDescription}"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="JobNumber"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;JobNumber}"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="{@i18n&gt;MATERIAL}"/>
+							<PropertyValue Property="Value" Path="OriginallyRequestedProduct"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="OperationDescription"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;OPDesc}"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="{@i18n&gt;WORK_CENTER}"/>
+							<PropertyValue Property="Value" Path="ResponsibleGroup"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="ServiceDocItemCategory"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;ITEM_CATEGORY}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="ServiceDocItemCategoryName"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;ITEM_CATEGORY_DESC}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="ServiceTransactionChargeType"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;PENDINGAPPROVAL}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="OperationQuantity"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;PLANNED_WORK}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="{@i18n&gt;ACCOUNTING_INDICATOR}"/>
+							<PropertyValue Property="Value" Path="BillableControl"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="GrossValue"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;GROSS_VALUE}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="ServiceDocItemRejectionReason"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;REASON_FOR_REJECTION}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="Discount"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;DISCOUNT}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="NetValue"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;NET_VALUE}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="BillingBlockReason"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;BILLING_BLOCK_REASON}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="PreApprovalNo"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;PreAppNoOpInput}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="BillingRule"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;BILLING_RULE}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="ReferenceDocument"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;REFERENCE_DOCUMENT}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="ReferenceDocumentItem"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;REFERENCE_DOCUMENT_ITEM}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="ReferenceQuotation"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;REFERENCE_QUOTATION}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="ReferenceQuotationItem"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;REFERENCE_QUOTATION_ITEM}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="MaterialLongText"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;MATERIAL_LONG_TEXT}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="MaintenanceOrderType"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;SRVTYPE}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="Severity"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;Severity}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="ServiceContractNo"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;SERVICE_CONTRACT_NO}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="RecallNo"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;RECALL_NO}"/>
+						</Record>
+					</Collection>
+				</Annotation>
+				<Annotation Term="UI.Facets">
+					<Collection>
+						<Record Type="UI.ReferenceFacet">
+							<PropertyValue Property="Target" AnnotationPath="to_SCPartners/@Communication.Contact"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;BUSINESS_PARTNERS}"/>
+							<PropertyValue Property="ID" String="BPOFacet"/>
+							<Annotation Term="UI.Hidden" Path="isHideItemPartnersFacet"/>
+						</Record>
+						<Record Type="UI.ReferenceFacet">
+							<PropertyValue Property="Target" AnnotationPath="to_SCPartners_Header/@Communication.Contact"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;BUSINESS_PARTNERS}"/>
+							<PropertyValue Property="ID" String="BPOHFacet"/>
+							<Annotation Term="UI.Hidden" Path="isHideHeaderPartnersFacet"/>
+						</Record>
+						<Record Type="UI.ReferenceFacet">
+							<PropertyValue Property="Target" AnnotationPath="to_ServiceDocItemNotes/@UI.LineItem"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;NOTES}"/>
+							<PropertyValue Property="ID" String="INOPFacet"/>
+						</Record>
+						<Record Type="UI.ReferenceFacet">
+							<PropertyValue Property="Target" AnnotationPath="to_PricingConditionRecords/@UI.LineItem"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;PRICINGSUMMARY}"/>
+							<PropertyValue Property="ID" String="CRFacet"/>
+						</Record>
+					</Collection>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="ZAE_SSOD_SRV.ZAE_C_PurchaseRequisitionLI_01Type">
+				<Annotation Term="UI.HeaderInfo">
+					<Record>
+						<PropertyValue Property="TypeName" String="{@i18n&gt;PURCHASE_REQUISITION_ITEM}"/>
+						<PropertyValue Property="TypeNamePlural" String="{@i18n&gt;PURCHASE_REQUISITION_ITEMS}"/>
+						<PropertyValue Property="TypeImageUrl" String="images/purchaserequisitionitem.png"/>
+						<PropertyValue Property="Title">
+							<Record Type="UI.DataField">
+								<PropertyValue Property="Value" Path="PurchaseRequisitionItemText"/>
+							</Record>
+						</PropertyValue>
+						<PropertyValue Property="Description">
+							<Record Type="UI.DataField">
+								<PropertyValue Property="Value" Path="FormattedPurRequisitionItem"/>
+							</Record>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+				<Annotation Term="UI.LineItem">
+					<Collection>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="PurchaseRequisition"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="PurchaseRequisitionItem"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="Supplier"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/Medium"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="FixedSupplier"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/Medium"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="DeliveryDate"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/Medium"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="RequestedQuantity"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="PurchaseRequisitionPrice"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/Medium"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="PurReqnItemTotalAmount"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="PurReqnReleaseStatus"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="ExtPurReqnReleaseStatus"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+						</Record>
+					</Collection>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="ZAE_SSOD_SRV.ZAE_C_ServiceOrder_01Type/ReqStartDate">
+				<Annotation Term="Common.Label" String="{@i18n&gt;REQUESTED_START_DATE}"/>
+			</Annotations>
+			<Annotations Target="ZAE_SSOD_SRV.ZAE_C_ServiceOrder_01Type/ReqEndDate">
+				<Annotation Term="Common.Label" String="{@i18n&gt;REQUESTED_END_DATE}"/>
+			</Annotations>
+			<Annotations Target="ZAE_SSOD_SRV.ZAE_C_ServiceOrder_01Type/StatusForVehicle">
+				<Annotation Term="Common.Label" String="{@i18n&gt;VEHICLE_STATUS}"/>
+			</Annotations>
+			<Annotations Target="ZAE_SSOD_SRV.ZAE_C_ServiceRequestNotesType">
+				<Annotation Term="UI.LineItem">
+					<Collection>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="IdText"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;ID_TEXT}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="IdDate"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;DATE}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="IdUser"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;USER}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="IdUserText"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;TEXT}"/>
+						</Record>
+					</Collection>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="ZAE_SSOD_SRV.ZAE_C_ServiceNotes_01Type">
+				<Annotation Term="UI.LineItem">
+					<Collection>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="TextId"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;ID}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="TextIdIdText"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;TYPE}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="IdDate"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;DATE}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="IdUser"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;USER}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="Notes"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;NOTES}"/>
+						</Record>
+					</Collection>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="ZAE_SSOD_SRV.ZAE_C_WorkOrder_01Type">
+				<Annotation Term="UI.HeaderInfo">
+					<Record>
+						<PropertyValue Property="TypeName" String="{@i18n&gt;WORK_ORDER}"/>
+						<PropertyValue Property="TypeNamePlural" String="{@i18n&gt;WORK_ORDERS}"/>
+						<PropertyValue Property="ImageUrl" Path="MaintenanceOrderThumbnailURL"/>
+						<PropertyValue Property="Title">
+							<Record Type="UI.DataField">
+								<PropertyValue Property="Value" Path="MaintenanceOrder"/>
+							</Record>
+						</PropertyValue>
+						<PropertyValue Property="Description">
+							<Record Type="UI.DataField">
+								<PropertyValue Property="Value" Path="MaintenanceOrderDesc"/>
+							</Record>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+				<Annotation Term="UI.LineItem">
+					<Collection>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="MaintenanceOrder"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;ORDER}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="MaintenanceOrderType"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;ORDER_TYPE}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Criticality" Path="MaintPriorityColorCode"/>
+							<PropertyValue Property="CriticalityRepresentation" EnumMember="UI.CriticalityRepresentationType/WithoutIcon"/>
+							<PropertyValue Property="Value" Path="MaintPriority"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;PriorityInput}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="TechnicalObjectLabel"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;TECHNICAL_OBJECT}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="MaintOrdBasicStartDate"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;START_DATE}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="MaintOrdBasicEndDate"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;END_DATE}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="MainWorkCenterPlant"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;WORKSHOP}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="MaintenanceProcessingPhase"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;ORDER_STATUS}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="UserStatusWOStatusNo"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;USER_STATUS_(W/O_STATUS_NO.)}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Criticality" Path="UserStatusCriticality"/>
+							<PropertyValue Property="CriticalityRepresentation" EnumMember="UI.CriticalityRepresentationType/WithoutIcon"/>
+							<PropertyValue Property="Value" Path="UserStatus"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;STATUS}"/>
+						</Record>
+					</Collection>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="ZAE_SSOD_SRV.ZAE_C_BillingDueList_01Type">
+				<Annotation Term="UI.LineItem">
+					<Collection>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="{@i18n&gt;BDR_DOCUMENT}"/>
+							<PropertyValue Property="Value" Path="BillingDocument"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="{@i18n&gt;DOCUMENT_TYPE}"/>
+							<PropertyValue Property="Value" Path="BillingDocumentType"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="{@i18n&gt;DOCUMENT_CATERGORY}"/>
+							<PropertyValue Property="Value" Path="BillingDocumentCategory"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="SalesOrganization"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;SALES_ORGANIZATION}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="DistributionChannel"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;DISTRIBUTION_CHANNEL}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="Division"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;DIVISION}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="{@i18n&gt;DOCUMENT_DATE}"/>
+							<PropertyValue Property="Value" Path="BillingDocumentDate"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="CompanyCode"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;COMPANY_CODE}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="SoldToParty"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;CUSTOMER}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="PayerParty"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;PAYER}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="TotalNetAmount"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;NET_VALUE}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="TotalTaxAmount"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;TAX_VALUE}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="TotalAmount"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;TOTAL_VALUE}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="OverallDocumentBillingStatus"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;ORD._REL._BILLG_STS}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="OverallBillingDocReqStatus"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;STATUS}"/>
+						</Record>
+					</Collection>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="ZAE_SSOD_SRV.ZAE_C_ServiceDocumentBillDocType">
+				<Annotation Term="UI.LineItem">
+					<Collection>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="BillingDocument"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;BILLING_DOCUMENT}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="BillingDocumentType"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;BILLING_TYPE}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="BillingDocumentDate"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;BILLING_DATE}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="SalesArea"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;SALES_AREA}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="SoldToParty"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;CUSTOMER_}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="PayerParty"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;PAYER}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="AccountingTransferStatus"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="TotalNetAmount"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;NET_VALUE}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="TotalTaxAmount"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;TAX_VALUE}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="TotalAmount"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;TOTAL_VALUE}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="OverallDocumentBillingStatus"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;BILLING_STATUS}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="BillingDocStatus"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;BILLING_DOC_STATUS}"/>
+						</Record>
+					</Collection>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="ZAE_SSOD_SRV.ZAE_C_MeasuringDocumentType">
+				<Annotation Term="UI.LineItem">
+					<Collection>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="MeasuringDocument"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;MEASURING_DOCUMENT}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="MeasuringPoint"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;MEASURING_POINT}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="MeasurementPosition"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;MEASUREMENT_POSITION}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="MeasurementDate"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;MEASUREMENT_DATE}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="MeasurementTime"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;MEASUREMENT_TIME}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="CreatedDate"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;CREATED_ON_DATE}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="CreatedTime"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;CREATED_ON_TIME}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="MeasuringReading"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;READING}"/>
+						</Record>
+					</Collection>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="ZAE_SSOD_SRV.ZAE_C_Activity_01Type">
+				<Annotation Term="UI.HeaderInfo">
+					<Record>
+						<PropertyValue Property="TypeName" String="{@i18n&gt;ACTIVITY}"/>
+						<PropertyValue Property="TypeNamePlural" String="{@i18n&gt;ACTIVITIES}"/>
+						<PropertyValue Property="Title">
+							<Record Type="UI.DataField">
+								<PropertyValue Property="Value" Path="Activity_Title"/>
+							</Record>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+				<Annotation Term="UI.LineItem">
+					<Collection>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="{@i18n&gt;ACTIVITY}"/>
+							<PropertyValue Property="Value" Path="Activity"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="fromdate"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;FROM_DATE}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="todate"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;TO_DATE}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="{@i18n&gt;IMPORTANCE}"/>
+							<PropertyValue Property="Value" Path="priority"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="{@i18n&gt;ACTIVITY_TYPE}"/>
+							<PropertyValue Property="Value" Path="process_type"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="{@i18n&gt;ACCOUNT}"/>
+							<PropertyValue Property="Value" Path="activity_partner"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="{@i18n&gt;TIME_FROM}"/>
+							<PropertyValue Property="Value" Path="from_time"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="{@i18n&gt;TIME_TO}"/>
+							<PropertyValue Property="Value" Path="to_time"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="{@i18n&gt;SHOWROOM_/_WORKSHOP}"/>
+							<PropertyValue Property="Value" Path="plant"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="{@i18n&gt;STATUS}"/>
+							<PropertyValue Property="Criticality" Path="UserStatusCriti"/>
+							<PropertyValue Property="Value" Path="UserStatus"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+						</Record>
+					</Collection>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="ZAE_SSOD_SRV.ZAE_C_VinReservRequestType">
+				<Annotation Term="UI.LineItem">
+					<Collection>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="{@i18n&gt;DOCUMENT_NO}"/>
+							<PropertyValue Property="Value" Path="DocumentNo"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="{@i18n&gt;FISCAL_YEAR}"/>
+							<PropertyValue Property="Value" Path="FYear"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="{@i18n&gt;DOCUMENT_ITEM_NO}"/>
+							<PropertyValue Property="Value" Path="Item"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="{@i18n&gt;DOCUMENT_TYPE}"/>
+							<PropertyValue Property="Value" Path="DocType"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="{@i18n&gt;DOCUMENT_DATE}"/>
+							<PropertyValue Property="Value" Path="DocDate"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="{@i18n&gt;POSTING_DATE}"/>
+							<PropertyValue Property="Value" Path="PostingDate"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="{@i18n&gt;STATUS}"/>
+							<PropertyValue Property="Value" Path="DocumentStatus"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="{@i18n&gt;GROSS_AMOUNT}"/>
+							<PropertyValue Property="Value" Path="Amount"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="{@i18n&gt;TAX_AMOUNT}"/>
+							<PropertyValue Property="Value" Path="Tax"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="{@i18n&gt;TOTAL_AMOUNT}"/>
+							<PropertyValue Property="Value" Path="TotalAmount"/>
+						</Record>
+					</Collection>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="ZAE_SSOD_SRV.ZAE_C_ServiceContract_01Type">
+				<Annotation Term="UI.HeaderInfo">
+					<Record>
+						<PropertyValue Property="TypeName" String="{@i18n&gt;CONTRACT}"/>
+						<PropertyValue Property="TypeNamePlural" String="{@i18n&gt;CONTRACTS}"/>
+						<PropertyValue Property="Title">
+							<Record Type="UI.DataField">
+								<PropertyValue Property="Value" Path="SalesDocumentTypeName"/>
+							</Record>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+				<Annotation Term="UI.Identification">
+					<Collection>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="SalesAreaDesc"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="Employee Responsible"/>
+							<PropertyValue Property="Value" Path="EmployeeName"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="Contract Type"/>
+							<PropertyValue Property="Value" Path="SalesContractType"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="Document Date"/>
+							<PropertyValue Property="Value" Path="SalesContractValidityStartDate"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="Customer Reference"/>
+							<PropertyValue Property="Value" Path="SoldToParty"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+						</Record>
+					</Collection>
+				</Annotation>
+				<Annotation Term="UI.LineItem">
+					<Collection>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="{@i18n&gt;SERVICE_CONTRACT}"/>
+							<PropertyValue Property="Value" Path="SalesContract"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="SoldToParty"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;SOLD-TO_PARTY}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="PurchaseOrderByCustomer"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/Low"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;CUSTOMER_REFERENCE}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="SalesContractValidityStartDate"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/Low"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;CONTRACT_START_DATE}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Criticality" Path="SlsContrDueDateCriticality"/>
+							<PropertyValue Property="Value" Path="SalesContractValidityEndDate"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;CONTRACT_END_DATE}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="{@i18n&gt;STATUS}"/>
+							<PropertyValue Property="Value" Path="UserStatus"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/Medium"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="TotalNetAmount"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;NET_VALUE}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="SalesContractDate"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/Low"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;DOCUMENT_DATE}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="{@i18n&gt;MASTER_WARRANTY}"/>
+							<PropertyValue Property="Value" Path="MasterWarranty"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="{@i18n&gt;DEFERRED_REVENUE}"/>
+							<PropertyValue Property="Value" Path="DeferredRevenue"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="{@i18n&gt;NoofServices}"/>
+							<PropertyValue Property="Value" Path="NoofServices"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="{@i18n&gt;ContractStatus}"/>
+							<PropertyValue Property="Value" Path="ContractStatus_new"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Criticality" Path="ContractStatusCriti_new"/>
+						</Record>
+					</Collection>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="ZAE_SSOD_SRV.ZAE_C_ServiceOrderHistoryType">
+				<Annotation Term="UI.LineItem">
+					<Collection>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="{@i18n&gt;ORDER_DATE}"/>
+							<PropertyValue Property="Value" Path="PostingDate"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="{@i18n&gt;REGISTRATION_NO.}"/>
+							<PropertyValue Property="Value" Path="LicenseNum"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="{@i18n&gt;appTitle}"/>
+							<PropertyValue Property="Value" Path="ServiceOrder"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="{@i18n&gt;MILEAGE}"/>
+							<PropertyValue Property="Value" Path="Mileage"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="{@i18n&gt;SOLD-TO_PARTY}"/>
+							<PropertyValue Property="Value" Path="SoldToParty"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="{@i18n&gt;SSOD_B30}"/>
+							<PropertyValue Property="Value" Path="Invoice"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="{@i18n&gt;INVOICE_VALUE}"/>
+							<PropertyValue Property="Value" Path="InvoiceNetValue"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="{@i18n&gt;SERVICE_ORGANIZATION}"/>
+							<PropertyValue Property="Value" Path="ServiceOrganization"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="{@i18n&gt;SOLD-TO_PARTY}"/>
+							<PropertyValue Property="Value" Path="BillToParty"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="{@i18n&gt;SALES_ORGANIZATION}"/>
+							<PropertyValue Property="Value" Path="SalesOrganization"/>
+						</Record>
+					</Collection>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="ZAE_SSOD_SRV.ZAE_C_PurchaseOrderLI_01Type">
+				<Annotation Term="UI.LineItem">
+					<Collection>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="PurchaseOrder"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;PurchaseOrder}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="PurchaseOrderItem"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;ITEM}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="Material"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;@MATERIAL}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="FirstDeliveryDate"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;DELIVERY_DATE}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="OrderQuantity"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;ORDER_QUANTITY}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="SupplyingPlant"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;SupplyingPlant}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="Plant"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;ReceivingPlant}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="PurchaseOrderItemStatus"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;STATUS}"/>
+						</Record>
+					</Collection>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="ZAE_SSOD_SRV.ZAE_C_EquipmentMeasuringPointType">
+				<Annotation Term="UI.Facets">
+					<Collection>
+						<Record Type="UI.ReferenceFacet">
+							<PropertyValue Property="Target" AnnotationPath="to_MeasuringDocuments/@UI.LineItem"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;MEASURING_DOCUMENTS}"/>
+							<PropertyValue Property="ID" String="MD1Facet"/>
+						</Record>
+					</Collection>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="ZAE_SSOD_SRV.ZAE_C_ServiceContract_01Type">
+				<Annotation Term="UI.Facets">
+					<Collection>
+						<Record Type="UI.ReferenceFacet">
+							<PropertyValue Property="Target" AnnotationPath="to_ComplimentoryItem/@UI.LineItem"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;COMPLIMENTORY_ITEM}"/>
+							<PropertyValue Property="ID" String="CIFacet"/>
+						</Record>
+						<Record Type="UI.ReferenceFacet">
+							<PropertyValue Property="Target" AnnotationPath="to_SrvContractCosting/@UI.LineItem"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;SERVICE_CONTRACT_COSTING}"/>
+							<PropertyValue Property="ID" String="SCCFacet"/>
+						</Record>
+						<Record Type="UI.ReferenceFacet">
+							<PropertyValue Property="Target" AnnotationPath="to_CompliItemIssueStatus/@UI.LineItem"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;COMPLIMENTORY_ITEM_IStatus}"/>
+							<PropertyValue Property="ID" String="CIIFacet"/>
+						</Record>
+					</Collection>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="ZAE_SSOD_SRV.ZAE_C_ServiceOrder_01Type/PDICostAccrualBudget">
+				<Annotation Term="UI.Hidden" Path="isHidePDIFields"/>
+			</Annotations>
+			<Annotations Target="ZAE_SSOD_SRV.ZAE_C_ServiceOrder_01Type/PDICostAccrualAct">
+				<Annotation Term="UI.Hidden" Path="isHidePDIFields"/>
+			</Annotations>
+			<Annotations Target="ZAE_SSOD_SRV.ZAE_C_ServiceOrderHistory_03Type">
+				<Annotation Term="UI.Facets">
+					<Collection>
+						<Record Type="UI.ReferenceFacet">
+							<PropertyValue Property="Target" AnnotationPath="to_ServiceOrderHistoryItems/@UI.LineItem"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;SERVICE_HISTORY_ITEMS}"/>
+							<PropertyValue Property="ID" String="SHIFacet"/>
+						</Record>
+					</Collection>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="ZAE_SSOD_SRV.ZAE_C_ServiceOrderHistory_04Type">
+				<Annotation Term="UI.Facets">
+					<Collection>
+						<Record Type="UI.ReferenceFacet">
+							<PropertyValue Property="Target" AnnotationPath="to_ServiceOrderHistoryItems/@UI.LineItem"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;SERVICE_HISTORY_ITEMS}"/>
+							<PropertyValue Property="ID" String="LSHIFacet"/>
+						</Record>
+					</Collection>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="ZAE_SSOD_SRV.ZAE_C_ServiceDocumentPriceType">
+				<Annotation Term="UI.Facets">
+					<Collection>
+						<Record Type="UI.ReferenceFacet">
+							<PropertyValue Property="Target" AnnotationPath="to_AccessSequence/@UI.LineItem"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;AccessSequence}"/>
+							<PropertyValue Property="ID" String="ASFacet"/>
+						</Record>
+					</Collection>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="ZAE_SSOD_SRV.ZAE_C_ServiceDocumentPrice_01Type">
+				<Annotation Term="UI.Facets">
+					<Collection>
+						<Record Type="UI.ReferenceFacet">
+							<PropertyValue Property="Target" AnnotationPath="to_AccessSequence/@UI.LineItem"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;AccessSequence}"/>
+							<PropertyValue Property="ID" String="ASSFacet"/>
+						</Record>
+					</Collection>
+				</Annotation>
+			</Annotations>
+		</Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

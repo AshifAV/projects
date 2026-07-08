@@ -1,0 +1,32 @@
+<core:FragmentDefinition xmlns="sap.ui.comp.valuehelpdialog" xmlns:m="sap.m" xmlns:fb="sap.ui.comp.filterbar" xmlns:core="sap.ui.core">
+	<ValueHelpDialog title="InspectionLot" ok=".onInspectionLotValueHelpOkPress" cancel=".onInspectionLotValueHelpCancelPress"
+		afterClose=".onInspectionLotValueHelpAfterClose" supportRanges="true" supportMultiselect="false" key="InspectionLot"
+		descriptionKey="InspectionLot">
+		<filterBar>
+			<fb:FilterBar advancedMode="true" search=".onInspectionLotFilterBarSearch">
+				<fb:filterGroupItems>
+					<fb:FilterGroupItem groupName="__$INTERNAL$" name="InspectionLot" label="Inspection Lot" visibleInFilterBar="true">
+						<fb:control>
+							<m:Input name="InspectionLot"/>
+						</fb:control>
+					</fb:FilterGroupItem>
+					<fb:FilterGroupItem groupName="__$INTERNAL$" name="InspectionSpecificationText" label="Inspection Characteristic" visibleInFilterBar="true">
+						<fb:control>
+							<m:Input name="InspectionSpecificationText"/>
+						</fb:control>
+					</fb:FilterGroupItem>
+					<fb:FilterGroupItem groupName="__$INTERNAL$" name="InspectionCodeText" label="Color" visibleInFilterBar="true">
+						<fb:control>
+							<m:Input name="InspectionCodeText"/>
+						</fb:control>
+					</fb:FilterGroupItem>
+						<fb:FilterGroupItem groupName="__$INTERNAL$" name="InspDate" label="Inspection Date" visibleInFilterBar="true">
+						<fb:control>
+							<m:Input name="InspDate"/>
+						</fb:control>
+					</fb:FilterGroupItem>
+				</fb:filterGroupItems>
+			</fb:FilterBar>
+		</filterBar>
+	</ValueHelpDialog>
+</core:FragmentDefinition>

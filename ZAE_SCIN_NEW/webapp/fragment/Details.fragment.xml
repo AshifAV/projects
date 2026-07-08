@@ -1,0 +1,125 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:layout="sap.ui.layout" xmlns:form="sap.ui.layout.form"
+	xmlns:smartForm="sap.ui.comp.smartform" xmlns:smartField="sap.ui.comp.smartfield">
+	<ResponsivePopover class="sapUiPopupWithPadding" contentWidth="40vw" showHeader="false" placement="Auto">
+		<endButton>
+			<Button text="{i18n>BUTTON_Cancel}" press="handleCancelButton"/>
+		</endButton>
+		<content>
+			<smartForm:SmartForm id="apptForm" editTogglable="false" flexEnabled="false">
+				<smartForm:customToolbar>
+					<Toolbar >
+						<Title text="{process_type_txt}" level="H4" titleStyle="H4"/>
+						<ToolbarSpacer/>
+						<Button id="SCIN_B30" icon="sap-icon://action" text="{i18n>MoreInfo}" type="Default" tooltip="{i18n>MoreInformation}"
+							press="fnNavigationToAppointment"/>
+					</Toolbar>
+				</smartForm:customToolbar>
+				<smartForm:Group id="idGrp">
+					<smartForm:GroupElement id="idAppt">
+						<smartField:SmartField value="{Appointment}">
+							<smartField:configuration>
+								<smartField:Configuration displayBehaviour="descriptionAndId"/>
+							</smartField:configuration>
+						</smartField:SmartField>
+					</smartForm:GroupElement>
+					<smartForm:GroupElement id="idStartDate">
+						<smartField:SmartField value="{fromdate}"></smartField:SmartField>
+					</smartForm:GroupElement>
+					<smartForm:GroupElement id="idStartTime">
+						<smartField:SmartField value="{path: 'from_time', type: 'sap.ui.model.odata.type.Time', formatOptions: { style: 'short' }}"/>
+					</smartForm:GroupElement>
+					<smartForm:GroupElement id="idEndDate">
+						<smartField:SmartField value="{todate}"></smartField:SmartField>
+					</smartForm:GroupElement>
+					<smartForm:GroupElement id="idEndTime">
+						<smartField:SmartField value="{path: 'to_time', type: 'sap.ui.model.odata.type.Time', formatOptions: { style: 'short' }}"/>
+					</smartForm:GroupElement>
+					<smartForm:GroupElement id="idLoc">
+						<smartField:SmartField value="{ActLocation}">
+							<smartField:configuration>
+								<smartField:Configuration/>
+							</smartField:configuration>
+						</smartField:SmartField>
+					</smartForm:GroupElement>
+					<smartForm:GroupElement >
+						<smartField:SmartField value="{Priority}">
+							<smartField:configuration>
+								<smartField:Configuration displayBehaviour="descriptionAndId"/>
+							</smartField:configuration>
+						</smartField:SmartField>
+					</smartForm:GroupElement>
+					<smartForm:GroupElement >
+						<smartField:SmartField value="{PrivateFlag}">
+							<smartField:configuration>
+								<smartField:Configuration displayBehaviour="YesNo"/>
+							</smartField:configuration>
+						</smartField:SmartField>
+					</smartForm:GroupElement>
+					<smartForm:GroupElement >
+						<smartField:SmartField value="{UserStatus}">
+							<smartField:configuration>
+								<smartField:Configuration displayBehaviour="descriptionAndId"/>
+							</smartField:configuration>
+						</smartField:SmartField>
+					</smartForm:GroupElement>
+					<smartForm:GroupElement >
+						<smartField:SmartField value="{StatusReason}">
+							<smartField:configuration>
+								<smartField:Configuration displayBehaviour="descriptionAndId"/>
+							</smartField:configuration>
+						</smartField:SmartField>
+					</smartForm:GroupElement>
+					<smartForm:GroupElement >
+						<smartField:SmartField value="{ActivityReason}">
+							<smartField:configuration>
+								<smartField:Configuration displayBehaviour="descriptionAndId"/>
+							</smartField:configuration>
+						</smartField:SmartField>
+					</smartForm:GroupElement>
+					<!--<smartForm:GroupElement id="idCat">-->
+					<!--	<smartField:SmartField value="{Category}">-->
+					<!--		<smartField:configuration>-->
+					<!--			<smartField:Configuration displayBehaviour="descriptionAndId"/>-->
+					<!--		</smartField:configuration>-->
+					<!--	</smartField:SmartField>-->
+					<!--</smartForm:GroupElement>-->
+					<smartForm:GroupElement id="idEqui">
+						<smartField:SmartField value="{Equipment_disp}">
+							<smartField:configuration>
+								<smartField:Configuration displayBehaviour="descriptionAndId"/>
+							</smartField:configuration>
+						</smartField:SmartField>
+					</smartForm:GroupElement>
+					<!--<smartForm:GroupElement id="idStsLC">-->
+					<!--	<smartField:SmartField value="{StatLifecycle}">-->
+					<!--		<smartField:configuration>-->
+					<!--			<smartField:Configuration displayBehaviour="descriptionAndId"/>-->
+					<!--		</smartField:configuration>-->
+					<!--	</smartField:SmartField>-->
+					<!--</smartForm:GroupElement>-->
+					<!--<smartForm:GroupElement id="idActP">-->
+					<!--	<smartField:SmartField value="{ActivityPartner}">-->
+					<!--		<smartField:configuration>-->
+					<!--			<smartField:Configuration displayBehaviour="descriptionAndId"/>-->
+					<!--		</smartField:configuration>-->
+					<!--	</smartField:SmartField>-->
+					<!--</smartForm:GroupElement>-->
+					<smartForm:GroupElement id="idCntP">
+						<smartField:SmartField value="{ContactPerson}">
+							<smartField:configuration>
+								<smartField:Configuration displayBehaviour="descriptionAndId"/>
+							</smartField:configuration>
+						</smartField:SmartField>
+					</smartForm:GroupElement>
+					<smartForm:GroupElement id="idPerR">
+						<smartField:SmartField value="{PersonResp}">
+							<smartField:configuration>
+								<smartField:Configuration displayBehaviour="descriptionAndId"/>
+							</smartField:configuration>
+						</smartField:SmartField>
+					</smartForm:GroupElement>
+				</smartForm:Group>
+			</smartForm:SmartForm>
+		</content>
+	</ResponsivePopover>
+</core:FragmentDefinition>

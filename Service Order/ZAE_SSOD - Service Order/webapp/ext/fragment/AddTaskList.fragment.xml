@@ -1,0 +1,29 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:u="sap.ui.unified" xmlns:smartField="sap.ui.comp.smartfield">
+	<Dialog class="sapUiSizeCompact sapUiContentPadding" contentHeight="30em" contentWidth="35em" resizable="true" title="{i18n>SSOD_B156}">
+		<content>
+			<Table id="idItemListListTable" growing="true" growingThreshold="10" paste="onPaste" items="{/ZAE_C_WorkRequired}" inset="false"
+				mode="SingleSelectLeft" alternateRowColors="false" selectionChange="OnSelect">
+				<columns>
+					<Column >
+						<Label text="{i18n>CatId}"/>
+					</Column>
+					<Column >
+						<Label text="{i18n>CatIdLabel}"/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<Text text="{Category}"></Text>
+							<Text text="{CategoryLabel}"></Text>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+		<buttons>
+			<Button id="BTNSubmit" text="{i18n>BUTTON_Submit}" press="onSubmit"/>
+			<Button text="{i18n>BUTTON_Cancel}" press="onCancel"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

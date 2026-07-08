@@ -1,0 +1,63 @@
+specVersion: "4.0"
+metadata:
+  name: com.globalintelli.zae_scin_new
+type: application
+framework:
+  name: SAPUI5
+  version: 1.102.8
+  libraries:
+    - name: sap.m
+    - name: sap.ui.core
+    - name: sap.ui.layout
+    - name: sap.suite.ui.microchart
+    - name: sap.suite.ui.commons
+    - name: sap.viz
+    - name: sap.f
+    - name: sap.ui.comp
+    - name: sap.ui.generic.app
+    - name: sap.ui.table
+    - name: sap.ushell
+    - name: themelib_sap_bluecrystal
+    - name: themelib_sap_horizon
+server:
+  customMiddleware:
+    - name: fiori-tools-proxy
+      afterMiddleware: compression
+      configuration:
+        ignoreCertErrors: false
+        backend:
+          - path: /sap
+            url: http://otegroup.server.com:44380
+            client: "050"
+            destination: DS4
+          - path: /resources/com/globalintelli/zae_flib
+            destination: DS4
+            url: http://otegroup.server.com:44380
+            client: "050"
+            pathPrefix: /sap/bc/ui5_ui5/sap/ZAE_FLIB
+          - path: /resources/com/globalintelli/zae_flib
+            destination: DS4
+            url: http://otegroup.server.com:44380
+            client: "050"
+            pathPrefix: /sap/bc/ui5_ui5/sap/ZAE_FLIB
+          - path: /resources/sap/cus/sd/lib/slsdoc/manage
+            destination: DS4
+            url: http://otegroup.server.com:44380
+            client: "050"
+            pathPrefix: /sap/bc/ui5_ui5/sap/sd_reuse_sdocs1
+          - path: /resources/sap/nw/core/changedocs/lib/reuse
+            destination: DS4
+            url: http://otegroup.server.com:44380
+            client: "050"
+            pathPrefix: /sap/bc/ui5_ui5/sap/nw_aps_chd_lib
+    - name: fiori-tools-appreload
+      afterMiddleware: compression
+      configuration:
+        port: 35729
+        path: webapp
+        delay: 300
+    - name: fiori-tools-preview
+      afterMiddleware: fiori-tools-appreload
+      configuration:
+        component: com.globalintelli.ZAE_SCIN_NEW
+        ui5Theme: sap_horizon

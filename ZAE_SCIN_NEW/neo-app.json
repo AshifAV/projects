@@ -1,0 +1,93 @@
+{
+  "welcomeFile": "/index.html",
+  "routes": [
+    {
+      "path": "/resources",
+      "target": {
+        "type": "service",
+        "name": "sapui5",
+        "entryPath": "/resources",
+        "version": "1.102.8"
+      },
+      "description": "SAPUI5 Resources"
+    },
+    {
+      "path": "/test-resources",
+      "target": {
+        "type": "service",
+        "name": "sapui5",
+        "entryPath": "/test-resources",
+        "version": "1.102.8"
+      },
+      "description": "SAPUI5 Resources"
+    },
+    {
+      "path": "/resources",
+      "target": {
+        "type": "service",
+        "name": "sapui5",
+        "entryPath": "/resources",
+        "version": "1.102.8"
+      },
+      "description": "SAPUI5 Resources"
+    },
+    {
+      "path": "/test-resources",
+      "target": {
+        "type": "service",
+        "name": "sapui5",
+        "entryPath": "/test-resources",
+        "version": "1.102.8"
+      },
+      "description": "SAPUI5 Test Resources"
+    },
+    {
+      "path": "/sap/opu/odata",
+      "target": {
+        "type": "destination",
+        "name": "ISS-S4D",
+        "entryPath": "/sap/opu/odata"
+      },
+      "description": "Development (ISS-S4D)"
+    },
+    {
+      "path": "/resources/com/globalintelli/zae_flib",
+      "target": {
+        "type": "destination",
+        "name": "ISS-S4D",
+        "entryPath": "/sap/bc/ui5_ui5/sap/ZAE_FLIB"
+      },
+      "description": "autoExpress Fiori Library"
+    },
+    {
+      "path": "/resources/com/globalintelli/zae_flib",
+      "target": {
+        "type": "destination",
+        "name": "ISS-S4D",
+        "entryPath": "/sap/bc/ui5_ui5/sap/ZAE_FLIB"
+      },
+      "description": "autoExpress Fiori Library"
+    },
+    {
+      "path": "/resources/sap/cus/sd/lib/slsdoc/manage",
+      "target": {
+        "type": "destination",
+        "name": "ISS-S4D",
+        "entryPath": "/sap/bc/ui5_ui5/sap/sd_reuse_sdocs1",
+        "preferLocal": true
+      },
+      "description": "sap/cus/sd/lib/slsdoc/manage Reuse Library"
+    },
+    {
+      "path": "/resources/sap/nw/core/changedocs/lib/reuse",
+      "target": {
+        "type": "destination",
+        "name": "ISS-S4D",
+        "entryPath": "/sap/bc/ui5_ui5/sap/nw_aps_chd_lib",
+        "preferLocal": true
+      },
+      "description": "sap/nw/core/changedocs/lib/reuse Reuse Library"
+    }
+  ],
+  "sendWelcomeFileRedirect": true
+}

@@ -1,0 +1,278 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:core="sap.ui.core"
+    xmlns:smartField="sap.ui.comp.smartfield"
+>
+    <l:VerticalLayout
+        class="sapUiContentPadding"
+        width="100%"
+    >
+        <l:content>
+            <f:SimpleForm
+                id="custEquiForm"
+                editable="true"
+                layout="ResponsiveGridLayout"
+                singleContainerFullSize="false"
+            >
+                <f:content>
+                    <Label text="{i18n>SalesOrg}" />
+                    <Select
+                        id="SALESORGANIZATION"
+                        change="fnSalesOrgChangeEqui"
+                        showSecondaryValues="true"
+                        items="{mCreateCustomerEqui>/oCreateCustomerData/CreateCustomerSalesOrg}"
+                        forceSelection="false"
+                    >
+                        <core:ListItem
+                            key="{mCreateCustomerEqui>SalesOrganization}"
+                            text="{mCreateCustomerEqui>SalesOrganizationName}"
+                            additionalText="{mCreateCustomerEqui>SalesOrganization}"
+                        />
+                    </Select>
+                    <Label text="{i18n>DistrChannel}" />
+                    <Select
+                        id="DISTRIBUTIONCHANNEL"
+                        showSecondaryValues="true"
+                        change="fnDistributionChange"
+                        forceSelection="false"
+                        items="{mCreateCustomerEqui>/oCreateCustomerData/CreateCustomerDC}"
+                    >
+                        <core:ListItem
+                            key="{mCreateCustomerEqui>DistributionChannel}"
+                            text="{mCreateCustomerEqui>DistributionChannelName}"
+                            additionalText="{mCreateCustomerEqui>DistributionChannel}"
+                        />
+                    </Select>
+                    <Label text="{i18n>Division}" />
+                    <Select
+                        id="DIVISION"
+                        showSecondaryValues="true"
+                        change="fnCheckCreateCustomerEquiRequiredValidation"
+                        forceSelection="false"
+                        items="{mCreateCustomerEqui>/oCreateCustomerData/CreateCustomerDivision}"
+                    >
+                        <core:ListItem
+                            key="{mCreateCustomerEqui>Division}"
+                            text="{mCreateCustomerEqui>DivisionName}"
+                            additionalText="{mCreateCustomerEqui>Division}"
+                        />
+                    </Select>
+
+                    <Label text="{i18n>Salutation}" />
+                    <Select
+                        id="SALUTATION"
+                        showSecondaryValues="true"
+                        change="fnCheckCreateCustomerEquiRequiredValidation"
+                        forceSelection="false"
+                        items="{path: '/ZAE_VH_CustomerSaluatation_01', length:200}"
+                    >
+                        <core:ListItem
+                            key="{title}"
+                            text="{TitleText}"
+                            additionalText="{title}"
+                        />
+                    </Select>
+                    <Label text="{i18n>FirstName}" />
+                    <Input
+                        id="FIRSTNAME"
+                        liveChange="fnCheckCreateCustomerEquiRequiredValidation"
+                        maxLength="{path: '/#ZAE_FM_SC_CUST_CREATE_FRM_CI/FirstName/@maxLength', formatter: 'parseInt'}"
+                    />
+                    <Label text="{i18n>NameMiddle}" />
+                    <Input
+                        id="NAMEMIDDLE"
+                        liveChange="fnCheckCreateCustomerEquiRequiredValidation"
+                        maxLength="{path: '/#ZAE_FM_SC_CUST_CREATE_FRM_CI/MiddleName/@maxLength', formatter: 'parseInt'}"
+                    />
+                    <Label text="Family Name" />
+                    <Input
+                        id="FAMILYNAME"
+                        liveChange="fnCheckCreateCustomerEquiRequiredValidation"
+                        maxLength="{path: '/#ZAE_FM_SC_CUST_CREATE_FRM_CI/LastName/@maxLength', formatter: 'parseInt'}"
+                    />
+                    <Label text="{i18n>Country}" />
+                    <MultiInput
+                        id="COUNTRY"
+                        valueHelpRequest="fnShowCountryValueHelp"
+                        valueHelpOnly="false"
+                        showValueHelp="true"
+                        tokenUpdate="onCountryTokenUpdate"
+                        showSuggestion="true"
+                        suggestionItemSelected="onSelectCountry"
+                        liveChange="handleCreateCustomerInputValidation"
+                        suggestionRows="{ path: '/ZAE_VH_Country', sorter: { path: 'Country' },suspended: true, length: 10 }"
+                        filterSuggests="true"
+                        suggest="handleCountrySuggest"
+                    >
+                        <suggestionColumns>
+                            <Column>
+                                <Label text="{i18n>Country}" />
+                            </Column>
+                            <Column>
+                                <Label text="{i18n>CountryName}" />
+                            </Column>
+                            <Column visible="false">
+                                <Label text="{i18n>CountryCode}" />
+                            </Column>
+                        </suggestionColumns>
+                        <suggestionRows>
+                            <ColumnListItem>
+                                <cells>
+                                    <Label text="{Country}" />
+                                    <Label text="{CountryName}" />
+                                    <Label text="{CountryCode}" />
+                                </cells>
+                            </ColumnListItem>
+                        </suggestionRows>
+                    </MultiInput>
+                    <Label text="Mobile 1" />
+                    <MaskInput
+                        id="MOBILENO1"
+                        change="handleMobileNoValidation"
+                    />
+                    <Label text="Mobile 2" />
+                    <MaskInput
+                        id="MOBILENO2"
+                        change="handleMobileNoValidation"
+                    />
+                    <Label text="{i18n>Email}" />
+                    <Input
+                        id="EMAIL"
+                        liveChange="handleEmailInputChange"
+                    />
+                    <Label text="National ID/CR No" />
+                    <Input
+                        id="CPRNO"
+                        liveChange="fnCheckCreateCustomerEquiRequiredValidation"
+                        maxLength="25"
+                    />
+                    <Label
+                        text="{i18n>FleetObjectType} "
+                        required="true"
+                    />
+                    <Select
+                        id="FleetObjectType"
+                        showSecondaryValues="true"
+                        change="fnCheckCreateCustomerEquiRequiredValidation"
+                        forceSelection="false"
+                        items="{path: '/ZAE_VH_FleetCategory', length:200}"
+                    >
+                        <core:ListItem
+                            key="{FleetCat}"
+                            text="{FleetCatText}"
+                            additionalText="{FleetCat}"
+                        />
+                    </Select>
+                    <Label
+                        text="{i18n>Make}"
+                        required="true"
+                    />
+                    <Select
+                        id="Make"
+                        items="{ path: '/ZAE_VH_MAKE', sorter: { path: 'Make' } }"
+                        forceSelection="false"
+                        change="onChangeCustEquipmentMake"
+                    >
+                        <core:Item
+                            key="{Make}"
+                            text="{MakeText}"
+                        />
+                    </Select>
+                    <Label
+                        text="{i18n>Model}"
+                        required="true"
+                    />
+                    <Select
+                        id="Model"
+                        items="{ path: '/ZAE_VH_Model_01', sorter: { path: 'Model' } }"
+                        forceSelection="false"
+                    >
+                        <core:Item
+                            key="{Model}"
+                            text="{ModelText}"
+                        />
+                    </Select>
+                    <Label
+                        text="{i18n>ModelYear}"
+                        required="true"
+                    />
+                    <Select
+                        id="ModelYear"
+                        showSecondaryValues="true"
+                        change="fnCheckCreateCustomerEquiRequiredValidation"
+                        forceSelection="false"
+                        items="{path: '/ZAE_VH_Characteristics' , sorter: { path: 'Characteristic' }}"
+                    >
+                        <core:ListItem
+                            key="{CharacteristicValueDec}"
+                            text="{CharacteristicValueDec}"
+                        />
+                    </Select>
+                    <Label text="{i18n>Material}" />
+                    <MultiInput
+                        id="idMaterial"
+                        valueHelpRequest=".onMaterialValueHelpRequested"
+                        valueHelpOnly="false"
+                        showValueHelp="true"
+                        tokenUpdate="onMaterialTokenUpdate"
+                        showSuggestion="true"
+                        suggestionItemSelected="onSelectMaterial"
+                        suggestionRows="{ path: '/ZAE_VH_Material_11', sorter: { path: 'Material' },suspended: true, length: 10 }"
+                        width="100%"
+                        filterSuggests="true"
+                        suggest="handleMaterialSuggest"
+                    >
+                        <suggestionColumns>
+                            <Column>
+                                <Label
+                                    text="{/#ZAE_VH_Material_11/Material/@sap:label}"
+                                />
+                            </Column>
+                            <Column>
+                                <Label
+                                    text="{/#ZAE_VH_Material_11/MaterialName/@sap:label}"
+                                />
+                            </Column>
+                        </suggestionColumns>
+                        <suggestionRows>
+                            <ColumnListItem>
+                                <cells>
+                                    <Label text="{Material}" />
+                                    <Label text="{MaterialName}" />
+                                </cells>
+                            </ColumnListItem>
+                        </suggestionRows>
+                    </MultiInput>
+                    <Label
+                        text="{i18n>Description}"
+                        required="true"
+                    />
+                    <Input
+                        id="Description"
+                        change="fnCheckCreateCustomerEquiRequiredValidation"
+                    />
+                    <Label
+                        text="{i18n>RegistrationNumber}"
+                        required="true"
+                    />
+                    <Input
+                        id="LicenseNumber"
+                        change="fnCheckCreateCustomerEquiRequiredValidation"
+                    />
+                    <Label
+                        text="{i18n>VinNumber}"
+                        required="true"
+                    />
+                    <Input
+                        id="Vinno"
+                        maxLength="17"
+                        liveChange="fnCheckCustEquiVinNumber"
+                        change="fnCheckCreateCustomerEquiRequiredValidation"
+                    />
+                </f:content>
+            </f:SimpleForm>
+        </l:content>
+    </l:VerticalLayout>
+</core:FragmentDefinition>

@@ -1,0 +1,207 @@
+<mvc:View controllerName="com.globalintelli.ZAE_SCIN_NEW.controller.Appointment" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:unified="sap.ui.unified" xmlns:l="sap.ui.layout" xmlns="sap.m" xmlns:cusPLC="com.globalintelli.ZAE_SCIN_NEW.controller.custom"
+	xmlns:commons="sap.suite.ui.commons" xmlns:smartTable="sap.ui.comp.smarttable" xmlns:nav="sap.ui.comp.navpopover">
+	<App>
+		<pages>
+			<Page title="{i18n>createAppointment}" showNavButton="true" navButtonPress="navBack">
+				<content>
+					<l:Splitter height="100%" orientation="Vertical" id="idSplitterMain">
+						<l:Splitter >
+							<l:layoutData><l:SplitterLayoutData size="{path:'/',formatter: '._fnSplitterLayoutDataHight' }"/></l:layoutData>
+							<l:contentAreas>
+								<!--	<Button width="100%" text="Content 1">  size="450px"
+									<l:layoutData><l:SplitterLayoutData size="auto"/></l:layoutData>
+								</Button>-->
+								<l:DynamicSideContent id="DynamicSideContent" class="sapUiDSCExplored" sideContentVisibility="AlwaysShow"
+									showSideContent="{path: 'mAppointment>/legendShown'}" containerQuery="true" breakpointChanged="updateToggleButtonState">
+									<l:mainContent>
+										<cusPLC:PlanningCalendar id="SCIN_SAPlanCal" showEmptyIntervalHeaders="false" appointmentSelect="handleAppointmentSelect"
+											showWeekNumbers="true" visible="true" intervalSelect="handleAppointmentCreateSlotSelect" stickyHeader="true"
+											rows="{path:'/ZAE_I_Employee_02'}" viewKey="M" viewChange="handleViewChange" startDateChange="onstartDateChange">
+											<cusPLC:rows>
+												<cusPLC:PlanningCalendarRow AvailableTime="{AvailableTime}" BookedTime="{BookedTime}" RemainingTime="{RemainingTime}" icon=""
+													title="{EmployeeFullName}" text="{Employee}" key="{Employee}" enableAppointmentsDragAndDrop="false" nonWorkingDays="[]"
+													appointmentDrop="handleAppointmentDrop" appointments="{path:'to_Appointment_01',sorter: { path: 'fromdate', descending: true}}"
+													intervalHeaders="{path: 'to_EMPL_LEAVES_03',sorter:{ path: 'fromdate', descending: true}, templateShareable: true}">
+													<cusPLC:appointments>
+														<unified:CalendarAppointment startDate="{ parts: ['fromdate', 'from_time'], formatter: '.aeFormatter.dateTimeToDate' }"
+															endDate="{ parts: ['todate', 'to_time'], formatter: '.aeFormatter.dateTimeToDate' }"
+															icon="{path:'Appointment',formatter: '._fnCheckNewAppointment' }" title="{AppointmentName}" text="{Appointment}" key="{Appointment}"
+															description="{StatusReason}" color="{AppointmentColor}" type="{path:'Type',formatter: '._fnALType' }" tentative=""></unified:CalendarAppointment>
+													</cusPLC:appointments>
+													<cusPLC:intervalHeaders>
+														<unified:CalendarAppointment startDate="{ parts: ['fromdate', 'from_time'], formatter: '.aeFormatter.dateTimeToDate' }"
+															endDate="{ parts: ['todate', 'to_time'], formatter: '.aeFormatter.dateTimeToDate' }" icon=""
+															title="{ parts: ['AbsenceTypeText'], formatter: '.formatAbsenceTypeText' }" type="NonWorking"></unified:CalendarAppointment>
+													</cusPLC:intervalHeaders>
+												</cusPLC:PlanningCalendarRow>
+											</cusPLC:rows>
+											<!--	<toolbarContent>
+												<Title text="{i18n>APP_TITLE}" titleStyle="H4"/>
+												<ToolbarSpacer/>
+												<Button id="SCIN_B01" icon="sap-icon://add" press="handleAppointmentCreate" tooltip="Create Appointment"
+													enabled="{= ${mAppointment>/filters/Customer}? true: false}"/>
+												<ToggleButton pressed="{path: 'mAppointment>/legendShown'}" icon="sap-icon://legend"/>
+											</toolbarContent>-->
+											<cusPLC:views>
+												<PlanningCalendarView key="A" intervalType="Hour" description="hours view" intervalsS="2" intervalsM="4" intervalsL="8"
+													showSubIntervals="true"></PlanningCalendarView>
+												<PlanningCalendarView key="M" intervalType="Month" description="months view" intervalsS="1" intervalsM="2" intervalsL="3"
+													showSubIntervals="true"></PlanningCalendarView>
+												<PlanningCalendarView key="D" intervalType="Day" description="Summary By Month" intervalsS="1" intervalsM="3" intervalsL="8"
+													showSubIntervals="true"></PlanningCalendarView>
+											</cusPLC:views>
+										</cusPLC:PlanningCalendar>
+									</l:mainContent>
+									<l:sideContent width="200px">
+										<PlanningCalendarLegend id="PlanningCalendarLegend" items="{path : 'mAppointment>/legendItems', templateShareable: true}"
+											standardItems="Today,Selected,NonWorkingDay">
+											<items>
+												<unified:CalendarLegendItem text="{mAppointment>text}" type="{mAppointment>type}" tooltip="{mAppointment>text}"/>
+											</items>
+										</PlanningCalendarLegend>
+									</l:sideContent>
+								</l:DynamicSideContent>
+							</l:contentAreas>
+						</l:Splitter>
+						<l:Splitter >
+							<!--<l:layoutData><l:SplitterLayoutData size="auto"/></l:layoutData>-->
+							<l:contentAreas>
+								<VBox>
+									<Panel expandable="true" expand="onExpandEVHC">
+										<headerToolbar>
+											<OverflowToolbar>
+												<Title text="{i18n>openEVHC}"/>
+											</OverflowToolbar>
+										</headerToolbar>
+										<content>
+											<smartTable:SmartTable id="openEVHC" entitySet="ZAE_C_ServiceComplaint_01" tableType="ResponsiveTable" useExportToExcel="true"
+												useVariantManagement="false" useTablePersonalisation="true" header="{i18n>LineItems}" showRowCount="true"
+												persistencyKey="SmartTableAnalytical_Explored" enableAutoBinding="true"
+												initiallyVisibleFields='InspectionLot,InspectionOperation,InspectionCharacteristic,InspRsltFreeDefinedTestEquip'
+												beforeRebindTable="onBeforeRebindopenEVHCTable">
+												<smartTable:layoutData >
+													<FlexItemData growFactor="1" baseSize="0%"/>
+												</smartTable:layoutData>
+												<Table alternateRowColors="true" growingThreshold="3" growing="true" growingScrollToLoad="false"></Table>
+											</smartTable:SmartTable>
+										</content>
+									</Panel>
+									<Panel expandable="true" expand="onExpandvehiclehistory">
+										<headerToolbar>
+											<OverflowToolbar>
+												<Title text="{i18n>vehiclehistory}"/>
+											</OverflowToolbar>
+										</headerToolbar>
+										<content>
+											<smartTable:SmartTable id="vehiclehistory" entitySet="ZAE_C_ServiceOrderHistory_01" tableType="ResponsiveTable" useExportToExcel="true"
+												useVariantManagement="false" useTablePersonalisation="true" header="{i18n>LineItems}" showRowCount="true"
+												persistencyKey="SmartTableAnalytical_Explored" enableAutoBinding="true"
+												initiallyVisibleFields='ServiceOrder,ServiceOrderType,Invoice,Equipment,ServiceDocumentDescription,SoldToParty,BillToParty,LicenseNum,HistoryItems,PostingDate'
+												beforeRebindTable="onBeforeRebindHistoryTable">
+												<smartTable:layoutData >
+													<FlexItemData growFactor="1" baseSize="0%"/>
+												</smartTable:layoutData>
+												<Table alternateRowColors="true" growingThreshold="3" growing="true" growingScrollToLoad="false">
+													<columns>
+														<Column hAlign="Left">
+															<customData>
+																<core:CustomData key="p13nData" value='\{"columnKey": "ServiceOrder1", "maxLength": "15","columnIndex":"0"}'/>
+															</customData>
+															<Text text="{i18n>ServiceOrderNumber}"/>
+														</Column>
+													</columns>
+													<items>
+														<ColumnListItem>
+															<cells>
+																<!--<Link text="{ServiceOrder}" press="fnHandelServiceOrderLinkPress"/>-->
+																<VBox>
+																	<Link text="{ServiceOrder}" press="fnHandelServiceOrderLinkPress" visible="{= ${HistoryItems}==='NEW' ? true:false }"/>
+																	<Text text="{ServiceOrder}" visible="{= ${HistoryItems}==='NEW' ? false:true }"/>
+																</VBox>
+															</cells>
+														</ColumnListItem>
+													</items>
+												</Table>
+											</smartTable:SmartTable>
+										</content>
+									</Panel>
+									<!--<Panel expandable="true">-->
+									<!--	<headerToolbar>-->
+									<!--		<OverflowToolbar>-->
+									<!--			<Title text="{i18n>OpenServiceRequests}"/>-->
+									<!--		</OverflowToolbar>-->
+									<!--	</headerToolbar>-->
+									<!--	<content>-->
+									<!--		<smartTable:SmartTable id="OpenServiceRequests" entitySet="ZAE_C_ServiceRequest_12" tableType="ResponsiveTable" useExportToExcel="true"-->
+									<!--			useVariantManagement="false" useTablePersonalisation="true" header="{i18n>LineItems}" showRowCount="true" enableAutoBinding="true"-->
+									<!--			initiallyVisibleFields='ServiceDocumentDescription,ServiceDocumentType,ServiceDocumentPriority,ServiceTeam,ResponsibleEmployee,ServiceDocCreationDateTime,SystemStatus'-->
+									<!--			beforeRebindTable="onBeforeRebindOpenServiceRequests">-->
+									<!--			<smartTable:layoutData >-->
+									<!--				<FlexItemData growFactor="1" baseSize="0%"/>-->
+									<!--			</smartTable:layoutData>-->
+									<!--			<smartTable:semanticObjectController>-->
+									<!--				<nav:SemanticObjectController enableAvailableActionsPersonalization='\{"Name":false\}'/>-->
+									<!--			</smartTable:semanticObjectController>-->
+									<!--			<Table alternateRowColors="true" growingThreshold="3" growing="true" growingScrollToLoad="false">-->
+									<!--				<columns>-->
+									<!--					<Column hAlign="Left">-->
+									<!--						<customData>-->
+									<!--							<core:CustomData key="p13nData" value='\{"columnKey": "ServiceRequest", "maxLength": "15","columnIndex":"0"}'/>-->
+									<!--						</customData>-->
+									<!--						<Text text="{/#ZAE_C_ServiceRequest_12Type/ServiceRequest/@sap:label}"/>-->
+									<!--					</Column>-->
+									<!--				</columns>-->
+									<!--				<items>-->
+									<!--					<ColumnListItem>-->
+									<!--						<cells>-->
+									<!--							<nav:SmartLink text="{ServiceRequest}" semanticObject="ServiceRequest" enableAvailableActionsPersonalization="false"/>-->
+									<!--						</cells>-->
+									<!--					</ColumnListItem>-->
+									<!--				</items>-->
+									<!--			</Table>-->
+									<!--		</smartTable:SmartTable>-->
+									<!--	</content>-->
+									<!--</Panel>-->
+								</VBox>
+							</l:contentAreas>
+						</l:Splitter>
+						<l:Splitter>
+							<!--<l:layoutData><l:SplitterLayoutData size="auto"/></l:layoutData>-->
+							<l:contentAreas>
+								<FlexBox width="100%" fitContainer="true" class="CustFlexBox">
+									<layoutData><l:SplitterLayoutData size="34%" resizable="false"/></layoutData>
+									<items >
+										<commons:ChartContainer id="CapacityUtilizationbyHours" showFullScreen="true" showPersonalization="false" autoAdjustHeight="true"
+											showSelectionDetails="true" width="100%"></commons:ChartContainer>
+									</items>
+								</FlexBox>
+								<FlexBox width="100%" fitContainer="true" class="CustFlexBox">
+									<layoutData><l:SplitterLayoutData size="33%" resizable="false"/></layoutData>
+									<items >
+										<commons:ChartContainer id="AppointmentTypeByBookedHours" showFullScreen="true" showPersonalization="false" autoAdjustHeight="true"
+											showSelectionDetails="true" width="100%"></commons:ChartContainer>
+									</items>
+								</FlexBox>
+								<FlexBox width="100%" fitContainer="true" class="CustFlexBox">
+									<layoutData><l:SplitterLayoutData size="33%" resizable="false"/></layoutData>
+									<items >
+										<commons:ChartContainer id="WorkshopCapacityUtilizationbyHours" showFullScreen="true" showPersonalization="false" autoAdjustHeight="true"
+											showSelectionDetails="true" width="100%"></commons:ChartContainer>
+									</items>
+								</FlexBox>
+							</l:contentAreas>
+						</l:Splitter>
+					</l:Splitter>
+				</content>
+				<footer>
+					<Toolbar>
+						<Button id="SCIN_B02" icon="sap-icon://alert" text="{= ${message>/}.length }" visible="{= ${message>/}.length > 0 }" type="Emphasized"
+							press="onMessagePopoverPress"/>
+						<ToolbarSpacer width="4px"/>
+					</Toolbar>
+				</footer>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

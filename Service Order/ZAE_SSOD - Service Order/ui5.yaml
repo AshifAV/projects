@@ -1,0 +1,72 @@
+specVersion: "4.0"
+metadata:
+  name: com.globalintelli.zae_ssod
+type: application
+server:
+  customMiddleware:
+    - name: fiori-tools-proxy
+      afterMiddleware: compression
+      configuration:
+        ignoreCertErrors: false
+        backend:
+          - path: /sap
+            url: http://otegroup.server.com:44380
+            client: "050"
+            destination: DS4
+          - path: /resources/com/globalintelli/zae_flib
+            destination: DS4
+            url: http://otegroup.server.com:44380
+            client: "050"
+            pathPrefix: /sap/bc/ui5_ui5/sap/ZAE_FLIB
+          - path: /resources/com/globalintelli/zae_flib
+            destination: DS4
+            url: http://otegroup.server.com:44380
+            client: "050"
+            pathPrefix: /sap/bc/ui5_ui5/sap/ZAE_FLIB
+          - path: /resources/sap/s4h/cfnd/featuretoggle
+            destination: DS4
+            url: http://otegroup.server.com:44380
+            client: "050"
+            pathPrefix: /sap/bc/ui5_ui5/sap/FEATURETOGGLES1
+          - path: /resources/sap/s4h/cfnd/featuretoggle
+            destination: DS4
+            url: http://otegroup.server.com:44380
+            client: "050"
+            pathPrefix: /sap/bc/ui5_ui5/sap/FEATURETOGGLES1
+          - path: /resources/sap/se/mi/plm/lib/attachmentservice
+            destination: DS4
+            url: http://otegroup.server.com:44380
+            client: "050"
+            pathPrefix: /sap/bc/ui5_ui5/sap/plm_ath_cres1
+          - path: /resources/sap/se/mi/plm/lib/attachmentservice
+            destination: DS4
+            url: http://otegroup.server.com:44380
+            client: "050"
+            pathPrefix: /sap/bc/ui5_ui5/sap/plm_ath_cres1
+          - path: /resources/sap/cus/sd/lib/slsdoc/manage
+            destination: DS4
+            url: http://otegroup.server.com:44380
+            client: "050"
+            pathPrefix: /sap/bc/ui5_ui5/sap/sd_reuse_sdocs1
+          - path: /resources/sap/nw/core/changedocs/lib/reuse
+            destination: DS4
+            url: http://otegroup.server.com:44380
+            client: "050"
+            pathPrefix: /sap/bc/ui5_ui5/sap/nw_aps_chd_lib
+        ui5:
+          path:
+            - /resources
+            - /test-resources
+          url: https://ui5.sap.com
+          version: 1.108.19
+    - name: fiori-tools-appreload
+      afterMiddleware: compression
+      configuration:
+        port: 35729
+        path: webapp
+        delay: 300
+    - name: fiori-tools-preview
+      afterMiddleware: fiori-tools-appreload
+      configuration:
+        component: com.globalintelli.zae_ssod
+        ui5Theme: sap_horizon

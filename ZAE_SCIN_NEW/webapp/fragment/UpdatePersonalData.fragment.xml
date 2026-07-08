@@ -1,0 +1,21 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"
+	xmlns:smartField="sap.ui.comp.smartfield">
+	<l:VerticalLayout class="sapUiContentPadding" width="100%">
+		<MessageStrip class="sapUiResponsiveMargin sapUiNoMarginTop" id="SCIN_B24MessageStrip" showCloseButton="false" showIcon="true" type="Error"
+			visible="false"></MessageStrip>
+		<l:content>
+			<f:SimpleForm id="appointmentCreateForm" editable="true" layout="ResponsiveGridLayout" singleContainerFullSize="false">
+				<f:content>
+					<Label text="{i18n>ContactPerson}" required="true"/>
+					<Input id="IDContactPerson" enabled="false"/>
+					<Label id="IDMobileReq" text="{i18n>MobileNo1}"/>
+					<MaskInput id="IDMobile" change="handleMobileNoValidation" enabled="false"/>
+					<Label id="IDMobileReq2" text="{/#ZAE_C_BPContactPerson/FaxNumber/@sap:label}"/>
+					<MaskInput id="IDFaxNumber" change="handleMobileNoValidation"/>
+					<Label id="IDEMAILReq" text="{i18n>Email}"/>
+					<Input id="IDEMAIL" type="Email" liveChange="handleEmailInputChange"/>
+				</f:content>
+			</f:SimpleForm>
+		</l:content>
+	</l:VerticalLayout>
+</core:FragmentDefinition>

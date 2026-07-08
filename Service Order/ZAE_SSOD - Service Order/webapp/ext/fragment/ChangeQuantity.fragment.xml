@@ -1,0 +1,16 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:smartfield="sap.ui.comp.smartfield" xmlns="sap.m">
+	<!--<Dialog afterClose="afterClose" class="sapUiPopupWithPadding" id="SSOD_B80Dialog" title="{i18n>SSOD_B80}">
+		<MessageStrip class="sapUiResponsiveMargin sapUiNoMarginTop" id="SSOD_B80MessageStrip" showCloseButton="false" showIcon="true" type="Error"-->
+	<Dialog afterClose="afterClose" class="sapUiPopupWithPadding" id="QtyDialog" title="{i18n>Qty}">
+		<MessageStrip class="sapUiResponsiveMargin sapUiNoMarginTop" id="QtyMessageStrip" showCloseButton="false" showIcon="true" type="Error"
+			visible="false"></MessageStrip>
+		<Label labelFor="QtyInput"/>
+		<Input id="QtyInput" required="true" type="Number" class="sapUiSmallMarginBottom"/>
+		<beginButton>
+			<Button press="onSubmitPressed" text="{i18n>BUTTON_Submit}"/>
+		</beginButton>
+		<endButton>
+			<Button press="onCancelPressed" text="{i18n>BUTTON_Cancel}"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

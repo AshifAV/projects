@@ -1,0 +1,28 @@
+<MessageView xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+	controllerName="com.globalintelli.ZAE_SCIN_NEW.controller.ServiceRequest" xmlns:html="http://www.w3.org/1999/xhtml">
+	<App>
+		<pages>
+			<Page title="{i18n>currrentAppointments}" showNavButton="true" navButtonPress="navBack">
+				<content>
+					<PlanningCalendar id="SCIN_SRPlanCal" appointmentsVisualization="Filled" showEmptyIntervalHeaders="false" showWeekNumbers="true"
+						visible="true" stickyHeader="true" intervalSelect="handleServiceRequestCreateSlotSelect">
+						<toolbarContent>
+							<Title text="{i18n>APP_TITLE2}" titleStyle="H4"/>
+							<ToolbarSpacer/>
+							<Button id="SCIN_B21" icon="sap-icon://add" press="handleServiceRequestCreate" tooltip="{i18n>Add}"/>
+						</toolbarContent>
+					</PlanningCalendar>
+				</content>
+				<footer>
+					<Toolbar>
+						<Button id="SCIN_B22" icon="sap-icon://alert" text="{= ${message>/}.length }" visible="{= ${message>/}.length > 0 }" type="Emphasized"
+							press="onMessagePopoverPress"/>
+						<!--<Button id="SCIN_B23" icon="sap-icon://alert" text="{= ${custMessage>/}.length }" visible="{= ${custMessage>/}.length > 0 }"
+							type="Emphasized" press="onCustMessagePopoverPress"/>-->
+						<ToolbarSpacer width="4px"/>
+					</Toolbar>
+				</footer>
+			</Page>
+		</pages>
+	</App>
+</MessageView>

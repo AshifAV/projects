@@ -1,0 +1,160 @@
+{
+  "welcomeFile": "/test/flpSandbox.html",
+  "routes": [
+    {
+      "path": "/resources/com/globalintelli/zae_flib",
+      "target": {
+        "type": "destination",
+        "name": "ISS-S4D",
+        "entryPath": "/sap/bc/ui5_ui5/sap/ZAE_FLIB"
+      },
+      "description": "autoExpress Fiori Library"
+    },
+    {
+      "path": "/resources/com/globalintelli/zae_flib",
+      "target": {
+        "type": "destination",
+        "name": "ISS-S4D",
+        "entryPath": "/sap/bc/ui5_ui5/sap/ZAE_FLIB"
+      },
+      "description": "autoExpress Fiori Library"
+    },
+    {
+      "path": "/sap/opu/odata",
+      "target": {
+        "type": "destination",
+        "name": "ISS-S4D",
+        "entryPath": "/sap/opu/odata"
+      },
+      "description": "Development (ISS-S4D)"
+    },
+    {
+      "path": "/resources",
+      "target": {
+        "type": "service",
+        "name": "sapui5",
+        "preferLocal": true,
+        "entryPath": "/resources",
+        "version": "1.108.19"
+      },
+      "description": "SAPUI5 Resources"
+    },
+    {
+      "path": "/resources/sap/s4h/cfnd/featuretoggle",
+      "target": {
+        "type": "destination",
+        "name": "ISS-S4D",
+        "entryPath": "/sap/bc/ui5_ui5/sap/FEATURETOGGLES1"
+      },
+      "description": "Library for Feature  Toggle"
+    },
+    {
+      "path": "/resources/sap/s4h/cfnd/featuretoggle",
+      "target": {
+        "type": "destination",
+        "name": "ISS-S4D",
+        "entryPath": "/sap/bc/ui5_ui5/sap/FEATURETOGGLES1"
+      },
+      "description": "Library for Feature  Toggle"
+    },
+    {
+      "path": "/sap/ui5/1/resources",
+      "target": {
+        "type": "service",
+        "name": "sapui5",
+        "preferLocal": true,
+        "version": "1.108.19"
+      },
+      "description": "SAPUI5 dist layer resources"
+    },
+    {
+      "path": "/resources/sap/se/mi/plm/lib/attachmentservice",
+      "target": {
+        "type": "destination",
+        "name": "ISS-S4D",
+        "entryPath": "/sap/bc/ui5_ui5/sap/plm_ath_cres1",
+        "preferLocal": true
+      },
+      "description": "sap/se/mi/plm/lib/attachmentservice Reuse Library"
+    },
+    {
+      "path": "/resources/sap/se/mi/plm/lib/attachmentservice",
+      "target": {
+        "type": "destination",
+        "name": "ISS-S4D",
+        "entryPath": "/sap/bc/ui5_ui5/sap/plm_ath_cres1",
+        "preferLocal": true
+      },
+      "description": "sap/se/mi/plm/lib/attachmentservice Reuse Library"
+    },
+    {
+      "path": "/resources",
+      "target": {
+        "type": "service",
+        "name": "sapui5",
+        "entryPath": "/resources",
+        "version": "1.108.19"
+      },
+      "description": "SAPUI5 Resources"
+    },
+    {
+      "path": "/test-resources",
+      "target": {
+        "type": "service",
+        "name": "sapui5",
+        "entryPath": "/test-resources",
+        "version": "1.108.19"
+      },
+      "description": "SAPUI5 Test Resources"
+    },
+    {
+      "path": "/sap/bc/lrep",
+      "target": {
+        "type": "destination",
+        "name": "ISS-S4D",
+        "entryPath": "/sap/bc/lrep"
+      },
+      "description": "ISS-S4D"
+    },
+    {
+      "path": "/test-resources",
+      "target": {
+        "type": "service",
+        "name": "sapui5",
+        "entryPath": "/test-resources",
+        "version": "1.108.19"
+      },
+      "description": "SAPUI5 Test Resources"
+    },
+    {
+      "path": "/",
+      "target": {
+        "type": "application",
+        "name": "flpsandbox",
+        "preferLocal": true
+      },
+      "description": "Subscribed Fiori LaunchPad"
+    },
+    {
+      "path": "/resources/sap/cus/sd/lib/slsdoc/manage",
+      "target": {
+        "type": "destination",
+        "name": "ISS-S4D",
+        "entryPath": "/sap/bc/ui5_ui5/sap/sd_reuse_sdocs1",
+        "preferLocal": true
+      },
+      "description": "sap/cus/sd/lib/slsdoc/manage Reuse Library"
+    },
+    {
+      "path": "/resources/sap/nw/core/changedocs/lib/reuse",
+      "target": {
+        "type": "destination",
+        "name": "ISS-S4D",
+        "entryPath": "/sap/bc/ui5_ui5/sap/nw_aps_chd_lib",
+        "preferLocal": true
+      },
+      "description": "sap/nw/core/changedocs/lib/reuse Reuse Library"
+    }
+  ],
+  "sendWelcomeFileRedirect": true
+}

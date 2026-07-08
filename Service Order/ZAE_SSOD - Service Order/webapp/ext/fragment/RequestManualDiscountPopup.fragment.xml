@@ -1,0 +1,73 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:smartfield="sap.ui.comp.smartfield" xmlns:f="sap.ui.layout.form" xmlns="sap.m"
+	xmlns:l="sap.ui.layout">
+	<Dialog afterClose="afterClose" id="applyDiscount" title="{i18n>SSOD_B125} {mApplyDiscount>/Levels}">
+		<content >
+			<l:VerticalLayout class="sapUiContentPadding" width="27rem">
+				<l:content>
+					<MessageStrip class="sapUiResponsiveMargin sapUiNoMarginTop" id="applyDiscountMessageStrip" showCloseButton="false" showIcon="true"
+						type="Warning" visible="false"></MessageStrip>
+					<!--Commeted for AE-4062-->
+					<!--					<Slider id="DiscountSlider" value="{mApplyDiscount>/SliderValue}" min="{mApplyDiscount>/DiscountFrom}" max="{mApplyDiscount>/DiscountTo}"
+						step="0.01" showAdvancedTooltip="true" showHandleTooltip="false" inputsAsTooltips="true" enableTickmarks="true"
+						class="sapUiMediumMarginBottom sapUiMediumMarginEnd" liveChange="_fnCalDiscValue" width="100%"/>-->
+					<f:SimpleForm editable="true" layout="ResponsiveGridLayout" singleContainerFullSize="false">
+						<f:content>
+							<Label text="{i18n>Discount}" visible="true"/>
+							<StepInput id="DiscountSlider" value="{mApplyDiscount>/SliderValue}" displayValuePrecision="2" min="{mApplyDiscount>/DiscountFrom}"
+								max="{mApplyDiscount>/DiscountTo}" step="0.01" change="_fnCalDiscValue" valueState="Information"
+								valueStateText="{mApplyDiscount>/DiscountFrom}-{mApplyDiscount>/DiscountTo}"></StepInput>
+							<Label text="{i18n>UnitPrice1}" labelFor="Grossvalue"/>
+							<Input id="Grossvalue" type="Text" value="{mApplyDiscount>/Subtotal1Amount}" enabled="false"/>
+							<Label text="{i18n>LP1DiscountValue}" labelFor="LS1DiscountValue"/>
+							<Input id="LS1DiscountValue" type="Text" enabled="false" visible="{mApplyDiscount>/L1Visible}"
+								value="{mApplyDiscount>/L1DiscountFrom}-{mApplyDiscount>/L1DiscountTo}"/>
+							<Label text="{i18n>LP2DiscountValue}" labelFor="LS2DiscountValue"/>
+							<Input id="LS2DiscountValue" type="Text" enabled="false" visible="{mApplyDiscount>/L2Visible}"
+								value="{mApplyDiscount>/L2DiscountFrom}-{mApplyDiscount>/L2DiscountTo}"/>
+							<Label text="{i18n>LP3DiscountValue}" labelFor="LS3DiscountValue"/>
+							<Input id="LS3DiscountValue" type="Text" enabled="false" visible="{mApplyDiscount>/L3Visible}"
+								value="{mApplyDiscount>/L3DiscountFrom}-{mApplyDiscount>/L3DiscountTo}"/>
+							<Label text="{i18n>LP4DiscountValue}" labelFor="LS4DiscountValue"/>
+							<Input id="LS4DiscountValue" type="Text" enabled="false" visible="{mApplyDiscount>/L4Visible}"
+								value="{mApplyDiscount>/L4DiscountFrom}-{mApplyDiscount>/L4DiscountTo}"/>
+							<Label text="{i18n>LP5DiscountValue}" labelFor="LS5DiscountValue"/>
+							<Input id="LS5DiscountValue" type="Text" enabled="false" visible="{mApplyDiscount>/L5Visible}"
+								value="{mApplyDiscount>/L5DiscountFrom}-{mApplyDiscount>/L5DiscountTo}"/>
+							<Label text="{i18n>CurrentDiscount}" labelFor="CurrentDiscount"/>
+							<Input id="CurrentDiscount" type="Text" value="{mApplyDiscount>/CurrentDiscount}" enabled="false"/>
+							<Label text="{i18n>CurrentDiscountPer}" labelFor="CurrentDiscountPer"/>
+							<Input id="CurrentDiscountPer" type="Text" value="{mApplyDiscount>/CurrentDiscountPer}" enabled="false"/>
+							<Label text="{i18n>NetAfterDiscount}" labelFor="NetAfterDiscount"/>
+							<Input id="NetAfterDiscount" type="Text" value="{mApplyDiscount>/NetAfterDiscount}" enabled="false"/>
+							<Label text="{i18n>ProposedDiscount} {mApplyDiscount>/Levels}" labelFor="Discount"/>
+							<Input id="Discount" type="Text" value="{mApplyDiscount>/value}" enabled="false" description="%"/>
+							<Label text="{i18n>ProposedDiscountValue} {mApplyDiscount>/Levels}" labelFor="Discountvalue"/>
+							<Input id="Discountvalue" type="Number" value="{mApplyDiscount>/DiscountValue}" change="_onInputDiscountValue"
+								liveChange="_SubmitButtonValidation" enabled="false"/>
+							<Label text="{i18n>NetAfterProposed} {mApplyDiscount>/Levels}" labelFor="NetAfterProposed"/>
+							<Input id="NetAfterProposed" type="Text" value="{mApplyDiscount>/NetAfterProposed}" enabled="false"/>
+							<!--<Label text="{i18n>Discount}" labelFor="Discount"/>
+							<Input id="Discount" type="Text" value="{mApplyDiscount>/value}" enabled="false" description="%"/>
+							<Label text="{i18n>UnitPrice}" labelFor="Grossvalue"/>
+							<Input id="Grossvalue" type="Text" value="{mApplyDiscount>/Subtotal1Amount}" enabled="false"/>
+							<Label text="{i18n>Discount}" labelFor="Discountvalue"/>
+							<Input id="Discountvalue" type="Number" value="{mApplyDiscount>/DiscountValue}" enabled="true" change="_onInputDiscountValue"
+								liveChange="_SubmitButtonValidation"/>
+							<Label text="{i18n>NetPrice}" labelFor="Netvalue"/>
+							<Input id="Netvalue" type="Text" value="{mApplyDiscount>/NetValue}" enabled="false"/>-->
+							<Label text="{i18n>Text}"/>
+							<TextArea id="TextInput" rows="4" maxLength="132" width="100%" height="50%" value="{mApplyDiscount>/TextInput}"
+								liveChange="_SubmitButtonValidation"/>
+						</f:content>
+					</f:SimpleForm>
+				</l:content>
+			</l:VerticalLayout>
+		</content>
+		<beginButton>
+			<Button id="IDSubmitButton" press="onSubmitPressed" text="{i18n>BUTTON_Submit}"/>
+		</beginButton>
+		<endButton>
+			<Button press="onCancelPressed" text="{i18n>BUTTON_Cancel}"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,33 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:smartfield="sap.ui.comp.smartfield" xmlns="sap.m" xmlns:t="sap.ui.table">
+	<Dialog afterClose="afterClose" class="sapUiPopupWithPadding" title="{i18n>SSOD_B102}">
+		<content>
+			<MessageStrip id="SSOD_B102MessageStrip" class="sapUiResponsiveMargin sapUiNoMarginTop" showCloseButton="false" showIcon="true" type="Error"
+				visible="false"></MessageStrip>
+			<t:Table id="idtable" rows="{/}" selectionMode="None" visibleRowCount="7" ariaLabelledBy="title" width="35rem">
+				<t:columns>
+					<t:Column width="10rem">
+						<Label text="{i18n>STATUS}"/>
+						<t:template>
+							<Text text="{StatusShortName}" wrapping="false"/>
+						</t:template>
+					</t:Column>
+					<t:Column width="15rem">
+						<Label text="{i18n>StatusDescription}"/>
+						<t:template>
+							<Text text="{StatusName}" wrapping="false"/>
+						</t:template>
+					</t:Column>
+					<t:Column width="5rem">
+						<Label text=""/>
+						<t:template>
+							<Switch type="AcceptReject" state="{Active}" change="onSwitchChange"/>
+						</t:template>
+					</t:Column>
+				</t:columns>
+			</t:Table>
+		</content>
+		<endButton>
+			<Button press="onclose" text="{i18n>BUTTON_Cancel}"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

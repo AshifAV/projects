@@ -1,0 +1,43 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form">
+	<Dialog class="sapUiSizeCompact sapUiContentPadding" contentWidth="20em" resizable="true" title="{i18n>SSOD_B154}">
+		<content>
+			<f:SimpleForm editable="true" layout="ResponsiveGridLayout" singleContainerFullSize="false">
+				<f:content>
+					<Label text="{i18n>Material}" labelFor="MaterialID" required="true"/>
+					<MultiInput valueHelpRequest=".onProductValueHelpRequestedReplacePart" valueHelpOnly="false" showValueHelp="true"
+						tokenUpdate="onMaterailTokenUpdateReplacePart" id="MaterialId" showSuggestion="true" suggestionItemSelected="onSelectMaterialReplacePart"
+						suggestionRows="{ path: '/ZAE_I_MaterialSalesData_06', sorter: { path: 'Material' },suspended: true, length: 10 }" width="100%"
+						filterSuggests="true" suggest="handleMaterialSuggestReplacePart" maxSuggestionWidth="100px">
+						<suggestionColumns>
+							<Column>
+								<Label text="{i18n>Material}"/>
+							</Column>
+							<Column>
+								<Label text="{i18n>MaterialName}"/>
+							</Column>
+							<Column>
+								<Label text="{i18n>MaterialType}"/>
+							</Column>
+						</suggestionColumns>
+						<suggestionRows>
+							<ColumnListItem>
+								<cells>
+									<Label text="{Material}"/>
+									<Label text="{MaterialName}"/>
+									<Label text="{MaterialType}"/>
+								</cells>
+							</ColumnListItem>
+						</suggestionRows>
+					</MultiInput>
+					<Label text="{i18n>Quantity}" labelFor="QuantityID" required="true"/>
+					<Input id="QuantityId" type="Number" value="{type: 'sap.ui.model.type.Number', constraints:{minimum:0}}"
+						liveChange="fnSubmitButonValidationReplacePart"/>
+				</f:content>
+			</f:SimpleForm>
+		</content>
+		<buttons>
+			<Button id="BTNSubmit" text="{i18n>BUTTON_Submit}" press="onSubmit"/>
+			<Button text="{i18n>BUTTON_Cancel}" press="onCancel"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,53 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<Dialog class="sapUiSizeCompact sapUiContentPadding" contentHeight="30em" resizable="true" title="{i18n>SSOD_B59}">
+		<content>
+			<Table id="idCreateSTOTable" growing="true" growingThreshold="10" paste="onPaste" items="{mCreateSTOTableModel>/TableData/}"
+				inset="false" alternateRowColors="true" mode="MultiSelect" selectionChange="onSelectionChange">
+				<headerToolbar>
+					<OverflowToolbar >
+						<Title text="Create STO" level="H2"/>
+						<ToolbarSpacer/>
+						<!--<Button text="Add" type="Transparent" press="onAddNewRow"/>-->
+					</OverflowToolbar>
+				</headerToolbar>
+				<columns>
+					<Column width="4em" hAlign="Center">
+						<Text text="Issue Plant"/>
+					</Column>
+					<Column width="4em" hAlign="Center">
+						<Text text="Issue Storage Location"/>
+					</Column>
+					<Column width="4em" hAlign="Center">
+						<Text text="Stock Qty"/>
+					</Column>
+					<Column width="4em" hAlign="Center">
+						<Text text="ATP Qty"/>
+					</Column>
+					<Column width="6em" hAlign="Center">
+						<Text text="Order Qty"/>
+					</Column>
+<!--					<Column width="3em" hAlign="Center">
+						<Text text="Actions"/>
+					</Column>-->
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<Text text="{mCreateSTOTableModel>IssuePlant} ({mCreateSTOTableModel>IssueplantName})"/>
+							<Text text="{mCreateSTOTableModel>IssueStorageLocation} ({mCreateSTOTableModel>IssueStorageLocationName})"/>
+							<Text text="{mCreateSTOTableModel>StockQty}"/>
+							<Text text="{mCreateSTOTableModel>ATPQty}"/> <!--{mCreateSTOTableModel>ATPQty}-->
+							<Input type="Number" value="{mCreateSTOTableModel>OrderQty}" change="fnSubmitButonValidation" enabled="false"/>
+							<!--<Button icon="sap-icon://delete" type="Transparent" press="onDeletePress" enabled="{mCreateSTOTableModel>Enabled}"/>-->
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+		<buttons>
+			<Button id="CreateSTOSubmit" text="Create" press="onSubmit"/>
+			<!--<Button text="Reset" press="onReset"/>-->
+			<Button text="Cancel" press="onCancel"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

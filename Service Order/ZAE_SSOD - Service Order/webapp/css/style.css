@@ -1,0 +1,8 @@
+.CustomHeight {
+    height: 5rem !important;
+}
+
+.disabledbutton {
+    pointer-events: none !important;
+    opacity: 0.4 !important;
+}

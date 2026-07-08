@@ -1,0 +1,19 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m">
+	<Popover id="pricePopover" placement="Bottom" showHeader="false">
+		<VBox class="sapUiTinyMargin">
+			<VBox class="sapUiTinyMargin">
+				<Label text="{= ${app>/pages/configData/AppMode}.charAt(0) === 'L' ? 'Monthly Price' : 'Base Price' }"></Label>
+				<ObjectNumber
+					number="{ parts: [{path:'app>/pages/Config/basePrice'}, {path:'app>/pages/currency'}], type: 'sap.ui.model.type.Currency', formatOptions: {showMeasure: false} }"
+					unit="{app>/pages/currency}"/>
+			</VBox>
+			<VBox class="sapUiTinyMargin">
+				<Label text="{= ${app>/pages/configData/AppMode}.charAt(0) === 'L' ? 'No. of Months' : 'Add Ons Price' }"></Label>
+				<ObjectNumber visible="{= ${app>/pages/configData/AppMode}.charAt(0) !== 'L'}"
+					number="{ parts: [{path:'app>/pages/Config/addOnsPrice'}, {path:'app>/pages/currency'}], type: 'sap.ui.model.type.Currency', formatOptions: {showMeasure: false} }"
+					unit="{app>/pages/currency}"/>
+				<Text visible="{= ${app>/pages/configData/AppMode}.charAt(0) === 'L'}" text="{app>/pages/Config/noOfMonths}"/>
+			</VBox>
+		</VBox>
+	</Popover>
+</core:FragmentDefinition>

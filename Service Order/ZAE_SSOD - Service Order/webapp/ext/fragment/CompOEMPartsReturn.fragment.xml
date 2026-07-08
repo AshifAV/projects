@@ -1,0 +1,57 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<Dialog class="sapUiSizeCompact" contentHeight="25em" contentWidth="70em" title="OEM Parts Return">
+		<content>
+			<Table id="idOEMTable" growing="true" growingThreshold="10" paste="onPaste" items="{mCompOEMPartsReturn>/results}" inset="false"
+				alternateRowColors="true" mode="None" selectionChange="onSelectionChange">
+				<headerToolbar >
+					<!--<OverflowToolbar class="CustomHeight">-->
+					<!--	<content>-->
+					<!--<VBox class="sapUiSmallMarginBegin sapUiSmallMarginTop">-->
+					<!--	<Label text="Service Order:"/>-->
+					<!--	<Input value="{mCompOEMPartsReturn>/results/ServiceOrder}" width="300px" enabled="false"/>-->
+					<!--</VBox>-->
+					<!--	</content>-->
+					<!--	<ToolbarSpacer/>-->
+					<!--</OverflowToolbar>-->
+				</headerToolbar>
+				<columns>
+					<Column width="4em" hAlign="Center">
+						<Text text="Item Number"/>
+					</Column>
+					<Column width="4em" hAlign="Center">
+						<Text text="Higher Level Item Number"/>
+					</Column>
+					<Column width="4em" hAlign="Center">
+						<Text text="Material"/>
+					</Column>
+					<Column width="4em" hAlign="Center">
+						<Text text="Material Name"/>
+					</Column>
+					<Column width="4em" hAlign="Center">
+						<Text text="Order Quantity"/>
+					</Column>
+					<Column width="4em" hAlign="Center">
+						<Text text="Quantity"/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<Text text="{mCompOEMPartsReturn>ItemNumber}"/>
+							<Text text="{mCompOEMPartsReturn>HighLevelItemNumber}"/>
+							<Text text="{mCompOEMPartsReturn>Material}"/>
+							<Text text="{mCompOEMPartsReturn>MaterialName}"/>
+							<Input value="{mCompOEMPartsReturn>OperationQuantity}" description="{mCompOEMPartsReturn>OperationQuantityUnit}" enabled="false"/>
+							<Input id="idOemQty" type="Text" value="{mCompOEMPartsReturn>Qty}" valueState="{mCompOEMPartsReturn>qtyValueState}" enabled="true"
+								liveChange="fnOEMSubmitButonValidation"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+		<buttons>
+			<Button id="OEMSubmit" text="Submit" press="onSubmitOEM"/>
+			<Button text="Cancel" press="onCancel"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>
