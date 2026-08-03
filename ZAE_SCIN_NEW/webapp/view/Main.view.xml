@@ -69,7 +69,7 @@
                             >
                                 <smartFilterBar:customControl>
                                     <Input
-                                        id="1"
+                                        id="SCIN_I01"
                                         placeholder="{i18n>WORKSHOP}"
                                         type="Text"
                                         showValueHelp="true"

@@ -5,132 +5,191 @@
     xmlns:f="sap.ui.layout.form"
     xmlns:core="sap.ui.core"
     xmlns:ui="sap.ui.unified"
-    displayBlock="true">
-
-    <Page id="page" 
-          title="Supervisor Order" 
-          showNavButton="true" 
-          navButtonPress="onNavBack">
-
+    displayBlock="true"
+>
+    <Page
+        id="page"
+        title="Supervisor Order"
+        showNavButton="true"
+        navButtonPress="onNavBack"
+    >
         <content>
-            <f:SimpleForm id="orderForm"
+            <f:SimpleForm
+                id="orderForm"
                 editable="true"
                 layout="ResponsiveGridLayout"
-                labelSpanXL="4" 
-                labelSpanL="4" 
-                labelSpanM="12" 
+                labelSpanXL="4"
+                labelSpanL="4"
+                labelSpanM="12"
                 labelSpanS="12"
                 adjustLabelSpan="false"
-                columnsXL="2" 
-                columnsL="2" 
-                columnsM="1">
-
+                columnsXL="2"
+                columnsL="2"
+                columnsM="1"
+            >
                 <!-- Order Information -->
-                <core:Title text="Order Information"/>
-                <Label text="User Status"/>
-                <ComboBox id="userStatus" selectedKey="Open" width="100%">
-                    <items>
-                        <core:Item key="Open" text="Open"/>
-                        <core:Item key="InProgress" text="In Progress"/>
-                        <core:Item key="Completed" text="Completed"/>
-                        <core:Item key="Closed" text="Closed"/>
-                    </items>
-                </ComboBox>
+                <core:Title text="Order Information" />
+                <Label text="User Status" />
+                <Select
+                    id="idUserStatus"
+                    change="handleSaveButtonEnabled"
+                    items="{ path: '/ZAE_VH_UserStatus_09',length: 500 }"
+                >
+                    <core:ListItem
+                        key="{UserStatus}"
+                        text="{UserStatusName}"
+                        additionalText="{UserStatusShortName}"
+                    />
+                </Select>
+                <Label text="Order No" />
+                <Input
+                    id="idOrderNo"
+                    editable="false"
+                    placeholder="Auto-generated"
+                />
 
-                <Label text="Order No"/>
-                <Input id="orderNo" editable="false" placeholder="Auto-generated"/>
-
-                <Label text="Order Date"/>
-                <DatePicker id="orderDate" 
-                            valueFormat="yyyy-MM-dd" 
-                            displayFormat="dd.MM.yyyy"/>
+                <Label text="Order Date" />
+                <DatePicker
+                    id="orderDate"
+                    valueFormat="yyyy-MM-dd"
+                    displayFormat="dd.MM.yyyy"
+                />
 
                 <!-- Customer Details -->
-                <core:Title text="Customer Details"/>
-                <Label text="Customer Name"/>
-                <Input id="customerName" placeholder="Enter customer name"/>
+                <core:Title text="Customer Details" />
+                <Label text="Customer Name" />
+                <Input
+                    id="customerName"
+                    placeholder="Enter customer name"
+                />
 
-                <Label text="Mobile No"/>
-                <Input id="mobileNo" type="Tel" placeholder="+968 XXXXX XXXXX"/>
+                <Label text="Mobile No" />
+                <Input
+                    id="mobileNo"
+                    type="Tel"
+                    placeholder="+968 XXXXX XXXXX"
+                />
 
-                <Label text="Location"/>
-                <Input id="location" placeholder="Enter location"/>
+                <Label text="Location" />
+                <Input
+                    id="location"
+                    placeholder="Enter location"
+                />
 
-                <Label text="Land Line No"/>
-                <Input id="landLineNo" type="Tel"/>
+                <Label text="Land Line No" />
+                <Input
+                    id="landLineNo"
+                    type="Tel"
+                />
 
                 <!-- Job Details -->
-                <core:Title text="Job Details"/>
-                <Label text="Invoice Details"/>
-                <TextArea id="invoiceDetails" rows="3" placeholder="Enter invoice details..."/>
+                <core:Title text="Job Details" />
+                <Label text="Invoice Details" />
+                <Input
+                    id="invoiceDetails"
+                />
 
-                <Label text="Invoice Date"/>
-                <DatePicker id="invoiceDate" 
-                            valueFormat="yyyy-MM-dd" 
-                            displayFormat="dd.MM.yyyy"/>
+                <Label text="Invoice Date" />
+                <DatePicker
+                    id="invoiceDate"
+                    valueFormat="yyyy-MM-dd"
+                    displayFormat="dd.MM.yyyy"
+                />
 
-                <Label text="Goods Repair/Collection Date"/>
-                <DatePicker id="repairDate" 
-                            valueFormat="yyyy-MM-dd" 
-                            displayFormat="dd.MM.yyyy"/>
+                <Label text="Goods Repair/Collection Date" />
+                <DatePicker
+                    id="repairDate"
+                    valueFormat="yyyy-MM-dd"
+                    displayFormat="dd.MM.yyyy"
+                />
 
-                <Label text="Job Ref W/OW"/>
-                <Input id="jobRef" placeholder="Job Reference"/>
+                <Label text="Job Ref W/OW" />
+                <Input
+                    id="jobRef"
+                    placeholder="Job Reference"
+                />
 
-                <Label text="Model Number"/>
-                <Input id="modelNo"/>
+                <Label text="Model Number" />
+                <Input id="modelNo" />
 
-                <Label text="Serial Number"/>
-                <Input id="serialNo"/>
+                <Label text="Serial Number" />
+                <Input id="serialNo" />
 
                 <!-- Responsible Persons -->
-                <core:Title text="Responsible Persons"/>
-                <Label text="Person Responsible (Emp Name)"/>
-                <Input id="empName" placeholder="Employee Name"/>
+                <core:Title text="Responsible Persons" />
+                <Label text="Person Responsible (Emp Name)" />
+                <Input
+                    id="empName"
+                    placeholder="Employee Name"
+                />
 
-                <Label text="Employee Code"/>
-                <Input id="empCode" placeholder="Employee Code"/>
+                <Label text="Employee Code" />
+                <Input
+                    id="empCode"
+                    placeholder="Employee Code"
+                />
 
-                <Label text="Outsource Technician Name"/>
-                <Input id="techName" placeholder="Technician Name"/>
+                <Label text="Outsource Technician Name" />
+                <Input
+                    id="techName"
+                    placeholder="Technician Name"
+                />
 
-                <Label text="Vendor Code"/>
-                <Input id="vendorCode"/>
+                <Label text="Vendor Code" />
+                <Input id="vendorCode" />
 
                 <!-- Technical Information -->
-                <core:Title text="Technical Information"/>
-                <Label text="Parts EHA"/>
-                <Input id="partsEHA"/>
+                <core:Title text="Technical Information" />
+                <Label text="Parts EHA" />
+                <Input id="partsEHA" />
 
-                <Label text="Damage EHA"/>
-                <Input id="damageEHA"/>
+                <Label text="Damage EHA" />
+                <Input id="damageEHA" />
 
-                <Label text="Cause EHA"/>
-                <Input id="causeEHA"/>
+                <Label text="Cause EHA" />
+                <Input id="causeEHA" />
 
                 <!-- Documents & Signature -->
-                <core:Title text="Documents &amp; Signature"/>
-                <Label text="Customer Invoice"/>
-                <ui:FileUploader id="fileUploader"
+                <core:Title text="Documents &amp; Signature" />
+                <Label text="Customer Invoice" />
+                <ui:FileUploader
+                    id="fileUploader"
                     uploadUrl=""
                     multiple="false"
                     fileType="pdf,jpg,png"
-                    placeholder="Attach invoice"/>
+                    placeholder="Attach invoice"
+                />
 
-                <Label text="Customer Signature"/>
-                <VBox id="signatureVBox" height="220px">
+                <Label text="Customer Signature" />
+                <VBox
+                    id="signatureVBox"
+                    height="220px"
+                >
                     <!-- Signature Canvas will be created in Controller -->
                 </VBox>
-
             </f:SimpleForm>
         </content>
 
         <footer>
             <Toolbar>
-                <ToolbarSpacer/>
-                <Button text="Save Order" type="Emphasized" press="onSaveOrder" icon="sap-icon://save"/>
-                <Button text="Clear Signature" press="onClearSignature" type="Reject" icon="sap-icon://delete"/>
-                <Button text="Cancel" type="Reject" press="onCancel"/>
+                <ToolbarSpacer />
+                <Button
+                    text="Save Order"
+                    type="Emphasized"
+                    press="onSaveOrder"
+                    icon="sap-icon://save"
+                />
+                <Button
+                    text="Clear Signature"
+                    press="onClearSignature"
+                    type="Reject"
+                    icon="sap-icon://delete"
+                />
+                <Button
+                    text="Cancel"
+                    type="Reject"
+                    press="onCancel"
+                />
             </Toolbar>
         </footer>
     </Page>

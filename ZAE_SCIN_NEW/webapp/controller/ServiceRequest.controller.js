@@ -16,12 +16,16 @@ sap.ui.define(["com/globalintelli/ZAE_SCIN_NEW/controller/BaseController", "sap/
             t.setData(e);
             this.getView().setModel(t, "mServiceRequest");
             var a = this.getRouter().getRoute("ServiceRequestView");
-            a.attachPatternMatched(this._onObjectMatched, this)
+            a.attachPatternMatched(this._onObjectMatched, this);
+            setTimeout(function () {
+                var e = sap.ui.getCore().getEventBus();
+                e.publish("MainView", "fnAfterNavigate", {});
+            }, 100);
         },
-        onAfterRendering: function () {
-            var e = sap.ui.getCore().getEventBus();
-            e.publish("MainView", "fnAfterNavigate", {})
-        },
+        // onAfterRendering: function () {
+        //     var e = sap.ui.getCore().getEventBus();
+        //     e.publish("MainView", "fnAfterNavigate", {})
+        // },
         _onObjectMatched: function (e) {
             this._planningCalendar.unbindAggregation("rows");
             this._planningCalendar.rerender();

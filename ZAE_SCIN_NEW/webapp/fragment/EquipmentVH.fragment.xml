@@ -83,12 +83,12 @@
 					<!--</fb:FilterGroupItem>-->
 					<fb:FilterGroupItem groupName="__$INTERNAL$"  name="Make" label="{i18n>Make}" visibleInFilterBar="true">
 						<fb:control>
-							<m:Input  name="Make"/>
+							<m:Input  enabled="false" value="ZNF" name="Make"/>
 						</fb:control>
 					</fb:FilterGroupItem>
 					<fb:FilterGroupItem groupName="__$INTERNAL$" name="MakeText" label="{i18n>MakeText}" visibleInFilterBar="true">
 						<fb:control>
-							<m:Input name="MakeText"/>
+							<m:Input  enabled="false"  name="MakeText"/>
 						</fb:control>
 					</fb:FilterGroupItem>
 					<fb:FilterGroupItem groupName="__$INTERNAL$" name="Model" label="{i18n>Model}" visibleInFilterBar="true">

@@ -1,0 +1,98 @@
+<mvc:View
+    controllerName="zsuporder.controller.SupervisorOrderList"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    displayBlock="true">
+
+    <Page
+        id="page"
+        title="Supervisor Orders"
+        showNavButton="true"
+        navButtonPress="onNavBack"
+        backgroundDesign="Solid">
+
+        <content>
+            <Table
+                id="orderTable"
+                items="{ 
+                    path: '/ZOTE_SUPAPP_ORDER', 
+                    sorter: { path: 'MaintenanceOrder', descending: true },
+                    parameters: {
+                        $count: true,
+                        countMode: 'Inline'
+                    }
+                }"
+                mode="SingleSelectMaster"
+                selectionChange="onOrderSelect"
+                growing="true"
+                growingThreshold="20"
+                growingScrollToLoad="true"
+                alternateRowColors="true"
+                fixedLayout="false"
+                class="sapUiNoMargin">
+
+                <headerToolbar>
+                    <OverflowToolbar>
+                        <Title text="Orders List" level="H2" />
+                        <ToolbarSpacer />
+                        <SearchField
+                            id="searchField"
+                            placeholder="Search orders..."
+                            search="onSearch"
+                            width="220px" />
+                        <Button
+                            icon="sap-icon://refresh"
+                            text="Refresh"
+                            press="onRefresh"
+                            type="Transparent"
+                            tooltip="Refresh List" />
+                    </OverflowToolbar>
+                </headerToolbar>
+
+                <columns>
+                    <Column hAlign="Center" >
+                        <Text text="Order No" />
+                    </Column>
+                    <Column hAlign="Center" >
+                        <Text text="Order Type" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Text text="Priority" />
+                    </Column>
+                    <Column hAlign="Left" width="auto" demandPopin="true" minScreenWidth="Tablet">
+                        <Text text="Description" />
+                    </Column>
+                </columns>
+
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                            <Link
+                                text="{MaintenanceOrder}"
+                                press="onOrderLinkPress"
+                                tooltip="{MaintenanceOrderInternalID}"
+                                textAlign="Center" />
+
+                            <HBox alignItems="Center" justifyContent="Center">
+                                <core:Icon
+                                    src="sap-icon://order"
+                                    size="1rem"
+                                    color="#666"
+                                    class="sapUiTinyMarginEnd" />
+                                <Text text="{MaintenanceOrderTypeName}" />
+                            </HBox>
+
+                            <ObjectStatus
+                                state="{= ${MaintPriorityDesc} === '1-Very high' ? 'Error' : ${MaintPriorityDesc} === '3-Medium' ? 'Warning' : 'Success' }"
+                                text="{MaintPriorityDesc}"
+                                textAlign="Center" />
+
+                            <Text text="{MaintenanceOrderDesc}" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+    </Page>
+</mvc:View>

@@ -1815,7 +1815,15 @@ sap.ui.define(["com/globalintelli/ZAE_SCIN_NEW/controller/BaseController", "sap/
 
             oDialog.setBusy(true);
 
-            var plant = w.byId("SCIN_I01").getSelectedKey();
+            // var plant = w.byId("SCIN_I01").getSelectedKey();
+            var oSmartFilterBar = this.getView().byId("SCIN_smartFilterBar");
+            var oPlantControl = oSmartFilterBar ? oSmartFilterBar.getControlByKey("Plant") : null;
+            var plant = null;
+            if (oPlantControl) {
+                plant = oPlantControl.getSelectedKey();
+            } else {
+                console.warn("Plant Input (SCIN_I01) not found in _filterTable");
+            }
             var s = t.byId("fragCreateCustomerEqui", "idMaterial").getTokens([]);
             if (s.length > 0) {
                 u = t.byId("fragCreateCustomerEqui", "idMaterial").getTokens()[0].getKey()

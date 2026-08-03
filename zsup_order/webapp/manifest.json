@@ -1,15 +1,14 @@
 {
-  "_version": "1.48.0",
+  "_version": "1.12.0",
   "sap.app": {
     "id": "zsuporder",
     "type": "application",
     "i18n": "i18n/i18n.properties",
     "applicationVersion": {
-      "version": "0.0.1"
+      "version": "1.0.0"
     },
     "title": "{{appTitle}}",
     "description": "{{appDescription}}",
-    "resources": "resources.json",
     "sourceTemplate": {
       "id": "@sap/generator-fiori:basic",
       "version": "1.25.0",
@@ -17,17 +16,17 @@
     },
     "dataSources": {
       "mainService": {
-        "uri": "/sap/opu/odata/sap/ZOTE_AUTOSALES_SRV/",
+        "uri": "/sap/opu/odata/sap/ZOTE_SUPAPP_SRV/",
         "type": "OData",
         "settings": {
           "annotations": [],
-          "localUri": "localService/mainService/metadata.xml",
-          "odataVersion": "2.0"
+          "localUri": "localService/mainService/metadata.xml"
         }
       }
     }
   },
   "sap.ui": {
+    "fullWidth": true,
     "technology": "UI5",
     "icons": {
       "icon": "",
@@ -44,12 +43,24 @@
     }
   },
   "sap.ui5": {
-    "flexEnabled": true,
+    "flexEnabled": false,
+    "handleValidation": true,
+    "rootView": {
+      "viewName": "zsuporder.view.App",
+      "type": "XML",
+      "async": true,
+      "id": "appView"
+    },
     "dependencies": {
-      "minUI5Version": "1.108.30",
+      "minUI5Version": "1.65.6",
       "libs": {
         "sap.m": {},
-        "sap.ui.core": {}
+        "sap.ui.core": {},
+        "sap.ui.layout": {},
+        "sap.ui.unified": {},
+        "sap.ui.comp": {},
+        "sap.ui.table": {},
+        "sap.ui.generic.app": {}
       }
     },
     "contentDensities": {
@@ -64,9 +75,14 @@
         }
       },
       "": {
+        "type": "sap.ui.model.odata.v2.ODataModel",
+        "settings": {
+          "defaultOperationMode": "Server",
+          "defaultBindingMode": "OneWay",
+          "defaultCountMode": "Request"
+        },
         "dataSource": "mainService",
-        "preload": true,
-        "settings": {}
+        "preload": true
       }
     },
     "resources": {
@@ -88,28 +104,30 @@
       },
       "routes": [
         {
-          "name": "RouteSupervisorOrder",
-          "pattern": ":?query:",
+          "name": "orderList",
+          "pattern": "",
           "target": [
-            "TargetSupervisorOrder"
+            "orderListTarget"
+          ]
+        },
+        {
+          "pattern": "orderDetail/{orderId}?:query:",
+          "name": "orderDetail",
+          "target": [
+            "orderDetailTarget"
           ]
         }
       ],
       "targets": {
-        "TargetSupervisorOrder": {
+        "orderListTarget": {
           "viewType": "XML",
-          "transition": "slide",
-          "clearControlAggregation": false,
-          "viewId": "SupervisorOrder",
+          "viewName": "SupervisorOrderList"
+        },
+        "orderDetailTarget": {
+          "viewType": "XML",
           "viewName": "SupervisorOrder"
         }
       }
-    },
-    "rootView": {
-      "viewName": "zsuporder.view.App",
-      "type": "XML",
-      "async": true,
-      "id": "App"
     }
   }
 }
