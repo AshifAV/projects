@@ -14,6 +14,7 @@
         navButtonPress="onNavBack"
     >
         <content>
+
             <f:SimpleForm
                 id="orderForm"
                 editable="true"
@@ -27,13 +28,19 @@
                 columnsL="2"
                 columnsM="1"
             >
-                <!-- Order Information -->
+
+                <!-- ================================================= -->
+                <!-- ORDER INFORMATION -->
+                <!-- ================================================= -->
+
                 <core:Title text="Order Information" />
+
                 <Label text="User Status" />
+
                 <Select
                     id="idUserStatus"
                     change="handleSaveButtonEnabled"
-                    items="{ path: '/ZAE_VH_UserStatus_09',length: 500 }"
+                    items="{ path: '/ZAE_VH_UserStatus_09', length: 500 }"
                 >
                     <core:ListItem
                         key="{UserStatus}"
@@ -41,7 +48,9 @@
                         additionalText="{UserStatusShortName}"
                     />
                 </Select>
+
                 <Label text="Order No" />
+
                 <Input
                     id="idOrderNo"
                     editable="false"
@@ -49,21 +58,37 @@
                 />
 
                 <Label text="Order Date" />
+
                 <DatePicker
                     id="orderDate"
                     valueFormat="yyyy-MM-dd"
                     displayFormat="dd.MM.yyyy"
                 />
 
-                <!-- Customer Details -->
+                <Label text="Order Long Text" />
+
+                <Input
+                    id="longText"
+                    placeholder="Enter long text..."
+                    width="100%"
+                />
+
+
+                <!-- ================================================= -->
+                <!-- CUSTOMER DETAILS -->
+                <!-- ================================================= -->
+
                 <core:Title text="Customer Details" />
+
                 <Label text="Customer Name" />
+
                 <Input
                     id="customerName"
                     placeholder="Enter customer name"
                 />
 
                 <Label text="Mobile No" />
+
                 <Input
                     id="mobileNo"
                     type="Tel"
@@ -71,25 +96,34 @@
                 />
 
                 <Label text="Location" />
+
                 <Input
                     id="location"
                     placeholder="Enter location"
                 />
 
                 <Label text="Land Line No" />
+
                 <Input
                     id="landLineNo"
                     type="Tel"
                 />
 
-                <!-- Job Details -->
+
+                <!-- ================================================= -->
+                <!-- JOB DETAILS -->
+                <!-- ================================================= -->
+
                 <core:Title text="Job Details" />
+
                 <Label text="Invoice Details" />
+
                 <Input
                     id="invoiceDetails"
                 />
 
                 <Label text="Invoice Date" />
+
                 <DatePicker
                     id="invoiceDate"
                     valueFormat="yyyy-MM-dd"
@@ -97,6 +131,7 @@
                 />
 
                 <Label text="Goods Repair/Collection Date" />
+
                 <DatePicker
                     id="repairDate"
                     valueFormat="yyyy-MM-dd"
@@ -104,93 +139,212 @@
                 />
 
                 <Label text="Job Ref W/OW" />
-                <Input
+
+                <Select
                     id="jobRef"
-                    placeholder="Job Reference"
-                />
+                    change="handleSaveButtonEnabled"
+                    items="{ path: '/ZAE_VH_MaintenanceActivityType', length: 500 }"
+                >
+                    <core:ListItem
+                        key="{MaintenanceActivityType}"
+                        text="{MaintenanceActivityTypeName}"
+                    />
+                </Select>
 
                 <Label text="Model Number" />
-                <Input id="modelNo" />
+
+                <Input
+                    id="modelNo"
+                />
 
                 <Label text="Serial Number" />
-                <Input id="serialNo" />
 
-                <!-- Responsible Persons -->
+                <Input
+                    id="serialNo"
+                />
+
+
+                <!-- ================================================= -->
+                <!-- RESPONSIBLE PERSONS -->
+                <!-- ================================================= -->
+
                 <core:Title text="Responsible Persons" />
+
                 <Label text="Person Responsible (Emp Name)" />
+
                 <Input
                     id="empName"
                     placeholder="Employee Name"
                 />
 
                 <Label text="Employee Code" />
-                <Input
+
+                <Select
                     id="empCode"
-                    placeholder="Employee Code"
-                />
+                    change="onEmpCodeChange"
+                    items="{ path: '/I_PersWrkAgrmtSrchHelp', length: 500 }"
+                >
+                    <core:ListItem
+                        key="{PersonWorkAgreement}"
+                        text="{PersonWorkAgreement}"
+                    />
+                </Select>
 
                 <Label text="Outsource Technician Name" />
-                <Input
+
+                <Select
                     id="techName"
-                    placeholder="Technician Name"
-                />
+                    change="handleSaveButtonEnabled"
+                    items="{ path: '/I_PersWrkAgrmtSrchHelp', length: 500 }"
+                >
+                    <core:ListItem
+                        key="{PersonWorkAgreement}"
+                        text="{PersonFullName}"
+                    />
+                </Select>
 
                 <Label text="Vendor Code" />
-                <Input id="vendorCode" />
 
-                <!-- Technical Information -->
-                <core:Title text="Technical Information" />
-                <Label text="Parts EHA" />
-                <Input id="partsEHA" />
-
-                <Label text="Damage EHA" />
-                <Input id="damageEHA" />
-
-                <Label text="Cause EHA" />
-                <Input id="causeEHA" />
-
-                <!-- Documents & Signature -->
-                <core:Title text="Documents &amp; Signature" />
-                <Label text="Customer Invoice" />
-                <ui:FileUploader
-                    id="fileUploader"
-                    uploadUrl=""
-                    multiple="false"
-                    fileType="pdf,jpg,png"
-                    placeholder="Attach invoice"
+                <Input
+                    id="vendorCode"
                 />
 
-                <Label text="Customer Signature" />
+
+                <!-- ================================================= -->
+                <!-- TECHNICAL INFORMATION -->
+                <!-- ================================================= -->
+
+                <core:Title text="Technical Information" />
+
+                <Label text="Parts EHA" />
+
+                <Input
+                    id="partsEHA"
+                />
+
+                <Label text="Damage EHA" />
+
+                <Input
+                    id="damageEHA"
+                />
+
+                <Label text="Cause EHA" />
+
+                <Input
+                    id="causeEHA"
+                />
+
+
+                <!-- ================================================= -->
+                <!-- DOCUMENTS AND SIGNATURE -->
+                <!-- ================================================= -->
+
+                <core:Title text="Documents &amp; Signature" />
+
+
+                <!-- ================= INVOICE ================= -->
+
+                <Label text="Customer Invoice" />
+
                 <VBox
-                    id="signatureVBox"
-                    height="220px"
+                    width="100%"
+                    class="sapUiSmallMarginBottom"
                 >
-                    <!-- Signature Canvas will be created in Controller -->
+
+                    <ui:FileUploader
+                        id="fileUploader"
+                        width="100%"
+                        multiple="false"
+                        fileType="pdf,jpg,jpeg,png"
+                        placeholder="Select invoice"
+                        sendXHR="true"
+                        change="onInvoiceFileChange"
+                    />
+
+                    <Button
+                        id="idUploadInvoiceButton"
+                        text="Upload Invoice"
+                        icon="sap-icon://upload"
+                        type="Emphasized"
+                        press="onUploadInvoice"
+                        enabled="false"
+                        width="100%"
+                        class="sapUiSmallMarginTop"
+                    />
+
                 </VBox>
+
+
+                <!-- ================= SIGNATURE ================= -->
+
+                <Label text="Customer Signature" />
+
+                <VBox
+                    id="signatureContainer"
+                    width="100%"
+                    class="sapUiSmallMarginBottom"
+                >
+
+                    <VBox
+                        id="signatureVBox"
+                        width="100%"
+                        height="220px"
+                    />
+
+                    <Button
+                        id="idUploadSignatureButton"
+                        text="Upload Signature"
+                        icon="sap-icon://upload"
+                        type="Emphasized"
+                        press="onUploadSignature"
+                        enabled="false"
+                        width="100%"
+                        class="sapUiSmallMarginTop"
+                    />
+
+                </VBox>
+
             </f:SimpleForm>
+
         </content>
 
+
+        <!-- ========================================================= -->
+        <!-- FOOTER -->
+        <!-- ========================================================= -->
+
         <footer>
+
             <Toolbar>
+
                 <ToolbarSpacer />
+
                 <Button
+                    id="idSaveButton"
                     text="Save Order"
                     type="Emphasized"
                     press="onSaveOrder"
                     icon="sap-icon://save"
+                    enabled="false"
                 />
+
                 <Button
                     text="Clear Signature"
                     press="onClearSignature"
                     type="Reject"
                     icon="sap-icon://delete"
                 />
+
                 <Button
                     text="Cancel"
                     type="Reject"
                     press="onCancel"
                 />
+
             </Toolbar>
+
         </footer>
+
     </Page>
+
 </mvc:View>

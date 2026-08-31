@@ -87,6 +87,16 @@ sap.ui.define([
             }
         },
 
+        // Helper function to pad leading zeros
+        _padLeadingZeros: function(value, length) {
+            if (!value) return '';
+            var sValue = String(value);
+            while (sValue.length < length) {
+                sValue = '0' + sValue;
+            }
+            return sValue;
+        },
+
         onOrderSelect: function (oEvent) {
             var oSelectedItem = oEvent.getParameter("listItem");
             if (!oSelectedItem) {
@@ -108,6 +118,16 @@ sap.ui.define([
             var sLocation = oContext.getProperty("Location");
             var sInvoiceNo = oContext.getProperty("InvoiceNo");
             var sInvoiceDate = oContext.getProperty("InvoiceDate");
+            var sJobRef = oContext.getProperty("JobRef");
+            var sCollectionDate = oContext.getProperty("CollectionDate");
+            var sModelNumber = oContext.getProperty("ModelNumber");
+            var sSerialNumber = oContext.getProperty("SerialNumber");
+            
+            // Pad with leading zeros to preserve the full value
+            var sPersonRespCode = this._padLeadingZeros(oContext.getProperty("PersonRespCode") || '', 8);
+            var sPersonRespName = oContext.getProperty("PersonRespName") || '';
+            var sTechPersonRespCode = this._padLeadingZeros(oContext.getProperty("TechPersonRespCode") || '', 8);
+            var sTechPersonRespName = oContext.getProperty("TechPersonRespName") || '';
 
             if (sOrderId) {
                 var sFormattedDate = "";
@@ -126,6 +146,14 @@ sap.ui.define([
                                     String(oInvoiceDate.getDate()).padStart(2, '0');
                 }
 
+                var sFormattedCollectionDate = "";
+                if (sCollectionDate) {
+                    var oCollectionDate = new Date(sCollectionDate);
+                    sFormattedCollectionDate = oCollectionDate.getFullYear() + "-" + 
+                                    String(oCollectionDate.getMonth() + 1).padStart(2, '0') + "-" + 
+                                    String(oCollectionDate.getDate()).padStart(2, '0');
+                }
+
                 var sQuery = "statusCode=" + encodeURIComponent(sStatusCode || '') + 
                             "&statusName=" + encodeURIComponent(sStatusName || '') +
                             "&orderDate=" + encodeURIComponent(sFormattedDate || '') +
@@ -134,7 +162,15 @@ sap.ui.define([
                             "&mobileNumber1=" + encodeURIComponent(sMobileNumber1 || '') +
                             "&location=" + encodeURIComponent(sLocation || '') +
                             "&invoiceNo=" + encodeURIComponent(sInvoiceNo || '') +
-                            "&invoiceDate=" + encodeURIComponent(sFormattedInvoiceDate || '');
+                            "&invoiceDate=" + encodeURIComponent(sFormattedInvoiceDate || '') +
+                            "&jobRef=" + encodeURIComponent(sJobRef || '') +
+                            "&collectionDate=" + encodeURIComponent(sFormattedCollectionDate || '') +
+                            "&personRespCode=" + encodeURIComponent(sPersonRespCode) +
+                            "&personRespName=" + encodeURIComponent(sPersonRespName) +
+                            "&techPersonRespCode=" + encodeURIComponent(sTechPersonRespCode) +
+                            "&techPersonRespName=" + encodeURIComponent(sTechPersonRespName) +
+                            "&modelNumber=" + encodeURIComponent(sModelNumber || '') +
+                            "&serialNumber=" + encodeURIComponent(sSerialNumber || '');
                 
                 this.getOwnerComponent().getRouter().navTo("orderDetail", {
                     orderId: sOrderId,
@@ -158,10 +194,6 @@ sap.ui.define([
             }
             
             oBinding.filter(aFilters);
-            
-            if (oTable) {
-                oTable.setFirstVisibleRow(0);
-            }
         },
 
         onNavBack: function () {
@@ -189,6 +221,16 @@ sap.ui.define([
                 var sLocation = oContext.getProperty("Location");
                 var sInvoiceNo = oContext.getProperty("InvoiceNo");
                 var sInvoiceDate = oContext.getProperty("InvoiceDate");
+                var sJobRef = oContext.getProperty("JobRef");
+                var sCollectionDate = oContext.getProperty("CollectionDate");
+                var sModelNumber = oContext.getProperty("ModelNumber");
+                var sSerialNumber = oContext.getProperty("SerialNumber");
+                
+                // Pad with leading zeros
+                var sPersonRespCode = this._padLeadingZeros(oContext.getProperty("PersonRespCode") || '', 8);
+                var sPersonRespName = oContext.getProperty("PersonRespName") || '';
+                var sTechPersonRespCode = this._padLeadingZeros(oContext.getProperty("TechPersonRespCode") || '', 8);
+                var sTechPersonRespName = oContext.getProperty("TechPersonRespName") || '';
 
                 var sFormattedDate = "";
                 if (sOrderDate) {
@@ -206,6 +248,14 @@ sap.ui.define([
                                     String(oInvoiceDate.getDate()).padStart(2, '0');
                 }
 
+                var sFormattedCollectionDate = "";
+                if (sCollectionDate) {
+                    var oCollectionDate = new Date(sCollectionDate);
+                    sFormattedCollectionDate = oCollectionDate.getFullYear() + "-" + 
+                                    String(oCollectionDate.getMonth() + 1).padStart(2, '0') + "-" + 
+                                    String(oCollectionDate.getDate()).padStart(2, '0');
+                }
+
                 var sQuery = "statusCode=" + encodeURIComponent(sStatusCode || '') + 
                             "&statusName=" + encodeURIComponent(sStatusName || '') +
                             "&orderDate=" + encodeURIComponent(sFormattedDate || '') +
@@ -214,7 +264,15 @@ sap.ui.define([
                             "&mobileNumber1=" + encodeURIComponent(sMobileNumber1 || '') +
                             "&location=" + encodeURIComponent(sLocation || '') +
                             "&invoiceNo=" + encodeURIComponent(sInvoiceNo || '') +
-                            "&invoiceDate=" + encodeURIComponent(sFormattedInvoiceDate || '');
+                            "&invoiceDate=" + encodeURIComponent(sFormattedInvoiceDate || '') +
+                            "&jobRef=" + encodeURIComponent(sJobRef || '') +
+                            "&collectionDate=" + encodeURIComponent(sFormattedCollectionDate || '') +
+                            "&personRespCode=" + encodeURIComponent(sPersonRespCode) +
+                            "&personRespName=" + encodeURIComponent(sPersonRespName) +
+                            "&techPersonRespCode=" + encodeURIComponent(sTechPersonRespCode) +
+                            "&techPersonRespName=" + encodeURIComponent(sTechPersonRespName) +
+                            "&modelNumber=" + encodeURIComponent(sModelNumber || '') +
+                            "&serialNumber=" + encodeURIComponent(sSerialNumber || '');
                 
                 this.getOwnerComponent().getRouter().navTo("orderDetail", {
                     orderId: sOrderId,

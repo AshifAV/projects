@@ -1,0 +1,1 @@
+[{"Name":"DS4","Type":"HTTP","Description":"S4 HANA DEV","ProxyType":"OnPremise","Authentication":"BasicAuthentication","WebIDEEnabled":"true","WebIDEUsage":"odata_abap,dev_abap,ui5_execute_abap","sap-client":"050","product.name":"SAP S/4HANA","HTML5.DynamicDestination":"true","Host":"http://otegroup.server.com:44300","WebIDEExposedHost":"otegroup.server.com:44300"}]

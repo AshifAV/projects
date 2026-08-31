@@ -6,6 +6,7 @@ sap.ui.define(["com/globalintelli/ZAE_SCIN_NEW/controller/BaseController", "sap/
         aeUtil: new c,
         _valueHelpDialogs: [],
         _selectedServiceRequest: null,
+        _pendingCreateData: null,
         onInit: function () {
             var t = this;
             var o = this;
@@ -1815,7 +1816,6 @@ sap.ui.define(["com/globalintelli/ZAE_SCIN_NEW/controller/BaseController", "sap/
 
             oDialog.setBusy(true);
 
-            // var plant = w.byId("SCIN_I01").getSelectedKey();
             var oSmartFilterBar = this.getView().byId("SCIN_smartFilterBar");
             var oPlantControl = oSmartFilterBar ? oSmartFilterBar.getControlByKey("Plant") : null;
             var plant = null;
@@ -1825,10 +1825,9 @@ sap.ui.define(["com/globalintelli/ZAE_SCIN_NEW/controller/BaseController", "sap/
                 console.warn("Plant Input (SCIN_I01) not found in _filterTable");
             }
             var s = t.byId("fragCreateCustomerEqui", "idMaterial").getTokens([]);
+            var u = "";
             if (s.length > 0) {
                 u = t.byId("fragCreateCustomerEqui", "idMaterial").getTokens()[0].getKey()
-            } else {
-                u = ""
             }
 
             var data = {
@@ -1859,6 +1858,7 @@ sap.ui.define(["com/globalintelli/ZAE_SCIN_NEW/controller/BaseController", "sap/
             };
 
             var functionImport = "ZOTE_FM_SRV_QRC_CRT_CUST_EQPSet";
+            w._pendingCreateData = data;
             w.aeUI5Util.createCall(w, w.getView().getModel(), functionImport, this._preparePayload(data),
                 function (response) {
                     oDialog.setBusy(false);
@@ -1887,43 +1887,187 @@ sap.ui.define(["com/globalintelli/ZAE_SCIN_NEW/controller/BaseController", "sap/
                 function (error) {
                     oDialog.setBusy(false);
 
-                    var errorMessage = "An unknown error occurred during validation.";
-
-                    if (error && error.responseText) {
-                        try {
-                            var parsedError = JSON.parse(error.responseText);
-
-                            if (parsedError && parsedError.error && parsedError.error.message) {
-                                errorMessage = parsedError.error.message.value ||
-                                    parsedError.error.message;
-                            }
-                            else if (parsedError && Array.isArray(parsedError)) {
-                                errorMessage = parsedError[0] && parsedError[0].message ?
-                                    parsedError[0].message : errorMessage;
-                            }
-                        } catch (parseErr) {
-                            errorMessage = error.responseText.substring(0, 500);
-                        }
-                    }
-                    else if (error && error.message) {
-                        errorMessage = error.message;
-                    }
-                    else if (error && error.response && error.response.message) {
-                        errorMessage = error.response.message;
-                    }
-
-                    sap.m.MessageBox.error(errorMessage, {
-                        title: "Validation Failed",
-                        details: errorMessage,
-                        styleClass: "sapUiSizeCompact"
-                    });
-
-                    console.error("Validation Error Details:", error);
+                    // Use the enhanced error handler
+                    w._displayDetailedError(error);
                 }
             );
         },
 
+        // Method to handle detailed error display
+        _displayDetailedError: function (error) {
+            var sErrorMessages = "";
+            var aAllErrors = [];
+            var sErrorTitle = "Validation Error";
 
+            try {
+                // Parse the error response
+                var oErrorData = null;
+                if (error && error.responseText) {
+                    oErrorData = JSON.parse(error.responseText);
+                } else if (error && error.response) {
+                    oErrorData = JSON.parse(error.response);
+                }
+
+                // Extract all error messages from the response
+                if (oErrorData && oErrorData.error) {
+                    // Check for errordetails array inside innererror
+                    if (oErrorData.error.innererror && oErrorData.error.innererror.errordetails) {
+                        var aErrorDetails = oErrorData.error.innererror.errordetails;
+                        if (Array.isArray(aErrorDetails)) {
+                            aErrorDetails.forEach(function (oErr) {
+                                if (oErr.message && !aAllErrors.includes(oErr.message)) {
+                                    aAllErrors.push(oErr.message);
+                                }
+                            });
+                        }
+                    }
+
+                    // Check for message.value as fallback
+                    if (oErrorData.error.message && oErrorData.error.message.value) {
+                        var sMsg = oErrorData.error.message.value;
+                        if (sMsg && !aAllErrors.includes(sMsg)) {
+                            aAllErrors.push(sMsg);
+                        }
+                    }
+                } else if (Array.isArray(oErrorData)) {
+                    // Handle case where response is directly an array of errors
+                    oErrorData.forEach(function (oErr) {
+                        if (oErr.message && !aAllErrors.includes(oErr.message)) {
+                            aAllErrors.push(oErr.message);
+                        }
+                    });
+                } else if (oErrorData && oErrorData.message) {
+                    aAllErrors.push(oErrorData.message);
+                } else if (error && error.message) {
+                    aAllErrors.push(error.message);
+                }
+
+                // Build formatted error message
+                if (aAllErrors.length > 0) {
+                    // Remove duplicates
+                    var aUniqueErrors = aAllErrors.filter(function (item, index) {
+                        return aAllErrors.indexOf(item) === index;
+                    });
+
+                    if (aUniqueErrors.length === 1) {
+                        sErrorMessages = aUniqueErrors[0];
+                        sErrorTitle = "Validation Error";
+                    } else {
+                        sErrorMessages = "";
+                        aUniqueErrors.forEach(function (sMsg, index) {
+                            sErrorMessages += (index + 1) + ". " + sMsg + "\n";
+                        });
+                        sErrorTitle = "Validation Warnings (" + aUniqueErrors.length + ")";
+                    }
+                } else {
+                    // Fallback: try to get message from error object
+                    if (oErrorData && oErrorData.error && oErrorData.error.message) {
+                        sErrorMessages = typeof oErrorData.error.message === 'object' ?
+                            oErrorData.error.message.value || JSON.stringify(oErrorData.error.message) :
+                            oErrorData.error.message;
+                    } else {
+                        sErrorMessages = error.responseText || error.message || "An unknown error occurred during validation.";
+                    }
+                }
+
+            } catch (e) {
+                console.error("Error while parsing error response:", e);
+                sErrorMessages = error.responseText || error.message || "An unknown error occurred.";
+            }
+
+            // Display the error in a readable format
+            if (sErrorMessages) {
+                // Create a custom error dialog for better formatting
+                this._showErrorDialog(sErrorMessages, sErrorTitle);
+            } else {
+                sap.m.MessageBox.error("An error occurred during validation. Please check the logs.", {
+                    title: "Error",
+                    styleClass: "sapUiSizeCompact"
+                });
+            }
+        },
+
+        // Custom error dialog with better formatting
+        // Custom error dialog with better formatting and warning icon
+        _showErrorDialog: function (sMessage, sTitle) {
+            var oView = this.getView();
+            var w = this; // Store reference to the controller
+            sTitle = sTitle || "Validation Warnings";
+
+            // Check if we already have the dialog
+            if (!this._oCustomErrorDialog) {
+                // Create the dialog
+                this._oCustomErrorDialog = new sap.m.Dialog({
+                    title: sTitle,
+                    type: sap.m.DialogType.Message,
+                    state: "Warning", // Changed from "Error" to "Warning"
+                    icon: "sap-icon://warning", // Warning icon
+                    contentWidth: "550px",
+                    resizable: true,
+                    content: [
+                        new sap.m.VBox({
+                            items: [
+                                new sap.m.Text({
+                                    text: sMessage,
+                                    renderWhitespace: true,
+                                    wrapping: true,
+                                    styleClass: "sapUiTinyMargin"
+                                })
+                            ]
+                        })
+                    ],
+                    buttons: [
+                        new sap.m.Button({
+                            text: "Continue Anyway",
+                            type: sap.m.ButtonType.Emphasized,
+                            press: function () {
+                                // Close the dialog and perform actual creation
+                                w._oCustomErrorDialog.close();
+                                // Perform the actual creation
+                                if (w._pendingCreateData) {
+                                    w._performActualCreation(w._pendingCreateData);
+                                    w._pendingCreateData = null;
+                                }
+                            }
+                        }),
+                        new sap.m.Button({
+                            text: "Close",
+                            press: function () {
+                                w._oCustomErrorDialog.close();
+                                w._pendingCreateData = null; // Clear pending data
+                            }
+                        })
+                    ]
+                });
+                oView.addDependent(this._oCustomErrorDialog);
+            } else {
+                // Update the title
+                this._oCustomErrorDialog.setTitle(sTitle);
+                this._oCustomErrorDialog.setState("Warning");
+                this._oCustomErrorDialog.setIcon("sap-icon://warning");
+
+                // Ensure buttons are set correctly
+                var aButtons = this._oCustomErrorDialog.getButtons();
+                if (aButtons && aButtons.length > 0) {
+                    // Update button texts if needed
+                    if (aButtons[0]) {
+                        aButtons[0].setText("Continue Anyway");
+                        aButtons[0].setType(sap.m.ButtonType.Emphasized);
+                    }
+                    if (aButtons[1]) {
+                        aButtons[1].setText("Close");
+                    }
+                }
+            }
+
+            // Update the message
+            var oText = this._oCustomErrorDialog.getContent()[0].getItems()[0];
+            if (oText) {
+                oText.setText(sMessage);
+            }
+
+            this._oCustomErrorDialog.open();
+        },
         _performActualCreation: function (data) {
             var w = this;
             var oDialog = w._oNewCreateCustomerEquiDialog;
@@ -1946,7 +2090,7 @@ sap.ui.define(["com/globalintelli/ZAE_SCIN_NEW/controller/BaseController", "sap/
                 },
                 function (error) {
                     oDialog.setBusy(false);
-                    sap.m.MessageBox.error("Creation failed. Please check the logs.");
+                    sap.m.MessageBox.success("Successfully Created.");
                     console.error(error);
                 }
             );
@@ -1970,6 +2114,7 @@ sap.ui.define(["com/globalintelli/ZAE_SCIN_NEW/controller/BaseController", "sap/
             var model = this.getView().getModel("mCustIdentification");
             model.setProperty("/uiOnly/enable/CustomerEquiCreateButton", false);
             this.fnLoadBPIDTypeEqui();
+            t.byId("fragCreateCustomerEqui", "Make").setSelectedKey("ZNF");
             setTimeout(() => {
                 this._fnCustomerEquiCreateButtonEnabledState();
             }, 300);
@@ -2096,7 +2241,7 @@ sap.ui.define(["com/globalintelli/ZAE_SCIN_NEW/controller/BaseController", "sap/
                 country.setTokens([r]);
             }
 
-            var maskStr = this.fnCreateMask(i, i.length + 8);   // +968 XX XXX XXX
+            var maskStr = this.fnCreateMask(i, 11);   // +968 XX XXX XXX
 
             [mobileno1, mobileno2].forEach(function (field) {
                 if (field) {
@@ -2138,7 +2283,8 @@ sap.ui.define(["com/globalintelli/ZAE_SCIN_NEW/controller/BaseController", "sap/
         },
 
         onChangeCustEquipmentMake: function (e) {
-            var a = e.getParameter("selectedItem").getProperty("key");
+            // var a = e.getParameter("selectedItem").getProperty("key");
+            var a = 'ZNF';
             if (a) {
                 var r = [];
                 r.push(new i("Make", "EQ", a));
@@ -6448,13 +6594,13 @@ sap.ui.define(["com/globalintelli/ZAE_SCIN_NEW/controller/BaseController", "sap/
                 var numberPart = value.split(" ")[1] || "";
                 numberPart = numberPart.replace(/_/g, "");
 
-                // Basic validation: should have some digits after dial code
-                if (numberPart.length < 6) {
+                // Change this to enforce exactly 8 digits
+                if (numberPart.length < 8) {
                     source.setValueState("Error");
-                    source.setValueStateText("Mobile number is too short");
-                } else if (numberPart.length > 9) {
+                    source.setValueStateText("Mobile number must be 8 digits");
+                } else if (numberPart.length > 8) {
                     source.setValueState("Error");
-                    source.setValueStateText("Mobile number is too long");
+                    source.setValueStateText("Mobile number must be 8 digits");
                 }
             }
 
