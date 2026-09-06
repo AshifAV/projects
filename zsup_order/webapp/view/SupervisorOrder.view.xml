@@ -5,306 +5,696 @@
     xmlns:f="sap.ui.layout.form"
     xmlns:core="sap.ui.core"
     xmlns:ui="sap.ui.unified"
-    displayBlock="true"
->
+    displayBlock="true">
+
     <Page
         id="page"
-        title="Supervisor Order"
+        title=""
         showNavButton="true"
         navButtonPress="onNavBack"
-    >
+        backgroundDesign="Solid"
+        class="supervisorOrderPage">
+
+        <!-- ========================================================= -->
+        <!-- PAGE CONTENT -->
+        <!-- ========================================================= -->
+
         <content>
 
-            <f:SimpleForm
-                id="orderForm"
-                editable="true"
-                layout="ResponsiveGridLayout"
-                labelSpanXL="4"
-                labelSpanL="4"
-                labelSpanM="12"
-                labelSpanS="12"
-                adjustLabelSpan="false"
-                columnsXL="2"
-                columnsL="2"
-                columnsM="1"
-            >
+            <VBox
+                width="100%"
+                class="orderMainContainer">
+
+                <!-- ================================================= -->
+                <!-- PAGE HEADER -->
+                <!-- ================================================= -->
+
+                <VBox
+                    width="100%"
+                    class="orderHeader">
+
+                    <HBox
+                        width="100%"
+                        alignItems="Center"
+                        class="orderHeaderInner">
+
+                        <VBox
+                            class="orderHeaderText">
+
+                            <Title
+                                text="Supervisor Order"
+                                level="H1"
+                                class="orderPageTitle" />
+
+                            <Text
+                                text="Create and manage maintenance order details"
+                                class="orderPageSubtitle" />
+
+                        </VBox>
+
+                    </HBox>
+
+                </VBox>
+
 
                 <!-- ================================================= -->
                 <!-- ORDER INFORMATION -->
                 <!-- ================================================= -->
 
-                <core:Title text="Order Information" />
-
-                <Label text="User Status" />
-
-                <Select
-                    id="idUserStatus"
-                    change="handleSaveButtonEnabled"
-                    items="{ path: '/ZAE_VH_UserStatus_09', length: 500 }"
-                >
-                    <core:ListItem
-                        key="{UserStatus}"
-                        text="{UserStatusName}"
-                        additionalText="{UserStatusShortName}"
-                    />
-                </Select>
-
-                <Label text="Order No" />
-
-                <Input
-                    id="idOrderNo"
-                    editable="false"
-                    placeholder="Auto-generated"
-                />
-
-                <Label text="Order Date" />
-
-                <DatePicker
-                    id="orderDate"
-                    valueFormat="yyyy-MM-dd"
-                    displayFormat="dd.MM.yyyy"
-                />
-
-                <Label text="Order Long Text" />
-
-                <Input
-                    id="longText"
-                    placeholder="Enter long text..."
+                <VBox
                     width="100%"
-                />
+                    class="formCard">
+
+                    <HBox
+                        alignItems="Center"
+                        class="sectionHeader">
+
+                        <core:Icon
+                            src="sap-icon://order-status"
+                            size="1.2rem"
+                            class="sectionIcon" />
+
+                        <VBox
+                            class="sectionHeaderText">
+
+                            <Title
+                                text="Order Information"
+                                level="H2"
+                                class="sectionTitle" />
+
+                            <Text
+                                text="Basic information about the maintenance order"
+                                class="sectionSubtitle" />
+
+                        </VBox>
+
+                    </HBox>
+
+
+                    <f:SimpleForm
+                        id="orderForm"
+                        editable="true"
+                        layout="ResponsiveGridLayout"
+                        labelSpanXL="3"
+                        labelSpanL="3"
+                        labelSpanM="4"
+                        labelSpanS="12"
+                        emptySpanXL="1"
+                        emptySpanL="1"
+                        emptySpanM="0"
+                        emptySpanS="0"
+                        columnsXL="2"
+                        columnsL="2"
+                        columnsM="1"
+                        adjustLabelSpan="false"
+                        class="modernForm">
+
+                        <Label
+                            text="User Status"
+                            required="true" />
+
+                        <Select
+                            id="idUserStatus"
+                            width="100%"
+                            change="handleSaveButtonEnabled"
+                            items="{ path: '/ZAE_EH_USERSTATUS', length: 500 }">
+
+                            <core:ListItem
+                                key="{estat}"
+                                text="{= ${txt04} + ' - ' + ${estat} }"
+                                additionalText="{txt30}" />
+
+                        </Select>
+
+
+                        <Label text="Order No" />
+
+                        <Input
+                            id="idOrderNo"
+                            editable="false"
+                            placeholder="Auto-generated"
+                            width="100%"
+                            class="readOnlyField" />
+
+
+                        <Label text="Order Date" />
+
+                        <DatePicker
+                            id="orderDate"
+                            width="100%"
+                            valueFormat="yyyy-MM-dd"
+                            displayFormat="dd.MM.yyyy" />
+
+                    </f:SimpleForm>
+
+
+                    <!-- Long Text -->
+                    <VBox class="longTextContainer">
+
+                        <Label
+                            text="Order Long Text"
+                            labelFor="longText"
+                            class="fieldLabel" />
+
+                        <TextArea
+                            id="longText"
+                            placeholder="Enter order notes or additional information..."
+                            width="100%"
+                            rows="5"
+                            growing="true"
+                            growingMaxLines="12"
+                            maxLength="10000"
+                            class="modernTextArea" />
+
+                    </VBox>
+
+                </VBox>
 
 
                 <!-- ================================================= -->
                 <!-- CUSTOMER DETAILS -->
                 <!-- ================================================= -->
 
-                <core:Title text="Customer Details" />
+                <VBox
+                    width="100%"
+                    class="formCard">
 
-                <Label text="Customer Name" />
+                    <HBox
+                        alignItems="Center"
+                        class="sectionHeader">
 
-                <Input
-                    id="customerName"
-                    placeholder="Enter customer name"
-                />
+                        <core:Icon
+                            src="sap-icon://customer"
+                            size="1.2rem"
+                            class="sectionIcon" />
 
-                <Label text="Mobile No" />
+                        <VBox
+                            class="sectionHeaderText">
 
-                <Input
-                    id="mobileNo"
-                    type="Tel"
-                    placeholder="+968 XXXXX XXXXX"
-                />
+                            <Title
+                                text="Customer Details"
+                                level="H2"
+                                class="sectionTitle" />
 
-                <Label text="Location" />
+                            <Text
+                                text="Customer contact and location information"
+                                class="sectionSubtitle" />
 
-                <Input
-                    id="location"
-                    placeholder="Enter location"
-                />
+                        </VBox>
 
-                <Label text="Land Line No" />
+                    </HBox>
 
-                <Input
-                    id="landLineNo"
-                    type="Tel"
-                />
+
+                    <f:SimpleForm
+                        editable="true"
+                        layout="ResponsiveGridLayout"
+                        labelSpanXL="3"
+                        labelSpanL="3"
+                        labelSpanM="4"
+                        labelSpanS="12"
+                        emptySpanXL="1"
+                        emptySpanL="1"
+                        emptySpanM="0"
+                        emptySpanS="0"
+                        columnsXL="2"
+                        columnsL="2"
+                        columnsM="1"
+                        adjustLabelSpan="false"
+                        class="modernForm">
+
+                        <Label text="Customer Name" />
+
+                        <Input
+                            id="customerName"
+                            placeholder="Enter customer name"
+                            width="100%" />
+
+
+                        <Label text="Mobile No" />
+
+                        <Input
+                            id="mobileNo"
+                            type="Tel"
+                            placeholder="+968 XXXXX XXXXX"
+                            width="100%" />
+
+
+                        <Label text="Location" />
+
+                        <Input
+                            id="location"
+                            placeholder="Enter customer location"
+                            width="100%" />
+
+
+                        <Label text="Land Line No" />
+
+                        <Input
+                            id="landLineNo"
+                            type="Tel"
+                            placeholder="Enter land line number"
+                            width="100%" />
+
+                    </f:SimpleForm>
+
+                </VBox>
 
 
                 <!-- ================================================= -->
                 <!-- JOB DETAILS -->
                 <!-- ================================================= -->
 
-                <core:Title text="Job Details" />
+                <VBox
+                    width="100%"
+                    class="formCard">
 
-                <Label text="Invoice Details" />
+                    <HBox
+                        alignItems="Center"
+                        class="sectionHeader">
 
-                <Input
-                    id="invoiceDetails"
-                />
+                        <core:Icon
+                            src="sap-icon://wrench"
+                            size="1.2rem"
+                            class="sectionIcon" />
 
-                <Label text="Invoice Date" />
+                        <VBox
+                            class="sectionHeaderText">
 
-                <DatePicker
-                    id="invoiceDate"
-                    valueFormat="yyyy-MM-dd"
-                    displayFormat="dd.MM.yyyy"
-                />
+                            <Title
+                                text="Job Details"
+                                level="H2"
+                                class="sectionTitle" />
 
-                <Label text="Goods Repair/Collection Date" />
+                            <Text
+                                text="Invoice, repair and equipment information"
+                                class="sectionSubtitle" />
 
-                <DatePicker
-                    id="repairDate"
-                    valueFormat="yyyy-MM-dd"
-                    displayFormat="dd.MM.yyyy"
-                />
+                        </VBox>
 
-                <Label text="Job Ref W/OW" />
+                    </HBox>
 
-                <Select
-                    id="jobRef"
-                    change="handleSaveButtonEnabled"
-                    items="{ path: '/ZAE_VH_MaintenanceActivityType', length: 500 }"
-                >
-                    <core:ListItem
-                        key="{MaintenanceActivityType}"
-                        text="{MaintenanceActivityTypeName}"
-                    />
-                </Select>
 
-                <Label text="Model Number" />
+                    <f:SimpleForm
+                        editable="true"
+                        layout="ResponsiveGridLayout"
+                        labelSpanXL="3"
+                        labelSpanL="3"
+                        labelSpanM="4"
+                        labelSpanS="12"
+                        emptySpanXL="1"
+                        emptySpanL="1"
+                        emptySpanM="0"
+                        emptySpanS="0"
+                        columnsXL="2"
+                        columnsL="2"
+                        columnsM="1"
+                        adjustLabelSpan="false"
+                        class="modernForm">
 
-                <Input
-                    id="modelNo"
-                />
+                        <Label text="Invoice Details" />
 
-                <Label text="Serial Number" />
+                        <Input
+                            id="invoiceDetails"
+                            placeholder="Enter invoice details"
+                            width="100%" />
 
-                <Input
-                    id="serialNo"
-                />
+
+                        <Label text="Invoice Date" />
+
+                        <DatePicker
+                            id="invoiceDate"
+                            width="100%"
+                            valueFormat="yyyy-MM-dd"
+                            displayFormat="dd.MM.yyyy" />
+
+
+                        <Label text="Goods Repair / Collection Date" />
+
+                        <DatePicker
+                            id="repairDate"
+                            width="100%"
+                            valueFormat="yyyy-MM-dd"
+                            displayFormat="dd.MM.yyyy" />
+
+
+                        <Label text="Job Ref W/OW" />
+
+                        <Select
+                            id="jobRef"
+                            width="100%"
+                            change="handleSaveButtonEnabled"
+                            items="{ path: '/ZAE_VH_MaintenanceActivityType', length: 500 }">
+
+                            <core:ListItem
+                                key="{MaintenanceActivityType}"
+                                text="{MaintenanceActivityTypeName}" />
+
+                        </Select>
+
+
+                        <Label text="Model Number" />
+
+                        <Input
+                            id="modelNo"
+                            width="100%"
+                            change="onModelNumberChange"
+                            placeholder="Enter model number"
+                            valueState="None"
+                            valueStateText="" />
+
+
+                        <Label text="Model Description" />
+
+                        <Input
+                            id="modelDescription"
+                            editable="false"
+                            width="100%"
+                            placeholder="Model description will appear automatically"
+                            class="readOnlyField" />
+
+
+                        <Label text="Serial Number" />
+
+                        <Input
+                            id="serialNo"
+                            width="100%"
+                            placeholder="Enter serial number" />
+
+                    </f:SimpleForm>
+
+                </VBox>
 
 
                 <!-- ================================================= -->
                 <!-- RESPONSIBLE PERSONS -->
                 <!-- ================================================= -->
 
-                <core:Title text="Responsible Persons" />
+                <VBox
+                    width="100%"
+                    class="formCard">
 
-                <Label text="Person Responsible (Emp Name)" />
+                    <HBox
+                        alignItems="Center"
+                        class="sectionHeader">
 
-                <Input
-                    id="empName"
-                    placeholder="Employee Name"
-                />
+                        <core:Icon
+                            src="sap-icon://employee"
+                            size="1.2rem"
+                            class="sectionIcon" />
 
-                <Label text="Employee Code" />
+                        <VBox
+                            class="sectionHeaderText">
 
-                <Select
-                    id="empCode"
-                    change="onEmpCodeChange"
-                    items="{ path: '/I_PersWrkAgrmtSrchHelp', length: 500 }"
-                >
-                    <core:ListItem
-                        key="{PersonWorkAgreement}"
-                        text="{PersonWorkAgreement}"
-                    />
-                </Select>
+                            <Title
+                                text="Responsible Persons"
+                                level="H2"
+                                class="sectionTitle" />
 
-                <Label text="Outsource Technician Name" />
+                            <Text
+                                text="Assign employees, technicians and vendors"
+                                class="sectionSubtitle" />
 
-                <Select
-                    id="techName"
-                    change="handleSaveButtonEnabled"
-                    items="{ path: '/I_PersWrkAgrmtSrchHelp', length: 500 }"
-                >
-                    <core:ListItem
-                        key="{PersonWorkAgreement}"
-                        text="{PersonFullName}"
-                    />
-                </Select>
+                        </VBox>
 
-                <Label text="Vendor Code" />
+                    </HBox>
 
-                <Input
-                    id="vendorCode"
-                />
+
+                    <f:SimpleForm
+                        editable="true"
+                        layout="ResponsiveGridLayout"
+                        labelSpanXL="3"
+                        labelSpanL="3"
+                        labelSpanM="4"
+                        labelSpanS="12"
+                        emptySpanXL="1"
+                        emptySpanL="1"
+                        emptySpanM="0"
+                        emptySpanS="0"
+                        columnsXL="2"
+                        columnsL="2"
+                        columnsM="1"
+                        adjustLabelSpan="false"
+                        class="modernForm">
+
+                        <Label text="Person Responsible" />
+
+                        <Input
+                            id="empName"
+                            placeholder="Employee name"
+                            width="100%" />
+
+
+                        <Label text="Employee Code" />
+
+                        <Select
+                            id="empCode"
+                            width="100%"
+                            change="onEmpCodeChange"
+                            items="{ path: '/I_PersWrkAgrmtSrchHelp', length: 500 }">
+
+                            <core:ListItem
+                                key="{PersonWorkAgreement}"
+                                text="{PersonWorkAgreement}" />
+
+                        </Select>
+
+
+                        <Label text="Outsource Technician" />
+
+                        <Select
+                            id="techName"
+                            width="100%"
+                            change="handleSaveButtonEnabled"
+                            items="{ path: '/I_PersWrkAgrmtSrchHelp', length: 500 }">
+
+                            <core:ListItem
+                                key="{PersonWorkAgreement}"
+                                text="{PersonFullName}" />
+
+                        </Select>
+
+
+                        <Label text="Vendor Code" />
+
+                        <Input
+                            id="vendorCode"
+                            placeholder="Enter vendor code"
+                            width="100%" />
+
+                    </f:SimpleForm>
+
+                </VBox>
 
 
                 <!-- ================================================= -->
                 <!-- TECHNICAL INFORMATION -->
                 <!-- ================================================= -->
 
-                <core:Title text="Technical Information" />
-
-                <Label text="Parts EHA" />
-
-                <Input
-                    id="partsEHA"
-                />
-
-                <Label text="Damage EHA" />
-
-                <Input
-                    id="damageEHA"
-                />
-
-                <Label text="Cause EHA" />
-
-                <Input
-                    id="causeEHA"
-                />
-
-
-                <!-- ================================================= -->
-                <!-- DOCUMENTS AND SIGNATURE -->
-                <!-- ================================================= -->
-
-                <core:Title text="Documents &amp; Signature" />
-
-
-                <!-- ================= INVOICE ================= -->
-
-                <Label text="Customer Invoice" />
-
                 <VBox
                     width="100%"
-                    class="sapUiSmallMarginBottom"
-                >
+                    class="formCard">
 
-                    <ui:FileUploader
-                        id="fileUploader"
-                        width="100%"
-                        multiple="false"
-                        fileType="pdf,jpg,jpeg,png"
-                        placeholder="Select invoice"
-                        sendXHR="true"
-                        change="onInvoiceFileChange"
-                    />
+                    <HBox
+                        alignItems="Center"
+                        class="sectionHeader">
 
-                    <Button
-                        id="idUploadInvoiceButton"
-                        text="Upload Invoice"
-                        icon="sap-icon://upload"
-                        type="Emphasized"
-                        press="onUploadInvoice"
-                        enabled="false"
-                        width="100%"
-                        class="sapUiSmallMarginTop"
-                    />
+                        <core:Icon
+                            src="sap-icon://technical-object"
+                            size="1.2rem"
+                            class="sectionIcon" />
+
+                        <VBox
+                            class="sectionHeaderText">
+
+                            <Title
+                                text="Technical Information"
+                                level="H2"
+                                class="sectionTitle" />
+
+                            <Text
+                                text="Record parts, damage and root cause information"
+                                class="sectionSubtitle" />
+
+                        </VBox>
+
+                    </HBox>
+
+
+                    <f:SimpleForm
+                        editable="true"
+                        layout="ResponsiveGridLayout"
+                        labelSpanXL="3"
+                        labelSpanL="3"
+                        labelSpanM="4"
+                        labelSpanS="12"
+                        emptySpanXL="1"
+                        emptySpanL="1"
+                        emptySpanM="0"
+                        emptySpanS="0"
+                        columnsXL="2"
+                        columnsL="2"
+                        columnsM="1"
+                        adjustLabelSpan="false"
+                        class="modernForm">
+
+                        <Label text="Parts EHA" />
+
+                        <Input
+                            id="partsEHA"
+                            placeholder="Enter parts information"
+                            width="100%" />
+
+
+                        <Label text="Damage EHA" />
+
+                        <Input
+                            id="damageEHA"
+                            placeholder="Enter damage information"
+                            width="100%" />
+
+
+                        <Label text="Cause EHA" />
+
+                        <Input
+                            id="causeEHA"
+                            placeholder="Enter cause information"
+                            width="100%" />
+
+                    </f:SimpleForm>
 
                 </VBox>
 
 
-                <!-- ================= SIGNATURE ================= -->
-
-                <Label text="Customer Signature" />
+                <!-- ================================================= -->
+                <!-- DOCUMENTS & SIGNATURE -->
+                <!-- ================================================= -->
 
                 <VBox
-                    id="signatureContainer"
                     width="100%"
-                    class="sapUiSmallMarginBottom"
-                >
+                    class="formCard lastCard">
+
+                    <HBox
+                        alignItems="Center"
+                        class="sectionHeader">
+
+                        <core:Icon
+                            src="sap-icon://attachment"
+                            size="1.2rem"
+                            class="sectionIcon" />
+
+                        <VBox
+                            class="sectionHeaderText">
+
+                            <Title
+                                text="Documents &amp; Signature"
+                                level="H2"
+                                class="sectionTitle" />
+
+                            <Text
+                                text="Upload the customer invoice and capture signature"
+                                class="sectionSubtitle" />
+
+                        </VBox>
+
+                    </HBox>
+
+
+                    <!-- ================= INVOICE ================= -->
 
                     <VBox
-                        id="signatureVBox"
                         width="100%"
-                        height="220px"
-                    />
+                        class="documentBlock">
 
-                    <Button
-                        id="idUploadSignatureButton"
-                        text="Upload Signature"
-                        icon="sap-icon://upload"
-                        type="Emphasized"
-                        press="onUploadSignature"
-                        enabled="false"
+                        <HBox
+                            alignItems="Center"
+                            class="documentTitleRow">
+
+                            <core:Icon
+                                src="sap-icon://pdf-attachment"
+                                size="1rem"
+                                class="documentIcon" />
+
+                            <Label
+                                text="Customer Invoice"
+                                class="documentTitle" />
+
+                        </HBox>
+
+
+                        <ui:FileUploader
+                            id="fileUploader"
+                            width="100%"
+                            multiple="false"
+                            fileType="pdf,jpg,jpeg,png"
+                            placeholder="Select invoice file"
+                            sendXHR="true"
+                            change="onInvoiceFileChange"
+                            class="invoiceUploader" />
+
+
+                        <Button
+                            id="idUploadInvoiceButton"
+                            text="Upload Invoice"
+                            icon="sap-icon://upload"
+                            type="Emphasized"
+                            press="onUploadInvoice"
+                            enabled="false"
+                            width="100%"
+                            class="uploadButton sapUiSmallMarginTop" />
+
+                    </VBox>
+
+
+                    <!-- ================= SIGNATURE ================= -->
+
+                    <VBox
                         width="100%"
-                        class="sapUiSmallMarginTop"
-                    />
+                        class="documentBlock signatureBlock">
+
+                        <HBox
+                            alignItems="Center"
+                            class="documentTitleRow">
+
+                            <core:Icon
+                                src="sap-icon://signature"
+                                size="1rem"
+                                class="documentIcon" />
+
+                            <Label
+                                text="Customer Signature"
+                                class="documentTitle" />
+
+                        </HBox>
+
+
+                        <VBox
+                            id="signatureContainer"
+                            width="100%"
+                            class="signatureArea">
+
+                            <VBox
+                                id="signatureVBox"
+                                width="100%"
+                                height="220px"
+                                class="signatureCanvas" />
+
+                            <Button
+                                id="idUploadSignatureButton"
+                                text="Upload Signature"
+                                icon="sap-icon://upload"
+                                type="Emphasized"
+                                press="onUploadSignature"
+                                enabled="false"
+                                width="100%"
+                                class="uploadButton sapUiSmallMarginTop" />
+
+                        </VBox>
+
+                    </VBox>
 
                 </VBox>
 
-            </f:SimpleForm>
+            </VBox>
 
         </content>
 
@@ -315,7 +705,8 @@
 
         <footer>
 
-            <Toolbar>
+            <OverflowToolbar
+                class="orderFooter">
 
                 <ToolbarSpacer />
 
@@ -326,22 +717,22 @@
                     press="onSaveOrder"
                     icon="sap-icon://save"
                     enabled="false"
-                />
+                    class="saveButton" />
 
                 <Button
                     text="Clear Signature"
                     press="onClearSignature"
                     type="Reject"
                     icon="sap-icon://delete"
-                />
+                    class="footerButton" />
 
                 <Button
                     text="Cancel"
                     type="Reject"
                     press="onCancel"
-                />
+                    class="footerButton" />
 
-            </Toolbar>
+            </OverflowToolbar>
 
         </footer>
 

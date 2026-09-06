@@ -1,1 +1,791 @@
-/* Enter your custom styles here */
+/* ============================================================
+   LOGIN PAGE
+   ============================================================ */
+
+.loginPage {
+    background-color: #f2f2f2 !important;
+}
+
+.loginCard {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 40px;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.10);
+    box-sizing: border-box;
+}
+
+.loginHeader {
+    margin-bottom: 30px;
+}
+
+.loginIcon {
+    margin-bottom: 16px;
+    color: #0a6ed1;
+}
+
+.loginTitle {
+    margin-bottom: 8px;
+}
+
+.loginSubtitle {
+    color: #6a6d70;
+    text-align: center;
+}
+
+.loginForm {
+    width: 100%;
+}
+
+.loginLabel {
+    font-weight: 600;
+}
+
+.loginInput {
+    margin-bottom: 8px;
+}
+
+.loginButton {
+    margin-top: 28px;
+    height: 44px;
+    font-size: 1rem;
+}
+
+
+/* ============================================================
+   SAVE CHANGES DIALOG
+   ============================================================ */
+
+.changeCard {
+    border: 1px solid #e5e5e5;
+    border-radius: 10px;
+    padding: 14px;
+    margin: 0 0 12px 0;
+    background: #ffffff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+    box-sizing: border-box;
+}
+
+.changeCard .sapMLabel {
+    font-size: 15px;
+    font-weight: 600;
+    color: #1d2d3e;
+}
+
+.changeOldRow {
+    background: #fafafa;
+    border-radius: 6px;
+    padding: 8px 10px;
+    margin-top: 6px;
+    box-sizing: border-box;
+}
+
+.changeNewRow {
+    background: #f1f8ff;
+    border-radius: 6px;
+    padding: 8px 10px;
+    margin-top: 6px;
+    border-left: 3px solid #0a6ed1;
+    box-sizing: border-box;
+}
+
+.changeOldRow .sapMText {
+    color: #666666;
+}
+
+.changeNewRow .sapMText {
+    color: #0a4f8a;
+    font-weight: 500;
+}
+
+
+/* ============================================================
+   SUPERVISOR ORDER LIST
+   ============================================================ */
+
+.supervisorOrderPage {
+    background: #f5f6f7 !important;
+}
+
+/* Prevent horizontal scrolling */
+.supervisorOrderPage,
+.supervisorOrderPage .sapMPageEnableScrolling,
+.supervisorOrderPage .sapMPageScroll {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    overflow-x: hidden !important;
+}
+
+
+/* ============================================================
+   ORDER LIST - MAIN CONTAINER
+   ============================================================ */
+
+.mainContainer {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    padding: 28px 30px 35px 30px;
+}
+
+
+/* ============================================================
+   ORDER LIST - PAGE HEADER
+   ============================================================ */
+
+.pageHeader {
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 25px;
+}
+
+.pageTitle {
+    color: #1d2d3e !important;
+    font-size: 1.75rem !important;
+    font-weight: 700 !important;
+    margin-bottom: 5px !important;
+}
+
+.pageSubtitle {
+    color: #6a6d70 !important;
+    font-size: 0.9rem !important;
+}
+
+
+/* ============================================================
+   ORDER LIST - ORDERS CARD
+   ============================================================ */
+
+.ordersCard {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+
+    background: #ffffff;
+
+    border: 1px solid #e1e4e6;
+    border-radius: 10px;
+
+    overflow: hidden;
+
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+
+/* ============================================================
+   ORDER LIST - TOOLBAR
+   ============================================================ */
+
+.ordersToolbar {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+
+    min-height: 62px;
+
+    padding-left: 15px !important;
+    padding-right: 12px !important;
+
+    background: #ffffff !important;
+
+    border-bottom: 1px solid #e1e4e6;
+}
+
+.ordersTitleContainer {
+    flex-shrink: 0;
+}
+
+.ordersTitleIcon {
+    color: #0a6ed1;
+    margin-right: 9px;
+}
+
+.ordersTitle {
+    color: #253548 !important;
+    font-size: 1.15rem !important;
+    font-weight: 600 !important;
+}
+
+
+/* ============================================================
+   ORDER LIST - SEARCH
+   ============================================================ */
+
+.orderSearch {
+    flex-shrink: 1;
+}
+
+.orderSearch .sapMSFF {
+    border-radius: 4px;
+}
+
+
+/* ============================================================
+   ORDER LIST - REFRESH BUTTON
+   ============================================================ */
+
+.refreshButton {
+    flex-shrink: 0;
+}
+
+
+/* ============================================================
+   ORDER LIST - TABLE
+   ============================================================ */
+
+.ordersTable {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+.ordersTable .sapMListTblHeaderCell {
+    background: #f4f5f6 !important;
+    border-bottom: 1px solid #d9dde1 !important;
+
+    padding-top: 12px !important;
+    padding-bottom: 12px !important;
+}
+
+
+/* ============================================================
+   ORDER LIST - COLUMN HEADERS
+   ============================================================ */
+
+.columnHeader {
+    color: #354a5f !important;
+    font-size: 0.85rem !important;
+    font-weight: 600 !important;
+}
+
+.columnIcon {
+    color: #5f6b76;
+    margin-right: 6px;
+}
+
+
+/* ============================================================
+   ORDER LIST - ROWS
+   ============================================================ */
+
+.orderRow {
+    min-height: 54px;
+}
+
+.ordersTable .sapMListTblCell {
+    padding-top: 11px !important;
+    padding-bottom: 11px !important;
+    vertical-align: middle !important;
+}
+
+
+/* ============================================================
+   ORDER LIST - ORDER NUMBER
+   ============================================================ */
+
+.orderNumberLink {
+    font-weight: 600 !important;
+    font-size: 0.9rem !important;
+}
+
+
+/* ============================================================
+   ORDER LIST - ORDER TYPE
+   ============================================================ */
+
+.orderTypeContainer {
+    width: 100%;
+    overflow: hidden;
+}
+
+.orderTypeIcon {
+    color: #6a6d70;
+    margin-right: 8px;
+    flex-shrink: 0;
+}
+
+.orderTypeText {
+    color: #3f4a54 !important;
+    font-size: 0.875rem !important;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+/* ============================================================
+   ORDER LIST - PRIORITY
+   ============================================================ */
+
+.priorityStatus {
+    font-weight: 600 !important;
+}
+
+
+/* ============================================================
+   ORDER LIST - DESCRIPTION
+   ============================================================ */
+
+.descriptionText {
+    width: 100%;
+    color: #515a63 !important;
+    font-size: 0.875rem !important;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+/* ============================================================
+   ORDER LIST - HOVER / SELECTED
+   ============================================================ */
+
+.ordersTable .sapMLIB:hover {
+    background-color: #f7faff !important;
+}
+
+.ordersTable .sapMLIB.sapMLIBSelected {
+    background-color: #eaf4ff !important;
+}
+
+
+/* ============================================================
+   ORDER LIST - TABLET
+   ============================================================ */
+
+@media (max-width: 900px) {
+
+    .mainContainer {
+        padding: 20px 15px 25px 15px;
+    }
+
+    .ordersToolbar {
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+    }
+
+    .orderSearch {
+        width: 180px !important;
+    }
+}
+
+
+/* ============================================================
+   ORDER LIST - MOBILE
+   ============================================================ */
+
+@media (max-width: 650px) {
+
+    .mainContainer {
+        padding: 15px 8px 20px 8px;
+    }
+
+    .pageTitle {
+        font-size: 1.4rem !important;
+    }
+
+    .pageSubtitle {
+        font-size: 0.8rem !important;
+    }
+
+    .ordersToolbar {
+        min-height: 55px;
+    }
+
+    .ordersTitle {
+        font-size: 1rem !important;
+    }
+
+    .orderSearch {
+        width: 150px !important;
+    }
+
+    .refreshButton .sapMBtnInner {
+        padding-left: 8px !important;
+        padding-right: 8px !important;
+    }
+
+    .refreshButton .sapMBtnContent {
+        display: none;
+    }
+}
+
+
+/* ============================================================
+   ORDER LIST - VERY SMALL SCREEN
+   ============================================================ */
+
+@media (max-width: 480px) {
+
+    .ordersTitleContainer {
+        display: none;
+    }
+
+    .orderSearch {
+        width: 100% !important;
+    }
+}
+
+
+/* ============================================================
+   SUPERVISOR ORDER FORM
+   ============================================================ */
+
+.orderMainContainer {
+    width: 100%;
+    max-width: 1050px;
+    margin: 0 auto;
+
+    box-sizing: border-box;
+
+    padding: 1.25rem 1.5rem 2rem 1.5rem;
+}
+
+
+/* ============================================================
+   ORDER FORM - PAGE HEADER
+   ============================================================ */
+
+.orderHeader {
+    width: 100%;
+    margin-bottom: 1.25rem;
+}
+
+.orderHeaderInner {
+    min-height: 4.5rem;
+}
+
+.orderHeaderText {
+    width: 100%;
+}
+
+.orderPageTitle {
+    font-size: 1.75rem;
+    font-weight: 600;
+}
+
+.orderPageSubtitle {
+    margin-top: 0.25rem;
+    font-size: 0.9rem;
+    opacity: 0.7;
+}
+
+
+/* ============================================================
+   ORDER FORM - FORM CARDS
+   ============================================================ */
+
+.formCard {
+    width: 100%;
+    box-sizing: border-box;
+
+    background: #ffffff;
+
+    border-radius: 0.75rem;
+
+    margin-bottom: 1rem;
+
+    padding: 1.15rem 1.35rem;
+
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+
+    border: 1px solid #e5e7e9;
+}
+
+.lastCard {
+    margin-bottom: 0.5rem;
+}
+
+
+/* ============================================================
+   ORDER FORM - SECTION HEADER
+   ============================================================ */
+
+.sectionHeader {
+    width: 100%;
+    min-height: 3rem;
+
+    margin-bottom: 1rem;
+
+    padding-bottom: 0.7rem;
+
+    border-bottom: 1px solid #eeeeee;
+}
+
+.sectionIcon {
+    margin-right: 0.75rem;
+    opacity: 0.8;
+}
+
+.sectionHeaderText {
+    width: 100%;
+}
+
+.sectionTitle {
+    font-size: 1.05rem;
+    font-weight: 600;
+}
+
+.sectionSubtitle {
+    font-size: 0.75rem;
+    opacity: 0.65;
+    margin-top: 0.15rem;
+}
+
+
+/* ============================================================
+   ORDER FORM - FORM FIELDS
+   ============================================================ */
+
+.modernForm {
+    width: 100%;
+}
+
+.modernForm .sapMLabel {
+    font-weight: 500;
+    color: #374151;
+}
+
+.modernForm .sapMInputBase,
+.modernForm .sapMSlt,
+.modernForm .sapMInputBaseContentWrapper {
+    border-radius: 0.4rem;
+}
+
+.readOnlyField {
+    opacity: 0.85;
+}
+
+
+/* ============================================================
+   ORDER FORM - LONG TEXT
+   ============================================================ */
+
+.longTextContainer {
+    width: 100%;
+    margin-top: 0.5rem;
+}
+
+.fieldLabel {
+    font-weight: 500;
+    margin-bottom: 0.35rem;
+}
+
+.modernTextArea {
+    width: 100%;
+}
+
+
+/* ============================================================
+   ORDER FORM - DOCUMENTS
+   ============================================================ */
+
+.documentBlock {
+    width: 100%;
+    margin-bottom: 1.5rem;
+}
+
+.signatureBlock {
+    margin-bottom: 0;
+}
+
+.documentTitleRow {
+    margin-bottom: 0.75rem;
+}
+
+.documentIcon {
+    margin-right: 0.5rem;
+    opacity: 0.75;
+}
+
+.documentTitle {
+    font-weight: 600;
+}
+
+.invoiceUploader {
+    width: 100%;
+}
+
+.uploadButton {
+    border-radius: 0.4rem;
+}
+
+
+/* ============================================================
+   ORDER FORM - SIGNATURE
+   ============================================================ */
+
+.signatureArea {
+    width: 100%;
+}
+
+.signatureCanvas {
+    width: 100%;
+    min-height: 220px;
+
+    border: 1px dashed #b8bdc3;
+
+    border-radius: 0.5rem;
+
+    background: #fafafa;
+
+    box-sizing: border-box;
+}
+
+
+/* ============================================================
+   ORDER FORM - FOOTER
+   ============================================================ */
+
+.orderFooter {
+    min-height: 4rem;
+
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+
+    border-top: 1px solid #dfe3e6;
+
+    background: #ffffff;
+}
+
+.saveButton {
+    min-width: 9rem;
+}
+
+.footerButton {
+    min-width: 8rem;
+}
+
+
+/* ============================================================
+   ORDER FORM - TABLET
+   ============================================================ */
+
+@media (max-width: 1024px) {
+
+    .orderMainContainer {
+        max-width: 900px;
+
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+    }
+
+    .formCard {
+        padding: 1rem 1.15rem;
+    }
+}
+
+
+/* ============================================================
+   ORDER FORM - MOBILE
+   ============================================================ */
+
+@media (max-width: 600px) {
+
+    .orderMainContainer {
+        width: 100%;
+        max-width: none;
+
+        padding: 0.75rem;
+    }
+
+    .orderHeader {
+        padding: 0.5rem 0.25rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .orderPageTitle {
+        font-size: 1.4rem;
+    }
+
+    .orderPageSubtitle {
+        font-size: 0.8rem;
+    }
+
+    .formCard {
+        border-radius: 0.6rem;
+
+        padding: 1rem;
+
+        margin-bottom: 0.75rem;
+
+        box-shadow:
+            0 1px 2px rgba(0, 0, 0, 0.06);
+    }
+
+    .sectionHeader {
+        margin-bottom: 0.75rem;
+    }
+
+    .sectionTitle {
+        font-size: 0.95rem;
+    }
+
+    .sectionSubtitle {
+        font-size: 0.7rem;
+    }
+
+    .modernForm .sapMLabel {
+        margin-top: 0.5rem;
+    }
+
+    .longTextContainer {
+        margin-top: 0.75rem;
+    }
+
+    .signatureCanvas {
+        min-height: 180px;
+    }
+
+    .orderFooter {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
+
+    .orderFooter .sapMBtn {
+        min-width: auto;
+    }
+
+    .saveButton {
+        min-width: 7rem;
+    }
+
+    .footerButton {
+        min-width: auto;
+    }
+}
+
+
+/* ============================================================
+   ORDER FORM - EXTRA SMALL MOBILE
+   ============================================================ */
+
+@media (max-width: 400px) {
+
+    .orderMainContainer {
+        padding: 0.5rem;
+    }
+
+    .formCard {
+        padding: 0.85rem;
+    }
+
+    .sectionIcon {
+        margin-right: 0.5rem;
+    }
+
+    .sectionTitle {
+        font-size: 0.9rem;
+    }
+
+    .orderFooter {
+        padding-left: 0.25rem;
+        padding-right: 0.25rem;
+    }
+
+    .saveButton {
+        min-width: 6rem;
+    }
+}

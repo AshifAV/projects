@@ -7,92 +7,307 @@
 
     <Page
         id="page"
-        title="Supervisor Orders"
+        title=""
         showNavButton="true"
         navButtonPress="onNavBack"
-        backgroundDesign="Solid">
+        backgroundDesign="Solid"
+        class="supervisorOrderPage">
 
         <content>
-            <Table
-                id="orderTable"
-                items="{ 
-                    path: '/ZOTE_SUPAPP_ORDER', 
-                    sorter: { path: 'MaintenanceOrder', descending: true },
-                    parameters: {
-                        $count: true,
-                        countMode: 'Inline'
-                    }
-                }"
-                mode="SingleSelectMaster"
-                selectionChange="onOrderSelect"
-                growing="true"
-                growingThreshold="20"
-                growingScrollToLoad="true"
-                alternateRowColors="true"
-                fixedLayout="false"
-                class="sapUiNoMargin">
 
-                <headerToolbar>
-                    <OverflowToolbar>
-                        <Title text="Orders List" level="H2" />
+            <!-- Main Container -->
+            <VBox
+                width="100%"
+                class="mainContainer">
+
+                <!-- Page Header -->
+                <VBox
+                    width="100%"
+                    class="pageHeader sapUiSmallMarginBeginEnd sapUiSmallMarginTop">
+
+                    <Title
+                        text="Supervisor Orders"
+                        level="H1"
+                        class="pageTitle" />
+
+                    <Text
+                        text="Select an order to view and manage its details"
+                        class="pageSubtitle" />
+
+                </VBox>
+
+
+                <!-- Orders Card -->
+                <VBox
+                    width="100%"
+                    class="ordersCard sapUiSmallMarginBeginEnd">
+
+                    <!-- Toolbar -->
+                    <OverflowToolbar
+                        width="100%"
+                        class="ordersToolbar">
+
+                        <HBox
+                            alignItems="Center"
+                            class="ordersTitleContainer">
+
+                            <core:Icon
+                                src="sap-icon://list"
+                                size="1.1rem"
+                                class="ordersTitleIcon" />
+
+                            <Title
+                                text="Orders List"
+                                level="H2"
+                                class="ordersTitle" />
+
+                        </HBox>
+
                         <ToolbarSpacer />
+
+                        <!-- Search -->
                         <SearchField
                             id="searchField"
                             placeholder="Search orders..."
                             search="onSearch"
-                            width="220px" />
+                            width="220px"
+                            class="orderSearch" />
+
+                        <!-- Refresh -->
                         <Button
                             icon="sap-icon://refresh"
                             text="Refresh"
                             press="onRefresh"
                             type="Transparent"
-                            tooltip="Refresh List" />
+                            tooltip="Refresh List"
+                            class="refreshButton" />
+
                     </OverflowToolbar>
-                </headerToolbar>
 
-                <columns>
-                    <Column hAlign="Center" >
-                        <Text text="Order No" />
-                    </Column>
-                    <Column hAlign="Center" >
-                        <Text text="Order Type" />
-                    </Column>
-                    <Column hAlign="Center">
-                        <Text text="Priority" />
-                    </Column>
-                    <Column hAlign="Left" width="auto" demandPopin="true" minScreenWidth="Tablet">
-                        <Text text="Description" />
-                    </Column>
-                </columns>
 
-                <items>
-                    <ColumnListItem>
-                        <cells>
-                            <Link
-                                text="{MaintenanceOrder}"
-                                press="onOrderLinkPress"
-                                tooltip="{MaintenanceOrderInternalID}"
-                                textAlign="Center" />
+                    <!-- Orders Table -->
+                    <Table
+                        id="orderTable"
+                        width="100%"
+                        items="{
+                            path: '/ZOTE_SUPAPP_ORDER',
+                            sorter: {
+                                path: 'MaintenanceOrder',
+                                descending: true
+                            },
+                            parameters: {
+                                $count: true,
+                                countMode: 'Inline'
+                            }
+                        }"
+                        mode="SingleSelectMaster"
+                        selectionChange="onOrderSelect"
+                        growing="true"
+                        growingThreshold="20"
+                        growingScrollToLoad="true"
+                        alternateRowColors="true"
+                        fixedLayout="false"
+                        class="ordersTable">
 
-                            <HBox alignItems="Center" justifyContent="Center">
-                                <core:Icon
-                                    src="sap-icon://order"
-                                    size="1rem"
-                                    color="#666"
-                                    class="sapUiTinyMarginEnd" />
-                                <Text text="{MaintenanceOrderTypeName}" />
-                            </HBox>
+                        <!-- ================================================= -->
+                        <!-- COLUMNS -->
+                        <!-- ================================================= -->
 
-                            <ObjectStatus
-                                state="{= ${MaintPriorityDesc} === '1-Very high' ? 'Error' : ${MaintPriorityDesc} === '3-Medium' ? 'Warning' : 'Success' }"
-                                text="{MaintPriorityDesc}"
-                                textAlign="Center" />
+                        <columns>
 
-                            <Text text="{MaintenanceOrderDesc}" />
-                        </cells>
-                    </ColumnListItem>
-                </items>
-            </Table>
+                            <!-- Order Number -->
+                            <Column
+                                width="11rem"
+                                hAlign="Left"
+                                demandPopin="false"
+                                popinDisplay="Inline">
+
+                                <header>
+                                    <HBox
+                                        alignItems="Center">
+
+                                        <core:Icon
+                                            src="sap-icon://document-text"
+                                            size="0.9rem"
+                                            class="columnIcon sapUiTinyMarginEnd" />
+
+                                        <Text
+                                            text="Order No"
+                                            class="columnHeader" />
+
+                                    </HBox>
+                                </header>
+
+                            </Column>
+
+
+                            <!-- Order Type -->
+                            <Column
+                                width="14rem"
+                                hAlign="Left"
+                                demandPopin="true"
+                                minScreenWidth="Tablet"
+                                popinDisplay="Inline">
+
+                                <header>
+                                    <HBox
+                                        alignItems="Center">
+
+                                        <core:Icon
+                                            src="sap-icon://order-status"
+                                            size="0.9rem"
+                                            class="columnIcon sapUiTinyMarginEnd" />
+
+                                        <Text
+                                            text="Order Type"
+                                            class="columnHeader" />
+
+                                    </HBox>
+                                </header>
+
+                            </Column>
+
+
+                            <!-- Priority -->
+                            <Column
+                                width="11rem"
+                                hAlign="Left"
+                                demandPopin="false"
+                                popinDisplay="Inline">
+
+                                <header>
+                                    <HBox
+                                        alignItems="Center">
+
+                                        <core:Icon
+                                            src="sap-icon://flag"
+                                            size="0.9rem"
+                                            class="columnIcon sapUiTinyMarginEnd" />
+
+                                        <Text
+                                            text="Priority"
+                                            class="columnHeader" />
+
+                                    </HBox>
+                                </header>
+
+                            </Column>
+
+
+                            <!-- Description -->
+                            <Column
+                                width="auto"
+                                hAlign="Left"
+                                demandPopin="true"
+                                minScreenWidth="Desktop"
+                                popinDisplay="Block">
+
+                                <header>
+                                    <HBox
+                                        alignItems="Center">
+
+                                        <core:Icon
+                                            src="sap-icon://notes"
+                                            size="0.9rem"
+                                            class="columnIcon sapUiTinyMarginEnd" />
+
+                                        <Text
+                                            text="Description"
+                                            class="columnHeader" />
+
+                                    </HBox>
+                                </header>
+
+                            </Column>
+
+                        </columns>
+
+
+                        <!-- ================================================= -->
+                        <!-- ROWS -->
+                        <!-- ================================================= -->
+
+                        <items>
+
+                            <ColumnListItem
+                                type="Active"
+                                class="orderRow">
+
+                                <cells>
+
+                                    <!-- ===================================== -->
+                                    <!-- ORDER NUMBER -->
+                                    <!-- ===================================== -->
+
+                                    <Link
+                                        text="{MaintenanceOrder}"
+                                        press="onOrderLinkPress"
+                                        tooltip="{MaintenanceOrderInternalID}"
+                                        class="orderNumberLink" />
+
+
+                                    <!-- ===================================== -->
+                                    <!-- ORDER TYPE -->
+                                    <!-- ===================================== -->
+
+                                    <HBox
+                                        alignItems="Center"
+                                        class="orderTypeContainer">
+
+                                        <core:Icon
+                                            src="sap-icon://order"
+                                            size="0.95rem"
+                                            class="orderTypeIcon sapUiTinyMarginEnd" />
+
+                                        <Text
+                                            text="{MaintenanceOrderTypeName}"
+                                            wrapping="true"
+                                            class="orderTypeText" />
+
+                                    </HBox>
+
+
+                                    <!-- ===================================== -->
+                                    <!-- PRIORITY -->
+                                    <!-- ===================================== -->
+
+                                    <ObjectStatus
+                                        state="{=
+                                            ${MaintPriorityDesc} === '1-Very high'
+                                            ? 'Error'
+                                            :
+                                            ${MaintPriorityDesc} === '3-Medium'
+                                            ? 'Warning'
+                                            :
+                                            'Success'
+                                        }"
+                                        text="{MaintPriorityDesc}"
+                                        class="priorityStatus" />
+
+
+                                    <!-- ===================================== -->
+                                    <!-- DESCRIPTION -->
+                                    <!-- ===================================== -->
+
+                                    <Text
+                                        text="{MaintenanceOrderDesc}"
+                                        wrapping="true"
+                                        class="descriptionText" />
+
+                                </cells>
+
+                            </ColumnListItem>
+
+                        </items>
+
+                    </Table>
+
+                </VBox>
+
+            </VBox>
+
         </content>
+
     </Page>
+
 </mvc:View>

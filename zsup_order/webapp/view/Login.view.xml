@@ -1,0 +1,97 @@
+<mvc:View
+    controllerName="zsuporder.controller.Login"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    displayBlock="true"
+    afterInit="onAfterInit">
+
+    <Page
+        id="loginPage"
+        showHeader="false"
+        backgroundDesign="Solid"
+        class="loginPage">
+
+        <content>
+
+            <VBox
+                width="100%"
+                height="100%"
+                alignItems="Center"
+                justifyContent="Center">
+
+                <VBox
+                    width="420px"
+                    class="loginCard sapUiResponsiveMargin">
+
+                    <VBox
+                        alignItems="Center"
+                        class="loginHeader">
+
+                        <core:Icon
+                            src="sap-icon://employee"
+                            size="3.5rem"
+                            class="loginIcon" />
+
+                        <Title
+                            text="Technician Login"
+                            level="H1"
+                            class="loginTitle" />
+
+                        <Text
+                            text="Sign in to access your supervisor orders"
+                            class="loginSubtitle" />
+
+                    </VBox>
+
+                    <VBox
+                        class="loginForm">
+
+                        <Label
+                            text="Employee Code"
+                            labelFor="employeeCode"
+                            required="true"
+                            class="loginLabel" />
+
+                        <Input
+                            id="employeeCode"
+                            placeholder="Enter 5 digit employee code"
+                            maxLength="5"
+                            type="Text"
+                            valueLiveUpdate="true"
+                            width="100%"
+                            class="loginInput" />
+
+                        <Label
+                            text="Password"
+                            labelFor="password"
+                            required="true"
+                            class="loginLabel sapUiSmallMarginTop" />
+
+                        <Input
+                            id="password"
+                            placeholder="Enter password"
+                            type="Password"
+                            width="100%"
+                            class="loginInput" />
+
+                        <Button
+                            id="loginButton"
+                            text="Login"
+                            icon="sap-icon://log"
+                            type="Emphasized"
+                            width="100%"
+                            press="onLogin"
+                            class="loginButton" />
+
+                    </VBox>
+
+                </VBox>
+
+            </VBox>
+
+        </content>
+
+    </Page>
+
+</mvc:View>

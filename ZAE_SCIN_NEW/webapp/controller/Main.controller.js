@@ -2115,6 +2115,7 @@ sap.ui.define(["com/globalintelli/ZAE_SCIN_NEW/controller/BaseController", "sap/
             model.setProperty("/uiOnly/enable/CustomerEquiCreateButton", false);
             this.fnLoadBPIDTypeEqui();
             t.byId("fragCreateCustomerEqui", "Make").setSelectedKey("ZNF");
+            this.onChangeCustEquipmentMake();
             setTimeout(() => {
                 this._fnCustomerEquiCreateButtonEnabledState();
             }, 300);
@@ -2283,12 +2284,37 @@ sap.ui.define(["com/globalintelli/ZAE_SCIN_NEW/controller/BaseController", "sap/
         },
 
         onChangeCustEquipmentMake: function (e) {
-            // var a = e.getParameter("selectedItem").getProperty("key");
-            var a = 'ZNF';
+
+            var a = "ZNF";
+
             if (a) {
-                var r = [];
-                r.push(new i("Make", "EQ", a));
-                t.byId("fragCreateCustomerEqui", "Model").getBinding("items").filter(r)
+
+                var oSelect = t.byId(
+                    "fragCreateCustomerEqui",
+                    "Model"
+                );
+
+                // Get the OData model used by the Select
+                var oModel = oSelect.getModel();
+
+                // Increase UI5 model size limit
+                oModel.setSizeLimit(1000);
+
+                var oBinding = oSelect.getBinding("items");
+
+                var aFilters = [];
+
+                aFilters.push(
+                    new i(
+                        "Make",
+                        "EQ",
+                        a
+                    )
+                );
+
+                oBinding.filter(aFilters);
+
+                console.log("Binding length after filter:", oBinding.getLength());
             }
         },
 

@@ -104,8 +104,15 @@
       },
       "routes": [
         {
-          "name": "orderList",
+          "name": "login",
           "pattern": "",
+          "target": [
+            "loginTarget"
+          ]
+        },
+        {
+          "name": "orderList",
+          "pattern": "orders",
           "target": [
             "orderListTarget"
           ]
@@ -119,6 +126,10 @@
         }
       ],
       "targets": {
+        "loginTarget": {
+          "viewType": "XML",
+          "viewName": "Login"
+        },
         "orderListTarget": {
           "viewType": "XML",
           "viewName": "SupervisorOrderList"

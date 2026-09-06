@@ -11,84 +11,231 @@ sap.ui.define([
     return Controller.extend("zsuporder.controller.SupervisorOrderList", {
 
         onInit: function () {
-            // Listen for navigation to get parameters
-            this.getOwnerComponent().getRouter().getRoute("orderList").attachPatternMatched(this._onRouteMatched, this);
-            
-            // Handle OData errors globally
-            var oModel = this.getView().getModel("mainService");
+
+            this.getOwnerComponent()
+                .getRouter()
+                .getRoute("orderList")
+                .attachPatternMatched(this._onRouteMatched, this);
+
+            var oModel = this.getView().getModel();
+
             if (oModel) {
-                oModel.attachRequestFailed(function(oEvent) {
-                    var oError = oEvent.getParameter("error");
+
+                oModel.attachRequestFailed(function (oEvent) {
+
+                    var oError = oEvent.getParameter("response");
+
                     if (oError && oError.statusCode === 504) {
-                        MessageBox.error("The server is taking too long to respond. Please check your connection or try again later.", {
-                            title: "Gateway Timeout"
-                        });
+
+                        MessageBox.error(
+                            "The server is taking too long to respond. Please check your connection or try again later.",
+                            {
+                                title: "Gateway Timeout"
+                            }
+                        );
+
                     } else if (oError) {
-                        var sMessage = oError.message || "An error occurred while loading data";
-                        MessageBox.error(sMessage, {
-                            title: "Error"
-                        });
+
+                        var sMessage =
+                            oError.message ||
+                            "An error occurred while loading data";
+
+                        MessageBox.error(
+                            sMessage,
+                            {
+                                title: "Error"
+                            }
+                        );
                     }
+
                 }, this);
+
             }
-            
-            // Force initial data load
-            this._loadData();
+
+            /*
+             * Do not call _loadData() here.
+             *
+             * The view is async and the Table/items binding
+             * may not exist yet.
+             */
         },
 
-        _loadData: function() {
-            var oTable = this.byId("orderTable");
-            if (oTable) {
-                var oBinding = oTable.getBinding("items");
-                if (oBinding) {
-                    oBinding.refresh(true);
-                }
+        onAfterRendering: function () {
+
+            if (this._bInitialLoadDone) {
+                return;
             }
+
+            this._bInitialLoadDone = true;
+
+            this._loadData();
+
+        },
+
+        _loadData: function () {
+
+            var oTable = this.byId("orderTable");
+
+            if (!oTable) {
+                return;
+            }
+
+            var oBinding = oTable.getBinding("items");
+
+            if (!oBinding) {
+                return;
+            }
+
+            var oLoginModel =
+                this.getOwnerComponent().getModel("login");
+
+            if (!oLoginModel) {
+
+                console.error("Login model not found.");
+
+                return;
+            }
+
+            var sEmployeeCode =
+                oLoginModel.getProperty("/EmployeeCode");
+
+            if (!sEmployeeCode) {
+
+                console.error(
+                    "Logged-in employee code not found."
+                );
+
+                return;
+            }
+
+            /*
+             * Remove leading zeroes ONLY for loading
+             *
+             * 00016342 -> 16342
+             */
+            sEmployeeCode = String(sEmployeeCode).replace(/^0+/, "");
+
+            /*
+             * If the value is all zeroes, avoid sending
+             * an empty filter value.
+             */
+            if (!sEmployeeCode) {
+                sEmployeeCode = "0";
+            }
+
+            console.log(
+                "Loading orders for employee:",
+                sEmployeeCode
+            );
+
+            /*
+             * Backend accepts:
+             *
+             * substringof('16342',PersonRespCode)
+             *
+             * UI5 FilterOperator.Contains generates the
+             * corresponding OData V2 substring filter.
+             */
+            var oFilter = new Filter(
+                "TechPersonRespCode",
+                FilterOperator.Contains,
+                sEmployeeCode
+            );
+
+            oBinding.filter(
+                [oFilter],
+                "Application"
+            );
         },
 
         _onRouteMatched: function (oEvent) {
-            var oTable = this.byId("orderTable");
-            if (oTable) {
-                var oBinding = oTable.getBinding("items");
-                if (oBinding) {
-                    oBinding.refresh();
-                }
-            }
-        },
 
-        onRefresh: function () {
             var oTable = this.byId("orderTable");
+
+            if (!oTable) {
+                return;
+            }
+
+            this._loadData();
+
+            var oBinding = oTable.getBinding("items");
+
+            if (oBinding) {
+                oBinding.refresh(true);
+            }
+
+
+
+        },
+        onRefresh: function () {
+
+            var oTable = this.byId("orderTable");
+
+            if (!oTable) {
+                return;
+            }
+
             oTable.setBusy(true);
 
             try {
+
                 var oBinding = oTable.getBinding("items");
+
                 if (oBinding) {
+
                     oBinding.filter([]);
+
                     oBinding.refresh(true);
-                    var oModel = this.getView().getModel("mainService");
+
+                    var oModel = this.getView().getModel();
+
                     if (oModel) {
                         oModel.refresh(true);
                     }
-                    MessageBox.information("Data refreshed successfully", {
-                        title: "Refresh Complete"
-                    });
+
+                    MessageBox.information(
+                        "Data refreshed successfully",
+                        {
+                            title: "Refresh Complete"
+                        }
+                    );
+
                 } else {
-                    MessageBox.warning("No data binding found. Please check the service connection.", {
-                        title: "Warning"
-                    });
+
+                    MessageBox.warning(
+                        "No data binding found. Please check the service connection.",
+                        {
+                            title: "Warning"
+                        }
+                    );
                 }
+
             } catch (oError) {
-                MessageBox.error("Error refreshing data: " + (oError.message || "Unknown error"));
-                console.error("Refresh error:", oError);
+
+                MessageBox.error(
+                    "Error refreshing data: " +
+                    (oError.message || "Unknown error")
+                );
+
+                console.error(
+                    "Refresh error:",
+                    oError
+                );
+
             } finally {
+
                 setTimeout(function () {
+
                     oTable.setBusy(false);
+
                 }, 500);
+
             }
+
         },
 
         // Helper function to pad leading zeros
-        _padLeadingZeros: function(value, length) {
+        _padLeadingZeros: function (value, length) {
             if (!value) return '';
             var sValue = String(value);
             while (sValue.length < length) {
@@ -122,7 +269,9 @@ sap.ui.define([
             var sCollectionDate = oContext.getProperty("CollectionDate");
             var sModelNumber = oContext.getProperty("ModelNumber");
             var sSerialNumber = oContext.getProperty("SerialNumber");
-            
+            var sUserStatus = oContext.getProperty("ActiveStatus");
+            var sVendor = oContext.getProperty("Vendor");
+
             // Pad with leading zeros to preserve the full value
             var sPersonRespCode = this._padLeadingZeros(oContext.getProperty("PersonRespCode") || '', 8);
             var sPersonRespName = oContext.getProperty("PersonRespName") || '';
@@ -133,52 +282,54 @@ sap.ui.define([
                 var sFormattedDate = "";
                 if (sOrderDate) {
                     var oDate = new Date(sOrderDate);
-                    sFormattedDate = oDate.getFullYear() + "-" + 
-                                    String(oDate.getMonth() + 1).padStart(2, '0') + "-" + 
-                                    String(oDate.getDate()).padStart(2, '0');
+                    sFormattedDate = oDate.getFullYear() + "-" +
+                        String(oDate.getMonth() + 1).padStart(2, '0') + "-" +
+                        String(oDate.getDate()).padStart(2, '0');
                 }
 
                 var sFormattedInvoiceDate = "";
                 if (sInvoiceDate) {
                     var oInvoiceDate = new Date(sInvoiceDate);
-                    sFormattedInvoiceDate = oInvoiceDate.getFullYear() + "-" + 
-                                    String(oInvoiceDate.getMonth() + 1).padStart(2, '0') + "-" + 
-                                    String(oInvoiceDate.getDate()).padStart(2, '0');
+                    sFormattedInvoiceDate = oInvoiceDate.getFullYear() + "-" +
+                        String(oInvoiceDate.getMonth() + 1).padStart(2, '0') + "-" +
+                        String(oInvoiceDate.getDate()).padStart(2, '0');
                 }
 
                 var sFormattedCollectionDate = "";
                 if (sCollectionDate) {
                     var oCollectionDate = new Date(sCollectionDate);
-                    sFormattedCollectionDate = oCollectionDate.getFullYear() + "-" + 
-                                    String(oCollectionDate.getMonth() + 1).padStart(2, '0') + "-" + 
-                                    String(oCollectionDate.getDate()).padStart(2, '0');
+                    sFormattedCollectionDate = oCollectionDate.getFullYear() + "-" +
+                        String(oCollectionDate.getMonth() + 1).padStart(2, '0') + "-" +
+                        String(oCollectionDate.getDate()).padStart(2, '0');
                 }
 
-                var sQuery = "statusCode=" + encodeURIComponent(sStatusCode || '') + 
-                            "&statusName=" + encodeURIComponent(sStatusName || '') +
-                            "&orderDate=" + encodeURIComponent(sFormattedDate || '') +
-                            "&customerName=" + encodeURIComponent(sCustomerName || '') +
-                            "&mobileNumber=" + encodeURIComponent(sMobileNumber || '') +
-                            "&mobileNumber1=" + encodeURIComponent(sMobileNumber1 || '') +
-                            "&location=" + encodeURIComponent(sLocation || '') +
-                            "&invoiceNo=" + encodeURIComponent(sInvoiceNo || '') +
-                            "&invoiceDate=" + encodeURIComponent(sFormattedInvoiceDate || '') +
-                            "&jobRef=" + encodeURIComponent(sJobRef || '') +
-                            "&collectionDate=" + encodeURIComponent(sFormattedCollectionDate || '') +
-                            "&personRespCode=" + encodeURIComponent(sPersonRespCode) +
-                            "&personRespName=" + encodeURIComponent(sPersonRespName) +
-                            "&techPersonRespCode=" + encodeURIComponent(sTechPersonRespCode) +
-                            "&techPersonRespName=" + encodeURIComponent(sTechPersonRespName) +
-                            "&modelNumber=" + encodeURIComponent(sModelNumber || '') +
-                            "&serialNumber=" + encodeURIComponent(sSerialNumber || '');
-                
+                var sQuery = "statusCode=" + encodeURIComponent(sStatusCode || '') +
+                    "&statusName=" + encodeURIComponent(sStatusName || '') +
+                    "&orderDate=" + encodeURIComponent(sFormattedDate || '') +
+                    "&customerName=" + encodeURIComponent(sCustomerName || '') +
+                    "&mobileNumber=" + encodeURIComponent(sMobileNumber || '') +
+                    "&mobileNumber1=" + encodeURIComponent(sMobileNumber1 || '') +
+                    "&location=" + encodeURIComponent(sLocation || '') +
+                    "&invoiceNo=" + encodeURIComponent(sInvoiceNo || '') +
+                    "&invoiceDate=" + encodeURIComponent(sFormattedInvoiceDate || '') +
+                    "&jobRef=" + encodeURIComponent(sJobRef || '') +
+                    "&collectionDate=" + encodeURIComponent(sFormattedCollectionDate || '') +
+                    "&personRespCode=" + encodeURIComponent(sPersonRespCode) +
+                    "&personRespName=" + encodeURIComponent(sPersonRespName) +
+                    "&techPersonRespCode=" + encodeURIComponent(sTechPersonRespCode) +
+                    "&techPersonRespName=" + encodeURIComponent(sTechPersonRespName) +
+                    "&modelNumber=" + encodeURIComponent(sModelNumber || '') +
+                    "&serialNumber=" + encodeURIComponent(sSerialNumber || '') +
+                    "&userStatus=" + encodeURIComponent(sUserStatus || '') +
+                    "&vendor=" + encodeURIComponent(sVendor || '');
+
                 this.getOwnerComponent().getRouter().navTo("orderDetail", {
                     orderId: sOrderId,
                     query: sQuery
                 });
             }
         },
-        
+
         onSearch: function (oEvent) {
             var sQuery = oEvent.getParameter("query");
             var oTable = this.byId("orderTable");
@@ -187,26 +338,33 @@ sap.ui.define([
             if (!oBinding) {
                 return;
             }
-            
+
             var aFilters = [];
             if (sQuery && sQuery.length > 0) {
                 aFilters.push(new Filter("MaintenanceOrder", FilterOperator.Contains, sQuery));
             }
-            
+
             oBinding.filter(aFilters);
         },
 
         onNavBack: function () {
+
             var oHistory = History.getInstance();
             var sPreviousHash = oHistory.getPreviousHash();
 
             if (sPreviousHash !== undefined) {
+
                 window.history.go(-1);
+
             } else {
-                this.getOwnerComponent().getRouter().navTo("orderList", {}, true);
+
+                this.getOwnerComponent()
+                    .getRouter()
+                    .navTo("login", {}, true);
+
             }
         },
-        
+
         onOrderLinkPress: function (oEvent) {
             var oLink = oEvent.getSource();
             var oContext = oLink.getBindingContext();
@@ -225,7 +383,9 @@ sap.ui.define([
                 var sCollectionDate = oContext.getProperty("CollectionDate");
                 var sModelNumber = oContext.getProperty("ModelNumber");
                 var sSerialNumber = oContext.getProperty("SerialNumber");
-                
+                var sUserStatus = oContext.getProperty("ActiveStatus");
+                var sVendor = oContext.getProperty("Vendor");
+
                 // Pad with leading zeros
                 var sPersonRespCode = this._padLeadingZeros(oContext.getProperty("PersonRespCode") || '', 8);
                 var sPersonRespName = oContext.getProperty("PersonRespName") || '';
@@ -235,45 +395,47 @@ sap.ui.define([
                 var sFormattedDate = "";
                 if (sOrderDate) {
                     var oDate = new Date(sOrderDate);
-                    sFormattedDate = oDate.getFullYear() + "-" + 
-                                    String(oDate.getMonth() + 1).padStart(2, '0') + "-" + 
-                                    String(oDate.getDate()).padStart(2, '0');
+                    sFormattedDate = oDate.getFullYear() + "-" +
+                        String(oDate.getMonth() + 1).padStart(2, '0') + "-" +
+                        String(oDate.getDate()).padStart(2, '0');
                 }
 
                 var sFormattedInvoiceDate = "";
                 if (sInvoiceDate) {
                     var oInvoiceDate = new Date(sInvoiceDate);
-                    sFormattedInvoiceDate = oInvoiceDate.getFullYear() + "-" + 
-                                    String(oInvoiceDate.getMonth() + 1).padStart(2, '0') + "-" + 
-                                    String(oInvoiceDate.getDate()).padStart(2, '0');
+                    sFormattedInvoiceDate = oInvoiceDate.getFullYear() + "-" +
+                        String(oInvoiceDate.getMonth() + 1).padStart(2, '0') + "-" +
+                        String(oInvoiceDate.getDate()).padStart(2, '0');
                 }
 
                 var sFormattedCollectionDate = "";
                 if (sCollectionDate) {
                     var oCollectionDate = new Date(sCollectionDate);
-                    sFormattedCollectionDate = oCollectionDate.getFullYear() + "-" + 
-                                    String(oCollectionDate.getMonth() + 1).padStart(2, '0') + "-" + 
-                                    String(oCollectionDate.getDate()).padStart(2, '0');
+                    sFormattedCollectionDate = oCollectionDate.getFullYear() + "-" +
+                        String(oCollectionDate.getMonth() + 1).padStart(2, '0') + "-" +
+                        String(oCollectionDate.getDate()).padStart(2, '0');
                 }
 
-                var sQuery = "statusCode=" + encodeURIComponent(sStatusCode || '') + 
-                            "&statusName=" + encodeURIComponent(sStatusName || '') +
-                            "&orderDate=" + encodeURIComponent(sFormattedDate || '') +
-                            "&customerName=" + encodeURIComponent(sCustomerName || '') +
-                            "&mobileNumber=" + encodeURIComponent(sMobileNumber || '') +
-                            "&mobileNumber1=" + encodeURIComponent(sMobileNumber1 || '') +
-                            "&location=" + encodeURIComponent(sLocation || '') +
-                            "&invoiceNo=" + encodeURIComponent(sInvoiceNo || '') +
-                            "&invoiceDate=" + encodeURIComponent(sFormattedInvoiceDate || '') +
-                            "&jobRef=" + encodeURIComponent(sJobRef || '') +
-                            "&collectionDate=" + encodeURIComponent(sFormattedCollectionDate || '') +
-                            "&personRespCode=" + encodeURIComponent(sPersonRespCode) +
-                            "&personRespName=" + encodeURIComponent(sPersonRespName) +
-                            "&techPersonRespCode=" + encodeURIComponent(sTechPersonRespCode) +
-                            "&techPersonRespName=" + encodeURIComponent(sTechPersonRespName) +
-                            "&modelNumber=" + encodeURIComponent(sModelNumber || '') +
-                            "&serialNumber=" + encodeURIComponent(sSerialNumber || '');
-                
+                var sQuery = "statusCode=" + encodeURIComponent(sStatusCode || '') +
+                    "&statusName=" + encodeURIComponent(sStatusName || '') +
+                    "&orderDate=" + encodeURIComponent(sFormattedDate || '') +
+                    "&customerName=" + encodeURIComponent(sCustomerName || '') +
+                    "&mobileNumber=" + encodeURIComponent(sMobileNumber || '') +
+                    "&mobileNumber1=" + encodeURIComponent(sMobileNumber1 || '') +
+                    "&location=" + encodeURIComponent(sLocation || '') +
+                    "&invoiceNo=" + encodeURIComponent(sInvoiceNo || '') +
+                    "&invoiceDate=" + encodeURIComponent(sFormattedInvoiceDate || '') +
+                    "&jobRef=" + encodeURIComponent(sJobRef || '') +
+                    "&collectionDate=" + encodeURIComponent(sFormattedCollectionDate || '') +
+                    "&personRespCode=" + encodeURIComponent(sPersonRespCode) +
+                    "&personRespName=" + encodeURIComponent(sPersonRespName) +
+                    "&techPersonRespCode=" + encodeURIComponent(sTechPersonRespCode) +
+                    "&techPersonRespName=" + encodeURIComponent(sTechPersonRespName) +
+                    "&modelNumber=" + encodeURIComponent(sModelNumber || '') +
+                    "&serialNumber=" + encodeURIComponent(sSerialNumber || '') +
+                    "&userStatus=" + encodeURIComponent(sUserStatus || '') +
+                    "&vendor=" + encodeURIComponent(sVendor || '');
+
                 this.getOwnerComponent().getRouter().navTo("orderDetail", {
                     orderId: sOrderId,
                     query: sQuery
