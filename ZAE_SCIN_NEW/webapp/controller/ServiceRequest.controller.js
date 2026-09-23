@@ -324,24 +324,44 @@ sap.ui.define(["com/globalintelli/ZAE_SCIN_NEW/controller/BaseController", "sap/
                             }
 
                             var b = function (e) {
-                                var t = g.getView().getModel("i18n").getResourceBundle().getText("Created");
-                                var a = g.getView().getModel("i18n").getResourceBundle().getText("Successfully");
+                                var oMessageManager = sap.ui.getCore().getMessageManager();
+
+                                // Get Service Request number
                                 var r = "";
                                 if (e.N_Main.results.length > 0 && e.N_Main.results[0].EJobNo) {
-                                    r = e.N_Main.results[0].EJobNo
+                                    r = e.N_Main.results[0].EJobNo;
                                 } else {
-                                    return
+                                    return;
                                 }
+
+                                // Create Service Request message with hyperlink
+                                var t = g.getView().getModel("i18n").getResourceBundle().getText("Created");
+                                var a = g.getView().getModel("i18n").getResourceBundle().getText("Successfully");
                                 var i = new sap.ui.core.message.Message({
                                     persistent: true,
-                                    code: r,
+                                    code: r,  // This creates the hyperlink for Service Request
                                     type: sap.ui.core.MessageType.Success,
                                     message: t + r + " " + a,
                                     additionalText: "",
-                                    description: ""
+                                    description: "Service Request"
                                 });
-                                sap.ui.getCore().getMessageManager().addMessages(i);
-                                g.getView().byId("SCIN_B21").setEnabled(false)
+                                oMessageManager.addMessages(i);
+
+                                // Check if Service Order number exists and create message with hyperlink
+                                if (e.N_Main.results.length > 0 && e.N_Main.results[0].EOrderNo) {
+                                    var sOrderNo = e.N_Main.results[0].EOrderNo;
+                                    var oOrderMessage = new sap.ui.core.message.Message({
+                                        persistent: true,
+                                        code: sOrderNo,  // This creates the hyperlink for Service Order
+                                        type: sap.ui.core.MessageType.Success,
+                                        message: "Order " + sOrderNo + " has been created successfully",
+                                        additionalText: "",
+                                        description: "Service Order"
+                                    });
+                                    oMessageManager.addMessages(oOrderMessage);
+                                }
+
+                                g.getView().byId("SCIN_B21").setEnabled(false);
                             };
                             var D = function (e) {
                                 g.getView().byId("SCIN_B21").setEnabled(false)
@@ -840,24 +860,75 @@ sap.ui.define(["com/globalintelli/ZAE_SCIN_NEW/controller/BaseController", "sap/
             e.filter(t, "Application")
         },
         onMessagePopoverPress: function (e) {
-            var t = function (e) {
-                var t = sap.ushell.Container.getService("CrossApplicationNavigation");
-                var a = t && t.hrefForExternal({
-                    target: {
-                        semanticObject: "ServiceRequest",
-                        action: "aesDisplay"
-                    },
-                    params: {
-                        ServiceRequest: e
-                    }
-                }) || "";
-                t.toExternal({
-                    target: {
-                        shellHash: a
-                    }
-                })
+            var t = this;
+            var oCrossNav = sap.ushell.Container.getService("CrossApplicationNavigation");
+
+            // This function is called when a message in the popover is clicked
+            var fnNavigate = function (sCode, oItem) {
+                console.log("=== Message Clicked ===");
+                console.log("Code:", sCode);
+                console.log("Item:", oItem);
+
+                // Get the message text from the item
+                var sMessageText = "";
+                if (oItem) {
+                    sMessageText = oItem.getProperty("title") || oItem.getText() || "";
+                    console.log("Message Text:", sMessageText);
+                }
+
+                var sHash = "";
+
+                // Check if it's a Service Order message
+                if (sMessageText && (sMessageText.indexOf("Order") !== -1 ||
+                    sMessageText.indexOf("order") !== -1 ||
+                    sMessageText.indexOf("Follow On Document") !== -1)) {
+
+                    console.log("Navigating to Service Order:", sCode);
+
+                    // Use direct semantic object for ServiceOrder
+                    sHash = oCrossNav && oCrossNav.hrefForExternal({
+                        target: {
+                            semanticObject: "ServiceOrder",
+                            action: "aesDisplay"
+                        },
+                        params: {
+                            ServiceOrder: sCode
+                        }
+                    }) || "";
+
+                    console.log("Service Order URL:", sHash);
+
+                } else {
+                    console.log("Navigating to Service Request:", sCode);
+
+                    // Service Request
+                    sHash = oCrossNav && oCrossNav.hrefForExternal({
+                        target: {
+                            semanticObject: "ServiceRequest",
+                            action: "aesDisplay"
+                        },
+                        params: {
+                            ServiceRequest: sCode
+                        }
+                    }) || "";
+
+                    console.log("Service Request URL:", sHash);
+                }
+
+                if (sHash) {
+                    console.log("Final Navigation URL:", sHash);
+                    oCrossNav.toExternal({
+                        target: {
+                            shellHash: sHash
+                        }
+                    });
+                } else {
+                    console.error("No navigation URL generated for:", sCode);
+                }
             };
-            this.aeUI5Util.handleMessagePopoverPress(this, e, t)
+
+            // Call the utility with our navigation function
+            this.aeUI5Util.handleMessagePopoverPress(this, e, fnNavigate);
         },
         handleServiceRequestCreateSlotSelect: function (e) {
             var t = e.getParameter("row");

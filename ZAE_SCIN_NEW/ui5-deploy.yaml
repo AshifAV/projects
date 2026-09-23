@@ -21,6 +21,6 @@ builder:
           name: ZAE_SCIN_NEW
           description: Application For Customer Identification
           package: zote_abap
-          transport: DS4K926933
+          transport: DS4K926949
         exclude:
           - /test/

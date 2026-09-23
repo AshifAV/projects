@@ -1439,12 +1439,12 @@ sap.ui.define([
             var bModelValid =
                 this._bModelValid;
 
-            var bEnabled =
-                bStatusValid &&
-                bModelValid;
+            // var bEnabled =
+            //     bStatusValid &&
+            //     bModelValid;
 
             oSaveButton.setEnabled(
-                bEnabled
+                true
             );
 
         },
